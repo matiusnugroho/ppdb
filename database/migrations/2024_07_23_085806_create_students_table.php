@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('nama'); // Nama
             $table->string('tempat_lahir'); // Tempat Lahir
             $table->date('tanggal_lahir'); // Tanggal Lahir
@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nik')->unique(); // NIK
             $table->string('no_kk')->unique(); // No. KK
             $table->string('no_hp_ortu'); // No. HP Ortu
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -30,6 +31,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('students', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
         Schema::dropIfExists('students');
     }
 };

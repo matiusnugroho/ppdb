@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
 use App\Models\User;
+use App\Models\Student;
+use App\Models\School;
 use Spatie\Permission\Models\Role;
 
 class UserTestSeeder extends Seeder
@@ -17,7 +19,7 @@ class UserTestSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('id_ID');
 
         // Ensure the roles exist
         $roleSekolah = Role::firstOrCreate(['name' => 'sekolah']);
@@ -38,6 +40,27 @@ class UserTestSeeder extends Seeder
             'password' => Hash::make('password'), // or use a secure password
         ]);
         $userSiswa->assignRole($roleSiswa);
+        Student::create([
+            'user_id' => $userSiswa->id, // Set the user_id here
+            'nama' => $faker->name,
+            'tempat_lahir' => $faker->city,
+            'tanggal_lahir' => $faker->date,
+            'nama_bapak_ibu' => $faker->name,
+            'nik' => $faker->unique()->numerify('##########'),
+            'no_kk' => $faker->unique()->numerify('##########'),
+            'no_hp_ortu' => $faker->phoneNumber,
+        ]);
+        School::create([
+            'nama_sekolah' => $faker->company,
+            'nss' => $faker->unique()->numerify('##########'),
+            'npsn' => $faker->unique()->numerify('##########'),
+            'alamat' => $faker->address,
+            'no_telp' => $faker->phoneNumber,
+            'email' => $faker->unique()->companyEmail,
+            'nama_kepsek' => $faker->name,
+            'kecamatan_id' => $faker->numberBetween(1, 10),
+            'user_id' => $userSekolah->id, // Set the admin_user_id here
+        ]);
     }
 }
 

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('school_student', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('school_id');
+            $table->uuid('student_id'); // UUID for student
+            $table->uuid('school_id');  // UUID for school
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
@@ -27,6 +27,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('school_student', function (Blueprint $table) {
+            $table->dropForeign(['student_id']);
+            $table->dropForeign(['school_id']);
+        });
         Schema::dropIfExists('school_student');
     }
 };

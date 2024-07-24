@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('schools', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('nama_sekolah'); // Nama Sekolah
             $table->string('nss')->unique(); // NSS
             $table->string('npsn')->unique(); // NPSN
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email')->unique(); // Email
             $table->string('nama_kepsek'); // Nama Kepsek
             $table->string('kecamatan_id'); // Kecamatan
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -31,6 +32,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('schools', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
         Schema::dropIfExists('schools');
     }
 };
