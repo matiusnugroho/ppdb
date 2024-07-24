@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email')->unique(); // Email
             $table->string('nama_kepsek'); // Nama Kepsek
             $table->string('kecamatan_id'); // Kecamatan
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
