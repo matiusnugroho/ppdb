@@ -20,4 +20,14 @@ class Student extends Model
             }
         });
     }
+    public function school(): BelongsTo
+    {
+        return $this->schools()->wherePivot('active', true)->first();
+    }
+    public function schools(): BelongsToMany
+    {
+        return $this->belongsToMany(School::class, 'school_student')
+        ->withPivot('active')
+        ->withTimestamps();;
+    }
 }

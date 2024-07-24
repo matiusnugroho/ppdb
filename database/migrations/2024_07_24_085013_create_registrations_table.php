@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('school_student', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('student_id'); // UUID for student
-            $table->uuid('school_id');  // UUID for school
-            $table->boolean('active')->default(false);
+        Schema::create('registrations', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('student_id');
+            $table->uuid('school_id');
+            $table->string('registration_number')->unique();
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
@@ -28,10 +28,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('school_student', function (Blueprint $table) {
+        Schema::table('registrations', function (Blueprint $table) {
             $table->dropForeign(['student_id']);
             $table->dropForeign(['school_id']);
         });
-        Schema::dropIfExists('school_student');
+        Schema::dropIfExists('registrations');
     }
 };
