@@ -1,10 +1,9 @@
 <?php
 
 namespace Database\Seeders;
-use Spatie\Permission\Models\Role;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {

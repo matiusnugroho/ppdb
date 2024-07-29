@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\DocumentType;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class DocumentTypeSeeder extends Seeder
@@ -18,13 +17,13 @@ class DocumentTypeSeeder extends Seeder
             'ijazah/skl smp sederajat',
             'nilai rata-rata rapor',
             'akta kelahiran',
-            'surat pernyataan keabsahan dokumen'
+            'surat pernyataan keabsahan dokumen',
         ];
 
         foreach ($documentTypes as $type) {
             DocumentType::create([
                 'id' => (string) Str::uuid(),
-                'label' => $type
+                'label' => $type,
             ]);
         }
     }

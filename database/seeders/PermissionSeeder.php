@@ -15,9 +15,40 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         // Create permissions
-        Permission::firstOrCreate(['name' => 'daftar_akun']);
-        Permission::firstOrCreate(['name' => 'verifikasi_siswa']);
-        Permission::firstOrCreate(['name' => 'verifikasi_sekolah']);
+        $permissionSekolah = [
+            'verifikasi_siswa',
+            'edit_my_profile_sekolah',
+            'verifikasi_dokumen_siswa',
+            'edit_registration_status',
+
+        ];
+        $permissionSiswa = [
+            'edit_my_profile_siswa',
+            'edit_document_siswa',
+        ];
+        $permissionAdmin = [
+            'verifikasi_sekolah',
+        ];
+        //buat permission untuk admin
+        foreach ($permissionAdmin as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
+
+        //buat permission untuk sekolah
+        foreach ($permissionSekolah as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
+        //buat permission untuk siswa
+        foreach ($permissionSiswa as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
+
+        //Assign permission to role
+        $roleAdmin = \Spatie\Permission\Models\Role::where('name', 'super_admin')->first();
+        $roleSekolah = \Spatie\Permission\Models\Role::where('name', 'sekolah')->first();
+        $roleSiswa = \Spatie\Permission\Models\Role::where('name', 'siswa')->first();
+        $roleAdmin->givePermissionTo($permissionAdmin);
+        $roleSekolah->givePermissionTo($permissionSekolah);
+        $roleSiswa->givePermissionTo($permissionSiswa);
     }
 }
-

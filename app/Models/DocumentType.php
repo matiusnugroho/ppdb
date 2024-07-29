@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class DocumentType extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'id', 'label'
+        'id', 'label',
     ];
 
     public $incrementing = false;

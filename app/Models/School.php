@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class School extends Model
 {
     use HasFactory;
+
     protected static function boot()
     {
         parent::boot();
@@ -20,10 +21,12 @@ class School extends Model
             }
         });
     }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
     public function students(): BelongsToMany
     {
         return $this->belongsToMany(Student::class, 'school_student');

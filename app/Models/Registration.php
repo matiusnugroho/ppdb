@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Registration extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'id', 'student_id', 'school_id', 'registration_number'
+        'id', 'student_id', 'school_id', 'registration_number',
     ];
 
     public $incrementing = false;

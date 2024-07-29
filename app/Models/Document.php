@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Document extends Model
 {
     protected $fillable = [
-        'id', 'registration_id', 'document_type_id', 'path', 'status'
+        'id', 'registration_id', 'document_type_id', 'path', 'status',
     ];
 
     public $incrementing = false;

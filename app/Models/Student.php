@@ -4,11 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 
 class Student extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'id' => 'string',
+    ];
+
+    protected $fillable = [
+        'nama',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'nama_bapak_ibu',
+        'nik',
+        'no_kk',
+        'no_hp_ortu',
+        'user_id',
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -20,14 +38,21 @@ class Student extends Model
             }
         });
     }
+
     public function school(): BelongsTo
     {
         return $this->schools()->wherePivot('active', true)->first();
     }
+
     public function schools(): BelongsToMany
     {
         return $this->belongsToMany(School::class, 'school_student')
-        ->withPivot('active')
-        ->withTimestamps();;
+            ->withPivot('active')
+            ->withTimestamps();
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

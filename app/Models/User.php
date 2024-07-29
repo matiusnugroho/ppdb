@@ -4,15 +4,15 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasRoles, HasApiTokens;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
     ];
@@ -47,28 +47,30 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
     /**
-     * Get the schools that the user manages.
+     * Get the school that the user manages.
      */
-    public function schools(): HasMany
+    public function school(): HasOne
     {
-        return $this->hasMany(School::class);
+        return $this->hasOne(School::class);
     }
 
     /**
-     * Get the students associated with the user.
+     * Get the student associated with the user.
      */
-    public function students(): HasMany
+    public function student(): HasOne
     {
-        return $this->hasMany(Student::class);
+        return $this->hasOne(Student::class);
     }
+
     public function can($abilities, $arguments = [])
     {
         // If user is a super_admin, bypass permission checks
         if ($this->hasRole('super_admin')) {
             return true;
         }
+
         return parent::can($abilities, $arguments);
     }
-
 }

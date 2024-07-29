@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\School;
+use App\Models\Student;
+use App\Models\User;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Faker\Factory as Faker;
-use App\Models\User;
-use App\Models\Student;
-use App\Models\School;
 use Spatie\Permission\Models\Role;
 
 class UserTestSeeder extends Seeder
@@ -27,7 +27,7 @@ class UserTestSeeder extends Seeder
 
         // Create a user with role 'sekolah'
         $userSekolah = User::create([
-            'name' => $faker->name,
+            'username' => $faker->userName,
             'email' => $faker->unique()->safeEmail,
             'password' => Hash::make('password'), // or use a secure password
         ]);
@@ -35,7 +35,7 @@ class UserTestSeeder extends Seeder
 
         // Create a user with role 'siswa'
         $userSiswa = User::create([
-            'name' => $faker->name,
+            'username' => $faker->userName,
             'email' => $faker->unique()->safeEmail,
             'password' => Hash::make('password'), // or use a secure password
         ]);
@@ -63,4 +63,3 @@ class UserTestSeeder extends Seeder
         ]);
     }
 }
-

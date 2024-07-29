@@ -18,10 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesTableSeeder::class,
             PermissionSeeder::class,
-            AssignPermissionsSeeder::class,
             AdminUserSeeder::class,
             UserTestSeeder::class,
-            DocumentTypeSeeder::class
+            DocumentTypeSeeder::class,
         ]);
     }
 }
