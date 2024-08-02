@@ -38,9 +38,26 @@ export default defineConfig(({ mode }) => {
     manifest: true,
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]',
+        entryFileNames: ({ name }) => {
+          // Check if the entry file is 'index'
+          if (name === 'index') {
+            return 'index.js'   // Place 'index.js' in 'special' folder
+          }
+          return 'js/[name].js'          // All other JavaScript files go into 'js' folder
+        },
+        chunkFileNames: 'js/[name].js',
+        assetFileNames:({name})=>{
+          if (name === 'index.css') {
+            return '[name].[ext]'      // Place 'index.css' in the root directory
+          }
+          if (name && name.endsWith('.css')) {
+            return 'css/[name].[ext]'      // CSS files go into the 'css' folder
+          }
+          if (name && /\.(png|jpe?g|gif|svg)$/.test(name)) {
+            return 'images/[name].[ext]'   // Image files go into the 'images' folder
+          }
+          return 'assets/[name].[ext]' 
+        } ,
       },
     },
   },

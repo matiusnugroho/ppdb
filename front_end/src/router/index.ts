@@ -42,14 +42,6 @@ const routes = [
     }
   },
   {
-    path: '/tables',
-    name: 'tables',
-    component: () => import('@/views/TablesView.vue'),
-    meta: {
-      title: 'Tables'
-    }
-  },
-  {
     path: '/pages/settings',
     name: 'settings',
     component: () => import('@/views/Pages/SettingsView.vue'),
@@ -58,7 +50,7 @@ const routes = [
     }
   },
   {
-    path: '/charts/basic-chart',
+    path: '/charts',
     name: 'basicChart',
     component: () => import('@/views/Charts/BasicChartView.vue'),
     meta: {
