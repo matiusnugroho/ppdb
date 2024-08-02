@@ -1,32 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import SigninView from '@/views/Authentication/SigninView.vue'
-import SignupView from '@/views/Authentication/SignupView.vue'
-import CalendarView from '@/views/CalendarView.vue'
-import BasicChartView from '@/views/Charts/BasicChartView.vue'
-import ECommerceView from '@/views/Dashboard/ECommerceView.vue'
-import FormElementsView from '@/views/Forms/FormElementsView.vue'
-import FormLayoutView from '@/views/Forms/FormLayoutView.vue'
-import SettingsView from '@/views/Pages/SettingsView.vue'
-import ProfileView from '@/views/ProfileView.vue'
-import TablesView from '@/views/TablesView.vue'
-import AlertsView from '@/views/UiElements/AlertsView.vue'
-import ButtonsView from '@/views/UiElements/ButtonsView.vue'
-import Error404View from '@/views/Errors/Error404View.vue'
-
 const routes = [
   {
     path: '/',
     name: 'eCommerce',
-    component: ECommerceView,
+    component: () => import('@/views/Dashboard/ECommerceView.vue'),
     meta: {
-      title: 'eCommerce Dashboard'
+      title: 'PPDB Kuantan Singing'
     }
   },
   {
     path: '/calendar',
     name: 'calendar',
-    component: CalendarView,
+    component: () => import('@/views/CalendarView.vue'),
     meta: {
       title: 'Calendar'
     }
@@ -34,7 +20,7 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
-    component: ProfileView,
+    component: () => import('@/views/ProfileView.vue'),
     meta: {
       title: 'Profile'
     }
@@ -42,7 +28,7 @@ const routes = [
   {
     path: '/forms/form-elements',
     name: 'formElements',
-    component: FormElementsView,
+    component: () => import('@/views/Forms/FormElementsView.vue'),
     meta: {
       title: 'Form Elements'
     }
@@ -50,7 +36,7 @@ const routes = [
   {
     path: '/forms/form-layout',
     name: 'formLayout',
-    component: FormLayoutView,
+    component: () => import('@/views/Forms/FormLayoutView.vue'),
     meta: {
       title: 'Form Layout'
     }
@@ -58,7 +44,7 @@ const routes = [
   {
     path: '/tables',
     name: 'tables',
-    component: TablesView,
+    component: () => import('@/views/TablesView.vue'),
     meta: {
       title: 'Tables'
     }
@@ -66,7 +52,7 @@ const routes = [
   {
     path: '/pages/settings',
     name: 'settings',
-    component: SettingsView,
+    component: () => import('@/views/Pages/SettingsView.vue'),
     meta: {
       title: 'Settings'
     }
@@ -74,7 +60,7 @@ const routes = [
   {
     path: '/charts/basic-chart',
     name: 'basicChart',
-    component: BasicChartView,
+    component: () => import('@/views/Charts/BasicChartView.vue'),
     meta: {
       title: 'Basic Chart'
     }
@@ -82,7 +68,7 @@ const routes = [
   {
     path: '/ui-elements/alerts',
     name: 'alerts',
-    component: AlertsView,
+    component: () => import('@/views/UiElements/AlertsView.vue'),
     meta: {
       title: 'Alerts'
     }
@@ -90,7 +76,7 @@ const routes = [
   {
     path: '/ui-elements/buttons',
     name: 'buttons',
-    component: ButtonsView,
+    component: () => import('@/views/UiElements/ButtonsView.vue'),
     meta: {
       title: 'Buttons'
     }
@@ -98,7 +84,7 @@ const routes = [
   {
     path: '/auth/signin',
     name: 'signin',
-    component: SigninView,
+    component: () => import('@/views/Authentication/SigninView.vue'),
     meta: {
       title: 'Signin'
     }
@@ -106,7 +92,7 @@ const routes = [
   {
     path: '/auth/signup',
     name: 'signup',
-    component: SignupView,
+    component: () => import('@/views/Authentication/SignupView.vue'),
     meta: {
       title: 'Signup'
     }
@@ -114,7 +100,7 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: Error404View,
+    component: () => import('@/views/Errors/Error404View.vue'),
     meta: {
       title: '404 Not Found'
     }

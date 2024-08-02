@@ -11,12 +11,16 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    autocomplete: {
+      type: String,
+      default: ''
+    },
     modelValue: String
   },
   emits: ['update:modelValue'],
   methods: {
     updateValue(target: HTMLInputElement) {
-      this.$emit('update:modelValue', target.value);
+      this.$emit('update:modelValue', target.value)
     }
   }
 })
@@ -32,6 +36,7 @@ export default defineComponent({
       :type="type"
       :placeholder="placeholder"
       :value="modelValue"
+      :autocomplete="autocomplete"
       @input="updateValue($event.target as HTMLInputElement)"
       class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-2 px-2 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
     />
