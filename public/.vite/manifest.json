@@ -1,42 +1,39 @@
 {
   "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js": {
-    "file": "BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
+    "file": "js/BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
     "name": "BreadcrumbDefault.vue_vue_type_script_setup_true_lang",
     "imports": [
       "index.html"
     ]
   },
   "_ChartTwo.vue_vue_type_script_setup_true_lang.js": {
-    "file": "ChartTwo.vue_vue_type_script_setup_true_lang.js",
+    "file": "js/ChartTwo.vue_vue_type_script_setup_true_lang.js",
     "name": "ChartTwo.vue_vue_type_script_setup_true_lang",
     "imports": [
       "index.html"
     ]
   },
   "_DefaultCard.vue_vue_type_script_setup_true_lang.js": {
-    "file": "DefaultCard.vue_vue_type_script_setup_true_lang.js",
+    "file": "js/DefaultCard.vue_vue_type_script_setup_true_lang.js",
     "name": "DefaultCard.vue_vue_type_script_setup_true_lang",
     "imports": [
       "index.html"
     ]
   },
   "_DefaultLayout.vue_vue_type_script_setup_true_lang.js": {
-    "file": "DefaultLayout.vue_vue_type_script_setup_true_lang.js",
+    "file": "js/DefaultLayout.vue_vue_type_script_setup_true_lang.js",
     "name": "DefaultLayout.vue_vue_type_script_setup_true_lang",
     "imports": [
-      "_index2.js",
+      "_index.js",
       "index.html",
       "_logo.js"
     ],
     "assets": [
-      "user-01.png",
-      "user-02.png",
-      "user-03.png",
-      "user-04.png"
+      "images/user-01.png"
     ]
   },
   "_InputGroup.js": {
-    "file": "InputGroup.js",
+    "file": "js/InputGroup.js",
     "name": "InputGroup",
     "imports": [
       "index.html",
@@ -44,7 +41,7 @@
     ]
   },
   "_PlainLayout.js": {
-    "file": "PlainLayout.js",
+    "file": "js/PlainLayout.js",
     "name": "PlainLayout",
     "imports": [
       "_logo.js",
@@ -52,33 +49,26 @@
       "__plugin-vue_export-helper.js"
     ],
     "assets": [
-      "logo-dark.svg",
-      "login-ilustrasi.svg"
-    ]
-  },
-  "_TableOne.vue_vue_type_script_setup_true_lang.js": {
-    "file": "TableOne.vue_vue_type_script_setup_true_lang.js",
-    "name": "TableOne.vue_vue_type_script_setup_true_lang",
-    "imports": [
-      "index.html"
+      "images/logo-dark.svg",
+      "images/login-ilustrasi.svg"
     ]
   },
   "__plugin-vue_export-helper.js": {
-    "file": "_plugin-vue_export-helper.js",
+    "file": "js/_plugin-vue_export-helper.js",
     "name": "_plugin-vue_export-helper"
   },
-  "_index2.js": {
-    "file": "index2.js",
+  "_index.js": {
+    "file": "js/index.js",
     "name": "index",
     "imports": [
       "index.html"
     ]
   },
   "_logo.js": {
-    "file": "logo.js",
+    "file": "js/logo.js",
     "name": "logo",
     "assets": [
-      "logo.svg"
+      "images/logo.svg"
     ]
   },
   "index.html": {
@@ -92,7 +82,6 @@
       "src/views/ProfileView.vue",
       "src/views/Forms/FormElementsView.vue",
       "src/views/Forms/FormLayoutView.vue",
-      "src/views/TablesView.vue",
       "src/views/Pages/SettingsView.vue",
       "src/views/Charts/BasicChartView.vue",
       "src/views/UiElements/AlertsView.vue",
@@ -105,221 +94,193 @@
       "index.css"
     ],
     "assets": [
-      "Satoshi-Light.woff2",
-      "Satoshi-Light.woff",
-      "Satoshi-Light.ttf",
-      "Satoshi-LightItalic.woff2",
-      "Satoshi-LightItalic.woff",
-      "Satoshi-LightItalic.ttf",
-      "Satoshi-Regular.woff2",
-      "Satoshi-Regular.woff",
-      "Satoshi-Regular.ttf",
-      "Satoshi-Italic.woff2",
-      "Satoshi-Italic.woff",
-      "Satoshi-Italic.ttf",
-      "Satoshi-Medium.woff2",
-      "Satoshi-Medium.woff",
-      "Satoshi-Medium.ttf",
-      "Satoshi-MediumItalic.woff2",
-      "Satoshi-MediumItalic.woff",
-      "Satoshi-MediumItalic.ttf",
-      "Satoshi-Bold.woff2",
-      "Satoshi-Bold.woff",
-      "Satoshi-Bold.ttf",
-      "Satoshi-BoldItalic.woff2",
-      "Satoshi-BoldItalic.woff",
-      "Satoshi-BoldItalic.ttf",
-      "Satoshi-Black.woff2",
-      "Satoshi-Black.woff",
-      "Satoshi-Black.ttf",
-      "Satoshi-BlackItalic.woff2",
-      "Satoshi-BlackItalic.woff",
-      "Satoshi-BlackItalic.ttf",
-      "favicon.ico"
+      "assets/Satoshi-Light.woff2",
+      "assets/Satoshi-Light.woff",
+      "assets/Satoshi-Light.ttf",
+      "assets/Satoshi-LightItalic.woff2",
+      "assets/Satoshi-LightItalic.woff",
+      "assets/Satoshi-LightItalic.ttf",
+      "assets/Satoshi-Regular.woff2",
+      "assets/Satoshi-Regular.woff",
+      "assets/Satoshi-Regular.ttf",
+      "assets/Satoshi-Italic.woff2",
+      "assets/Satoshi-Italic.woff",
+      "assets/Satoshi-Italic.ttf",
+      "assets/Satoshi-Medium.woff2",
+      "assets/Satoshi-Medium.woff",
+      "assets/Satoshi-Medium.ttf",
+      "assets/Satoshi-MediumItalic.woff2",
+      "assets/Satoshi-MediumItalic.woff",
+      "assets/Satoshi-MediumItalic.ttf",
+      "assets/Satoshi-Bold.woff2",
+      "assets/Satoshi-Bold.woff",
+      "assets/Satoshi-Bold.ttf",
+      "assets/Satoshi-BoldItalic.woff2",
+      "assets/Satoshi-BoldItalic.woff",
+      "assets/Satoshi-BoldItalic.ttf",
+      "assets/Satoshi-Black.woff2",
+      "assets/Satoshi-Black.woff",
+      "assets/Satoshi-Black.ttf",
+      "assets/Satoshi-BlackItalic.woff2",
+      "assets/Satoshi-BlackItalic.woff",
+      "assets/Satoshi-BlackItalic.ttf",
+      "assets/favicon.ico"
     ]
   },
   "src/assets/fonts/Satoshi-Black.ttf": {
-    "file": "Satoshi-Black.ttf",
+    "file": "assets/Satoshi-Black.ttf",
     "src": "src/assets/fonts/Satoshi-Black.ttf"
   },
   "src/assets/fonts/Satoshi-Black.woff": {
-    "file": "Satoshi-Black.woff",
+    "file": "assets/Satoshi-Black.woff",
     "src": "src/assets/fonts/Satoshi-Black.woff"
   },
   "src/assets/fonts/Satoshi-Black.woff2": {
-    "file": "Satoshi-Black.woff2",
+    "file": "assets/Satoshi-Black.woff2",
     "src": "src/assets/fonts/Satoshi-Black.woff2"
   },
   "src/assets/fonts/Satoshi-BlackItalic.ttf": {
-    "file": "Satoshi-BlackItalic.ttf",
+    "file": "assets/Satoshi-BlackItalic.ttf",
     "src": "src/assets/fonts/Satoshi-BlackItalic.ttf"
   },
   "src/assets/fonts/Satoshi-BlackItalic.woff": {
-    "file": "Satoshi-BlackItalic.woff",
+    "file": "assets/Satoshi-BlackItalic.woff",
     "src": "src/assets/fonts/Satoshi-BlackItalic.woff"
   },
   "src/assets/fonts/Satoshi-BlackItalic.woff2": {
-    "file": "Satoshi-BlackItalic.woff2",
+    "file": "assets/Satoshi-BlackItalic.woff2",
     "src": "src/assets/fonts/Satoshi-BlackItalic.woff2"
   },
   "src/assets/fonts/Satoshi-Bold.ttf": {
-    "file": "Satoshi-Bold.ttf",
+    "file": "assets/Satoshi-Bold.ttf",
     "src": "src/assets/fonts/Satoshi-Bold.ttf"
   },
   "src/assets/fonts/Satoshi-Bold.woff": {
-    "file": "Satoshi-Bold.woff",
+    "file": "assets/Satoshi-Bold.woff",
     "src": "src/assets/fonts/Satoshi-Bold.woff"
   },
   "src/assets/fonts/Satoshi-Bold.woff2": {
-    "file": "Satoshi-Bold.woff2",
+    "file": "assets/Satoshi-Bold.woff2",
     "src": "src/assets/fonts/Satoshi-Bold.woff2"
   },
   "src/assets/fonts/Satoshi-BoldItalic.ttf": {
-    "file": "Satoshi-BoldItalic.ttf",
+    "file": "assets/Satoshi-BoldItalic.ttf",
     "src": "src/assets/fonts/Satoshi-BoldItalic.ttf"
   },
   "src/assets/fonts/Satoshi-BoldItalic.woff": {
-    "file": "Satoshi-BoldItalic.woff",
+    "file": "assets/Satoshi-BoldItalic.woff",
     "src": "src/assets/fonts/Satoshi-BoldItalic.woff"
   },
   "src/assets/fonts/Satoshi-BoldItalic.woff2": {
-    "file": "Satoshi-BoldItalic.woff2",
+    "file": "assets/Satoshi-BoldItalic.woff2",
     "src": "src/assets/fonts/Satoshi-BoldItalic.woff2"
   },
   "src/assets/fonts/Satoshi-Italic.ttf": {
-    "file": "Satoshi-Italic.ttf",
+    "file": "assets/Satoshi-Italic.ttf",
     "src": "src/assets/fonts/Satoshi-Italic.ttf"
   },
   "src/assets/fonts/Satoshi-Italic.woff": {
-    "file": "Satoshi-Italic.woff",
+    "file": "assets/Satoshi-Italic.woff",
     "src": "src/assets/fonts/Satoshi-Italic.woff"
   },
   "src/assets/fonts/Satoshi-Italic.woff2": {
-    "file": "Satoshi-Italic.woff2",
+    "file": "assets/Satoshi-Italic.woff2",
     "src": "src/assets/fonts/Satoshi-Italic.woff2"
   },
   "src/assets/fonts/Satoshi-Light.ttf": {
-    "file": "Satoshi-Light.ttf",
+    "file": "assets/Satoshi-Light.ttf",
     "src": "src/assets/fonts/Satoshi-Light.ttf"
   },
   "src/assets/fonts/Satoshi-Light.woff": {
-    "file": "Satoshi-Light.woff",
+    "file": "assets/Satoshi-Light.woff",
     "src": "src/assets/fonts/Satoshi-Light.woff"
   },
   "src/assets/fonts/Satoshi-Light.woff2": {
-    "file": "Satoshi-Light.woff2",
+    "file": "assets/Satoshi-Light.woff2",
     "src": "src/assets/fonts/Satoshi-Light.woff2"
   },
   "src/assets/fonts/Satoshi-LightItalic.ttf": {
-    "file": "Satoshi-LightItalic.ttf",
+    "file": "assets/Satoshi-LightItalic.ttf",
     "src": "src/assets/fonts/Satoshi-LightItalic.ttf"
   },
   "src/assets/fonts/Satoshi-LightItalic.woff": {
-    "file": "Satoshi-LightItalic.woff",
+    "file": "assets/Satoshi-LightItalic.woff",
     "src": "src/assets/fonts/Satoshi-LightItalic.woff"
   },
   "src/assets/fonts/Satoshi-LightItalic.woff2": {
-    "file": "Satoshi-LightItalic.woff2",
+    "file": "assets/Satoshi-LightItalic.woff2",
     "src": "src/assets/fonts/Satoshi-LightItalic.woff2"
   },
   "src/assets/fonts/Satoshi-Medium.ttf": {
-    "file": "Satoshi-Medium.ttf",
+    "file": "assets/Satoshi-Medium.ttf",
     "src": "src/assets/fonts/Satoshi-Medium.ttf"
   },
   "src/assets/fonts/Satoshi-Medium.woff": {
-    "file": "Satoshi-Medium.woff",
+    "file": "assets/Satoshi-Medium.woff",
     "src": "src/assets/fonts/Satoshi-Medium.woff"
   },
   "src/assets/fonts/Satoshi-Medium.woff2": {
-    "file": "Satoshi-Medium.woff2",
+    "file": "assets/Satoshi-Medium.woff2",
     "src": "src/assets/fonts/Satoshi-Medium.woff2"
   },
   "src/assets/fonts/Satoshi-MediumItalic.ttf": {
-    "file": "Satoshi-MediumItalic.ttf",
+    "file": "assets/Satoshi-MediumItalic.ttf",
     "src": "src/assets/fonts/Satoshi-MediumItalic.ttf"
   },
   "src/assets/fonts/Satoshi-MediumItalic.woff": {
-    "file": "Satoshi-MediumItalic.woff",
+    "file": "assets/Satoshi-MediumItalic.woff",
     "src": "src/assets/fonts/Satoshi-MediumItalic.woff"
   },
   "src/assets/fonts/Satoshi-MediumItalic.woff2": {
-    "file": "Satoshi-MediumItalic.woff2",
+    "file": "assets/Satoshi-MediumItalic.woff2",
     "src": "src/assets/fonts/Satoshi-MediumItalic.woff2"
   },
   "src/assets/fonts/Satoshi-Regular.ttf": {
-    "file": "Satoshi-Regular.ttf",
+    "file": "assets/Satoshi-Regular.ttf",
     "src": "src/assets/fonts/Satoshi-Regular.ttf"
   },
   "src/assets/fonts/Satoshi-Regular.woff": {
-    "file": "Satoshi-Regular.woff",
+    "file": "assets/Satoshi-Regular.woff",
     "src": "src/assets/fonts/Satoshi-Regular.woff"
   },
   "src/assets/fonts/Satoshi-Regular.woff2": {
-    "file": "Satoshi-Regular.woff2",
+    "file": "assets/Satoshi-Regular.woff2",
     "src": "src/assets/fonts/Satoshi-Regular.woff2"
   },
   "src/assets/images/cover/cover-01.png": {
-    "file": "cover-01.png",
+    "file": "images/cover-01.png",
     "src": "src/assets/images/cover/cover-01.png"
   },
   "src/assets/images/favicon.ico": {
-    "file": "favicon.ico",
+    "file": "assets/favicon.ico",
     "src": "src/assets/images/favicon.ico"
   },
   "src/assets/images/illustration/login-ilustrasi.svg": {
-    "file": "login-ilustrasi.svg",
+    "file": "images/login-ilustrasi.svg",
     "src": "src/assets/images/illustration/login-ilustrasi.svg"
   },
   "src/assets/images/logo/logo-dark.svg": {
-    "file": "logo-dark.svg",
+    "file": "images/logo-dark.svg",
     "src": "src/assets/images/logo/logo-dark.svg"
   },
   "src/assets/images/logo/logo.svg": {
-    "file": "logo.svg",
+    "file": "images/logo.svg",
     "src": "src/assets/images/logo/logo.svg"
   },
-  "src/assets/images/product/product-01.png": {
-    "file": "product-01.png",
-    "src": "src/assets/images/product/product-01.png"
-  },
-  "src/assets/images/product/product-02.png": {
-    "file": "product-02.png",
-    "src": "src/assets/images/product/product-02.png"
-  },
-  "src/assets/images/product/product-03.png": {
-    "file": "product-03.png",
-    "src": "src/assets/images/product/product-03.png"
-  },
-  "src/assets/images/product/product-04.png": {
-    "file": "product-04.png",
-    "src": "src/assets/images/product/product-04.png"
-  },
   "src/assets/images/user/user-01.png": {
-    "file": "user-01.png",
+    "file": "images/user-01.png",
     "src": "src/assets/images/user/user-01.png"
   },
-  "src/assets/images/user/user-02.png": {
-    "file": "user-02.png",
-    "src": "src/assets/images/user/user-02.png"
-  },
   "src/assets/images/user/user-03.png": {
-    "file": "user-03.png",
+    "file": "images/user-03.png",
     "src": "src/assets/images/user/user-03.png"
   },
-  "src/assets/images/user/user-04.png": {
-    "file": "user-04.png",
-    "src": "src/assets/images/user/user-04.png"
-  },
-  "src/assets/images/user/user-05.png": {
-    "file": "user-05.png",
-    "src": "src/assets/images/user/user-05.png"
-  },
   "src/assets/images/user/user-06.png": {
-    "file": "user-06.png",
+    "file": "images/user-06.png",
     "src": "src/assets/images/user/user-06.png"
   },
   "src/views/Authentication/SigninView.vue": {
-    "file": "SigninView.js",
+    "file": "js/SigninView.js",
     "name": "SigninView",
     "src": "src/views/Authentication/SigninView.vue",
     "isDynamicEntry": true,
@@ -327,16 +288,16 @@
       "_PlainLayout.js",
       "_InputGroup.js",
       "index.html",
-      "_index2.js",
+      "_index.js",
       "_logo.js",
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "SigninView.css"
+      "css/SigninView.css"
     ]
   },
   "src/views/Authentication/SignupView.vue": {
-    "file": "SignupView.js",
+    "file": "js/SignupView.js",
     "name": "SignupView",
     "src": "src/views/Authentication/SignupView.vue",
     "isDynamicEntry": true,
@@ -348,7 +309,7 @@
     ]
   },
   "src/views/CalendarView.vue": {
-    "file": "CalendarView.js",
+    "file": "js/CalendarView.js",
     "name": "CalendarView",
     "src": "src/views/CalendarView.vue",
     "isDynamicEntry": true,
@@ -356,12 +317,12 @@
       "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
     ]
   },
   "src/views/Charts/BasicChartView.vue": {
-    "file": "BasicChartView.js",
+    "file": "js/BasicChartView.js",
     "name": "BasicChartView",
     "src": "src/views/Charts/BasicChartView.vue",
     "isDynamicEntry": true,
@@ -370,12 +331,12 @@
       "_ChartTwo.vue_vue_type_script_setup_true_lang.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "index.html",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
     ]
   },
   "src/views/Dashboard/ECommerceView.vue": {
-    "file": "ECommerceView.js",
+    "file": "js/ECommerceView.js",
     "name": "ECommerceView",
     "src": "src/views/Dashboard/ECommerceView.vue",
     "isDynamicEntry": true,
@@ -383,16 +344,12 @@
       "index.html",
       "_ChartTwo.vue_vue_type_script_setup_true_lang.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_TableOne.vue_vue_type_script_setup_true_lang.js",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
-    ],
-    "assets": [
-      "user-05.png"
     ]
   },
   "src/views/Errors/Error404View.vue": {
-    "file": "Error404View.js",
+    "file": "js/Error404View.js",
     "name": "Error404View",
     "src": "src/views/Errors/Error404View.vue",
     "isDynamicEntry": true,
@@ -402,7 +359,7 @@
     ]
   },
   "src/views/Forms/FormElementsView.vue": {
-    "file": "FormElementsView.js",
+    "file": "js/FormElementsView.js",
     "name": "FormElementsView",
     "src": "src/views/Forms/FormElementsView.vue",
     "isDynamicEntry": true,
@@ -411,12 +368,12 @@
       "index.html",
       "_DefaultCard.vue_vue_type_script_setup_true_lang.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
     ]
   },
   "src/views/Forms/FormLayoutView.vue": {
-    "file": "FormLayoutView.js",
+    "file": "js/FormLayoutView.js",
     "name": "FormLayoutView",
     "src": "src/views/Forms/FormLayoutView.vue",
     "isDynamicEntry": true,
@@ -427,12 +384,12 @@
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
     ]
   },
   "src/views/Pages/SettingsView.vue": {
-    "file": "SettingsView.js",
+    "file": "js/SettingsView.js",
     "name": "SettingsView",
     "src": "src/views/Pages/SettingsView.vue",
     "isDynamicEntry": true,
@@ -440,12 +397,15 @@
       "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
+    ],
+    "assets": [
+      "images/user-03.png"
     ]
   },
   "src/views/ProfileView.vue": {
-    "file": "ProfileView.js",
+    "file": "js/ProfileView.js",
     "name": "ProfileView",
     "src": "src/views/ProfileView.vue",
     "isDynamicEntry": true,
@@ -454,36 +414,16 @@
       "__plugin-vue_export-helper.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
     ],
     "assets": [
-      "cover-01.png",
-      "user-06.png"
-    ]
-  },
-  "src/views/TablesView.vue": {
-    "file": "TablesView.js",
-    "name": "TablesView",
-    "src": "src/views/TablesView.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
-      "_TableOne.vue_vue_type_script_setup_true_lang.js",
-      "index.html",
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index2.js",
-      "_logo.js"
-    ],
-    "assets": [
-      "product-01.png",
-      "product-02.png",
-      "product-03.png",
-      "product-04.png"
+      "images/cover-01.png",
+      "images/user-06.png"
     ]
   },
   "src/views/UiElements/AlertsView.vue": {
-    "file": "AlertsView.js",
+    "file": "js/AlertsView.js",
     "name": "AlertsView",
     "src": "src/views/UiElements/AlertsView.vue",
     "isDynamicEntry": true,
@@ -492,12 +432,12 @@
       "__plugin-vue_export-helper.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
     ]
   },
   "src/views/UiElements/ButtonsView.vue": {
-    "file": "ButtonsView.js",
+    "file": "js/ButtonsView.js",
     "name": "ButtonsView",
     "src": "src/views/UiElements/ButtonsView.vue",
     "isDynamicEntry": true,
@@ -505,7 +445,7 @@
       "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index2.js",
+      "_index.js",
       "_logo.js"
     ]
   }

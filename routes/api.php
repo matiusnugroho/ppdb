@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\FileUploadTestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,6 @@ Route::group(['prefix' => 'auth'], function () {
 Route::get('/siswa/me', [StudentController::class, 'me'])->middleware('auth:sanctum');
 Route::group(['prefix' => 'siswa', 'middleware' => 'auth:sanctum'], function () {
     Route::patch('/me', [StudentController::class, 'updateMyProfile']);
+    Route::post('/upload', [FileUploadTestController::class, 'upload']);
 });
 Route::resource('/siswa', StudentController::class);
