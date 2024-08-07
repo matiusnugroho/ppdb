@@ -71,6 +71,6 @@ class User extends Authenticatable
             return true;
         }
 
-        return parent::can($abilities, $arguments);
+        return parent::can($abilities,'web', $arguments);
     }
 }

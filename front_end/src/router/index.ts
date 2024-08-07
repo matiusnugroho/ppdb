@@ -3,7 +3,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'eCommerce',
+    name: 'ppdbRoot',
+    component: () => import('@/views/Dashboard/ECommerceView.vue'),
+    meta: {
+      title: 'PPDB Kuantan Singing'
+    }
+  },
+  {
+    path: '/dashboard',
+    name: 'ppdbDashboard',
     component: () => import('@/views/Dashboard/ECommerceView.vue'),
     meta: {
       title: 'PPDB Kuantan Singing'

@@ -22,5 +22,6 @@ Route::get('/siswa/me', [StudentController::class, 'me'])->middleware('auth:sanc
 Route::group(['prefix' => 'siswa', 'middleware' => 'auth:sanctum'], function () {
     Route::patch('/me', [StudentController::class, 'updateMyProfile']);
     Route::post('/upload', [FileUploadTestController::class, 'upload']);
+    Route::post('/update-foto', [StudentController::class, 'updatePhoto']);
 });
 Route::resource('/siswa', StudentController::class);

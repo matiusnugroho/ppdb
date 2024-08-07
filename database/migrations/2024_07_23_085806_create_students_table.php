@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('nik')->unique(); // NIK
             $table->string('no_kk')->unique(); // No. KK
             $table->string('no_hp_ortu'); // No. HP Ortu
+            $table->string('foto')->nullable();
+            $table->string('foto_url')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

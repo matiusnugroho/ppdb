@@ -7,7 +7,11 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Models\User;
+use Intervention\Image\Laravel\Facades\Image;
 use Hash;
+use Log;
+use Str;
+use Storage;
 
 class StudentController extends Controller
 {
@@ -70,11 +74,13 @@ class StudentController extends Controller
             // Update the user and student models
             $user->update($userData);
             $user->student()->update($studentData);
+            $user = $user->refresh();
+            $user->permissions = $user->getAllPermissions()->pluck('name');
 
             return response()->json([
                 'success' => true,
                 'data' => [
-                    'user' => $user->refresh(),
+                    'user' => $user,
                 ],
             ], 200);
         }
@@ -131,12 +137,67 @@ class StudentController extends Controller
 
         // Adding permissions to the user model
         $permissions = $user->getAllPermissions()->pluck('name');
+
         return response()->json([
             'success' => true,
             'data' => [
                 'user' => $user,
-                'permissions' => $permissions
+                'permissions' => $permissions,
             ],
         ], 200);
+    }
+
+    public function updatePhoto(UpdateStudentRequest $request)
+    {
+        $user = auth()->user();
+        $user->load('student');
+        if (! $user || ! $user->student || ! $user->student->nama) {
+            return response()->json(['error' => 'User or student name not found.'], 400);
+        }
+
+        if ($user->can('edit_my_profile_siswa')) {
+            $oldPhotoPath = $user->student->foto;
+            $base_name = basename($oldPhotoPath);
+            $oldThumbnailPath = 'uploads/photo_student/'.$user->student->id.'/thumbnail_' . $base_name;
+
+            $nama = $user->student->nama;
+            $snakeCaseNama = Str::snake($nama);
+            $foto = $request->file('foto');
+            $extension = $foto->getClientOriginalExtension();
+            $fileName = $snakeCaseNama.'_'.time().'.'.$extension;
+            $validatedData = $request->validated();
+            $path = $foto->storeAs('uploads/photo_student/' . $user->student->id . '/', $fileName, 'public');
+
+            $thumbnailPath = 'uploads/photo_student/'.$user->student->id.'/thumbnail_' . $fileName;
+            $image = Image::read($foto->getRealPath());
+            $image->resize(150, 150);
+            $image->save(storage_path('app/public/' . $thumbnailPath));
+            $url = asset(Storage::url($path));
+            if ($oldPhotoPath && Storage::disk('public')->exists($oldPhotoPath)) {
+                Storage::disk('public')->delete($oldPhotoPath);
+            }
+            if($oldThumbnailPath && Storage::disk('public')->exists($oldThumbnailPath)) {
+                Storage::disk('public')->delete($oldThumbnailPath);
+            }
+            $user->student()->update([
+                'foto' => $path,
+                'foto_url' => $url,
+            ]);
+
+            //return $this->me();
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'old_photo' => $oldPhotoPath,
+                    'path' => $path,
+                    'url' => $url,
+                ],
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => false,
+        ], 403);
     }
 }

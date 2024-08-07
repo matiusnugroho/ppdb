@@ -25,6 +25,8 @@ class Student extends Model
         'no_kk',
         'no_hp_ortu',
         'user_id',
+        'foto',
+        'foto_url',
     ];
 
     protected static function boot()

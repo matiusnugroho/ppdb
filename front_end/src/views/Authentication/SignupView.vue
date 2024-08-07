@@ -4,7 +4,6 @@ import InputGroup from '@/components/Auths/InputGroup.vue'
 import PlainLayout from '@/layouts/PlainLayout.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
-
 </script>
 
 <template>

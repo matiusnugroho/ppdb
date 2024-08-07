@@ -23,6 +23,7 @@ class UpdateStudentRequest extends StudentRequest
     {
         $studentId = auth()->user()->student->id;
         $userId = auth()->user()->id;
+        
 
         return [
             'email' => [
@@ -37,7 +38,7 @@ class UpdateStudentRequest extends StudentRequest
                 'sometimes',
                 'string',
                 'max:255',
-                Rule::unique('users', 'name')->ignore($userId),
+                Rule::unique('users', 'username')->ignore($userId),
             ],
             'nama' => 'sometimes|string|max:255',
             'tempat_lahir' => 'sometimes|string|max:255',
@@ -56,6 +57,7 @@ class UpdateStudentRequest extends StudentRequest
                 Rule::unique('students')->ignore($studentId),
             ],
             'no_hp_ortu' => 'sometimes|string|max:15',
+            'foto' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

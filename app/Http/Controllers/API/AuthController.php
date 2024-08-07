@@ -12,7 +12,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'username' => 'required|string',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|',
         ]);
 
         // Get the login input
