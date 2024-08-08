@@ -1,5 +1,5 @@
 <template>
-  <div class="xl:w-1/6 md:w-1/4 sm:w-1/4 fixed top-3 right-3 flex flex-col gap-2 z-50">
+  <div class="xl:w-1/6 md:w-1/4 sm:w-1/4 fixed top-3 right-3 flex flex-col gap-2 z-50 toast-container">
     <div
       class="flex w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg dark:text-gray-400 dark:bg-gray-800 items-center"
       role="alert"
@@ -68,5 +68,7 @@ const close = () => {
 </script>
 
 <style scoped>
-/* Add any necessary styles here */
+.toast-container {
+z-index: 99999;
+}
 </style>

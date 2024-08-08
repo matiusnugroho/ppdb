@@ -7,11 +7,10 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Models\User;
-use Intervention\Image\Laravel\Facades\Image;
 use Hash;
-use Log;
-use Str;
+use Intervention\Image\Laravel\Facades\Image;
 use Storage;
+use Str;
 
 class StudentController extends Controller
 {
@@ -158,7 +157,7 @@ class StudentController extends Controller
         if ($user->can('edit_my_profile_siswa')) {
             $oldPhotoPath = $user->student->foto;
             $base_name = basename($oldPhotoPath);
-            $oldThumbnailPath = 'uploads/photo_student/'.$user->student->id.'/thumbnail_' . $base_name;
+            $oldThumbnailPath = 'uploads/photo_student/'.$user->student->id.'/thumbnail_'.$base_name;
 
             $nama = $user->student->nama;
             $snakeCaseNama = Str::snake($nama);
@@ -166,17 +165,17 @@ class StudentController extends Controller
             $extension = $foto->getClientOriginalExtension();
             $fileName = $snakeCaseNama.'_'.time().'.'.$extension;
             $validatedData = $request->validated();
-            $path = $foto->storeAs('uploads/photo_student/' . $user->student->id . '/', $fileName, 'public');
+            $path = $foto->storeAs('uploads/photo_student/'.$user->student->id.'/', $fileName, 'public');
 
-            $thumbnailPath = 'uploads/photo_student/'.$user->student->id.'/thumbnail_' . $fileName;
+            $thumbnailPath = 'uploads/photo_student/'.$user->student->id.'/thumbnail_'.$fileName;
             $image = Image::read($foto->getRealPath());
             $image->resize(150, 150);
-            $image->save(storage_path('app/public/' . $thumbnailPath));
+            $image->save(storage_path('app/public/'.$thumbnailPath));
             $url = asset(Storage::url($path));
             if ($oldPhotoPath && Storage::disk('public')->exists($oldPhotoPath)) {
                 Storage::disk('public')->delete($oldPhotoPath);
             }
-            if($oldThumbnailPath && Storage::disk('public')->exists($oldThumbnailPath)) {
+            if ($oldThumbnailPath && Storage::disk('public')->exists($oldThumbnailPath)) {
                 Storage::disk('public')->delete($oldThumbnailPath);
             }
             $user->student()->update([

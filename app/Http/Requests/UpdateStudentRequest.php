@@ -23,7 +23,6 @@ class UpdateStudentRequest extends StudentRequest
     {
         $studentId = auth()->user()->student->id;
         $userId = auth()->user()->id;
-        
 
         return [
             'email' => [

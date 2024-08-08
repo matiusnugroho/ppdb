@@ -24,12 +24,16 @@
     "file": "js/DefaultLayout.vue_vue_type_script_setup_true_lang.js",
     "name": "DefaultLayout.vue_vue_type_script_setup_true_lang",
     "imports": [
-      "_index.js",
+      "_authComposable.js",
       "index.html",
-      "_logo.js"
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ],
     "assets": [
-      "images/user-01.png"
+      "images/user-02.png",
+      "images/user-03.png",
+      "images/user-04.png"
     ]
   },
   "_InputGroup.js": {
@@ -45,23 +49,41 @@
     "name": "PlainLayout",
     "imports": [
       "_logo.js",
+      "_login-ilustrasi.js",
       "index.html",
       "__plugin-vue_export-helper.js"
     ],
     "assets": [
-      "images/logo-dark.svg",
-      "images/login-ilustrasi.svg"
+      "images/logo-dark.svg"
     ]
   },
   "__plugin-vue_export-helper.js": {
     "file": "js/_plugin-vue_export-helper.js",
     "name": "_plugin-vue_export-helper"
   },
-  "_index.js": {
-    "file": "js/index.js",
-    "name": "index",
+  "_authComposable.js": {
+    "file": "js/authComposable.js",
+    "name": "authComposable",
     "imports": [
       "index.html"
+    ]
+  },
+  "_brand-01.js": {
+    "file": "js/brand-01.js",
+    "name": "brand-01"
+  },
+  "_index.es.js": {
+    "file": "js/index.es.js",
+    "name": "index.es",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "_login-ilustrasi.js": {
+    "file": "js/login-ilustrasi.js",
+    "name": "login-ilustrasi",
+    "assets": [
+      "images/login-ilustrasi.svg"
     ]
   },
   "_logo.js": {
@@ -71,13 +93,21 @@
       "images/logo.svg"
     ]
   },
+  "_user-01.js": {
+    "file": "js/user-01.js",
+    "name": "user-01",
+    "assets": [
+      "images/user-01.png"
+    ]
+  },
   "index.html": {
     "file": "index.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "dynamicImports": [
-      "src/views/Dashboard/ECommerceView.vue",
+      "src/views/HomeView.vue",
+      "src/views/Dashboard/DashBoardSiswaView.vue",
       "src/views/CalendarView.vue",
       "src/views/ProfileView.vue",
       "src/views/Forms/FormElementsView.vue",
@@ -267,13 +297,25 @@
     "file": "images/logo.svg",
     "src": "src/assets/images/logo/logo.svg"
   },
+  "src/assets/images/product/product-01.png": {
+    "file": "images/product-01.png",
+    "src": "src/assets/images/product/product-01.png"
+  },
   "src/assets/images/user/user-01.png": {
     "file": "images/user-01.png",
     "src": "src/assets/images/user/user-01.png"
   },
+  "src/assets/images/user/user-02.png": {
+    "file": "images/user-02.png",
+    "src": "src/assets/images/user/user-02.png"
+  },
   "src/assets/images/user/user-03.png": {
     "file": "images/user-03.png",
     "src": "src/assets/images/user/user-03.png"
+  },
+  "src/assets/images/user/user-04.png": {
+    "file": "images/user-04.png",
+    "src": "src/assets/images/user/user-04.png"
   },
   "src/assets/images/user/user-06.png": {
     "file": "images/user-06.png",
@@ -285,11 +327,13 @@
     "src": "src/views/Authentication/SigninView.vue",
     "isDynamicEntry": true,
     "imports": [
+      "index.html",
       "_PlainLayout.js",
       "_InputGroup.js",
-      "index.html",
-      "_index.js",
+      "_index.es.js",
+      "_authComposable.js",
       "_logo.js",
+      "_login-ilustrasi.js",
       "__plugin-vue_export-helper.js"
     ],
     "css": [
@@ -304,7 +348,9 @@
     "imports": [
       "_PlainLayout.js",
       "index.html",
+      "_index.es.js",
       "_logo.js",
+      "_login-ilustrasi.js",
       "__plugin-vue_export-helper.js"
     ]
   },
@@ -317,8 +363,10 @@
       "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index.js",
-      "_logo.js"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ]
   },
   "src/views/Charts/BasicChartView.vue": {
@@ -331,21 +379,26 @@
       "_ChartTwo.vue_vue_type_script_setup_true_lang.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "index.html",
-      "_index.js",
-      "_logo.js"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ]
   },
-  "src/views/Dashboard/ECommerceView.vue": {
-    "file": "js/ECommerceView.js",
-    "name": "ECommerceView",
-    "src": "src/views/Dashboard/ECommerceView.vue",
+  "src/views/Dashboard/DashBoardSiswaView.vue": {
+    "file": "js/DashBoardSiswaView.js",
+    "name": "DashBoardSiswaView",
+    "src": "src/views/Dashboard/DashBoardSiswaView.vue",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
       "_ChartTwo.vue_vue_type_script_setup_true_lang.js",
+      "_brand-01.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index.js",
-      "_logo.js"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ]
   },
   "src/views/Errors/Error404View.vue": {
@@ -354,6 +407,7 @@
     "src": "src/views/Errors/Error404View.vue",
     "isDynamicEntry": true,
     "imports": [
+      "_login-ilustrasi.js",
       "__plugin-vue_export-helper.js",
       "index.html"
     ]
@@ -368,8 +422,10 @@
       "index.html",
       "_DefaultCard.vue_vue_type_script_setup_true_lang.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index.js",
-      "_logo.js"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ]
   },
   "src/views/Forms/FormLayoutView.vue": {
@@ -384,8 +440,26 @@
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js",
-      "_index.js",
-      "_logo.js"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
+    ]
+  },
+  "src/views/HomeView.vue": {
+    "file": "js/HomeView.js",
+    "name": "HomeView",
+    "src": "src/views/HomeView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_logo.js",
+      "_user-01.js",
+      "_brand-01.js",
+      "__plugin-vue_export-helper.js",
+      "index.html"
+    ],
+    "assets": [
+      "images/product-01.png"
     ]
   },
   "src/views/Pages/SettingsView.vue": {
@@ -397,11 +471,10 @@
       "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index.js",
-      "_logo.js"
-    ],
-    "assets": [
-      "images/user-03.png"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ]
   },
   "src/views/ProfileView.vue": {
@@ -414,8 +487,10 @@
       "__plugin-vue_export-helper.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index.js",
-      "_logo.js"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ],
     "assets": [
       "images/cover-01.png",
@@ -432,8 +507,10 @@
       "__plugin-vue_export-helper.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index.js",
-      "_logo.js"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ]
   },
   "src/views/UiElements/ButtonsView.vue": {
@@ -445,8 +522,10 @@
       "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
-      "_index.js",
-      "_logo.js"
+      "_authComposable.js",
+      "_user-01.js",
+      "_logo.js",
+      "_index.es.js"
     ]
   }
 }

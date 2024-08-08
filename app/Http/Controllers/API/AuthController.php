@@ -31,13 +31,20 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('API Token');
-            $biodata = $user->student;
-            $biodata->role = $user->getRoleNames()[0];
+            $roleMap = [
+                'siswa' => 'student',
+                'sekolah' => 'school',
+            ];
+            $userRole = $user->role;
+            $property = $roleMap[$userRole] ?? null;
+            $biodata = $property ? $user->$property : null;
 
             return response()->json([
                 'success' => true,
                 'token' => $token->plainTextToken,
-                'user' => $biodata,
+                'user' => $user,
+                'biodata' => $biodata,
+                'role' => $user->role,
                 'permissions' => $user->getAllPermissions()->pluck('name'), // Assuming user has permissions
             ]);
         } else {

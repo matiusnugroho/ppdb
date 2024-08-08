@@ -21,7 +21,6 @@ export function showToast({
   const app = createApp(ToastComponent, { message, type })
 
   app.mount(container)
-  console.log('showToast', app)
 
   if (autoClose) {
     setTimeout(() => {

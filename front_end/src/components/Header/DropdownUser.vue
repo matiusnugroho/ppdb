@@ -31,13 +31,13 @@ onClickOutside(target, () => {
     >
       <span class="hidden text-right lg:block">
         <span class="block text-sm font-medium text-black dark:text-white">{{
-          authStore.user?.nama
+          authStore.biodata?.nama
         }}</span>
-        <span class="block text-xs font-medium">{{ authStore.user?.role }}</span>
+        <span class="block text-xs font-medium">{{ authStore.role }}</span>
       </span>
 
       <span class="h-12 w-12 rounded-full overflow-hidden">
-        <img :src="authStore.user?.thumbnail_url" alt="User" class="w-full h-full object-cover" />
+        <img :src="authStore.biodata?.thumbnail_url" alt="User" class="w-full h-full object-cover" />
       </span>
 
       <svg

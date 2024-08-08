@@ -28,27 +28,31 @@ class Student extends Model
         'foto',
         'foto_url',
     ];
+
     public function getThumbnailUrlAttribute()
     {
         // Check if foto_url is set
         if ($this->attributes['foto_url']) {
             // Extract the directory and filename
             $pathInfo = pathinfo($this->attributes['foto_url']);
-            
+
             // Build the thumbnail URL
-            return $pathInfo['dirname'] . '/thumbnail_' . $pathInfo['basename'];
+            return $pathInfo['dirname'].'/thumbnail_'.$pathInfo['basename'];
         }
 
         // Return null or a default URL if foto_url is not set
         return null;
     }
+
     public function toArray()
     {
         $array = parent::toArray();
         // Add custom fields or modify existing fields
         $array['thumbnail_url'] = $this->thumbnail_url;
+
         return $array;
     }
+
     protected static function boot()
     {
         parent::boot();

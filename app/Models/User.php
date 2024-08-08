@@ -71,6 +71,18 @@ class User extends Authenticatable
             return true;
         }
 
-        return parent::can($abilities,'web', $arguments);
+        return parent::can($abilities, 'web', $arguments);
+    }
+
+    public function getRoleAttribute()
+    {
+        $roles = $this->roles()->get();
+
+        if ($roles->count() === 1) {
+            return $roles->first()->name;
+        }
+
+        // Return the latest role based on created_at
+        return $roles->sortByDesc('created_at')->first()->name;
     }
 }
