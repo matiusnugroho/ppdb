@@ -18,11 +18,11 @@ const routes = [
     }
   },
   {
-    path: '/calendar',
-    name: 'calendar',
-    component: () => import('@/views/CalendarView.vue'),
+    path: '/biodata',
+    name: 'biodata',
+    component: () => import('@/views/BiodataView.vue'),
     meta: {
-      title: 'Calendar'
+      title: 'Biodata'
     }
   },
   {

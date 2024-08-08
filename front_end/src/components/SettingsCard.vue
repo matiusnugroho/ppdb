@@ -10,6 +10,7 @@ const formData = ref({
 })
 
 import userPhoto from '@/assets/images/user/user-03.png'
+import { showToast } from '@/utils/ui/toast';
 
 const handleSubmit = () => {
   // Handle form submission for personal information
@@ -24,7 +25,8 @@ const handlePhotoSubmit = () => {
 }
 
 const handleFileChange = () => {
-  // Handle file change for user photo
+  showToast({'message': 'Login gagal', 'type': 'error'})
+  console.log('File changed')
 }
 
 const handlePhotoCancel = () => {
@@ -32,7 +34,10 @@ const handlePhotoCancel = () => {
 }
 
 const deletePhoto = () => {
-  // Handle delete action for user photo
+  showToast({
+    'message': 'Photo deleted successfully',
+  })
+  console.log('Photo deleted')
 }
 
 const updatePhoto = () => {

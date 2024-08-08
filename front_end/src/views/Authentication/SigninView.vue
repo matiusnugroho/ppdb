@@ -8,6 +8,7 @@ import { FwbAlert, FwbSpinner } from 'flowbite-vue'
 import '@/style.css'
 import { ref } from 'vue'
 import { useAuth } from '@/composable/authComposable'
+import { showToast } from '@/utils/ui/toast'
 
 const emailValue = ref('')
 const passwordValue = ref('')
@@ -23,6 +24,7 @@ const handleLogin = async () => {
   try {
     await login(emailValue.value, passwordValue.value)
   } catch (error: any) {
+    showToast({'message': 'Login gagal', 'type': 'error'})
     if (error?.response?.status === 401 || error?.response?.status === 422) {
       loginGagal.value = true
       loginGagalMessage.value = 'Username atau password salah'

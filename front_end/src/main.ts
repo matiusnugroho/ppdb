@@ -11,8 +11,8 @@ import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
-const pinia = createPinia();
-pinia.use(PiniaPersistedState);
+const pinia = createPinia()
+pinia.use(PiniaPersistedState)
 
 app.use(pinia)
 app.use(router)

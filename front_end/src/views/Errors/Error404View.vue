@@ -14,8 +14,8 @@
             <p class="font-medium">
               The page you were looking for appears to have been moved, deleted or does not exist.
             </p>
-            <RouterLink 
-            :to="{ name: 'home' }"
+            <RouterLink
+              :to="{ name: 'home' }"
               class="mt-7.5 inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 font-medium text-white hover:bg-opacity-90"
             >
               <svg

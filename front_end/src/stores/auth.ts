@@ -11,15 +11,13 @@ interface AuthState {
 
 const router = useRouter()
 
-
-
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
     token: useStorage('token', null).value as string | null,
-    user : null as any
+    user: null as any
   }),
   persist: {
-    storage: sessionStorage,
+    storage: sessionStorage
   },
   actions: {
     async login(username: string, password: string) {
@@ -27,7 +25,7 @@ export const useAuthStore = defineStore('auth', {
         const response = await requestor.post(ENDPOINTS.LOGIN, { username, password })
         this.token = response.data.token
         this.user = response.data.user
-        useStorage('token', this.token).value = this.token 
+        useStorage('token', this.token).value = this.token
         return response.data
       } catch (error) {
         console.error('Login error:', error)

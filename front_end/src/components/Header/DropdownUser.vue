@@ -2,7 +2,7 @@
 import { onClickOutside } from '@vueuse/core'
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
-import { useAuth } from '@/composable/authComposable';
+import { useAuth } from '@/composable/authComposable'
 
 const target = ref(null)
 const dropdownOpen = ref(false)
@@ -17,7 +17,6 @@ const logoutHandler = async () => {
   }
 }
 
-
 onClickOutside(target, () => {
   dropdownOpen.value = false
 })
@@ -31,12 +30,14 @@ onClickOutside(target, () => {
       @click.prevent="dropdownOpen = !dropdownOpen"
     >
       <span class="hidden text-right lg:block">
-        <span class="block text-sm font-medium text-black dark:text-white">{{ authStore.user?.nama }}</span>
+        <span class="block text-sm font-medium text-black dark:text-white">{{
+          authStore.user?.nama
+        }}</span>
         <span class="block text-xs font-medium">{{ authStore.user?.role }}</span>
       </span>
 
-      <span class="h-12 w-12 rounded-full">
-        <img :src="authStore.user?.thumbnail_url" alt="User" />
+      <span class="h-12 w-12 rounded-full overflow-hidden">
+        <img :src="authStore.user?.thumbnail_url" alt="User" class="w-full h-full object-cover" />
       </span>
 
       <svg
@@ -136,7 +137,8 @@ onClickOutside(target, () => {
         </li>
       </ul>
       <button
-        class="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base" @click="logoutHandler"
+        class="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+        @click="logoutHandler"
       >
         <svg
           class="fill-current"
