@@ -14,8 +14,8 @@
             <p class="font-medium">
               The page you were looking for appears to have been moved, deleted or does not exist.
             </p>
-            <a
-              href="index.html"
+            <RouterLink 
+            :to="{ name: 'home' }"
               class="mt-7.5 inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 font-medium text-white hover:bg-opacity-90"
             >
               <svg
@@ -32,7 +32,7 @@
                 ></path>
               </svg>
               <span>Back to Home</span>
-            </a>
+            </RouterLink>
           </div>
         </div>
       </div>

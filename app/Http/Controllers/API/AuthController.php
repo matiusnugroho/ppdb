@@ -31,11 +31,13 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('API Token');
+            $biodata = $user->student;
+            $biodata->role = $user->getRoleNames()[0];
 
             return response()->json([
                 'success' => true,
                 'token' => $token->plainTextToken,
-                'role' => $user->getRoleNames(), // Assuming user has roles
+                'user' => $biodata,
                 'permissions' => $user->getAllPermissions()->pluck('name'), // Assuming user has permissions
             ]);
         } else {

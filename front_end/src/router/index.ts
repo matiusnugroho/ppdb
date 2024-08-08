@@ -3,8 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'ppdbRoot',
-    component: () => import('@/views/Dashboard/ECommerceView.vue'),
+    name: 'home',
+    component: () => import('@/views/HomeView.vue'),
     meta: {
       title: 'PPDB Kuantan Singing'
     }
@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/dashboard',
     name: 'ppdbDashboard',
-    component: () => import('@/views/Dashboard/ECommerceView.vue'),
+    component: () => import('@/views/Dashboard/DashBoardSiswaView.vue'),
     meta: {
       title: 'PPDB Kuantan Singing'
     }
@@ -83,10 +83,10 @@ const routes = [
   },
   {
     path: '/auth/signin',
-    name: 'signin',
+    name: 'login',
     component: () => import('@/views/Authentication/SigninView.vue'),
     meta: {
-      title: 'Signin'
+      title: 'login'
     }
   },
   {

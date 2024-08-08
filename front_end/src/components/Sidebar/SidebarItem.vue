@@ -2,6 +2,9 @@
 import { useSidebarStore } from '@/stores/sidebar'
 import { useRoute } from 'vue-router'
 import SidebarDropdown from './SidebarDropdown.vue'
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const sidebarStore = useSidebarStore()
 
@@ -10,6 +13,17 @@ const currentPage = useRoute().name
 
 interface SidebarItem {
   label: string
+}
+
+//untuk icon
+const icons = {
+  faHouse
+} as const
+
+type IconKeys = keyof typeof icons
+
+const getIcon = (icon: IconKeys): IconDefinition => {
+  return icons[icon]
 }
 
 const handleItemClick = () => {
@@ -32,7 +46,9 @@ const handleItemClick = () => {
         'bg-graydark dark:bg-meta-4': sidebarStore.page === item.label
       }"
     >
-      <span v-html="item.icon"></span>
+      <span class="sikontol">
+        <font-awesome-icon :icon="getIcon(item.icon)" />
+      </span>
 
       {{ item.label }}
 

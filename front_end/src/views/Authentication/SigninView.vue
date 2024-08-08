@@ -4,13 +4,10 @@ import InputGroup from '@/components/Forms/InputGroup.vue'
 import PasswordInput from '@/components/Forms/PasswordInput.vue'
 import PlainLayout from '@/layouts/PlainLayout.vue'
 import DarkModeSwitcher from '@/components/Header/DarkModeSwitcher.vue'
-import { FwbAlert } from 'flowbite-vue'
-import { useAuthStore } from '@/stores/auth'
+import { FwbAlert, FwbSpinner } from 'flowbite-vue'
 import '@/style.css'
 import { ref } from 'vue'
-import { FwbSpinner } from 'flowbite-vue'
-import { useRouter } from 'vue-router'
-
+import { useAuth } from '@/composable/authComposable'
 
 const emailValue = ref('')
 const passwordValue = ref('')
@@ -18,31 +15,24 @@ const loginLoading = ref(false)
 const loginGagal = ref(false)
 const loginGagalMessage = ref('')
 
-const authStore = useAuthStore()
-const router = useRouter()
+const { login } = useAuth()
 
-
-const login = async () => {
+const handleLogin = async () => {
   loginLoading.value = true
   loginGagal.value = false
   try {
-    // Use the login action from the auth store
-    const response = await authStore.login(emailValue.value, passwordValue.value)
-    if(response.success) {
-      router.push('/dashboard')
-    }
-  } catch (error : any) {
-    if(error?.response?.status === 401 || error?.response?.status === 422) {
+    await login(emailValue.value, passwordValue.value)
+  } catch (error: any) {
+    if (error?.response?.status === 401 || error?.response?.status === 422) {
       loginGagal.value = true
-      loginGagalMessage.value = "Username atau password salah"
-    }
-    else if(error?.code === 'ERR_NETWORK') {
+      loginGagalMessage.value = 'Username atau password salah'
+    } else if (error?.code === 'ERR_NETWORK') {
       loginGagal.value = true
-      loginGagalMessage.value = "Koneksi internet bermasalah"
-    }
-    else{
+      loginGagalMessage.value = 'Koneksi internet bermasalah'
+    } else {
       loginGagal.value = true
-      loginGagalMessage.value = "Sepertinya jaringan anda atau server kami mengalami masalah, coba lagi beberapa saat"
+      loginGagalMessage.value =
+        'Sepertinya jaringan anda atau server kami mengalami masalah, coba lagi beberapa saat'
     }
   } finally {
     loginLoading.value = false
@@ -56,7 +46,6 @@ const login = async () => {
       <DarkModeSwitcher />
     </div>
     <DefaultAuthCard subtitle="PPDB Online Kuantan Singingi v1" title="Login">
-      
       <transition
         enter-active-class="transition-opacity duration-300 ease-in-out"
         enter-from-class="opacity-0"
@@ -70,7 +59,6 @@ const login = async () => {
         </div>
       </transition>
       <form>
-        
         <InputGroup
           label="Email / Username"
           type="email"
@@ -82,7 +70,7 @@ const login = async () => {
           <button
             type="button"
             class="w-full flex justify-center items-center cursor-pointer rounded-lg border border-primary bg-primary p-2 font-medium text-white transition hover:bg-opacity-90"
-            @click="login"
+            @click="handleLogin"
             :disabled="loginLoading"
           >
             <span class="flex items-center">
