@@ -24,7 +24,7 @@ const menuGroups = ref([
       {
         icon: 'faIdBadge',
         label: 'Biodata',
-        route: '/biodata',
+        route: '/biodata'
       }
     ]
   },

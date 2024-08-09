@@ -24,7 +24,7 @@ const handleLogin = async () => {
   try {
     await login(emailValue.value, passwordValue.value)
   } catch (error: any) {
-    showToast({'message': 'Login gagal', 'type': 'error', 'duration': 3000,autoClose: false})
+    showToast({ message: 'Login gagal', type: 'error', duration: 3000, autoClose: false })
     if (error?.response?.status === 401 || error?.response?.status === 422) {
       loginGagal.value = true
       loginGagalMessage.value = 'Username atau password salah'

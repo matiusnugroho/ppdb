@@ -3,8 +3,8 @@ import { useSidebarStore } from '@/stores/sidebar'
 import { useRoute } from 'vue-router'
 import SidebarDropdown from './SidebarDropdown.vue'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { faHouse} from '@fortawesome/free-solid-svg-icons'
-import { faIdBadge} from '@fortawesome/free-regular-svg-icons'
+import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { faIdBadge } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const sidebarStore = useSidebarStore()

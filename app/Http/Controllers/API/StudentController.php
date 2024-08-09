@@ -59,6 +59,7 @@ class StudentController extends Controller
     {
         $user = auth()->user();
         $validatedData = $request->validated();
+        //dd($validatedData);
         if ($user->can('edit_my_profile_siswa')) {
             $userData = array_intersect_key($validatedData, array_flip(['email', 'username', 'password']));
             $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak_ibu', 'nik', 'no_kk', 'no_hp_ortu']));
@@ -178,10 +179,14 @@ class StudentController extends Controller
             if ($oldThumbnailPath && Storage::disk('public')->exists($oldThumbnailPath)) {
                 Storage::disk('public')->delete($oldThumbnailPath);
             }
+            
             $user->student()->update([
                 'foto' => $path,
                 'foto_url' => $url,
             ]);
+
+            $pathInfo = pathinfo($url);
+            $thumbnailUrl = $pathInfo['dirname'].'/thumbnail_'.$pathInfo['basename'];
 
             //return $this->me();
 
@@ -191,6 +196,7 @@ class StudentController extends Controller
                     'old_photo' => $oldPhotoPath,
                     'path' => $path,
                     'url' => $url,
+                    'thumbnail_url' => $thumbnailUrl,
                 ],
             ], 200);
         }

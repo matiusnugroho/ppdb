@@ -14,15 +14,9 @@ class AuthController extends Controller
             'username' => 'required|string',
             'password' => 'required|string|',
         ]);
-
-        // Get the login input
         $login = $request->input('username');
         $password = $request->input('password');
-
-        // Determine if the login input is an email or username
         $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-        // Attempt to authenticate the user with the appropriate field
         $credentials = [
             $fieldType => $login,
             'password' => $password,

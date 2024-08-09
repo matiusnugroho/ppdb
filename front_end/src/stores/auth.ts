@@ -3,11 +3,12 @@ import { useStorage } from '@vueuse/core'
 import requestor from '@/services/requestor'
 import { ENDPOINTS } from '@/config/endpoint'
 import { useRouter } from 'vue-router'
+import type { Student, User } from '@/types'
 
 interface AuthState {
   token: string | null
-  user: Record<string, any> | null
-  biodata: Record<string, any> | null,
+  user: User | null
+  biodata: Student | null
   role: string | null
 }
 
@@ -16,8 +17,8 @@ const router = useRouter()
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
     token: useStorage('token', null).value as string | null,
-    user: null as any,
-    biodata: null as any,
+    user: null,
+    biodata: null,
     role: null
   }),
   persist: true,

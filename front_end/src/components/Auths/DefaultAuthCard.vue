@@ -13,8 +13,16 @@ const props = defineProps(['subtitle', 'title', 'customClasses'])
           <div class="hidden w-full xl:block xl:w-1/2">
             <div class="py-17.5 px-26 text-center">
               <router-link class="mb-5.5 inline-block" to="/">
-                <img class="hidden dark:block" src="@/assets/images/logo/logo.svg" alt="Logo" />
-                <img class="dark:hidden" src="@/assets/images/logo/logo-dark.svg" alt="Logo" />
+                <img
+                  class="hidden dark:block max-w-[50px] max-h-[50px]"
+                  src="@/assets/images/logo/logo-ppdb.png"
+                  alt="Logo"
+                />
+                <img
+                  class="dark:hidden max-w-[50px] max-h-[50px]"
+                  src="@/assets/images/logo/logo-ppdb.png"
+                  alt="Logo"
+                />
               </router-link>
 
               <span class="mt-15 inline-block">

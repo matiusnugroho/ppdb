@@ -8,7 +8,8 @@ const BASE_URL_API = '/api'
 const ENDPOINTS = {
   BASE_URL,
   LOGIN: `${BASE_URL_API}/auth/login`,
-  ME_SISWA: `${BASE_URL_API}/siswa/me`
+  ME_SISWA: `${BASE_URL_API}/siswa/me`,
+  UPDATE_PHOTO_SISWA: `${BASE_URL_API}/siswa/update-foto`
 }
 
 // Helper function to replace placeholders with actual values

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->integer('nisn')->unique();
             $table->string('nama'); // Nama
             $table->string('tempat_lahir'); // Tempat Lahir
             $table->date('tanggal_lahir'); // Tanggal Lahir

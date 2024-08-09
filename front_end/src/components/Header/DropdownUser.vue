@@ -37,7 +37,11 @@ onClickOutside(target, () => {
       </span>
 
       <span class="h-12 w-12 rounded-full overflow-hidden">
-        <img :src="authStore.biodata?.thumbnail_url" alt="User" class="w-full h-full object-cover" />
+        <img
+          :src="authStore.biodata?.thumbnail_url"
+          alt="User"
+          class="w-full h-full object-cover"
+        />
       </span>
 
       <svg
