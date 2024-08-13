@@ -65,6 +65,7 @@ const handleFileChange = (event: Event) => {
   } else {
     imagePreview.value = 'kosong' // Clear the preview if no file is selected
   }
+  target.value = ''
 }
 
 const handlePhotoCancel = () => {
@@ -319,8 +320,7 @@ const updatePhoto = () => {}
                     :style="{ width: uploadProgress + '%' }"
                   ></div>
                 </div>
-              </div>
-              <p v-if="uploadError" class="text-red-500 mt-2">{{ uploadError }}</p>
+              </div>              
             </div>
 
             <!-- Save and Cancel Buttons for Photo Section -->
@@ -333,7 +333,7 @@ const updatePhoto = () => {}
                 Cancel
               </button>
               <button
-                class="flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90"
+                class="flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90"
                 @click="handlePhotoSubmit"
                 type="button"
                 :disabled="loadingUpdatePhoto || !fileFoto"
@@ -341,6 +341,7 @@ const updatePhoto = () => {}
                 Simpan Foto
               </button>
             </div>
+            <div class="mt-4"><p v-if="uploadError" class="text-red-500 mt-2">{{ uploadError }}</p></div>
           </form>
         </div>
       </div>
