@@ -13,7 +13,8 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   document.title = `PPDB ${to.meta.title}`
   const authStore = useAuthStore()
-  if(to.meta.requiresAuth && !authStore.isLoggedIn()) {
+  if (to.meta.requiresAuth && !authStore.isLoggedIn()) {
+    authStore.intendedURL = to.fullPath
     next({ name: 'login' })
     return
   }

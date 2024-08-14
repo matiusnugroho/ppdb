@@ -5,7 +5,7 @@ import router from '@/router'
 // Create an instance of axios with the base URL
 const requestor = axios.create({
   baseURL: ENDPOINTS.BASE_URL,
-  withCredentials: true,
+  withCredentials: true
 })
 
 requestor.interceptors.response.use(

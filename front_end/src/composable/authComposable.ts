@@ -9,7 +9,8 @@ export function useAuth() {
     try {
       const response = await authStore.login(username, password)
       if (response.success) {
-        await router.push('/dashboard')
+        const intendedURL = authStore.intendedURL || '/dashboard'
+        await router.push(intendedURL)
       }
     } catch (error: any) {
       console.error('Login error:', error)
@@ -19,7 +20,18 @@ export function useAuth() {
 
   const logout = async () => {
     await authStore.logout()
+    clearAllCookies()
     router.push({ name: 'login' })
+  }
+  const clearAllCookies = () => {
+    const cookies = document.cookie.split(';')
+
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i]
+      const eqPos = cookie.indexOf('=')
+      const name = eqPos > -1 ? cookie.slice(0, eqPos) : cookie
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`
+    }
   }
 
   return { login, logout }

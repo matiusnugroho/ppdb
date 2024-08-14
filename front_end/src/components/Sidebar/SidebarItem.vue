@@ -32,7 +32,7 @@ const handleItemClick = () => {
         'bg-graydark dark:bg-meta-4': sidebarStore.page === item.label
       }"
     >
-      <font-awesome-icon :icon="item.icon" class="w-18px h-18px"/> {{ item.label }}
+      <font-awesome-icon :icon="item.icon" class="w-18px h-18px" /> {{ item.label }}
 
       <svg
         v-if="item.children"

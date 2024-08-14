@@ -30,7 +30,7 @@ const menuGroups = ref([
         icon: 'fa-user',
         label: 'Dokumen',
         route: '/dokumen'
-      },
+      }
     ]
   }
 ])
