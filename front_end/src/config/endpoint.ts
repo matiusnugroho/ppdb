@@ -9,7 +9,8 @@ const ENDPOINTS = {
   BASE_URL,
   LOGIN: `${BASE_URL_API}/auth/login`,
   ME_SISWA: `${BASE_URL_API}/siswa/me`,
-  UPDATE_PHOTO_SISWA: `${BASE_URL_API}/siswa/update-foto`
+  UPDATE_PHOTO_SISWA: `${BASE_URL_API}/siswa/update-foto`,
+  CSRF : `${BASE_URL_API}/sanctum/csrf-cookie`
 }
 
 // Helper function to replace placeholders with actual values

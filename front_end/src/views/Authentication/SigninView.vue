@@ -6,9 +6,10 @@ import PlainLayout from '@/layouts/PlainLayout.vue'
 import DarkModeSwitcher from '@/components/Header/DarkModeSwitcher.vue'
 import { FwbAlert, FwbSpinner } from 'flowbite-vue'
 import '@/style.css'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useAuth } from '@/composable/authComposable'
 import { showToast } from '@/utils/ui/toast'
+import { getCSRFToken } from '@/services/csrf'
 
 const emailValue = ref('')
 const passwordValue = ref('')
@@ -18,13 +19,26 @@ const loginGagalMessage = ref('')
 
 const { login } = useAuth()
 
+const ambilCSRFToken = async () => {
+  try {
+    await getCSRFToken()
+  } catch (error) {
+    console.error(error)
+    showToast({
+      message: 'Gagal mengambil CSRF token, silakan muat ulang halaman login ini',
+      type: 'error',
+      duration: 5000,
+      autoClose: true
+    })
+  }
+}
+
 const handleLogin = async () => {
   loginLoading.value = true
   loginGagal.value = false
   try {
     await login(emailValue.value, passwordValue.value)
   } catch (error: any) {
-    showToast({ message: 'Login gagal', type: 'error', duration: 3000, autoClose: false })
     if (error?.response?.status === 401 || error?.response?.status === 422) {
       loginGagal.value = true
       loginGagalMessage.value = 'Username atau password salah'
@@ -40,6 +54,10 @@ const handleLogin = async () => {
     loginLoading.value = false
   }
 }
+
+onMounted(async () => {
+  await ambilCSRFToken()
+})
 </script>
 
 <template>

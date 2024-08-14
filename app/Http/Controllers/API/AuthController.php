@@ -29,18 +29,18 @@ class AuthController extends Controller
                 'siswa' => 'student',
                 'sekolah' => 'school',
             ];
+            $request->session()->regenerate();
             $userRole = $user->role;
             $property = $roleMap[$userRole] ?? null;
             $biodata = $property ? $user->$property : null;
 
             return response()->json([
                 'success' => true,
-                'token' => $token->plainTextToken,
                 'user' => $user,
                 'biodata' => $biodata,
                 'role' => $user->role,
                 'permissions' => $user->getAllPermissions()->pluck('name'), // Assuming user has permissions
-            ]);
+            ])->cookie('access_token', $token->plainTextToken, 60, null, null, true, true);            
         } else {
             return response()->json(['success' => false, 'message' => 'Invalid email or password'], 401);
         }

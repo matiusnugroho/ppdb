@@ -320,7 +320,7 @@ const updatePhoto = () => {}
                     :style="{ width: uploadProgress + '%' }"
                   ></div>
                 </div>
-              </div>              
+              </div>
             </div>
 
             <!-- Save and Cancel Buttons for Photo Section -->
@@ -341,7 +341,9 @@ const updatePhoto = () => {}
                 Simpan Foto
               </button>
             </div>
-            <div class="mt-4"><p v-if="uploadError" class="text-red-500 mt-2">{{ uploadError }}</p></div>
+            <div class="mt-4">
+              <p v-if="uploadError" class="text-red-500 mt-2">{{ uploadError }}</p>
+            </div>
           </form>
         </div>
       </div>
