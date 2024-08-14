@@ -1,6 +1,5 @@
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import { useStorage } from '@vueuse/core'
 
 export function useAuth() {
   const router = useRouter()
@@ -19,13 +18,8 @@ export function useAuth() {
   }
 
   const logout = async () => {
-    // Clear the state and storage
-    authStore.token = null
-    authStore.user = null
-    useStorage('token', null).value = null
-
-    // Redirect to the login page
-    await router.push({ name: 'login' })
+    await authStore.logout()
+    router.push({ name: 'login' })
   }
 
   return { login, logout }

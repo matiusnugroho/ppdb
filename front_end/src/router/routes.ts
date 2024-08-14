@@ -4,7 +4,8 @@ export default [
     name: 'home',
     component: () => import('@/views/HomeView.vue'),
     meta: {
-      title: 'PPDB Kuantan Singing'
+      title: 'PPDB Kuantan Singing',
+      requiresAuth: false
     }
   },
   {
@@ -12,7 +13,8 @@ export default [
     name: 'ppdbDashboard',
     component: () => import('@/views/Dashboard/DashBoardSiswaView.vue'),
     meta: {
-      title: 'PPDB Kuantan Singing'
+      title: 'PPDB Kuantan Singing',
+      requiresAuth: true
     }
   },
   {
@@ -20,79 +22,26 @@ export default [
     name: 'biodata',
     component: () => import('@/views/BiodataView.vue'),
     meta: {
-      title: 'Biodata'
+      title: 'Biodata',
+      requiresAuth: true
     }
   },
   {
-    path: '/profile',
-    name: 'profile',
-    component: () => import('@/views/ProfileView.vue'),
-    meta: {
-      title: 'Profile'
-    }
-  },
-  {
-    path: '/forms/form-elements',
-    name: 'formElements',
-    component: () => import('@/views/Forms/FormElementsView.vue'),
-    meta: {
-      title: 'Form Elements'
-    }
-  },
-  {
-    path: '/forms/form-layout',
-    name: 'formLayout',
-    component: () => import('@/views/Forms/FormLayoutView.vue'),
-    meta: {
-      title: 'Form Layout'
-    }
-  },
-  {
-    path: '/pages/settings',
-    name: 'settings',
-    component: () => import('@/views/Pages/SettingsView.vue'),
-    meta: {
-      title: 'Settings'
-    }
-  },
-  {
-    path: '/charts',
-    name: 'basicChart',
-    component: () => import('@/views/Charts/BasicChartView.vue'),
-    meta: {
-      title: 'Basic Chart'
-    }
-  },
-  {
-    path: '/ui-elements/alerts',
-    name: 'alerts',
-    component: () => import('@/views/UiElements/AlertsView.vue'),
-    meta: {
-      title: 'Alerts'
-    }
-  },
-  {
-    path: '/ui-elements/buttons',
-    name: 'buttons',
-    component: () => import('@/views/UiElements/ButtonsView.vue'),
-    meta: {
-      title: 'Buttons'
-    }
-  },
-  {
-    path: '/auth/signin',
+    path: '/login',
     name: 'login',
     component: () => import('@/views/Authentication/SigninView.vue'),
     meta: {
-      title: 'login'
+      title: 'Login',
+      requiresAuth: false
     }
   },
   {
-    path: '/auth/signup',
-    name: 'signup',
+    path: '/daftar',
+    name: 'daftar',
     component: () => import('@/views/Authentication/SignupView.vue'),
     meta: {
-      title: 'Signup'
+      title: 'Daftar',
+      requiresAuth: false
     }
   },
   {

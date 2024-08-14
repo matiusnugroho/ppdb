@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import requestor from '@/services/requestor'
 import { ENDPOINTS } from '@/config/endpoint'
-import { useRouter } from 'vue-router'
 import type { Student, User } from '@/types'
 
 interface AuthState {
@@ -10,7 +9,7 @@ interface AuthState {
   role: string | null,
 }
 
-const router = useRouter()
+
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
@@ -33,11 +32,7 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     logout() {
-      this.user = null
-      this.biodata = null
-      this.role = null
-
-      router.push({ name: 'login' })
+      this.$reset()
     },
     isLoggedIn() {
       return !!this.user
