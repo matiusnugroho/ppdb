@@ -78,7 +78,7 @@ onMounted(async () => {
           <fwb-alert icon type="danger">{{ loginGagalMessage }}</fwb-alert>
         </div>
       </transition>
-      <form>
+      <form @submit.prevent="handleLogin">
         <InputGroup
           label="Email / Username"
           type="email"
@@ -88,7 +88,7 @@ onMounted(async () => {
         <PasswordInput label="Password anda" v-model="passwordValue" />
         <div class="mb-5 mt-6">
           <button
-            type="button"
+            type="submit"
             class="w-full flex justify-center items-center cursor-pointer rounded-lg border border-primary bg-primary p-2 font-medium text-white transition hover:bg-opacity-90"
             @click="handleLogin"
             :disabled="loginLoading"
