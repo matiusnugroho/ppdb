@@ -57,7 +57,8 @@ export interface User {
   roles: Role[]
 }
 // Corrected syntax for interface
-export interface ProfileRequest extends Student, Pick<User, 'username'> {}
+export interface ProfileRequest extends Omit<Student, 'foto'>, Pick<User, 'username'> {}
+
 
 export interface LoginResponseData {
   success: boolean

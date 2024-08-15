@@ -58,11 +58,13 @@ export function useUpdateProfile() {
     uploadError.value = null
     loadingUpdateProfile.value = true
     try {
-      const response = await requestor.put(urlMe, data)
+      const response = await requestor.patch(urlMe, data)
+      
       if (response.data.success) {
         const data = response.data.data
+        console.log('Response update profile:', data)
         if (authStore.biodata) {
-          authStore.biodata = data.student
+          authStore.biodata = data.biodata
           authStore.user = data.user
         }
         return true

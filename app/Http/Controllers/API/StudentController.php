@@ -81,6 +81,7 @@ class StudentController extends Controller
                 'success' => true,
                 'data' => [
                     'user' => $user,
+                    'biodata' => $user->student,
                 ],
             ], 200);
         }
@@ -142,6 +143,7 @@ class StudentController extends Controller
             'success' => true,
             'data' => [
                 'user' => $user,
+                'biodata' => $user->student,
                 'permissions' => $permissions,
             ],
         ], 200);

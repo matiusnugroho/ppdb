@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 
 import { showToast } from '@/utils/ui/toast'
 import { useAuthStore } from '@/stores/auth'
 import { useUpdateProfile } from '@/composable/useUpdateProfile'
 import type { ProfileRequest } from '@/types'
+import requestor from '@/services/requestor'
+import { ENDPOINTS } from '@/config/endpoint'
 
 const authstore = useAuthStore()
-const localState = reactive({
+let localState = reactive({
   user: authstore.user ? { ...authstore.user } : null,
   biodata: authstore.biodata ? { ...authstore.biodata } : null
 })
@@ -20,8 +22,22 @@ const { uploadPhoto, loadingUpdatePhoto, uploadProgress, uploadError, updateProf
 
 
 const handleSubmit = async () => {
-  const data = { ...localState.biodata!, username: localState.user?.username } as ProfileRequest
+  const {foto, ...tanpaFoto } = localState.biodata!
+  const data = { ...tanpaFoto, username: localState.user?.username, email: localState.user?.email } as ProfileRequest
+  console.log('data dikirim', data)
   const sukses = await updateProfile(data)
+  if (sukses) {
+    showToast({
+      message: 'Profile updated'
+    })
+    console.log('Profile updated')
+  } else {
+    showToast({
+      message: 'Profile update failed',
+      type: 'error'
+    })
+    console.log('Profile update failed')
+  }
 }
 
 const handleCancel = () => {}
@@ -76,6 +92,22 @@ const deletePhoto = () => {
 }
 
 const updatePhoto = () => {}
+
+onMounted(async () => {
+  console.log('Mounted')
+  if(!authstore.biodata) {
+    console.log('Fetching data from me')
+    await requestor.get(ENDPOINTS.ME_SISWA).then((response) => {
+      const data = response.data.data
+      authstore.biodata = data.biodata
+      authstore.user = data.user
+      localState = reactive({
+        user: authstore.user ? { ...authstore.user } : null,
+        biodata: authstore.biodata ? { ...authstore.biodata } : null
+      })
+    })
+  }
+})
 </script>
 
 <template>
@@ -88,7 +120,7 @@ const updatePhoto = () => {}
         <div class="border-b border-stroke py-4 px-7 dark:border-strokedark">
           <h3 class="font-medium text-black dark:text-white">Personal Information</h3>
         </div>
-        <div class="p-7">
+        <div class="p-7" v-if="localState.biodata">
           <form @submit.prevent="handleSubmit">
             <!-- Full Name Section -->
             <div class="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
@@ -96,7 +128,7 @@ const updatePhoto = () => {}
                 <label
                   class="mb-3 block text-sm font-medium text-black dark:text-white"
                   for="fullName"
-                  >Full Name</label
+                  >Nama</label
                 >
                 <div class="relative">
                   <span class="absolute left-4.5 top-4">
@@ -202,7 +234,7 @@ const updatePhoto = () => {}
     </div>
 
     <!-- Your Photo Section -->
-    <div class="col-span-5 xl:col-span-2">
+    <div class="col-span-5 xl:col-span-2" v-if="localState.biodata">
       <div
         class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
       >
