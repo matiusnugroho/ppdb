@@ -42,10 +42,12 @@ class UserTestSeeder extends Seeder
         $userSiswa->assignRole($roleSiswa);
         Student::create([
             'user_id' => $userSiswa->id, // Set the user_id here
+            'nisn' => $faker->unique()->numerify('######'),
             'nama' => $faker->name,
             'tempat_lahir' => $faker->city,
             'tanggal_lahir' => $faker->date,
-            'nama_bapak_ibu' => $faker->name,
+            'nama_bapak' => $faker->name('male'),
+            'nama_ibu' => $faker->name('female'),
             'nik' => $faker->unique()->numerify('##########'),
             'no_kk' => $faker->unique()->numerify('##########'),
             'no_hp_ortu' => $faker->phoneNumber,
