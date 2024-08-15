@@ -2,17 +2,20 @@ import { ref } from 'vue'
 import requestor from '@/services/requestor' // Import your Axios instance
 import { ENDPOINTS } from '@/config/endpoint'
 import { useAuthStore } from '@/stores/auth'
+import { useErrorsStore } from '@/stores/errors'
 import type { ProfileRequest } from '@/types'
 
-export function usePhotoUpload() {
+export function useUpdateProfile() {
   const uploadProgress = ref(0)
   const loadingUpdatePhoto = ref(false)
+  const loadingUpdateProfile = ref(false)
   const uploadError = ref<string | null>(null)
   const uploadSuccess = ref<boolean>(false)
   const url = ENDPOINTS.UPDATE_PHOTO_SISWA
   const urlMe = ENDPOINTS.ME_SISWA
 
   const authStore = useAuthStore()
+  const errorsStore = useErrorsStore()
 
   const uploadPhoto = async (file: File): Promise<boolean> => {
     uploadProgress.value = 0
@@ -51,7 +54,9 @@ export function usePhotoUpload() {
     }
   }
 
-  const updtaeProfile = async (data: ProfileRequest) => {
+  const updateProfile = async (data: ProfileRequest) => {
+    uploadError.value = null
+    loadingUpdateProfile.value = true
     try {
       const response = await requestor.put(urlMe, data)
       if (response.data.success) {
@@ -62,11 +67,14 @@ export function usePhotoUpload() {
         }
         return true
       } else {
+        errorsStore.errors = response.data.errors
         return false
       }
     } catch (error: any) {
       uploadError.value = error.response?.data?.message || 'An error occurred during upload.'
       return false
+    } finally {
+      loadingUpdateProfile.value = false
     }
   }
 
@@ -76,6 +84,7 @@ export function usePhotoUpload() {
     uploadProgress,
     uploadError,
     uploadSuccess,
-    updtaeProfile
+    updateProfile,
+    loadingUpdateProfile
   }
 }

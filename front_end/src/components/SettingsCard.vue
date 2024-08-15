@@ -3,7 +3,8 @@ import { reactive, ref } from 'vue'
 
 import { showToast } from '@/utils/ui/toast'
 import { useAuthStore } from '@/stores/auth'
-import { usePhotoUpload } from '@/composable/useUpdateProfile'
+import { useUpdateProfile } from '@/composable/useUpdateProfile'
+import type { ProfileRequest } from '@/types'
 
 const authstore = useAuthStore()
 const localState = reactive({
@@ -14,10 +15,13 @@ const imagePreview = ref<string>('')
 const fileFoto = ref<File | null>(null)
 const displayPreview = ref<boolean>(false)
 
-const { uploadPhoto, loadingUpdatePhoto, uploadProgress, uploadError } = usePhotoUpload()
+const { uploadPhoto, loadingUpdatePhoto, uploadProgress, uploadError, updateProfile, loadingUpdateProfile } = useUpdateProfile()
 
-const handleSubmit = () => {
-  // Handle form submission for personal information
+
+
+const handleSubmit = async () => {
+  const data = { ...localState.biodata!, username: localState.user?.username } as ProfileRequest
+  const sukses = await updateProfile(data)
 }
 
 const handleCancel = () => {}
