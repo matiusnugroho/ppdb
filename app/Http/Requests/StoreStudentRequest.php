@@ -36,13 +36,13 @@ class StoreStudentRequest extends StudentRequest
             'nik' => [
                 'required',
                 'numeric',
-                'size:16',
+                'digits:16',
                 Rule::unique('students')->ignore($studentId),
             ],
             'no_kk' => [
                 'required',
                 'numeric',
-                'size:16',
+                'digits:16',
                 Rule::unique('students')->ignore($studentId),
             ],
             'no_hp_ortu' => 'required|string|max:15',

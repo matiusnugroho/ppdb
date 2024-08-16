@@ -13,7 +13,13 @@ class UpdateStudentRequest extends StudentRequest
     {
         return true;
     }
-
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'nik' => trim($this->input('nik')),
+            'no_kk' => trim($this->input('no_kk')),
+        ]);
+    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -49,14 +55,14 @@ class UpdateStudentRequest extends StudentRequest
                 'sometimes',
                 'required',
                 'numeric',
-                'size:16',
+                'digits:16',
                 Rule::unique('students')->ignore($studentId),
             ],
             'no_kk' => [
                 'sometimes',
                 'numeric',
                 'required',
-                'size:16',
+                'digits:16',
                 Rule::unique('students')->ignore($studentId),
             ],
             'no_hp_ortu' => 'sometimes|required|string|max:15',
