@@ -13,13 +13,6 @@ class UpdateStudentRequest extends StudentRequest
     {
         return true;
     }
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'nik' => trim($this->input('nik')),
-            'no_kk' => trim($this->input('no_kk')),
-        ]);
-    }
     /**
      * Get the validation rules that apply to the request.
      *

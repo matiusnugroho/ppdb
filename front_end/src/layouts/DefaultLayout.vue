@@ -11,7 +11,7 @@ import SidebarArea from "@/components/Sidebar/SidebarArea.vue"
 		<!-- ===== Sidebar End ===== -->
 
 		<!-- ===== Content Area Start ===== -->
-		<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+		<div id="sangkonten" class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 			<!-- ===== Header Start ===== -->
 			<HeaderArea />
 			<!-- ===== Header End ===== -->

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
+import HeroIcon from "@/components/Icon/HeroIcon.vue"
 
 const cardItems = ref([
 	{
@@ -103,6 +104,7 @@ const cardItems = ref([
 
 <template>
 	<!-- Card Item Start -->
+	<HeroIcon size="18" name="home" class="text-blue-500" />
 	<div v-for="(item, index) in cardItems" :key="index" class="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
 		<div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4" v-html="item.icon"></div>
 

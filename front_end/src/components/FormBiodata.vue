@@ -8,8 +8,12 @@ import type { ProfileRequest } from "@/types"
 import requestor from "@/services/requestor"
 import { ENDPOINTS } from "@/config/endpoint"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
+import flatPickr from "vue-flatpickr-component"
+import { useSmoothScrollToTop } from "@/composable/useSmoothScrollToTop"
+//import { formatDateToStandar } from "@/utils/formatDateToStandar"
 
 const authstore = useAuthStore()
+const { smoothScrollToTop } = useSmoothScrollToTop()
 const formValidationErrors = useFormValidationErrorsStore()
 let localState = reactive({
 	user: authstore.user ? { ...authstore.user } : null,
@@ -19,7 +23,7 @@ const imagePreview = ref<string>("")
 const fileFoto = ref<File | null>(null)
 const displayPreview = ref<boolean>(false)
 
-const { uploadPhoto, loadingUpdatePhoto, uploadProgress, uploadError, updateProfile, loadingUpdateProfile } = useUpdateProfile()
+const { uploadPhoto, loadingUpdatePhoto, uploadProgress, updateProfile, uploadError, loadingUpdateProfile } = useUpdateProfile()
 
 const handleSubmit = async () => {
 	formValidationErrors.clearErrors()
@@ -30,7 +34,7 @@ const handleSubmit = async () => {
 		username: localState.user?.username,
 		email: localState.user?.email,
 	} as ProfileRequest
-	console.log("data dikirim", data)
+
 	loadingUpdateProfile.value = true
 	const sukses = await updateProfile(data)
 		.catch((error) => {
@@ -46,17 +50,24 @@ const handleSubmit = async () => {
 		showToast({
 			message: "Profile updated",
 		})
-		console.log("Profile updated")
 	} else {
 		showToast({
 			message: "Profile update failed",
 			type: "error",
 		})
-		console.log("Profile update failed")
 	}
+
+	smoothScrollToTop('#sangkonten')
 }
 
-const handleCancel = () => {}
+const resetForm = () => {
+	localState.user = authstore.user ? { ...authstore.user } : null
+	localState.biodata = authstore.biodata ? { ...authstore.biodata } : null
+}
+
+const handleCancel = () => {
+	resetForm()
+}
 
 const handlePhotoSubmit = async () => {
 	const result = await uploadPhoto(fileFoto.value!)
@@ -64,34 +75,28 @@ const handlePhotoSubmit = async () => {
 		showToast({
 			message: "Foto berhasil diperbarui",
 		})
-		console.log("Photo updated")
 	} else {
 		showToast({
-			message: "Photo update failed",
+			message: "Gagal update foto, " + uploadError.value,
 			type: "error",
 		})
-		console.log("Photo update failed")
 	}
 	displayPreview.value = false
 	fileFoto.value = null
+	smoothScrollToTop('#sangkonten')
 }
 
 const handleFileChange = (event: Event) => {
 	const target = event.target as HTMLInputElement
 	const file = target.files?.[0]
+
 	if (file) {
-		const reader = new FileReader()
-		reader.onload = (e) => {
-			imagePreview.value = e.target?.result as string
-			localState.biodata!.thumbnail_url = e.target?.result as string
-		}
-		reader.readAsDataURL(file)
-		fileFoto.value = file
-		displayPreview.value = true
+		processFile(file)
 	} else {
 		imagePreview.value = "kosong" // Clear the preview if no file is selected
 	}
-	target.value = ""
+
+	target.value = "" // Clear the input after processing
 }
 
 const handlePhotoCancel = () => {
@@ -99,18 +104,15 @@ const handlePhotoCancel = () => {
 	displayPreview.value = false
 	localState.biodata!.thumbnail_url = authstore.biodata!.thumbnail_url
 }
-
-const deletePhoto = () => {
-	showToast({
-		message: "Photo deleted successfully",
-	})
-	console.log("Photo deleted")
-}
-
-const updatePhoto = () => {}
 const field_error_html = (field: string) => {
 	const errors = formValidationErrors.errors[field]
+
 	if (errors && errors.length > 0) {
+		console.log(`
+      <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+        ${errors.join(", ")}
+      </span>
+    `)
 		return `
       <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
         ${errors.join(", ")}
@@ -119,6 +121,53 @@ const field_error_html = (field: string) => {
 	}
 	return ""
 }
+
+const tanggalLahirConfig = ref({
+	allowInput: true,
+	format: "d-m-Y",
+})
+
+//urusin drag and drop foto
+const isDragging = ref(false)
+
+const handleDragOver = () => {
+	isDragging.value = true // Set dragging state to true when dragging over
+}
+
+const handleDragLeave = () => {
+	isDragging.value = false // Reset dragging state when leaving the drop area
+}
+
+const handleDrop = (event: DragEvent) => {
+	isDragging.value = false
+	const file = event.dataTransfer?.files?.[0]
+
+	if (file) {
+		// Directly pass the file to a new method that handles file processing
+		processFile(file)
+	}
+}
+
+const processFile = (file: File) => {
+	// Check if the file is an image
+	if (!file.type.startsWith("image/")) {
+		showToast({
+			message: "File harus berupa gambar",
+			type: "error",
+		})
+		return
+	}
+
+	const reader = new FileReader()
+	reader.onload = (e) => {
+		imagePreview.value = e.target?.result as string
+		localState.biodata!.thumbnail_url = e.target?.result as string
+	}
+	reader.readAsDataURL(file)
+	fileFoto.value = file
+	displayPreview.value = true
+}
+
 onMounted(async () => {
 	console.log("Mounted")
 	if (!authstore.biodata) {
@@ -147,54 +196,54 @@ onMounted(async () => {
 				<div class="p-7" v-if="localState.biodata">
 					<form @submit.prevent="handleSubmit">
 						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="emailAddress">NISN</label>
-								<input
-									v-model="localState.biodata!.nisn"
-									class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-									type="text"
-									name="nisn"
-									id="nisn"
-									inputmode="numeric" />
-								<div v-html="field_error_html('nisn')"></div>
+							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nisn">NISN</label>
+							<input
+								v-model="localState.biodata!.nisn"
+								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+								type="text"
+								name="nisn"
+								id="nisn"
+								inputmode="numeric" />
+							<div v-html="field_error_html('nisn')"></div>
 						</div>
 						<div class="mb-5.5">
-								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nik">NIK</label>
-								<input
-									v-model="localState.biodata!.nik"
-									class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-									type="text"
-									name="nik"
-									id="nik"
-									inputmode="numeric" />
-                  <div v-html="field_error_html('nik')"></div>
-							</div>
-							<div class="mb-5.5">
-								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nik">No. Kartu Keluarga</label>
-								<input
-									v-model="localState.biodata!.no_kk"
-									class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-									type="text"
-									name="no_kk"
-									id="no_kk"
-									inputmode="numeric" />
-                  <div v-html="field_error_html('no_kk')"></div>
-							</div>
+							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nik">NIK</label>
+							<input
+								v-model="localState.biodata!.nik"
+								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+								type="text"
+								name="nik"
+								id="nik"
+								inputmode="numeric" />
+							<div v-html="field_error_html('nik')"></div>
+						</div>
+						<div class="mb-5.5">
+							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nik">No. Kartu Keluarga</label>
+							<input
+								v-model="localState.biodata!.no_kk"
+								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+								type="text"
+								name="no_kk"
+								id="no_kk"
+								inputmode="numeric" />
+							<div v-html="field_error_html('no_kk')"></div>
+						</div>
 						<!-- Full Name Section -->
 						<div class="mb-5.5">
-								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="fullName">Nama</label>
-								<div class="relative">
-									<span class="absolute left-4.5 top-4">
-										<font-awesome-icon icon="fa-regular fa-user" />
-									</span>
-									<input
-										v-model="localState.biodata!.nama"
-										class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-										type="text"
-										name="fullName"
-										id="fullName" />
-									<div v-html="field_error_html('nama')"></div>
-								</div>
+							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="fullName">Nama</label>
+							<div class="relative">
+								<span class="absolute left-4.5 top-4">
+									<font-awesome-icon icon="fa-regular fa-user" />
+								</span>
+								<input
+									v-model="localState.biodata!.nama"
+									class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+									type="text"
+									name="fullName"
+									id="fullName" />
+								<div v-html="field_error_html('nama')"></div>
 							</div>
+						</div>
 
 						<!-- Email Address Section -->
 						<div class="mb-5.5">
@@ -224,7 +273,7 @@ onMounted(async () => {
 								name="Username"
 								id="Username"
 								placeholder="devidjhon24" />
-								<div v-html="field_error_html('username')"></div>
+							<div v-html="field_error_html('username')"></div>
 						</div>
 
 						<div class="mb-5.5">
@@ -236,17 +285,17 @@ onMounted(async () => {
 								name="tempat_lahir"
 								id="tempat_lahir"
 								placeholder="Tempat lahir anda" />
-								<div v-html="field_error_html('tempat_lahir')"></div>
+							<div v-html="field_error_html('tempat_lahir')"></div>
 						</div>
 						<div class="mb-5.5">
 							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Tanggal Lahir</label>
-							<input
+							<flat-pickr
 								v-model="localState.biodata!.tanggal_lahir"
 								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="tanggal_lahir"
-								id="tanggal_lahir" />
-								<div v-html="field_error_html('tanggal_lahir')"></div>
+								:config="tanggalLahirConfig"
+								id="tanggal-lahir">
+							</flat-pickr>
+							<div v-html="field_error_html('tanggal_lahir')"></div>
 						</div>
 						<div class="mb-5.5">
 							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Nama Bapak</label>
@@ -256,7 +305,7 @@ onMounted(async () => {
 								type="text"
 								name="nama_bapak"
 								id="nama_bapak" />
-								<div v-html="field_error_html('nama_bapak')"></div>
+							<div v-html="field_error_html('nama_bapak')"></div>
 						</div>
 						<div class="mb-5.5">
 							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Nama Ibu</label>
@@ -266,17 +315,17 @@ onMounted(async () => {
 								type="text"
 								name="nama_ibu"
 								id="nama_ibu" />
-								<div v-html="field_error_html('nama_ibu')"></div>
+							<div v-html="field_error_html('nama_ibu')"></div>
 						</div>
 						<div class="mb-5.5">
 							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">No. Hp Orang Tua</label>
 							<input
-								v-model="localState.biodata!.tanggal_lahir"
+								v-model="localState.biodata!.no_hp_ortu"
 								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
 								type="text"
 								name="no_hp_ortu"
 								id="no_hp_ortu" />
-								<div v-html="field_error_html('no_hp_ortu')"></div>
+							<div v-html="field_error_html('no_hp_ortu')"></div>
 						</div>
 
 						<!-- Save and Cancel Buttons -->
@@ -308,27 +357,32 @@ onMounted(async () => {
 								<img :src="localState.biodata!.thumbnail_url" alt="User" />
 							</div>
 							<div>
-								<span class="mb-1.5 font-medium text-black dark:text-white">Edit your photo</span>
-								<span class="flex gap-2.5">
-									<button class="text-sm font-medium hover:text-primary" @click="deletePhoto">Delete</button>
-									<button class="text-sm font-medium hover:text-primary" @click="updatePhoto">Update</button>
-								</span>
+								<span class="mb-1.5 font-medium text-black dark:text-white">Edit Foto</span>
 							</div>
 						</div>
 
 						<!-- File Upload Section -->
 						<div
 							id="FileUpload"
-							class="relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed border-primary bg-gray py-4 px-4 dark:bg-meta-4 sm:py-7.5">
+							:class="{
+								'border-green-500': isDragging,
+								'border-primary': !isDragging,
+							}"
+							class="relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed bg-gray py-4 px-4 dark:bg-meta-4 sm:py-7.5"
+							@dragover.prevent="handleDragOver"
+							@dragleave.prevent="handleDragLeave"
+							@drop.prevent="handleDrop">
 							<input type="file" accept="image/*" class="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none" @change="handleFileChange" />
 							<div class="flex flex-col items-center justify-center space-y-3">
 								<span class="text-primary flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white dark:border-strokedark dark:bg-boxdark">
 									<font-awesome-icon icon="fa-regular fa-image" />
 								</span>
-								<p class="text-sm font-medium"><span class="text-primary">Click to upload</span> or drag and drop</p>
-								<p class="mt-1.5 text-sm font-medium">SVG, PNG, JPG or GIF</p>
+								<p class="text-sm font-medium items-center justify-center"><span class="text-primary">Click untuk memilih foto</span></p>
+								<p class="text-sm font-medium items-center justify-center">atau seret foto ke kotak ini</p>
+								<p class="mt-1.5 text-sm font-medium">JPG atau JPEG</p>
 							</div>
 						</div>
+						<div class="mb-5.5" v-html="field_error_html('foto')"></div>
 						<div v-if="displayPreview" class="relative mt-4 flex items-center justify-center mb-3">
 							<!-- Image Preview -->
 							<img :src="imagePreview" alt="Image Preview" class="max-w-full h-auto rounded" />
@@ -356,9 +410,6 @@ onMounted(async () => {
 								:disabled="loadingUpdatePhoto || !fileFoto">
 								Simpan Foto
 							</button>
-						</div>
-						<div class="mt-4">
-							<p v-if="uploadError" class="text-red-500 mt-2">{{ uploadError }}</p>
 						</div>
 					</form>
 				</div>

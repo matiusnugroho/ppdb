@@ -44,10 +44,12 @@ export function useUpdateProfile() {
 				uploadSuccess.value = true
 				return true
 			} else {
+				formValidationErrors.errors = response.data.errors
 				return false
 			}
 		} catch (error: any) {
 			uploadError.value = error.response?.data?.message || "An error occurred during upload."
+			formValidationErrors.errors = error.response.data.errors
 			return false
 		} finally {
 			loadingUpdatePhoto.value = false

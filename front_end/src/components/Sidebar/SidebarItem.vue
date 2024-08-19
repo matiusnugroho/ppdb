@@ -2,6 +2,7 @@
 import { useSidebarStore } from "@/stores/sidebar"
 import { useRoute } from "vue-router"
 import SidebarDropdown from "./SidebarDropdown.vue"
+import HeroIcon from "@/components/Icon/HeroIcon.vue"
 
 const sidebarStore = useSidebarStore()
 
@@ -31,7 +32,7 @@ const handleItemClick = () => {
 			:class="{
 				'bg-graydark dark:bg-meta-4': sidebarStore.page === item.label,
 			}">
-			<font-awesome-icon :icon="item.icon" class="w-18px h-18px" /> {{ item.label }}
+			<HeroIcon size="18" :name="item.icon" class="text-blue-500" />{{ item.label }}
 
 			<svg
 				v-if="item.children"

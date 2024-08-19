@@ -17,17 +17,17 @@ const menuGroups = ref([
 		name: "Data Diri",
 		menuItems: [
 			{
-				icon: "fa-solid fa-timeline",
+				icon: "home",
 				label: "Dashboard",
 				route: "/dashboard",
 			},
 			{
-				icon: "fa-id-badge",
+				icon: "user-circle",
 				label: "Biodata",
 				route: "/biodata",
 			},
 			{
-				icon: "fa-user",
+				icon: "document",
 				label: "Dokumen",
 				route: "/dokumen",
 			},

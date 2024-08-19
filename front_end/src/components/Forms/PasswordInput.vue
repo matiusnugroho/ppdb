@@ -13,7 +13,7 @@
 				@input="updateValue"
 				class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-2 px-2 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
 			<span class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500" @click="togglePasswordVisibility">
-				<font-awesome-icon :icon="showPassword ? faEyeSlash : faEye" />
+				<HeroIcon :name="showPassword ? 'lock-closed' : 'lock-open'" class="text-gray-500" />
 			</span>
 		</div>
 	</div>
@@ -21,8 +21,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
+import HeroIcon from "@/components/Icon/HeroIcon.vue"
 
 const props = defineProps({
 	label: String,

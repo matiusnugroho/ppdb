@@ -20,7 +20,7 @@ class StudentRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function messages(): array
+    /* public function messages(): array
     {
         return [
             '*.required' => ':attribute wajib diisi.',
@@ -81,5 +81,5 @@ class StudentRequest extends FormRequest
             'no_hp_ortu.sometimes' => 'No. HP Ortu bersifat opsional, namun harus berupa string dengan panjang maksimum 15 karakter jika disediakan.',
             'no_hp_ortu.max' => 'No. HP Ortu tidak boleh lebih dari 15 karakter.',
         ];
-    }
+    } */
 }

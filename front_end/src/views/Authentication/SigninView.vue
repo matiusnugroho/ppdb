@@ -12,6 +12,7 @@ import { showToast } from "@/utils/ui/toast"
 import { getCSRFToken } from "@/services/csrf"
 import { useRoute } from "vue-router"
 import { useAuthStore } from "@/stores/auth"
+import AlertSuccess from "@/components/Alerts/AlertSuccess.vue"
 
 const emailValue = ref("")
 const passwordValue = ref("")
@@ -71,17 +72,10 @@ onMounted(async () => {
 			<DarkModeSwitcher />
 		</div>
 		<DefaultAuthCard subtitle="PPDB Online Kuantan Singingi v1" title="Login">
-			<transition
-				enter-active-class="transition-opacity duration-300 ease-in-out"
-				enter-from-class="opacity-0"
-				enter-to-class="opacity-100"
-				leave-active-class="transition-opacity duration-300 ease-in-out"
-				leave-from-class="opacity-100"
-				leave-to-class="opacity-0">
-				<div class="mb-5 mt-6" v-if="loginGagal">
+				<div class="mb-5 mt-6 animate-bottomtop" v-if="loginGagal">
 					<fwb-alert icon type="danger">{{ loginGagalMessage }}</fwb-alert>
 				</div>
-			</transition>
+			<AlertSuccess class="mb-5" message="Pendaftaran PPDB Online Kuantan Singingi v1 Berhasil!" detail="Silakan login dengan akun yang sudah didaftarkan" />
 			<form @submit.prevent="handleLogin">
 				<InputGroup label="Email / Username" type="email" placeholder="Enter your email" v-model="emailValue" />
 				<PasswordInput label="Password anda" v-model="passwordValue" />
@@ -101,7 +95,7 @@ onMounted(async () => {
 				<div class="mt-6 text-center">
 					<p class="font-medium">
 						Belum Mempunyai Akun?
-						<router-link to="/auth/signup" class="text-primary">Daftar</router-link>
+						<router-link to="/daftar" class="text-primary">Daftar</router-link>
 					</p>
 				</div>
 			</form>

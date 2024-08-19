@@ -1,5 +1,5 @@
 <template>
-	<div class="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
+	<div class="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-4 py-5 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-6">
 		<div class="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#34D399]">
 			<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
@@ -9,8 +9,25 @@
 			</svg>
 		</div>
 		<div class="w-full">
-			<h5 class="mb-3 text-lg font-bold text-black dark:text-[#34D399]">Message Sent Successfully</h5>
-			<p class="text-base leading-relaxed text-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+			<h5 class="mb-3 text-lg font-bold text-black dark:text-[#34D399]">{{ message }}</h5>
+			<p v-if="detail" class="text-base leading-relaxed text-body">{{ detail }}</p>
 		</div>
 	</div>
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+	name: "AlertSuccess",
+	props: {
+		message : {
+			type: String,
+			required: true
+		},
+		detail : {
+			type: String,
+			required: false
+		}
+	}
+});
+</script>

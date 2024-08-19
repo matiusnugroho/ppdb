@@ -3,7 +3,7 @@ import { onMounted, ref } from "vue"
 import BreadcrumbDefault from "@/components/Breadcrumbs/BreadcrumbDefault.vue"
 import FormBiodata from "@/components/FormBiodata.vue"
 import DefaultLayout from "@/layouts/DefaultLayout.vue"
-import { useFormValidationErrorsStore } from "@/stores/formValidationErrors";
+import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 
 const pageTitle = ref("Biodata")
 const formValidationErrors = useFormValidationErrorsStore()

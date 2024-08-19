@@ -57,7 +57,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons"
 				<div class="mt-6 text-center">
 					<p class="font-medium">
 						Sudah punya akun?
-						<router-link to="/auth/signin" class="text-primary">Log in</router-link>
+						<router-link to="/login" class="text-primary">Log in</router-link>
 					</p>
 				</div>
 			</form>
