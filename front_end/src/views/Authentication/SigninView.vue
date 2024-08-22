@@ -5,13 +5,13 @@ import PasswordInput from "@/components/Forms/PasswordInput.vue"
 import PlainLayout from "@/layouts/PlainLayout.vue"
 import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher.vue"
 import { FwbAlert, FwbSpinner } from "flowbite-vue"
-import "@/style.css"
 import { onMounted, ref } from "vue"
 import { useAuth } from "@/composable/authComposable"
 import { showToast } from "@/utils/ui/toast"
 import { getCSRFToken } from "@/services/csrf"
 import { useRoute } from "vue-router"
 import { useAuthStore } from "@/stores/auth"
+import { useMessagesStore } from "@/stores/messages"
 import AlertSuccess from "@/components/Alerts/AlertSuccess.vue"
 
 const emailValue = ref("")
@@ -23,6 +23,7 @@ const loginGagalMessage = ref("")
 const { login } = useAuth()
 const route = useRoute()
 const authStore = useAuthStore()
+const messagesStore = useMessagesStore()
 
 const ambilCSRFToken = async () => {
 	try {
@@ -31,7 +32,7 @@ const ambilCSRFToken = async () => {
 		console.error(error)
 		showToast({
 			message: "Gagal mengambil CSRF token, silakan muat ulang halaman login ini",
-			type: "error",
+			type: "warning",
 			duration: 5000,
 			autoClose: true,
 		})
@@ -72,10 +73,10 @@ onMounted(async () => {
 			<DarkModeSwitcher />
 		</div>
 		<DefaultAuthCard subtitle="PPDB Online Kuantan Singingi v1" title="Login">
-				<div class="mb-5 mt-6 animate-bottomtop" v-if="loginGagal">
-					<fwb-alert icon type="danger">{{ loginGagalMessage }}</fwb-alert>
-				</div>
-			<AlertSuccess class="mb-5" message="Pendaftaran PPDB Online Kuantan Singingi v1 Berhasil!" detail="Silakan login dengan akun yang sudah didaftarkan" />
+			<div class="mb-5 mt-6 transform transition-all duration-500 ease-out" :class="{ 'opacity-0 translate-y-5': !loginGagal, 'opacity-100 translate-y-0': loginGagal }">
+				<fwb-alert icon type="danger">{{ loginGagalMessage }}</fwb-alert>
+			</div>
+			<AlertSuccess v-if="messagesStore.messages.success" class="mb-5" :message="messagesStore.messages.success.title as string" :detail="messagesStore.messages.success.detail as string" />
 			<form @submit.prevent="handleLogin">
 				<InputGroup label="Email / Username" type="email" placeholder="Enter your email" v-model="emailValue" />
 				<PasswordInput label="Password anda" v-model="passwordValue" />
@@ -86,7 +87,12 @@ onMounted(async () => {
 						@click="handleLogin"
 						:disabled="loginLoading">
 						<span class="flex items-center">
-							<fwb-spinner v-if="loginLoading" size="4" color="white" />
+							<fwb-spinner
+								v-if="loginLoading"
+								size="4"
+								color="white"
+								class="transition-all duration-500 ease-out"
+								:class="{ 'opacity-0 -translate-x-5': !loginLoading, 'opacity-100 translate-x-0': loginLoading }" />
 							<span class="ml-2">Login</span>
 						</span>
 					</button>

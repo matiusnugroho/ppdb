@@ -22,6 +22,10 @@ class PermissionSeeder extends Seeder
             'edit_registration_status',
 
         ];
+        $permissionVerifikatorSekolah = [
+            'verifikasi_dokumen_siswa',
+            'edit_registration_status',
+        ];
         $permissionSiswa = [
             'edit_my_profile_siswa',
             'edit_document_siswa',
@@ -47,8 +51,10 @@ class PermissionSeeder extends Seeder
         $roleAdmin = \Spatie\Permission\Models\Role::where('name', 'super_admin')->first();
         $roleSekolah = \Spatie\Permission\Models\Role::where('name', 'sekolah')->first();
         $roleSiswa = \Spatie\Permission\Models\Role::where('name', 'siswa')->first();
+        $roleVerifikatorSekolah = \Spatie\Permission\Models\Role::where('name', 'verifikator_sekolah')->first();
         $roleAdmin->givePermissionTo($permissionAdmin);
         $roleSekolah->givePermissionTo($permissionSekolah);
         $roleSiswa->givePermissionTo($permissionSiswa);
+        $roleVerifikatorSekolah->givePermissionTo($permissionVerifikatorSekolah);
     }
 }

@@ -1,16 +1,17 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
 
+type MessageObject = {
+	[key: string]: unknown
+}
+
 export const useMessagesStore = defineStore(
 	"messages",
 	() => {
-		const messages = ref<Record<string, string[]>>({})
+		const messages = ref<Record<string, MessageObject>>({})
 
-		const addMessage = (key: string, message: string) => {
-			if (!messages.value[key]) {
-				messages.value[key] = []
-			}
-			messages.value[key].push(message)
+		const addMessage = (key: string, message: MessageObject) => {
+			messages.value[key] = message
 		}
 
 		const removeMessage = (key: string) => {

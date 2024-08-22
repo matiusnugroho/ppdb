@@ -15,11 +15,12 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('student_id');
             $table->uuid('school_id');
+            $table->foreignId('registration_period_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('registration_number')->unique();
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +32,7 @@ return new class extends Migration
         Schema::table('registrations', function (Blueprint $table) {
             $table->dropForeign(['student_id']);
             $table->dropForeign(['school_id']);
+            $table->dropForeign(['registration_period_id']);
         });
         Schema::dropIfExists('registrations');
     }

@@ -20,6 +20,8 @@ class UserTestSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
+        $schoolTypes = ['SMP Negeri', 'SD Negeri', 'SMA', 'SD'];
+        $numberRange = range(1, 100);
 
         // Ensure the roles exist
         $roleSekolah = Role::firstOrCreate(['name' => 'sekolah']);
@@ -35,7 +37,7 @@ class UserTestSeeder extends Seeder
 
         // Create a user with role 'siswa'
         $userSiswa = User::create([
-            'username' => $faker->userName,
+            'username' => /* $faker->userName */'saritri',
             'email' => $faker->unique()->safeEmail,
             'password' => Hash::make('password'), // or use a secure password
         ]);
@@ -43,25 +45,34 @@ class UserTestSeeder extends Seeder
         Student::create([
             'user_id' => $userSiswa->id, // Set the user_id here
             'nisn' => $faker->unique()->numerify('######'),
-            'nama' => $faker->name,
+            'nama' => /* $faker->name */'Sari Tri Wulandari',
             'tempat_lahir' => $faker->city,
             'tanggal_lahir' => $faker->date,
             'nama_bapak' => $faker->name('male'),
             'nama_ibu' => $faker->name('female'),
-            'nik' => $faker->unique()->numerify('##########'),
-            'no_kk' => $faker->unique()->numerify('##########'),
+            'nik' => $faker->unique()->numerify('################'),
+            'no_kk' => $faker->unique()->numerify('################'),
             'no_hp_ortu' => $faker->phoneNumber,
         ]);
+
+        $schoolType = $faker->randomElement($schoolTypes); // Randomly select SMAN or SMP
+            $schoolNumber = $faker->randomElement($numberRange); // Randomly select a number
+            $city = $faker->city; // Random city name
+            
+            // Combine the school type, number, and city to form the school name
+            $schoolName = "{$schoolType} {$schoolNumber} {$city}";
+
+
         School::create([
-            'nama_sekolah' => $faker->company,
-            'nss' => $faker->unique()->numerify('##########'),
-            'npsn' => $faker->unique()->numerify('##########'),
+            'nama_sekolah' => $schoolName,
+            'nss' => $faker->unique()->numerify('######'),
+            'npsn' => $faker->unique()->numerify('######'),
             'alamat' => $faker->address,
             'no_telp' => $faker->phoneNumber,
             'email' => $faker->unique()->companyEmail,
             'nama_kepsek' => $faker->name,
             'kecamatan_id' => $faker->numberBetween(1, 10),
-            'user_id' => $userSekolah->id, // Set the admin_user_id here
+            'user_id' => $userSekolah->id,
         ]);
     }
 }

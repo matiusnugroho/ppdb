@@ -10,6 +10,8 @@ import { ENDPOINTS } from "@/config/endpoint"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import flatPickr from "vue-flatpickr-component"
 import { useSmoothScrollToTop } from "@/composable/useSmoothScrollToTop"
+import HeroIcon from "@/components/Icon/HeroIcon.vue"
+import { FwbSpinner } from "flowbite-vue"
 //import { formatDateToStandar } from "@/utils/formatDateToStandar"
 
 const authstore = useAuthStore()
@@ -57,7 +59,7 @@ const handleSubmit = async () => {
 		})
 	}
 
-	smoothScrollToTop('#sangkonten')
+	smoothScrollToTop("#sangkonten")
 }
 
 const resetForm = () => {
@@ -83,7 +85,7 @@ const handlePhotoSubmit = async () => {
 	}
 	displayPreview.value = false
 	fileFoto.value = null
-	smoothScrollToTop('#sangkonten')
+	smoothScrollToTop("#sangkonten")
 }
 
 const handleFileChange = (event: Event) => {
@@ -231,36 +233,26 @@ onMounted(async () => {
 						<!-- Full Name Section -->
 						<div class="mb-5.5">
 							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="fullName">Nama</label>
-							<div class="relative">
-								<span class="absolute left-4.5 top-4">
-									<font-awesome-icon icon="fa-regular fa-user" />
-								</span>
-								<input
-									v-model="localState.biodata!.nama"
-									class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-									type="text"
-									name="fullName"
-									id="fullName" />
-								<div v-html="field_error_html('nama')"></div>
-							</div>
+							<input
+								v-model="localState.biodata!.nama"
+								class="w-full rounded border border-stroke bg-gray py-3 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+								type="text"
+								name="fullName"
+								id="fullName" />
+							<div v-html="field_error_html('nama')"></div>
 						</div>
 
 						<!-- Email Address Section -->
 						<div class="mb-5.5">
 							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="emailAddress">Email Address</label>
-							<div class="relative">
-								<span class="absolute left-4.5 top-4">
-									<font-awesome-icon icon="fa-regular fa-envelope" />
-								</span>
-								<input
-									v-model="localState.user!.email"
-									class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-									type="email"
-									name="emailAddress"
-									id="emailAddress"
-									inputmode="email" />
-								<div v-html="field_error_html('email')"></div>
-							</div>
+							<input
+								v-model="localState.user!.email"
+								class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+								type="email"
+								name="emailAddress"
+								id="emailAddress"
+								inputmode="email" />
+							<div v-html="field_error_html('email')"></div>
 						</div>
 
 						<!-- Username Section -->
@@ -276,27 +268,38 @@ onMounted(async () => {
 							<div v-html="field_error_html('username')"></div>
 						</div>
 
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Tempat Lahir</label>
-							<input
-								v-model="localState.biodata!.tempat_lahir"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="tempat_lahir"
-								id="tempat_lahir"
-								placeholder="Tempat lahir anda" />
-							<div v-html="field_error_html('tempat_lahir')"></div>
+						<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-5.5">
+							<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
+							<div class="md:col-span-3">
+								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tempat_lahir"> Tempat Lahir </label>
+								<input
+									v-model="localState.biodata!.tempat_lahir"
+									class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+									type="text"
+									name="tempat_lahir"
+									id="tempat_lahir"
+									placeholder="Tempat lahir anda" />
+								<div v-html="field_error_html('tempat_lahir')"></div>
+							</div>
+
+							<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->
+							<div class="md:col-span-2">
+								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
+								<div class="relative">
+									<flat-pickr
+										v-model="localState.biodata!.tanggal_lahir"
+										class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+										:config="tanggalLahirConfig"
+										id="tanggal-lahir">
+									</flat-pickr>
+									<span class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-primary">
+										<hero-icon name="calendar-search" class="w-5 h-5"></hero-icon>
+									</span>
+								</div>
+								<div v-html="field_error_html('tanggal_lahir')"></div>
+							</div>
 						</div>
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Tanggal Lahir</label>
-							<flat-pickr
-								v-model="localState.biodata!.tanggal_lahir"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								:config="tanggalLahirConfig"
-								id="tanggal-lahir">
-							</flat-pickr>
-							<div v-html="field_error_html('tanggal_lahir')"></div>
-						</div>
+
 						<div class="mb-5.5">
 							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Nama Bapak</label>
 							<input
@@ -336,7 +339,16 @@ onMounted(async () => {
 								@click="handleCancel">
 								Cancel
 							</button>
-							<button class="flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90" type="submit">Save</button>
+							<button class="flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90" type="submit" :disabled="loadingUpdateProfile">
+								<span class="flex items-center gap-2">
+									<fwb-spinner
+										v-if="loadingUpdateProfile"
+										size="4"
+										color="white"
+										class="transition-all duration-500 ease-out"
+										:class="{ 'opacity-0 -translate-x-5': !loadingUpdateProfile, 'opacity-100 translate-x-0': loadingUpdateProfile }" />Simpan
+								</span>
+							</button>
 						</div>
 					</form>
 				</div>
@@ -374,8 +386,8 @@ onMounted(async () => {
 							@drop.prevent="handleDrop">
 							<input type="file" accept="image/*" class="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none" @change="handleFileChange" />
 							<div class="flex flex-col items-center justify-center space-y-3">
-								<span class="text-primary flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white dark:border-strokedark dark:bg-boxdark">
-									<font-awesome-icon icon="fa-regular fa-image" />
+								<span class="text-primary flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-meta-4">
+									<hero-icon name="add-photo" />
 								</span>
 								<p class="text-sm font-medium items-center justify-center"><span class="text-primary">Click untuk memilih foto</span></p>
 								<p class="text-sm font-medium items-center justify-center">atau seret foto ke kotak ini</p>
@@ -408,7 +420,15 @@ onMounted(async () => {
 								@click="handlePhotoSubmit"
 								type="button"
 								:disabled="loadingUpdatePhoto || !fileFoto">
-								Simpan Foto
+								<span class="flex items-center gap-2">
+									<fwb-spinner
+										v-if="loadingUpdatePhoto"
+										size="4"
+										color="white"
+										class="transition-all duration-500 ease-out"
+										:class="{ 'opacity-0 -translate-x-5': !loadingUpdatePhoto, 'opacity-100 translate-x-0': loadingUpdatePhoto }" />
+									Simpan Foto
+								</span>
 							</button>
 						</div>
 					</form>

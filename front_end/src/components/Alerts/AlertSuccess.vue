@@ -15,19 +15,19 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue"
 
 export default defineComponent({
 	name: "AlertSuccess",
 	props: {
-		message : {
+		message: {
 			type: String,
-			required: true
+			required: true,
 		},
-		detail : {
+		detail: {
 			type: String,
-			required: false
-		}
-	}
-});
+			required: false,
+		},
+	},
+})
 </script>
