@@ -20,7 +20,7 @@ const no_hp_ortu = ref("")
 const formValidationErrors = useFormValidationErrorsStore()
 
 const handleSubmit = () => {
-	// Handle form submission logic
+	
 }
 const tanggalLahirConfig = ref({
 	allowInput: true,
