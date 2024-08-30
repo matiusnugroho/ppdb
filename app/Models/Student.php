@@ -16,23 +16,12 @@ class Student extends Model
         'id' => 'string',
     ];
 
-    protected $fillable = [
-        'nama',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'nama_bapak_ibu',
-        'nik',
-        'no_kk',
-        'no_hp_ortu',
-        'user_id',
-        'foto',
-        'foto_url',
-    ];
+    protected $guarded = ['id'];
 
     public function getThumbnailUrlAttribute()
     {
         // Check if foto_url is set
-        if ($this->attributes['foto_url']) {
+        if (isset($this->attributes['foto_url']) && !empty($this->attributes['foto_url'])) {
             // Extract the directory and filename
             $pathInfo = pathinfo($this->attributes['foto_url']);
 

@@ -9,6 +9,7 @@ const ENDPOINTS = {
 	BASE_URL,
 	LOGIN: `${BASE_URL_API}/auth/login`,
 	ME_SISWA: `${BASE_URL_API}/siswa/me`,
+	REGISTER_SISWA: `${BASE_URL_API}/siswa/register`,
 	UPDATE_PHOTO_SISWA: `${BASE_URL_API}/siswa/update-foto`,
 	CSRF: `${BASE_URL_API}/sanctum/csrf-cookie`,
 }

@@ -3,7 +3,7 @@ import requestor from "@/services/requestor" // Import your Axios instance
 import { ENDPOINTS } from "@/config/endpoint"
 import { useAuthStore } from "@/stores/auth"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
-import type { ProfileRequest } from "@/types"
+import type { ProfileSiswaRequest } from "@/types"
 
 export function useUpdateProfile() {
 	const uploadProgress = ref(0)
@@ -56,7 +56,7 @@ export function useUpdateProfile() {
 		}
 	}
 
-	const updateProfile = async (data: ProfileRequest) => {
+	const updateProfile = async (data: ProfileSiswaRequest) => {
 		uploadError.value = null
 		loadingUpdateProfile.value = true
 		try {

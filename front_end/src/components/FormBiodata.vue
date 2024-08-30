@@ -4,7 +4,7 @@ import { reactive, ref, onMounted } from "vue"
 import { showToast } from "@/utils/ui/toast"
 import { useAuthStore } from "@/stores/auth"
 import { useUpdateProfile } from "@/composable/useUpdateProfile"
-import type { ProfileRequest } from "@/types"
+import type { ProfileSiswaRequest } from "@/types"
 import requestor from "@/services/requestor"
 import { ENDPOINTS } from "@/config/endpoint"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
@@ -35,7 +35,7 @@ const handleSubmit = async () => {
 		...tanpaFoto,
 		username: localState.user?.username,
 		email: localState.user?.email,
-	} as ProfileRequest
+	} as ProfileSiswaRequest
 
 	loadingUpdateProfile.value = true
 	const sukses = await updateProfile(data)

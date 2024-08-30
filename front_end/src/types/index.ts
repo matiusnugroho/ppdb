@@ -29,7 +29,7 @@ export interface Role {
 // Define the interface for student data
 export interface Student {
 	id: string // UUID as a string
-	nisn: number
+	nisn: string
 	nama: string
 	tempat_lahir: string
 	tanggal_lahir: string // Date in ISO format (e.g., 'YYYY-MM-DD')
@@ -59,7 +59,13 @@ export interface User {
 	roles: Role[]
 }
 // Corrected syntax for interface
-export interface ProfileRequest extends Omit<Student, "foto">, Pick<User, "username"> {}
+export interface ProfileSiswaRequest
+  extends Omit<Student, "foto" | "foto_url" | "thumbnail_url" | "created_at" | "updated_at" | "id" | "user_id">,
+    Pick<User, "username"> {
+  id?: string // Optional id field
+  user_id?: number // Optional user_id field
+  password?: string // Optional password field
+}
 
 export interface LoginResponseData {
 	success: boolean

@@ -32,7 +32,7 @@ class StoreStudentRequest extends StudentRequest
             'tanggal_lahir' => 'required|date',
             'nama_bapak' => 'required|string|max:255',
             'nama_ibu' => 'required|string|max:255',
-            'nisn' => 'required|numeric',
+            'nisn' => 'required|numeric|unique:students',
             'nik' => [
                 'required',
                 'numeric',

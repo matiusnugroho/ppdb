@@ -25,3 +25,4 @@ Route::group(['prefix' => 'siswa', 'middleware' => 'auth:sanctum'], function () 
     Route::post('/update-foto', [StudentController::class, 'updatePhoto']);
 });
 Route::resource('/siswa', StudentController::class);
+Route::post('/siswa/register', [StudentController::class, 'store']);
