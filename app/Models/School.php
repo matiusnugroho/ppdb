@@ -10,6 +10,12 @@ class School extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'id' => 'string',
+    ];
+
+    protected $guarded = ['id'];
+
     protected static function boot()
     {
         parent::boot();
@@ -30,5 +36,10 @@ class School extends Model
     public function students(): BelongsToMany
     {
         return $this->belongsToMany(Student::class, 'school_student');
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class, 'kecamatan_id');
     }
 }

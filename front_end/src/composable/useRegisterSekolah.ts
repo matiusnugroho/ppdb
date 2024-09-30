@@ -1,16 +1,16 @@
 import requestor from "@/services/requestor"
 import { ENDPOINTS } from "@/config/endpoint"
-import type { ProfileSiswaRequest } from "@/types"
+import type { ProfileSekolahRequest } from "@/types"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { ref } from "vue"
 
-export function useRegisterSiswa() {
+export function useRegisterSekolah() {
 	const loadingRegister = ref(false)
 	const formValidationErrors = useFormValidationErrorsStore()
-	const registerSiswa = async (data: ProfileSiswaRequest) => {
+	const registerSekolah = async (data: ProfileSekolahRequest) => {
 		loadingRegister.value = true
 		try {
-			const response = await requestor.post(ENDPOINTS.REGISTER_SISWA, data)
+			const response = await requestor.post(ENDPOINTS.REGISTER_SEKOLAH, data)
 
 			if (response.data.success) {
 				return true
@@ -28,7 +28,7 @@ export function useRegisterSiswa() {
 	}
 
 	return {
-		registerSiswa,
+		registerSekolah,
 		loadingRegister,
 	}
 }

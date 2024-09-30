@@ -28,34 +28,32 @@ const { registerSiswa, loadingRegister } = useRegisterSiswa()
 const messagesStore = useMessagesStore()
 const handleSubmit = async () => {
 	const data = {
-    nisn: nisn.value,
-    nik: nik.value,
-    no_kk: no_kk.value,
-    nama: nama.value,
-    email: email.value,
-    username: username.value,
-    tempat_lahir: tempat_lahir.value,
-    tanggal_lahir: tanggal_lahir.value,
-    nama_bapak: nama_bapak.value,
-    nama_ibu: nama_ibu.value,
-    no_hp_ortu: no_hp_ortu.value,
-	password: password.value
-  }
-  const sukses = await registerSiswa(data)
-  if(sukses) {
-	  messagesStore.addMessage("success", {
-		  title: "Pendaftaran Berhasil",
-		  detail: "Silakan Login dengan akun yang telah dibuat"
-	  })
-	  await router.push({ name: "login" })
-  }
-  else {
-	  showToast({
-		  message: "Gagal Mendaftar, perhatikan kesalahan pengisian data",
-		  type: "error"
-	  })
-  }
-
+		nisn: nisn.value,
+		nik: nik.value,
+		no_kk: no_kk.value,
+		nama: nama.value,
+		email: email.value,
+		username: username.value,
+		tempat_lahir: tempat_lahir.value,
+		tanggal_lahir: tanggal_lahir.value,
+		nama_bapak: nama_bapak.value,
+		nama_ibu: nama_ibu.value,
+		no_hp_ortu: no_hp_ortu.value,
+		password: password.value,
+	}
+	const sukses = await registerSiswa(data)
+	if (sukses) {
+		messagesStore.addMessage("success", {
+			title: "Pendaftaran Berhasil",
+			detail: "Silakan Login dengan akun yang telah dibuat",
+		})
+		await router.push({ name: "login" })
+	} else {
+		showToast({
+			message: "Gagal Mendaftar, perhatikan kesalahan pengisian data",
+			type: "error",
+		})
+	}
 }
 const tanggalLahirConfig = ref({
 	allowInput: true,
@@ -122,26 +120,26 @@ onMounted(() => {
 				<!-- Full Name Section -->
 				<div class="mb-5.5">
 					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="fullName">Nama</label>
-						<input
-							v-model="nama"
-							class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-							type="text"
-							name="fullName"
-							id="fullName" />
-						<div v-html="field_error_html('nama')"></div>
+					<input
+						v-model="nama"
+						class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+						type="text"
+						name="fullName"
+						id="fullName" />
+					<div v-html="field_error_html('nama')"></div>
 				</div>
 
 				<!-- Email Address Section -->
 				<div class="mb-5.5">
 					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="emailAddress">Email Address</label>
-						<input
-							v-model="email"
-							class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-							type="email"
-							name="emailAddress"
-							id="emailAddress"
-							inputmode="email" />
-						<div v-html="field_error_html('email')"></div>
+					<input
+						v-model="email"
+						class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+						type="email"
+						name="emailAddress"
+						id="emailAddress"
+						inputmode="email" />
+					<div v-html="field_error_html('email')"></div>
 				</div>
 
 				<!-- Username Section -->
@@ -165,36 +163,36 @@ onMounted(() => {
 
 				<!-- Tempat Lahir Section -->
 				<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-5.5">
-							<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
-							<div class="md:col-span-3">
-								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tempat_lahir"> Tempat Lahir </label>
-								<input
-									v-model="tempat_lahir"
-									class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-									type="text"
-									name="tempat_lahir"
-									id="tempat_lahir"
-									placeholder="Tempat lahir anda" />
-								<div v-html="field_error_html('tempat_lahir')"></div>
-							</div>
+					<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
+					<div class="md:col-span-3">
+						<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tempat_lahir"> Tempat Lahir </label>
+						<input
+							v-model="tempat_lahir"
+							class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+							type="text"
+							name="tempat_lahir"
+							id="tempat_lahir"
+							placeholder="Tempat lahir anda" />
+						<div v-html="field_error_html('tempat_lahir')"></div>
+					</div>
 
-							<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->
-							<div class="md:col-span-2">
-								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
-								<div class="relative">
-									<flat-pickr
-										v-model="tanggal_lahir"
-										class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-										:config="tanggalLahirConfig"
-										id="tanggal-lahir">
-									</flat-pickr>
-									<span class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-primary">
-										<hero-icon name="calendar-search" class="w-5 h-5"></hero-icon>
-									</span>
-								</div>
-								<div v-html="field_error_html('tanggal_lahir')"></div>
-							</div>
+					<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->
+					<div class="md:col-span-2">
+						<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
+						<div class="relative">
+							<flat-pickr
+								v-model="tanggal_lahir"
+								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+								:config="tanggalLahirConfig"
+								id="tanggal-lahir">
+							</flat-pickr>
+							<span class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-primary">
+								<hero-icon name="calendar-search" class="w-5 h-5"></hero-icon>
+							</span>
 						</div>
+						<div v-html="field_error_html('tanggal_lahir')"></div>
+					</div>
+				</div>
 
 				<!-- Nama Bapak Section -->
 				<div class="mb-5.5">

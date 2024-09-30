@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\KecamatanController;
+use App\Http\Controllers\API\SchoolController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\FileUploadTestController;
 use Illuminate\Http\Request;
@@ -26,3 +28,5 @@ Route::group(['prefix' => 'siswa', 'middleware' => 'auth:sanctum'], function () 
 });
 Route::resource('/siswa', StudentController::class);
 Route::post('/siswa/register', [StudentController::class, 'store']);
+Route::post('/sekolah/register', [SchoolController::class, 'store']);
+Route::get('/kecamatan/', [KecamatanController::class, 'index']);

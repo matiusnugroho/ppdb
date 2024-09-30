@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama'); // Nama
             $table->string('tempat_lahir'); // Tempat Lahir
             $table->date('tanggal_lahir'); // Tanggal Lahir
-            $table->string('nama_bapak');            
+            $table->string('nama_bapak');
             $table->string('nama_ibu');
             $table->string('nik')->unique(); // NIK
             $table->string('no_kk')->unique(); // No. KK

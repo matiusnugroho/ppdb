@@ -46,6 +46,20 @@ export interface Student {
 	thumbnail_url: string // URL to the thumbnail
 }
 
+export interface School {
+	id: string // UUID as a string
+	user_id: number
+	created_at: string
+	updated_at: string
+	nama_sekolah: string
+	nss: string
+	npsn: string
+	alamat: string
+	no_telp: string
+	nama_kepsek: string
+	kecamatan_id: string
+}
+
 // Define the interface for user data
 export interface User {
 	id: number
@@ -58,13 +72,18 @@ export interface User {
 	student: Student
 	roles: Role[]
 }
-// Corrected syntax for interface
-export interface ProfileSiswaRequest
-  extends Omit<Student, "foto" | "foto_url" | "thumbnail_url" | "created_at" | "updated_at" | "id" | "user_id">,
-    Pick<User, "username"> {
-  id?: string // Optional id field
-  user_id?: number // Optional user_id field
-  password?: string // Optional password field
+
+// Kecualikan data foto dan timestamps dari request
+export interface ProfileSiswaRequest extends Omit<Student, "foto" | "foto_url" | "thumbnail_url" | "created_at" | "updated_at" | "id" | "user_id">, Pick<User, "username"> {
+	id?: string // Optional id field
+	user_id?: number // Optional user_id field
+	password?: string // Optional password field
+}
+
+export interface ProfileSekolahRequest extends Omit<School, "created_at" | "updated_at" | "id" | "user_id">, Pick<User, "username"> {
+	id?: string // Optional id field
+	user_id?: number // Optional user_id field
+	password?: string // Optional password field
 }
 
 export interface LoginResponseData {

@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Baris bahasa berikut digunakan selama proses otentikasi untuk berbagai
-    | pesan yang perlu kita tampilkan kepada pengguna. Anda bebas untuk 
+    | pesan yang perlu kita tampilkan kepada pengguna. Anda bebas untuk
     | memodifikasi baris-baris bahasa ini sesuai dengan kebutuhan aplikasi Anda.
     |
     */

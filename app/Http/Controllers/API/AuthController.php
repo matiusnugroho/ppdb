@@ -40,7 +40,7 @@ class AuthController extends Controller
                 'biodata' => $biodata,
                 'role' => $user->role,
                 'permissions' => $user->getAllPermissions()->pluck('name'), // Assuming user has permissions
-            ])->cookie('access_token', $token->plainTextToken, 60, null, null, true, true);            
+            ])->cookie('access_token', $token->plainTextToken, 60, null, null, true, true);
         } else {
             return response()->json(['success' => false, 'message' => 'Invalid email or password'], 401);
         }

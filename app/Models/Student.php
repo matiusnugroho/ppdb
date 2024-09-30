@@ -21,7 +21,7 @@ class Student extends Model
     public function getThumbnailUrlAttribute()
     {
         // Check if foto_url is set
-        if (isset($this->attributes['foto_url']) && !empty($this->attributes['foto_url'])) {
+        if (isset($this->attributes['foto_url']) && ! empty($this->attributes['foto_url'])) {
             // Extract the directory and filename
             $pathInfo = pathinfo($this->attributes['foto_url']);
 

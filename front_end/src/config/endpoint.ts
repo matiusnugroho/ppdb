@@ -10,7 +10,9 @@ const ENDPOINTS = {
 	LOGIN: `${BASE_URL_API}/auth/login`,
 	ME_SISWA: `${BASE_URL_API}/siswa/me`,
 	REGISTER_SISWA: `${BASE_URL_API}/siswa/register`,
+	REGISTER_SEKOLAH: `${BASE_URL_API}/sekolah/register`,
 	UPDATE_PHOTO_SISWA: `${BASE_URL_API}/siswa/update-foto`,
+	GET_KECAMATAN: `${BASE_URL_API}/kecamatan/`,
 	CSRF: `${BASE_URL_API}/sanctum/csrf-cookie`,
 }
 

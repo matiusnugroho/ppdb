@@ -45,6 +45,15 @@ export default [
 		},
 	},
 	{
+		path: "/sekolah/daftar",
+		name: "daftar_sekolah",
+		component: () => import("@/views/Authentication/SchoolSignupView.vue"),
+		meta: {
+			title: "Daftar",
+			requiresAuth: false,
+		},
+	},
+	{
 		path: "/:pathMatch(.*)*",
 		name: "NotFound",
 		component: () => import("@/views/Errors/Error404View.vue"),

@@ -181,7 +181,7 @@ class StudentController extends Controller
             if ($oldThumbnailPath && Storage::disk('public')->exists($oldThumbnailPath)) {
                 Storage::disk('public')->delete($oldThumbnailPath);
             }
-            
+
             $user->student()->update([
                 'foto' => $path,
                 'foto_url' => $url,

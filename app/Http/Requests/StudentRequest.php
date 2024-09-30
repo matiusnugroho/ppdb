@@ -13,7 +13,6 @@ class StudentRequest extends FormRequest
     {
         return true;
     }
-    
 
     /**
      * Get the validation rules that apply to the request.
@@ -27,40 +26,40 @@ class StudentRequest extends FormRequest
             '*.string' => ':attribute harus berupa string.',
             '*.numeric' => ':attribute harus berupa angka.',
             '*.unique' => ':attribute sudah digunakan.',
-            
-            
+
+
             'email.email' => 'Email harus berupa alamat email yang valid.',
             'email.max' => 'Email tidak boleh lebih dari 255 karakter.',
             'email.unique' => 'Email sudah digunakan.',
 
-            
+
             'password.string' => 'Password harus berupa string.',
             'password.min' => 'Password harus memiliki minimal 8 karakter.',
 
-            
-            
+
+
             'username.max' => 'Username tidak boleh lebih dari 255 karakter.',
             // Validasi untuk field 'nama'
             'nama.regex' => 'Nama hanya boleh berisi huruf, spasi, dan tanda petik (\').',
             'nama.sometimes' => 'Nama bersifat opsional, namun harus berupa string dengan panjang maksimum 255 karakter jika disediakan.',
-            
-            
+
+
             'nama.max' => 'Nama tidak boleh lebih dari 255 karakter.',
 
             // Validasi untuk field 'tempat_lahir'
             'tempat_lahir.sometimes' => 'Tempat Lahir bersifat opsional, namun harus berupa string dengan panjang maksimum 255 karakter jika disediakan.',
-            
-            
+
+
             'tempat_lahir.max' => 'Tempat Lahir tidak boleh lebih dari 255 karakter.',
 
             // Validasi untuk field 'tanggal_lahir'
             'tanggal_lahir.sometimes' => 'Tanggal Lahir bersifat opsional, namun harus berupa tanggal yang valid jika disediakan.',
-            
+
             'tanggal_lahir.date' => 'Tanggal Lahir harus berupa tanggal yang valid.',
 
             // Validasi untuk field 'nama_bapak_ibu'
             'nama_bapak.sometimes' => 'Nama Bapak Ibu bersifat opsional, namun harus berupa string dengan panjang maksimum 255 karakter jika disediakan.',
-            
+
             'nama_bapak.max' => 'Nama Bapak Ibu tidak boleh lebih dari 255 karakter.',
             'nama_ibu.sometimes' => 'Nama Ibu bersifat opsional, namun harus berupa string dengan panjang maksimum 255 karakter jika disediakan.',
             'nama_ibu.max' => 'Nama Ibu tidak boleh lebih dari 255 karakter.',

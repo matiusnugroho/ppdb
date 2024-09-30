@@ -37,7 +37,7 @@ class UserTestSeeder extends Seeder
 
         // Create a user with role 'siswa'
         $userSiswa = User::create([
-            'username' => /* $faker->userName */'saritri',
+            'username' => /* $faker->userName */ 'saritri',
             'email' => $faker->unique()->safeEmail,
             'password' => Hash::make('password'), // or use a secure password
         ]);
@@ -45,7 +45,7 @@ class UserTestSeeder extends Seeder
         Student::create([
             'user_id' => $userSiswa->id, // Set the user_id here
             'nisn' => $faker->unique()->numerify('######'),
-            'nama' => /* $faker->name */'Sari Tri Wulandari',
+            'nama' => /* $faker->name */ 'Sari Tri Wulandari',
             'tempat_lahir' => $faker->city,
             'tanggal_lahir' => $faker->date,
             'nama_bapak' => $faker->name('male'),
@@ -56,12 +56,11 @@ class UserTestSeeder extends Seeder
         ]);
 
         $schoolType = $faker->randomElement($schoolTypes); // Randomly select SMAN or SMP
-            $schoolNumber = $faker->randomElement($numberRange); // Randomly select a number
-            $city = $faker->city; // Random city name
-            
-            // Combine the school type, number, and city to form the school name
-            $schoolName = "{$schoolType} {$schoolNumber} {$city}";
+        $schoolNumber = $faker->randomElement($numberRange); // Randomly select a number
+        $city = $faker->city; // Random city name
 
+        // Combine the school type, number, and city to form the school name
+        $schoolName = "{$schoolType} {$schoolNumber} {$city}";
 
         School::create([
             'nama_sekolah' => $schoolName,
