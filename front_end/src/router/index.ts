@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 import routes from "@/router/routes"
 import { useAuthStore } from "@/stores/auth"
+import { useMessagesStore } from "@/stores/messages"
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +12,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+	const messagesStore = useMessagesStore()
 	document.title = `PPDB ${to.meta.title}`
 	const authStore = useAuthStore()
 	if (to.meta.requiresAuth && !authStore.isLoggedIn()) {
@@ -18,6 +20,15 @@ router.beforeEach((to, from, next) => {
 		next({ name: "login" })
 		return
 	}
+	if (messagesStore.shouldRemoveMessage) {
+		// Clear all messages
+		messagesStore.clearMessages()
+	  }
+	
+	  if (!messagesStore.shouldRemoveMessage) {
+		// If the messages are not yet marked for removal, mark them for removal
+		messagesStore.markForRemoval()
+	  }
 	next()
 })
 

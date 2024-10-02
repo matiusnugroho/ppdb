@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_sekolah'); // Nama Sekolah
             $table->string('nss')->unique(); // NSS
             $table->string('npsn')->unique(); // NPSN
+            $table->string('jenjang'); // Jenjang
             $table->string('alamat'); // Alamat
             $table->string('no_telp'); // No. Telp
             $table->string('email')->unique(); // Email

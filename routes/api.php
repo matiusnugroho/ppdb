@@ -30,3 +30,4 @@ Route::resource('/siswa', StudentController::class);
 Route::post('/siswa/register', [StudentController::class, 'store']);
 Route::post('/sekolah/register', [SchoolController::class, 'store']);
 Route::get('/kecamatan/', [KecamatanController::class, 'index']);
+Route::get('/sekolah/', [SchoolController::class, 'index']);

@@ -20,7 +20,12 @@ class UserTestSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        $schoolTypes = ['SMP Negeri', 'SD Negeri', 'SMA', 'SD'];
+        $schoolTypes = [
+            ['nama' => 'SMP Negeri', 'jenjang' => 'smp'],
+            ['nama' => 'SD Negeri', 'jenjang' => 'sd'],
+            ['nama' => 'SMA', 'jenjang' => 'sma'],
+            ['nama' => 'SD', 'jenjang' => 'sd'],
+        ];
         $numberRange = range(1, 100);
 
         // Ensure the roles exist
@@ -60,10 +65,11 @@ class UserTestSeeder extends Seeder
         $city = $faker->city; // Random city name
 
         // Combine the school type, number, and city to form the school name
-        $schoolName = "{$schoolType} {$schoolNumber} {$city}";
+        $schoolName = "{$schoolType['nama']} {$schoolNumber} {$city}";
 
         School::create([
             'nama_sekolah' => $schoolName,
+            'jenjang' => $schoolType['jenjang'],
             'nss' => $faker->unique()->numerify('######'),
             'npsn' => $faker->unique()->numerify('######'),
             'alamat' => $faker->address,

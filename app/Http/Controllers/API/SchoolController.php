@@ -16,7 +16,19 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        $perPage = 20; // Default per page
+        $schools = School::with('kecamatan')->paginate($perPage);
+
+        // Prepare the response structure
+        $response = [
+            'total' => $schools->total(),
+            'currentPage' => $schools->currentPage(),
+            'nextPage' => $schools->hasMorePages() ? $schools->currentPage() + 1 : null,
+            'lastPage' => $schools->lastPage(),
+            'data' => $schools->items(), // Optional: Include the items in the response
+        ];
+
+        return response()->json($response);
     }
 
     /**
