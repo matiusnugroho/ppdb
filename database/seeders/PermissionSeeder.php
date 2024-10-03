@@ -32,6 +32,8 @@ class PermissionSeeder extends Seeder
         ];
         $permissionAdmin = [
             'verifikasi_sekolah',
+            'create_registration_period',
+            'edit_registration_period',
         ];
         //buat permission untuk admin
         foreach ($permissionAdmin as $permission) {

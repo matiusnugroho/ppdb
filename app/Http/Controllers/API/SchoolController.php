@@ -95,11 +95,17 @@ class SchoolController extends Controller
         //
     }
 
-    public function getByKecamatan($kecamatanId)
+    public function getByKecamatan($kecamatanId, $jenjang = null)
     {
-        $schools = School::with('kecamatan')
-            ->where('kecamatan_id', $kecamatanId)
-            ->get();
+        $query = School::with('kecamatan')
+            ->where('kecamatan_id', $kecamatanId);
+
+        // If jenjang is provided, add it to the query
+        if ($jenjang) {
+            $query->where('jenjang', $jenjang);
+        }
+
+        $schools = $query->get();
 
         return response()->json([
             'success' => true,

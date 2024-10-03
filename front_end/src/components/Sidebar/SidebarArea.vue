@@ -1,39 +1,30 @@
 <script setup lang="ts">
 import { useSidebarStore } from "@/stores/sidebar"
 import { onClickOutside } from "@vueuse/core"
-import { ref } from "vue"
+import { ref, computed } from "vue"
 import SidebarItem from "./SidebarItem.vue"
+import { menuGroups } from "@/config/menu"
+import { useAuthStore } from "@/stores/auth"
 
 const target = ref(null)
 
 const sidebarStore = useSidebarStore()
+const authStore = useAuthStore()
+
+const filteredMenuGroups = computed(() => {
+  return menuGroups.map(group => {
+    return {
+      name: group.name,
+      menuItems: group.menuItems.filter(item => {
+        return item.role === "all" || item.role.includes(authStore.role!) // Check if item role matches user's role
+      })
+    }
+  })
+})
 
 onClickOutside(target, () => {
 	sidebarStore.isSidebarOpen = false
 })
-
-const menuGroups = ref([
-	{
-		name: "Data Diri",
-		menuItems: [
-			{
-				icon: "home",
-				label: "Dashboard",
-				route: "/dashboard",
-			},
-			{
-				icon: "user-circle",
-				label: "Biodata",
-				route: "/biodata",
-			},
-			{
-				icon: "document",
-				label: "Dokumen",
-				route: "/dokumen",
-			},
-		],
-	},
-])
 </script>
 
 <template>
@@ -63,7 +54,7 @@ const menuGroups = ref([
 		<div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
 			<!-- Sidebar Menu -->
 			<nav class="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
-				<template v-for="menuGroup in menuGroups" :key="menuGroup.name">
+				<template v-for="menuGroup in filteredMenuGroups" :key="menuGroup.name">
 					<div>
 						<h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">{{ menuGroup.name }}</h3>
 

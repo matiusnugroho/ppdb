@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('registration_period_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('registration_number')->unique();
             $table->timestamps();
-
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade')->onUpdate('cascade');
         });

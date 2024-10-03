@@ -18,6 +18,7 @@ return [
     'active_url' => ':attribute bukan URL yang valid.',
     'after' => ':attribute harus tanggal setelah :date.',
     'after_or_equal' => ':attribute harus tanggal setelah atau sama dengan :date.',
+    'after_or_equal.today' => ':attribute harus tanggal setelah atau sama dengan hari ini.',
     'alpha' => ':attribute hanya boleh mengandung huruf.',
     'alpha_dash' => ':attribute hanya boleh mengandung huruf, angka, tanda hubung, dan garis bawah.',
     'alpha_num' => ':attribute hanya boleh mengandung huruf dan angka.',
@@ -25,6 +26,7 @@ return [
     'ascii' => ':attribute hanya boleh mengandung karakter alfanumerik dan simbol single-byte.',
     'before' => ':attribute harus tanggal sebelum :date.',
     'before_or_equal' => ':attribute harus tanggal sebelum atau sama dengan :date.',
+    'before_or_equal.today' => ':attribute harus tanggal sebelum atau sama dengan hari ini.',
     'between' => [
         'array' => ':attribute harus memiliki antara :min dan :max item.',
         'file' => ':attribute harus antara :min dan :max kilobyte.',

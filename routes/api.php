@@ -2,12 +2,16 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\KecamatanController;
+use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SchoolController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\FileUploadTestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/sanctum/csrf-cookie', function () {
+    return response()->json(['message' => 'CSRF cookie set.']);
+});
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -26,6 +30,11 @@ Route::group(['prefix' => 'siswa', 'middleware' => 'auth:sanctum'], function () 
     Route::post('/upload', [FileUploadTestController::class, 'upload']);
     Route::post('/update-foto', [StudentController::class, 'updatePhoto']);
 });
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
+    //Registration
+    Route::post('/pendaftaran/buka-pendaftaran', [PendaftaranController::class, 'bukaPendaftaran']);
+    Route::resource('/sekolah', SchoolController::class)->only(['create', 'update', 'destroy']);
+});
 Route::resource('/siswa', StudentController::class);
 Route::post('/siswa/register', [StudentController::class, 'store']);
 Route::post('/sekolah/register', [SchoolController::class, 'store']);
@@ -33,3 +42,5 @@ Route::get('/kecamatan/', [KecamatanController::class, 'index']);
 Route::get('/sekolah/', [SchoolController::class, 'index']);
 Route::get('/sekolah/kecamatan/{kecamatanId}', [SchoolController::class, 'getByKecamatan']);
 Route::get('/sekolah/kecamatan/{kecamatanId}/{jenjang}', [SchoolController::class, 'getByKecamatan']);
+Route::get('/registration/get-opened', [PendaftaranController::class, 'getOpenPeriods']);
+Route::get('/registration/cek-pendaftaran-hari-ini', [PendaftaranController::class, 'isTodayOpened']);

@@ -69,6 +69,12 @@ class UserTestSeeder extends Seeder
                 $schoolNumber = $faker->randomElement($numberRange); // Randomly select a number
                 $city = $kecamatan->nama; // Random city name
                 $schoolName = "{$schoolType['nama']} {$schoolNumber} {$city}";
+                $userSekolah = User::create([
+                    'username' => $faker->userName,
+                    'email' => $faker->unique()->safeEmail,
+                    'password' => Hash::make('password'), // or use a secure password
+                ]);
+                $userSekolah->assignRole($roleSekolah);
 
                 School::create([
                     'nama_sekolah' => $schoolName,
