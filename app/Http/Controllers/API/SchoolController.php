@@ -94,4 +94,16 @@ class SchoolController extends Controller
     {
         //
     }
+
+    public function getByKecamatan($kecamatanId)
+    {
+        $schools = School::with('kecamatan')
+            ->where('kecamatan_id', $kecamatanId)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $schools,
+        ]);
+    }
 }

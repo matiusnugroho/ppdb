@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kecamatan;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\User;
@@ -60,24 +61,29 @@ class UserTestSeeder extends Seeder
             'no_hp_ortu' => $faker->phoneNumber,
         ]);
 
-        $schoolType = $faker->randomElement($schoolTypes); // Randomly select SMAN or SMP
-        $schoolNumber = $faker->randomElement($numberRange); // Randomly select a number
-        $city = $faker->city; // Random city name
+        $kecamatans = Kecamatan::all(); // Get all Kecamatan
 
-        // Combine the school type, number, and city to form the school name
-        $schoolName = "{$schoolType['nama']} {$schoolNumber} {$city}";
+        foreach ($kecamatans as $kecamatan) {
+            for ($i = 0; $i < 10; $i++) {
+                $schoolType = $faker->randomElement($schoolTypes); // Randomly select SMAN or SMP
+                $schoolNumber = $faker->randomElement($numberRange); // Randomly select a number
+                $city = $kecamatan->nama; // Random city name
+                $schoolName = "{$schoolType['nama']} {$schoolNumber} {$city}";
 
-        School::create([
-            'nama_sekolah' => $schoolName,
-            'jenjang' => $schoolType['jenjang'],
-            'nss' => $faker->unique()->numerify('######'),
-            'npsn' => $faker->unique()->numerify('######'),
-            'alamat' => $faker->address,
-            'no_telp' => $faker->phoneNumber,
-            'email' => $faker->unique()->companyEmail,
-            'nama_kepsek' => $faker->name,
-            'kecamatan_id' => $faker->numberBetween(1, 10),
-            'user_id' => $userSekolah->id,
-        ]);
+                School::create([
+                    'nama_sekolah' => $schoolName,
+                    'jenjang' => $schoolType['jenjang'],
+                    'nss' => $faker->unique()->numerify('######'),
+                    'npsn' => $faker->unique()->numerify('######'),
+                    'alamat' => $faker->address,
+                    'no_telp' => $faker->phoneNumber,
+                    'email' => $faker->unique()->companyEmail,
+                    'nama_kepsek' => $faker->name,
+                    'kecamatan_id' => $kecamatan->id, // Assign the current Kecamatan
+                    'user_id' => $userSekolah->id, // Assuming $userSekolah is already defined
+                ]);
+            }
+        }
+
     }
 }
