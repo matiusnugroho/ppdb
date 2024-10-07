@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\DocumentTypeController;
 use App\Http\Controllers\API\KecamatanController;
 use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SchoolController;
@@ -38,6 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     route::post('/pendaftaran/daftar', [PendaftaranController::class, 'daftar']);
     route::get('/pendaftaran/cek-pendaftaran', [PendaftaranController::class, 'cekPendaftaran']);
+    route::get('/pendaftaran/dokumen', [PendaftaranController::class, 'dokumen']);
     route::post('/pendaftaran/upload_dokumen/{registration}', [PendaftaranController::class, 'uploadDokumen']);
     route::post('/pendaftaran/revisi_dokumen/{document}', [PendaftaranController::class, 'revisiDokumen']);
 });
@@ -50,3 +52,4 @@ Route::get('/sekolah/kecamatan/{kecamatanId}', [SchoolController::class, 'getByK
 Route::get('/sekolah/kecamatan/{kecamatanId}/{jenjang}', [SchoolController::class, 'getByKecamatan']);
 Route::get('/registration/get-opened', [PendaftaranController::class, 'getOpenPeriods']);
 Route::get('/registration/cek-pendaftaran-hari-ini', [PendaftaranController::class, 'isTodayOpened']);
+Route::resource('/document-type', DocumentTypeController::class);

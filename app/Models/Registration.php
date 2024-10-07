@@ -62,4 +62,9 @@ class Registration extends Model
     {
         return $this->belongsTo(RegistrationPeriod::class);
     }
+
+    public function verified_by(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

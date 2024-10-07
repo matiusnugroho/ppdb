@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('jenjang');
             $table->foreignId('registration_period_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('registration_number')->unique();
+            $table->string('status')->default('pending');
+            $table->foreignId('verified_by')->nullable()->constrained('users')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade')->onUpdate('cascade');

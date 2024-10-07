@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('registration_id');
             $table->uuid('document_type_id');
-            $table->string('path'); // Path to the uploaded document
+            $table->string('path')->nullable(); // Path to the uploaded document
             $table->string('status')->default('pending'); // Status of the document
             $table->timestamps();
 

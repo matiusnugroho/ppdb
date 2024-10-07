@@ -29,6 +29,7 @@ class Document extends Model
     {
         return $this->belongsTo(DocumentType::class);
     }
+
     protected static function boot()
     {
         parent::boot();

@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RevisiDokumenRequest;
 use App\Http\Requests\StoreDaftarRequest;
 use App\Http\Requests\StoreRegistrationPeriodRequest;
 use App\Http\Requests\UploadDokumenRequest;
-use App\Http\Requests\RevisiDokumenRequest;
+use App\Models\Document;
+use App\Models\DocumentType;
 use App\Models\Registration;
 use App\Models\RegistrationPeriod;
-use App\Models\DocumentType;
-use App\Models\Document;
 use Carbon\Carbon;
-use Str;
 use Storage;
+use Str;
 
 class PendaftaranController extends Controller
 {
@@ -78,19 +78,27 @@ class PendaftaranController extends Controller
             ], 400);
         }
         $student->registration()->create($data);
+        $documentTypes = DocumentType::all();
+        foreach ($documentTypes as $documentType) {
+            $student->registration->documents()->create([
+                'document_type_id' => $documentType->id,
+                'status' => 'belum upload',
+            ]);
+        }
 
         return response()->json([
             'success' => true,
-            'data' => $student->registration
+            'data' => $student->registration,
         ]);
     }
+
     public function uploadDokumen(UploadDokumenRequest $request, Registration $registration)
     {
-        /* if (! $request->user()->can('upload_document_siswa')) {
+        if (! $request->user()->can('upload_document_siswa')) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 403);
-        } */
+        }
         if ($registration->student_id !== $request->user()->student->id) {
             return response()->json([
                 'message' => 'Anda mengaupload ke pendaftaran yang bukan milik anda.',
@@ -108,51 +116,52 @@ class PendaftaranController extends Controller
 
         return response()->json([
             'success' => true,
-            'url' => asset(Storage::url($path))
+            'url' => asset(Storage::url($path)),
         ]);
     }
-    public function revisiDokumen(RevisiDokumenRequest $request, Document $document)
-{
-    // Check authorization
-    /* if (!$request->user()->can('upload_document_siswa')) {
-        return response()->json([
-            'message' => 'Unauthorized',
-        ], 403);
-    } */
 
-    // Validate the uploaded file
-    $data = $request->validated();
-    
-    // Check if a new document is provided
-    if ($request->hasFile('document')) {
-        $oldPath = $document->path;
-        if ($oldPath && Storage::disk('public')->exists($oldPath)) {
-            Storage::disk('public')->delete($oldPath);
+    public function revisiDokumen(RevisiDokumenRequest $request, Document $document)
+    {
+        // Check authorization
+        if (! $request->user()->can('upload_document_siswa')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
         }
 
-        // Store the new document
-        $document_file = $request->file('document');
-        $label = $document->documentType->label;
-        $documentType = str_replace(['/', '\\'], '_', Str::snake($label));
-        $extension = $document_file->getClientOriginalExtension();
-        $filename = "{$documentType}.{$extension}";
-        $registration = $document->registration;
+        // Validate the uploaded file
+        $data = $request->validated();
 
-        $path = $document_file->storeAs('uploads/registration/dokumen/'.$registration->id.'/', $filename, 'public');
-        $data['path'] = $path;
-        $document->update(['path' => $path]);
+        // Check if a new document is provided
+        if ($request->hasFile('document')) {
+            $oldPath = $document->path;
+            if ($oldPath && Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            // Store the new document
+            $document_file = $request->file('document');
+            $label = $document->documentType->label;
+            $documentType = str_replace(['/', '\\'], '_', Str::snake($label));
+            $extension = $document_file->getClientOriginalExtension();
+            $filename = "{$documentType}.{$extension}";
+            $registration = $document->registration;
+
+            $path = $document_file->storeAs('uploads/registration/dokumen/'.$registration->id.'/', $filename, 'public');
+            $data['path'] = $path;
+            $document->update(['path' => $path]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Document updated successfully.',
+                'document' => $document,
+            ]);
+        }
 
         return response()->json([
-            'success' => true,
-            'message' => 'Document updated successfully.',
-            'document' => $document,
-        ]);
+            'message' => 'No document uploaded.',
+        ], 400);
     }
-
-    return response()->json([
-        'message' => 'No document uploaded.',
-    ], 400);
-}
 
     private function generateRegistrationNumber(string $jenjang)
     {
@@ -180,8 +189,25 @@ class PendaftaranController extends Controller
     public function cekPendaftaran()
     {
         $registration = Registration::where('student_id', auth()->user()->student->id)->first();
+
         return response()->json([
-            'registration' => $registration->load('school','documents'),
+            'registration' => $registration->load('school', 'documents'),
         ]);
+    }
+
+    public function dokumen()
+    {
+        /* if(! auth()->user()->can('upload_document_siswa')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        } */
+
+        $registration = Registration::where('student_id', auth()->user()->student->id)->first();
+        $documents = $registration->documents;
+        $documents->load('documentType');
+
+        return response()->json(
+            $documents);
     }
 }
