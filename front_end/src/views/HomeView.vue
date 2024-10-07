@@ -288,11 +288,10 @@
 					</ul>
 					<div class="flex lg:items-center w-full justify-start flex-col lg:flex-row gap-4 lg:w-max max-lg:gap-4 lg:ml-14 lg:justify-end">
 						<router-link
-  :to="{ name: 'login' }"
-  class="bg-indigo-600 text-white rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-3 px-6 text-sm hover:bg-indigo-700"
->
-  Login
-</router-link>
+							:to="{ name: 'login' }"
+							class="bg-indigo-600 text-white rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 py-3 px-6 text-sm hover:bg-indigo-700">
+							Login
+						</router-link>
 					</div>
 				</div>
 			</div>

@@ -92,3 +92,25 @@ export interface LoginResponseData {
 		user: User
 	}
 }
+export interface Registration {
+	id: string
+	school_id: string
+	jenjang : string
+	student_id: string
+	registration_period_id: string
+	registration_number: string
+	created_at: string
+	updated_at: string
+	// Add other properties as needed
+}
+export interface RegistrationRequest {
+	school_id: string
+	jenjang : string
+}
+export interface RegistrationResponse {
+	registration: Registration | null
+}
+export interface Option {
+	label: string
+	value: string | number // Value can be string or number, depending on the data
+}

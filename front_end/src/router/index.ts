@@ -23,12 +23,12 @@ router.beforeEach((to, from, next) => {
 	if (messagesStore.shouldRemoveMessage) {
 		// Clear all messages
 		messagesStore.clearMessages()
-	  }
-	
-	  if (!messagesStore.shouldRemoveMessage) {
+	}
+
+	if (!messagesStore.shouldRemoveMessage) {
 		// If the messages are not yet marked for removal, mark them for removal
 		messagesStore.markForRemoval()
-	  }
+	}
 	next()
 })
 

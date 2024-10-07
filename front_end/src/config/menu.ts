@@ -6,31 +6,31 @@ export const menuGroups = [
 				icon: "home",
 				label: "Dashboard",
 				route: "/dashboard",
-                role : "all"
+				role: "all",
 			},
-            {
+			{
 				icon: "document",
 				label: "Pendaftaran",
 				route: "/pendaftaran",
-                role : "all"
+				role: "all",
 			},
 			{
 				icon: "user-circle",
 				label: "Biodata",
 				route: "/biodata",
-                role : ["siswa"]
+				role: ["siswa"],
 			},
-            {
+			{
 				icon: "user-circle",
 				label: "Data Sekolah",
 				route: "/sekolah",
-                role : ["sekolah","verifikator_sekolah"]
+				role: ["sekolah", "verifikator_sekolah"],
 			},
 			{
 				icon: "document",
 				label: "Dokumen",
 				route: "/dokumen",
-                role : "siswa"
+				role: "siswa",
 			},
 		],
 	},

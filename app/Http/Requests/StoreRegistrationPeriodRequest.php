@@ -27,12 +27,14 @@ class StoreRegistrationPeriodRequest extends FormRequest
             'end_date' => 'required|date|after:start_date',
         ];
     }
+
     public function messages(): array
     {
         return [
             'start_date.after_or_equal' => ':attribute harus setelah atau sama dengan hari ini',
         ];
     }
+
     public function attributes(): array
     {
         return [

@@ -12,14 +12,14 @@ const sidebarStore = useSidebarStore()
 const authStore = useAuthStore()
 
 const filteredMenuGroups = computed(() => {
-  return menuGroups.map(group => {
-    return {
-      name: group.name,
-      menuItems: group.menuItems.filter(item => {
-        return item.role === "all" || item.role.includes(authStore.role!) // Check if item role matches user's role
-      })
-    }
-  })
+	return menuGroups.map((group) => {
+		return {
+			name: group.name,
+			menuItems: group.menuItems.filter((item) => {
+				return item.role === "all" || item.role.includes(authStore.role!) // Check if item role matches user's role
+			}),
+		}
+	})
 })
 
 onClickOutside(target, () => {

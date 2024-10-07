@@ -24,8 +24,8 @@ export const useMessagesStore = defineStore(
 			messages.value = {}
 		}
 		const markForRemoval = () => {
-			shouldRemoveMessage.value = true  // Set the flag to true
-		  }
+			shouldRemoveMessage.value = true // Set the flag to true
+		}
 
 		return {
 			messages,
@@ -33,7 +33,7 @@ export const useMessagesStore = defineStore(
 			addMessage,
 			removeMessage,
 			clearMessages,
-			markForRemoval
+			markForRemoval,
 		}
 	},
 	{

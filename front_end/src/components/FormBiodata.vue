@@ -12,6 +12,7 @@ import flatPickr from "vue-flatpickr-component"
 import { useSmoothScrollToTop } from "@/composable/useSmoothScrollToTop"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
 import { FwbSpinner } from "flowbite-vue"
+import { field_error_html } from "@/helpers/fieldErrorHtml"
 //import { formatDateToStandar } from "@/utils/formatDateToStandar"
 
 const authstore = useAuthStore()
@@ -105,23 +106,6 @@ const handlePhotoCancel = () => {
 	fileFoto.value = null
 	displayPreview.value = false
 	localState.biodata!.thumbnail_url = authstore.biodata!.thumbnail_url
-}
-const field_error_html = (field: string) => {
-	const errors = formValidationErrors.errors[field]
-
-	if (errors && errors.length > 0) {
-		console.log(`
-      <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-        ${errors.join(", ")}
-      </span>
-    `)
-		return `
-      <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-        ${errors.join(", ")}
-      </span>
-    `
-	}
-	return ""
 }
 
 const tanggalLahirConfig = ref({

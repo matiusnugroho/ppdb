@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class RegistrationPeriod extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
+
+    public function registrations(): HasMany
+    {
+        return $this->hasMany(Registration::class);
+    }
 }

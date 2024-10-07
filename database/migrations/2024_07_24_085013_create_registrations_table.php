@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('student_id');
             $table->uuid('school_id');
+            $table->string('jenjang');
             $table->foreignId('registration_period_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('registration_number')->unique();
             $table->timestamps();

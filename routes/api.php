@@ -35,6 +35,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () 
     Route::post('/pendaftaran/buka-pendaftaran', [PendaftaranController::class, 'bukaPendaftaran']);
     Route::resource('/sekolah', SchoolController::class)->only(['create', 'update', 'destroy']);
 });
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    route::post('/pendaftaran/daftar', [PendaftaranController::class, 'daftar']);
+    route::get('/pendaftaran/cek-pendaftaran', [PendaftaranController::class, 'cekPendaftaran']);
+    route::post('/pendaftaran/upload_dokumen/{registration}', [PendaftaranController::class, 'uploadDokumen']);
+    route::post('/pendaftaran/revisi_dokumen/{document}', [PendaftaranController::class, 'revisiDokumen']);
+});
 Route::resource('/siswa', StudentController::class);
 Route::post('/siswa/register', [StudentController::class, 'store']);
 Route::post('/sekolah/register', [SchoolController::class, 'store']);

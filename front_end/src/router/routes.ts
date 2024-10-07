@@ -45,6 +45,15 @@ export default [
 		},
 	},
 	{
+		path: "/pendaftaran/",
+		name: "pendaftaran",
+		component: () => import("@/views/PendaftaranView.vue"),
+		meta: {
+			title: "Daftar",
+			requiresAuth: true,
+		},
+	},
+	{
 		path: "/sekolah/daftar",
 		name: "daftar_sekolah",
 		component: () => import("@/views/Authentication/SchoolSignupView.vue"),

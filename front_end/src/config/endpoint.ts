@@ -13,7 +13,12 @@ const ENDPOINTS = {
 	REGISTER_SEKOLAH: `${BASE_URL_API}/sekolah/register`,
 	UPDATE_PHOTO_SISWA: `${BASE_URL_API}/siswa/update-foto`,
 	GET_KECAMATAN: `${BASE_URL_API}/kecamatan/`,
+	GET_SEKOLAH: `${BASE_URL_API}/sekolah/kecamatan/{kecamatan_id}/{jenjang}`,
 	CSRF: `${BASE_URL_API}/sanctum/csrf-cookie`,
+	DAFTAR_KE_SEKOLAH: `${BASE_URL_API}/pendaftaran/daftar`,
+	CEK_PENDAFTARAN: `${BASE_URL_API}/pendaftaran/cek-pendaftaran`,
+	UPLOAD_DOKUMEN: `${BASE_URL_API}/pendaftaran/upload_dokumen/{registration}`,
+	REVISI_DOKUMEN: `${BASE_URL_API}/pendaftaran/revisi_dokumen/{document}`,
 }
 
 // Helper function to replace placeholders with actual values
