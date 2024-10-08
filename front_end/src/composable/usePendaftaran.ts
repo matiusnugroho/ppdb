@@ -1,3 +1,6 @@
+/*
+MEnangani hal hal terkait pendaftaran ke sekolah
+*/
 import { ENDPOINTS } from "@/config/endpoint"
 import requestor from "@/services/requestor"
 import type { Pendaftar } from "@/types"

@@ -17,6 +17,7 @@ const { fetchRegistration, loadingRegistration, registrationData } = useCekPenda
 const authstore = useAuthStore()
 
 const currentComponent = ref<Component | null>(null)
+	const componentKey = ref(0)
 
 onMounted(async () => {
 	formValidationErrors.clearErrors()
@@ -40,6 +41,9 @@ onMounted(async () => {
 		currentComponent.value = SekolahDaftar
 	}
 })
+function refreshComponent() {
+	componentKey.value++
+}
 </script>
 
 <template>
@@ -59,7 +63,7 @@ onMounted(async () => {
 			</div>
 
 			<div v-else>
-				<component :is="currentComponent" :registration="registrationData" />
+				<component :is="currentComponent" :registration="registrationData" :key="componentKey" @refreshParent="refreshComponent" />
 			</div>
 		</div>
 	</DefaultLayout>

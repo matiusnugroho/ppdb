@@ -2,6 +2,7 @@
 	<div v-if="loadingDocumentType" class="text-center mb-5">
 		<div>Loading</div>
 	</div>
+	<AlertSuccess v-if="messagesStore.messages.success" class="mb-5" :message="messagesStore.messages.success.title as string" :detail="messagesStore.messages.success.detail as string" />
 	<div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
 		<div class="max-w-full overflow-x-auto">
 			<table class="w-full table-auto">
@@ -92,7 +93,10 @@ import { useUploadDokumen } from "@/composable/useUploadDokumen"
 import type { Document, DokumenRequest } from "@/types"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
+import { useMessagesStore } from "@/stores/messages"
+import AlertSuccess from "../Alerts/AlertSuccess.vue"
 const { fetchDocumentType, loadingDocumentType, documentTypeList } = useDocumentType()
+const messagesStore = useMessagesStore()
 const uploadModal = ref<null | HTMLDialogElement>(null)
 const fileInput = ref<null | InstanceType<typeof InputFile>>(null)
 const document_id = ref<null | string>()

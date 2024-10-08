@@ -1,3 +1,6 @@
+/*
+Menangan pendaftaran akun
+*/
 import requestor from "@/services/requestor"
 import { ENDPOINTS } from "@/config/endpoint"
 import type { ProfileSiswaRequest } from "@/types"

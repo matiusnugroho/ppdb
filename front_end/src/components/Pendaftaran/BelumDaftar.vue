@@ -39,11 +39,15 @@ import { FwbSpinner } from "flowbite-vue"
 import { useDaftarKesekolah } from "@/composable/useDaftarKesekolah"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
+import router from "@/router"
+import { useMessagesStore } from "@/stores/messages"
+import { showToast } from "@/utils/ui/toast"
 
 const { fetchKecamatan, kecamatanList } = useKecamatan()
 const { fetchSekolah, sekolahList } = useSekolah()
-const { loadingRegister, registerSekolah } = useDaftarKesekolah()
+const { loadingRegister, registerSekolah, errorDaftar} = useDaftarKesekolah()
 const formValidationError = useFormValidationErrorsStore()
+const emit = defineEmits(['refreshParent'])
 
 const kecamatan_id = ref("")
 const sekolah_id = ref("")
@@ -58,7 +62,8 @@ const kecamatanOption = computed<Option[]>(() => {
 const sekolahOption = computed<Option[]>(() => {
 	return buatOption(sekolahList.value, "nama_sekolah", "id")
 })
-const handleSubmit = () => {
+const messageStore = useMessagesStore()
+const handleSubmit = async() => {
 	formValidationError.clearErrors()
 	if (!kecamatan_id.value || !sekolah_id.value || !jenjang.value) {
 		// Add error messages for missing fields
@@ -71,7 +76,22 @@ const handleSubmit = () => {
 		school_id: sekolah_id.value,
 		jenjang: jenjang.value,
 	}
-	registerSekolah(data)
+	const registerResponse = await registerSekolah(data)
+	if(registerResponse) {
+		messageStore.addMessage("success", {
+			title: "Pendaftaran Berhasil",
+			detail: "Silakan Lengkapi dokumen",
+		})
+		emit("refreshParent")
+		await router.go(0)
+	}
+	else{
+		console.log(errorDaftar.value,"errrrrrrr")
+		showToast({
+			message: "Pendaftaran gagal, " + errorDaftar.value,
+			type: "error",
+		})
+	}
 }
 watch(kecamatan_id, (newKecamatanId) => {
 	if (newKecamatanId) {

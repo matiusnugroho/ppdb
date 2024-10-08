@@ -33,8 +33,8 @@ class UserTestSeeder extends Seeder
         $schoolTypes = [
             ['nama' => 'SMP Negeri', 'jenjang' => 'smp'],
             ['nama' => 'SD Negeri', 'jenjang' => 'sd'],
-            ['nama' => 'SMA', 'jenjang' => 'sma'],
             ['nama' => 'SD', 'jenjang' => 'sd'],
+            ['nama' => 'SD Negeri', 'jenjang' => 'sd'],
         ];
         $numberRange = range(1, 100);
 

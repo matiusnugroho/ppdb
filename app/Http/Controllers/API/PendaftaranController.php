@@ -74,7 +74,7 @@ class PendaftaranController extends Controller
 
         if ($existingRegistration) {
             return response()->json([
-                'message' => 'Siswa telah terdaftar di sekolah tersebut.',
+                'message' => 'Anda tidak boleh mendaftar ke lebih satu sekolah.',
             ], 400);
         }
         $student->registration()->create($data);
@@ -189,9 +189,9 @@ class PendaftaranController extends Controller
 
     public function cekPendaftaran()
     {
-        $registration = Registration::where('student_id', auth()->user()->student->id)->first();
+        $registration = Registration::with('school', 'documents')->where('student_id', auth()->user()->student->id)->first();
         $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
-        if (! $registration || ! $registrationPeriod) {
+        if (!$registrationPeriod) {
             return response()->json([
                 'success' => false,
                 'message' => 'Belum ada pendaftaran',
@@ -200,7 +200,7 @@ class PendaftaranController extends Controller
 
         return response()->json([
             'success' => true,
-            'registration' => $registration->load('school', 'documents'),
+            'registration' => $registration,
         ]);
     }
 
