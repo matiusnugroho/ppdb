@@ -7,17 +7,38 @@ import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { useCekPendaftaran } from "@/composable/useCekPendaftaran"
 import BelumDaftar from "@/components/Pendaftaran/BelumDaftar.vue"
 import SudahDaftar from "@/components/Pendaftaran/SudahDaftar.vue"
+import BelumBukaPendaftaran from "@/components/Pendaftaran/BelumBukaPendaftaran.vue"
+import { useAuthStore } from "@/stores/auth"
+import SekolahDaftar from "@/components/Pendaftaran/SekolahDaftar.vue"
 
 const pageTitle = ref("Pendaftaran")
 const formValidationErrors = useFormValidationErrorsStore()
 const { fetchRegistration, loadingRegistration, registrationData } = useCekPendaftaran()
+const authstore = useAuthStore()
 
 const currentComponent = ref<Component | null>(null)
 
 onMounted(async () => {
 	formValidationErrors.clearErrors()
-	await fetchRegistration()
-	currentComponent.value = registrationData.value !== null ? SudahDaftar : BelumDaftar
+
+	const role = authstore.role
+	if (role === "siswa") {
+		try {
+			const cekPendaftaran = await fetchRegistration()
+			console.log({cekPendaftaran})
+			if(cekPendaftaran.success) {
+				currentComponent.value = registrationData.value !== null ? SudahDaftar : BelumDaftar
+			}
+			else{
+				currentComponent.value = BelumBukaPendaftaran
+			}
+			
+		} catch (e) {
+			console.log(e)
+		}
+	} else if (role === "sekolah" || role === "verifikator_sekolah") {
+		currentComponent.value = SekolahDaftar
+	}
 })
 </script>
 
@@ -38,7 +59,7 @@ onMounted(async () => {
 			</div>
 
 			<div v-else>
-				<component :is="currentComponent" />
+				<component :is="currentComponent" :registration="registrationData" />
 			</div>
 		</div>
 	</DefaultLayout>

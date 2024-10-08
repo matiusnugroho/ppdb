@@ -1,7 +1,7 @@
 <template>
 	<div :class="customClasses">
 		<label class="mb-2.5 block text-black dark:text-white">
-			{{ props.label }}
+			{{ label }}
 			<span v-if="required" class="text-meta-1">*</span>
 		</label>
 		<div class="relative">
@@ -23,7 +23,7 @@
 import { ref } from "vue"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
 
-const props = defineProps({
+defineProps({
 	label: String,
 	type: { type: String, default: "password" },
 	placeholder: String,

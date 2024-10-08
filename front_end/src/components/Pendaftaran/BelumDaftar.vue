@@ -37,7 +37,7 @@ import { buatOption } from "@/helpers/buatOption"
 import SelectGroup from "../Forms/SelectGroup.vue"
 import { FwbSpinner } from "flowbite-vue"
 import { useDaftarKesekolah } from "@/composable/useDaftarKesekolah"
-import { useFormValidationErrorsStore } from "@/stores/formValidationErrors" 
+import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
 
 const { fetchKecamatan, kecamatanList } = useKecamatan()
@@ -62,9 +62,9 @@ const handleSubmit = () => {
 	formValidationError.clearErrors()
 	if (!kecamatan_id.value || !sekolah_id.value || !jenjang.value) {
 		// Add error messages for missing fields
-		if (!kecamatan_id.value) formValidationError.addError('kecamatan_id', 'Pilih Kecamatan terlebih dahulu')
-		if (!sekolah_id.value) formValidationError.addError('sekolah_id', 'Pilih Sekolah terlebih dahulu')
-		if (!jenjang.value) formValidationError.addError('jenjang', 'Pilih Jenjang terlebih dahulu')
+		if (!kecamatan_id.value) formValidationError.addError("kecamatan_id", "Pilih Kecamatan terlebih dahulu")
+		if (!sekolah_id.value) formValidationError.addError("sekolah_id", "Pilih Sekolah terlebih dahulu")
+		if (!jenjang.value) formValidationError.addError("jenjang", "Pilih Jenjang terlebih dahulu")
 		return
 	}
 	const data = {

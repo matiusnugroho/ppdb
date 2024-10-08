@@ -10,6 +10,15 @@ use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
+
+function createUsername($name)
+{
+    // Convert to lowercase and remove spaces
+    $username = Str::of($name)->lower()->replace(' ', '');
+
+    return $username;
+}
 
 class UserTestSeeder extends Seeder
 {
@@ -70,7 +79,7 @@ class UserTestSeeder extends Seeder
                 $city = $kecamatan->nama; // Random city name
                 $schoolName = "{$schoolType['nama']} {$schoolNumber} {$city}";
                 $userSekolah = User::create([
-                    'username' => $faker->userName,
+                    'username' => createUsername($schoolName),
                     'email' => $faker->unique()->safeEmail,
                     'password' => Hash::make('password'), // or use a secure password
                 ]);

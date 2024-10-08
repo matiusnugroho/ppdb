@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
 import flowbitePlugin from 'flowbite/plugin'
+import daisyui from 'daisyui'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -318,6 +319,7 @@ export default {
     }
   },
   plugins: [
-    flowbitePlugin
+    flowbitePlugin,
+    daisyui
   ]
 }

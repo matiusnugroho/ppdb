@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use Storage;
 
 class Document extends Model
 {
@@ -13,6 +14,7 @@ class Document extends Model
     ];
 
     public $incrementing = false;
+    protected $appends = ['url_path'];
 
     /**
      * Get the registration that owns the document.
@@ -40,5 +42,9 @@ class Document extends Model
                 $model->id = (string) Str::uuid();
             }
         });
+    }
+    public function getUrlPathAttribute(): string
+    {
+        return asset(Storage::url($this->path));
     }
 }

@@ -92,31 +92,32 @@ class PendaftaranController extends Controller
         ]);
     }
 
-    public function uploadDokumen(UploadDokumenRequest $request, Registration $registration)
+    public function uploadDokumen(UploadDokumenRequest $request, Document $document)
     {
         if (! $request->user()->can('upload_document_siswa')) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 403);
         }
+        $registration = $document->registration;
         if ($registration->student_id !== $request->user()->student->id) {
             return response()->json([
                 'message' => 'Anda mengaupload ke pendaftaran yang bukan milik anda.',
             ], 403);
         }
         $data = $request->validated();
-        $document = $request->file('document');
-        $documentType = str_replace(['/', '\\'], '_', Str::snake(DocumentType::find($data['document_type_id'])->label));
-        $extension = $request->file('document')->getClientOriginalExtension();
+        $documentFile = $request->file('file');
+        $documentType = str_replace(['/', '\\'], '_', Str::snake($document->documentType->label));
+        $extension = $documentFile->getClientOriginalExtension();
         $filename = "{$documentType}.{$extension}";
 
-        $path = $document->storeAs('uploads/registration/dokumen/'.$registration->id, $filename, 'public');
-        $data['path'] = $path;
-        $registration->documents()->create($data);
+        $path = $documentFile->storeAs('uploads/registration/dokumen/'.$registration->id, $filename, 'public');
+            $document->update(['path' => $path, 'status' => 'menunggu verifikasi']);
 
         return response()->json([
             'success' => true,
             'url' => asset(Storage::url($path)),
+            'data' => $document,
         ]);
     }
 
@@ -133,14 +134,14 @@ class PendaftaranController extends Controller
         $data = $request->validated();
 
         // Check if a new document is provided
-        if ($request->hasFile('document')) {
+        if ($request->hasFile('file')) {
             $oldPath = $document->path;
             if ($oldPath && Storage::disk('public')->exists($oldPath)) {
                 Storage::disk('public')->delete($oldPath);
             }
 
             // Store the new document
-            $document_file = $request->file('document');
+            $document_file = $request->file('file');
             $label = $document->documentType->label;
             $documentType = str_replace(['/', '\\'], '_', Str::snake($label));
             $extension = $document_file->getClientOriginalExtension();
@@ -154,7 +155,7 @@ class PendaftaranController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Document updated successfully.',
-                'document' => $document,
+                'data' => $document,
             ]);
         }
 
@@ -189,19 +190,27 @@ class PendaftaranController extends Controller
     public function cekPendaftaran()
     {
         $registration = Registration::where('student_id', auth()->user()->student->id)->first();
+        $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
+        if (! $registration || ! $registrationPeriod) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Belum ada pendaftaran',
+            ], 200);
+        }
 
         return response()->json([
+            'success' => true,
             'registration' => $registration->load('school', 'documents'),
         ]);
     }
 
     public function dokumen()
     {
-        /* if(! auth()->user()->can('upload_document_siswa')) {
+        if(! auth()->user()->can('upload_document_siswa')) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 403);
-        } */
+        }
 
         $registration = Registration::where('student_id', auth()->user()->student->id)->first();
         $documents = $registration->documents;
@@ -209,5 +218,17 @@ class PendaftaranController extends Controller
 
         return response()->json(
             $documents);
+    }
+    public function getPendaftarSekolah()
+    {
+        if(! auth()->user()->can('lihat_pendaftar')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        }
+        $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
+        $school = auth()->user()->school;
+        $pendaftar = Registration::with('student')->where('school_id', $school->id)->get();
+        return response()->json($pendaftar);
     }
 }

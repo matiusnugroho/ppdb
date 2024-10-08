@@ -17,7 +17,8 @@ const ENDPOINTS = {
 	CSRF: `${BASE_URL_API}/sanctum/csrf-cookie`,
 	DAFTAR_KE_SEKOLAH: `${BASE_URL_API}/pendaftaran/daftar`,
 	CEK_PENDAFTARAN: `${BASE_URL_API}/pendaftaran/cek-pendaftaran`,
-	UPLOAD_DOKUMEN: `${BASE_URL_API}/pendaftaran/upload_dokumen/{registration}`,
+	GET_PENDAFTAR: `${BASE_URL_API}/pendaftaran/get-pendaftar`,
+	UPLOAD_DOKUMEN: `${BASE_URL_API}/pendaftaran/upload_dokumen/{id_dokumen}`,
 	REVISI_DOKUMEN: `${BASE_URL_API}/pendaftaran/revisi_dokumen/{document}`,
 	GET_DOCUMENT_TYPE: `${BASE_URL_API}/pendaftaran/dokumen`,
 }

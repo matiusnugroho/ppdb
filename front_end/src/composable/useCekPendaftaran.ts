@@ -12,8 +12,8 @@ export function useCekPendaftaran() {
 		loadingRegistration.value = true
 		try {
 			const response = await requestor.get(ENDPOINTS.CEK_PENDAFTARAN)
-			registrationData.value = response.data.registration // Adjust this based on API structure
-			console.log(registrationData.value)
+			registrationData.value = response.data.registration
+			return response.data
 		} catch (err) {
 			error.value = "Failed to load Registration list"
 		} finally {

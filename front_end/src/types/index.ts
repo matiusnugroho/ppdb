@@ -95,7 +95,7 @@ export interface LoginResponseData {
 export interface Registration {
 	id: string
 	school_id: string
-	jenjang : string
+	jenjang: string
 	student_id: string
 	registration_period_id: string
 	registration_number: string
@@ -103,9 +103,12 @@ export interface Registration {
 	updated_at: string
 	// Add other properties as needed
 }
+export interface Pendaftar extends Registration {
+	student: Student
+}
 export interface RegistrationRequest {
 	school_id: string
-	jenjang : string
+	jenjang: string
 }
 export interface RegistrationResponse {
 	registration: Registration | null
@@ -113,4 +116,25 @@ export interface RegistrationResponse {
 export interface Option {
 	label: string
 	value: string | number // Value can be string or number, depending on the data
+}
+export interface DokumenRequest {
+	id_dokumen: string // The document ID as a string
+	file: File // The file to be uploaded
+}
+export interface Document {
+	id: string
+	registration_id: string
+	document_type_id: string
+	path: string | null
+	url_path: string | null
+	status: string
+	created_at: string
+	updated_at: string
+	document_type: DocumentType
+}
+export interface DocumentType {
+	id: string
+	label: string
+	created_at: string
+	updated_at: string
 }

@@ -22,8 +22,7 @@ class UploadDokumenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'document' => 'required|file|mimes:pdf|max:2048',
-            'document_type_id' => 'required',
+            'file' => 'required|file|mimes:pdf|max:2048',
         ];
     }
 }
