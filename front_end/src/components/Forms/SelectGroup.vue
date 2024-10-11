@@ -17,8 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue"
-
 // Define the props for the select component
 const props = defineProps({
 	label: String,

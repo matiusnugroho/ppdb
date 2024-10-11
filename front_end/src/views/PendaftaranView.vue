@@ -17,23 +17,22 @@ const { fetchRegistration, loadingRegistration, registrationData } = useCekPenda
 const authstore = useAuthStore()
 
 const currentComponent = ref<Component | null>(null)
-	const componentKey = ref(0)
+const componentKey = ref(0)
 
 onMounted(async () => {
 	formValidationErrors.clearErrors()
 
 	const role = authstore.role
+	//muat komponen berdasarkan role yang login
 	if (role === "siswa") {
 		try {
 			const cekPendaftaran = await fetchRegistration()
-			console.log({cekPendaftaran})
-			if(cekPendaftaran.success) {
+			console.log({ cekPendaftaran })
+			if (cekPendaftaran.success) {
 				currentComponent.value = registrationData.value !== null ? SudahDaftar : BelumDaftar
-			}
-			else{
+			} else {
 				currentComponent.value = BelumBukaPendaftaran
 			}
-			
 		} catch (e) {
 			console.log(e)
 		}

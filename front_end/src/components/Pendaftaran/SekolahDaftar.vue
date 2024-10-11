@@ -1,13 +1,16 @@
 <template>
 	<div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-		<h2 class="mb-6 text-xl font-semibold text-black dark:text-white">Daftar Siswa Pendaftar</h2>
+		<div class="flex justify-between items-center mb-6">
+			<h2 class="text-xl font-semibold text-black dark:text-white">Daftar Siswa Pendaftar</h2>
+			<p v-if="totalPendaftar" class="text-black dark:text-white">Total {{ totalPendaftar }} Calon Siswa</p>
+		</div>
 		<div class="overflow-x-auto">
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Registration Number</th>
-						<th>Actions</th>
+						<th	class="text-left">Name</th>
+						<th	class="text-center">NISN</th>
+						<th class="text-center">Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,9 +31,10 @@
 							<td>
 								<span class="skeleton h-4 w-36 rounded block"></span>
 							</td>
-							<td>
-								<button class="btn btn-ghost btn-xs">details</button>
+							<td class="text-center">
+								<button class="btn btn-ghost btn-xs">Status</button>
 							</td>
+							<td></td>
 						</tr>
 					</template>
 
@@ -45,16 +49,36 @@
 										</div>
 									</div>
 									<div>
-										<div>{{ pendaftar?.student?.nama }}</div>
-										<div>{{ pendaftar?.student?.nisn }}</div>
+										<div class="text-black dark:text-white font-medium font-semibold">{{ pendaftar?.student?.nama }}</div>
+										<div>{{ pendaftar.registration_number }}</div>
 									</div>
 								</div>
 							</td>
-							<td>
-								{{ pendaftar.registration_number }}
+							<td class="text-center">
+								{{ pendaftar?.student?.nisn }}
 							</td>
-							<td>
-								<button class="btn btn-ghost btn-xs">details</button>
+							<td class="flex flex-col items-center justify-center text-center align-middle py-5 px-4">
+								<div>{{ pendaftar?.status }}</div>
+								<div v-if="pendaftar?.status === 'diverifikasi'" class="badge badge-warning">
+									{{ pendaftar.verified_by?.username }}
+								</div>
+							</td>
+							<td class="py-5 px-4">
+								<div class="flex items-center space-x-3.5">
+									<div class="tooltip" data-tip="Lihat">
+										<a :href="pendaftar.id ?? ''" class="flex items-center hover:text-primary" v-if="pendaftar.id" target="_blank" rel="noopener noreferrer">
+											<HeroIcon name="view-finder" size="18" class="h-5 w-5" />
+										</a>
+										<span v-else class="flex items-center cursor-not-allowed text-gray-400">
+											<HeroIcon name="view-finder" size="18" class="h-5 w-5" />
+										</span>
+									</div>
+									<div class="tooltip" data-tip="Verifikasi">
+										<button class="flex items-center hover:text-primary" @click="verifikasi(pendaftar.id)" :disabled="pendaftar?.status === 'diverifikasi'">
+											<HeroIcon name="document-check" size="18" class="h-5 w-5" />
+										</button>
+									</div>
+								</div>
 							</td>
 						</tr>
 					</template>
@@ -62,13 +86,62 @@
 			</table>
 		</div>
 	</div>
+	<ConfirmationComponent
+		ref="verifikasiModal"
+		title="Verifikasi pendaftaran"
+		message="Apakah anda yakin ingin verifikasi pendafataran ini?"
+		confirmLabel="Verifikasi"
+		cancelLabel="Batal"
+		:loading="loadingVerifikasi"
+		:confirmHandler="verifikasiConfirm"
+		:cancelHandler="verifikasiCancel" />
 </template>
 
 <script setup lang="ts">
 import { usePendaftaran } from "@/composable/usePendaftaran"
-import { onMounted } from "vue"
+import { onMounted, ref } from "vue"
+import ConfirmationComponent from "@/components/UI/ConfirmationComponent.vue"
+import HeroIcon from "../Icon/HeroIcon.vue"
+import { getDataById } from "@/helpers/getDataById"
+import { showToast } from "@/utils/ui/toast"
 
-const { loadingPendaftar, dataPendaftar, fetchPendaftar } = usePendaftaran()
+const { loadingPendaftar, dataPendaftar, fetchPendaftar, loadingVerifikasi, verifikasiPendaftaran, totalPendaftar } = usePendaftaran()
+const verifikasiModal = ref<null | HTMLDialogElement>(null)
+const idPendaftaran = ref<string>("")
+
+const verifikasi = (id: string) => {
+	idPendaftaran.value = ""
+	verifikasiModal.value?.show()
+	idPendaftaran.value = id
+	//console.log(`Loading verifikasi : ${loadingVerifikasi.value}`)
+}
+const verifikasiConfirm = async () => {
+	const response = await verifikasiPendaftaran(idPendaftaran.value)
+	console.log(response)
+	if (response.success) {
+		verifikasiModal.value?.close()
+		let data = getDataById(dataPendaftar.value!, idPendaftaran.value)
+		console.log({data,dataPendaftar:dataPendaftar.value})
+		if (data) {
+			// Check if data is not null
+			data.status = response.data.status
+			data.verified_by = response.data.verified_by
+		}
+		showToast({
+			type: "success",
+			message: "Verifikasi pendaftaran berhasil",
+		})
+	} else {
+		showToast({
+			type: "error",
+			message: "Verifikasi pendaftaran gagal, " + response.message,
+		})
+	}
+}
+const verifikasiCancel = () => {
+	idPendaftaran.value = ""
+	verifikasiModal.value?.close()
+}
 
 onMounted(() => {
 	fetchPendaftar()

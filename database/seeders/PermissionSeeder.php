@@ -21,13 +21,13 @@ class PermissionSeeder extends Seeder
             'verifikasi_dokumen_siswa',
             'edit_registration_status',
             'lihat_pendaftar',
-            'daftar_sekolah'
+            'daftar_sekolah',
 
         ];
         $permissionVerifikatorSekolah = [
             'verifikasi_dokumen_siswa',
             'edit_registration_status',
-            'lihat_pendaftar'
+            'lihat_pendaftar',
         ];
         $permissionSiswa = [
             'edit_my_profile_siswa',

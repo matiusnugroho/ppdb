@@ -12,6 +12,7 @@ use App\Models\DocumentType;
 use App\Models\Registration;
 use App\Models\RegistrationPeriod;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Storage;
 use Str;
 
@@ -112,7 +113,7 @@ class PendaftaranController extends Controller
         $filename = "{$documentType}.{$extension}";
 
         $path = $documentFile->storeAs('uploads/registration/dokumen/'.$registration->id, $filename, 'public');
-            $document->update(['path' => $path, 'status' => 'menunggu verifikasi']);
+        $document->update(['path' => $path, 'status' => 'menunggu verifikasi']);
 
         return response()->json([
             'success' => true,
@@ -187,11 +188,12 @@ class PendaftaranController extends Controller
         return $jenjang.str_pad($newNumber, 6, '0', STR_PAD_LEFT);
     }
 
+    //cek pendaftaran di siswa
     public function cekPendaftaran()
     {
         $registration = Registration::with('school', 'documents')->where('student_id', auth()->user()->student->id)->first();
         $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
-        if (!$registrationPeriod) {
+        if (! $registrationPeriod) {
             return response()->json([
                 'success' => false,
                 'message' => 'Belum ada pendaftaran',
@@ -206,7 +208,7 @@ class PendaftaranController extends Controller
 
     public function dokumen()
     {
-        if(! auth()->user()->can('upload_document_siswa')) {
+        if (! auth()->user()->can('upload_document_siswa')) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 403);
@@ -219,16 +221,56 @@ class PendaftaranController extends Controller
         return response()->json(
             $documents);
     }
+
+    //ambil data pendaftar dari sekolah
     public function getPendaftarSekolah()
     {
-        if(! auth()->user()->can('lihat_pendaftar')) {
+        if (! auth()->user()->can('lihat_pendaftar')) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 403);
         }
         $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
         $school = auth()->user()->school;
-        $pendaftar = Registration::with('student')->where('school_id', $school->id)->get();
-        return response()->json($pendaftar);
+        $pendaftar = Registration::with('student', 'verifiedBy')->where('school_id', $school->id)->latest('created_at')->get();
+        $totalPendaftar = $pendaftar->count();
+
+        return response()->json([
+            'data' => $pendaftar,
+            'total' => $totalPendaftar,
+        ]);
+    }
+
+    public function verifikasi(Request $request)
+    {
+        if (! auth()->user()->can('verifikasi_siswa')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        }
+
+        $data = $request->validate([
+            'id' => 'required',
+        ]);
+        $registration = Registration::find($data['id']);
+        if (! $registration) {
+            return response()->json([
+                'message' => 'Data pendaftaran tidak ditemukan',
+            ], 404);
+        }
+        if ($registration->verifiedBy) {
+            return response()->json([
+                'message' => 'Data pendaftaran sudah diverifikasi oleh '.$registration->verifiedBy->username,
+            ], 400);
+        }
+
+        $updated = $registration->update(['status' => 'diverifikasi', 'verified_by' => auth()->user()->id]);
+        $registration->load('verifiedBy');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data pendaftaran berhasil diverifikasi',
+            'data' => $registration,
+        ]);
     }
 }

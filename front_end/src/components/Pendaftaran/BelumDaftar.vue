@@ -45,9 +45,9 @@ import { showToast } from "@/utils/ui/toast"
 
 const { fetchKecamatan, kecamatanList } = useKecamatan()
 const { fetchSekolah, sekolahList } = useSekolah()
-const { loadingRegister, registerSekolah, errorDaftar} = useDaftarKesekolah()
+const { loadingRegister, registerSekolah, errorDaftar } = useDaftarKesekolah()
 const formValidationError = useFormValidationErrorsStore()
-const emit = defineEmits(['refreshParent'])
+const emit = defineEmits(["refreshParent"])
 
 const kecamatan_id = ref("")
 const sekolah_id = ref("")
@@ -63,7 +63,7 @@ const sekolahOption = computed<Option[]>(() => {
 	return buatOption(sekolahList.value, "nama_sekolah", "id")
 })
 const messageStore = useMessagesStore()
-const handleSubmit = async() => {
+const handleSubmit = async () => {
 	formValidationError.clearErrors()
 	if (!kecamatan_id.value || !sekolah_id.value || !jenjang.value) {
 		// Add error messages for missing fields
@@ -77,16 +77,15 @@ const handleSubmit = async() => {
 		jenjang: jenjang.value,
 	}
 	const registerResponse = await registerSekolah(data)
-	if(registerResponse) {
+	if (registerResponse) {
 		messageStore.addMessage("success", {
 			title: "Pendaftaran Berhasil",
 			detail: "Silakan Lengkapi dokumen",
 		})
 		emit("refreshParent")
 		await router.go(0)
-	}
-	else{
-		console.log(errorDaftar.value,"errrrrrrr")
+	} else {
+		console.log(errorDaftar.value, "errrrrrrr")
 		showToast({
 			message: "Pendaftaran gagal, " + errorDaftar.value,
 			type: "error",

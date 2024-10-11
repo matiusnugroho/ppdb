@@ -7,13 +7,10 @@ export default defineComponent({
 		type: String,
 		placeholder: String,
 		customClasses: String,
+		name: String,
 		required: {
 			type: Boolean,
 			default: false,
-		},
-		autocomplete: {
-			type: String,
-			default: "",
 		},
 		modelValue: String,
 	},
@@ -36,7 +33,8 @@ export default defineComponent({
 			:type="type"
 			:placeholder="placeholder"
 			:value="modelValue"
-			:autocomplete="autocomplete"
+			:name="name"
+			:autocomplete="name"
 			@input="updateValue($event.target as HTMLInputElement)"
 			class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-2 px-2 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
 	</div>

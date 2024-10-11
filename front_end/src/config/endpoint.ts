@@ -21,6 +21,7 @@ const ENDPOINTS = {
 	UPLOAD_DOKUMEN: `${BASE_URL_API}/pendaftaran/upload_dokumen/{id_dokumen}`,
 	REVISI_DOKUMEN: `${BASE_URL_API}/pendaftaran/revisi_dokumen/{document}`,
 	GET_DOCUMENT_TYPE: `${BASE_URL_API}/pendaftaran/dokumen`,
+	VERIFIKASI_PENDAFTARAN: `${BASE_URL_API}/pendaftaran/verifikasi`,
 }
 
 // Helper function to replace placeholders with actual values

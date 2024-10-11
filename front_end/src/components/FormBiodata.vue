@@ -11,8 +11,8 @@ import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import flatPickr from "vue-flatpickr-component"
 import { useSmoothScrollToTop } from "@/composable/useSmoothScrollToTop"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
-import { FwbSpinner } from "flowbite-vue"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
+import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
 //import { formatDateToStandar } from "@/utils/formatDateToStandar"
 
 const authstore = useAuthStore()
@@ -321,16 +321,12 @@ onMounted(async () => {
 								class="flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
 								type="button"
 								@click="handleCancel">
-								Cancel
+								Batal
 							</button>
 							<button class="flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90" type="submit" :disabled="loadingUpdateProfile">
 								<span class="flex items-center gap-2">
-									<fwb-spinner
-										v-if="loadingUpdateProfile"
-										size="4"
-										color="white"
-										class="transition-all duration-500 ease-out"
-										:class="{ 'opacity-0 -translate-x-5': !loadingUpdateProfile, 'opacity-100 translate-x-0': loadingUpdateProfile }" />Simpan
+									<SpinnerLoading :loading="loadingUpdateProfile" size="xs" />
+									Simpan
 								</span>
 							</button>
 						</div>
@@ -385,9 +381,8 @@ onMounted(async () => {
 
 							<!-- Progress Bar Overlay -->
 							<div v-if="loadingUpdatePhoto" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded">
-								<div class="w-1/2 bg-gray-300 rounded-full h-2.5">
-									<div class="bg-blue-600 h-2.5 rounded-full" :style="{ width: uploadProgress + '%' }"></div>
-								</div>
+								<!-- Radial Progress Bar (DaisyUI) -->
+								<div class="radial-progress text-primary" :style="{ '--value': uploadProgress }" role="progressbar">{{ uploadProgress }}%</div>
 							</div>
 						</div>
 
@@ -405,12 +400,7 @@ onMounted(async () => {
 								type="button"
 								:disabled="loadingUpdatePhoto || !fileFoto">
 								<span class="flex items-center gap-2">
-									<fwb-spinner
-										v-if="loadingUpdatePhoto"
-										size="4"
-										color="white"
-										class="transition-all duration-500 ease-out"
-										:class="{ 'opacity-0 -translate-x-5': !loadingUpdatePhoto, 'opacity-100 translate-x-0': loadingUpdatePhoto }" />
+									<SpinnerLoading :loading="loadingUpdatePhoto" size="xs" />
 									Simpan Foto
 								</span>
 							</button>

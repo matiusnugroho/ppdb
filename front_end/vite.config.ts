@@ -37,6 +37,9 @@ export default defineConfig(({ mode }) => {
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
+      plugins: [
+        
+      ],
       output: {
         entryFileNames: ({ name }) => {
           // Check if the entry file is 'index'

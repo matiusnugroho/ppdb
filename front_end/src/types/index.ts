@@ -99,12 +99,13 @@ export interface Registration {
 	student_id: string
 	registration_period_id: string
 	registration_number: string
+	verified_by?: User | null
 	created_at: string
 	updated_at: string
-	// Add other properties as needed
 }
 export interface Pendaftar extends Registration {
 	student: Student
+	status: string
 }
 export interface RegistrationRequest {
 	school_id: string

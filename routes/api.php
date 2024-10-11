@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () 
 });
 Route::group(['middleware' => 'auth:sanctum'], function () {
     route::post('/pendaftaran/daftar', [PendaftaranController::class, 'daftar']);
+    route::post('/pendaftaran/verifikasi/', [PendaftaranController::class, 'verifikasi']);
     route::get('/pendaftaran/cek-pendaftaran', [PendaftaranController::class, 'cekPendaftaran']);
     route::get('/pendaftaran/get-pendaftar', [PendaftaranController::class, 'getPendaftarSekolah']);
     route::get('/pendaftaran/dokumen', [PendaftaranController::class, 'dokumen']);

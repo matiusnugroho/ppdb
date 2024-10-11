@@ -13,7 +13,7 @@ class Registration extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id', 'student_id', 'school_id', 'registration_number', 'registration_period_id','jenjang',
+        'id', 'student_id', 'school_id', 'registration_number', 'registration_period_id', 'jenjang', 'status', 'verified_by', 'created_at', 'updated_at',
     ];
 
     protected $casts = [
@@ -63,8 +63,8 @@ class Registration extends Model
         return $this->belongsTo(RegistrationPeriod::class);
     }
 
-    public function verified_by(): BelongsTo
+    public function verifiedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'verified_by');
     }
 }

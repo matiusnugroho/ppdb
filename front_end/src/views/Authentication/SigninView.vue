@@ -4,7 +4,7 @@ import InputGroup from "@/components/Forms/InputGroup.vue"
 import PasswordInput from "@/components/Forms/PasswordInput.vue"
 import PlainLayout from "@/layouts/PlainLayout.vue"
 import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher.vue"
-import { FwbAlert, FwbSpinner } from "flowbite-vue"
+import { FwbAlert } from "flowbite-vue"
 import { onMounted, ref } from "vue"
 import { useAuth } from "@/composable/authComposable"
 import { showToast } from "@/utils/ui/toast"
@@ -13,6 +13,7 @@ import { useRoute } from "vue-router"
 import { useAuthStore } from "@/stores/auth"
 import { useMessagesStore } from "@/stores/messages"
 import AlertSuccess from "@/components/Alerts/AlertSuccess.vue"
+import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
 
 const emailValue = ref("")
 const passwordValue = ref("")
@@ -78,7 +79,7 @@ onMounted(async () => {
 			</div>
 			<AlertSuccess v-if="messagesStore.messages.success" class="mb-5" :message="messagesStore.messages.success.title as string" :detail="messagesStore.messages.success.detail as string" />
 			<form @submit.prevent="handleLogin">
-				<InputGroup label="Email / Username" type="email" placeholder="Enter your email" v-model="emailValue" />
+				<InputGroup name="username" label="Email / Username" type="email" placeholder="Enter your email" v-model="emailValue" />
 				<PasswordInput label="Password anda" v-model="passwordValue" />
 				<div class="mb-5 mt-6">
 					<button
@@ -87,12 +88,7 @@ onMounted(async () => {
 						@click="handleLogin"
 						:disabled="loginLoading">
 						<span class="flex items-center">
-							<fwb-spinner
-								v-if="loginLoading"
-								size="4"
-								color="white"
-								class="transition-all duration-500 ease-out"
-								:class="{ 'opacity-0 -translate-x-5': !loginLoading, 'opacity-100 translate-x-0': loginLoading }" />
+							<SpinnerLoading :loading="loginLoading" size="xs" />
 							<span class="ml-2">Login</span>
 						</span>
 					</button>

@@ -14,6 +14,7 @@ class Document extends Model
     ];
 
     public $incrementing = false;
+
     protected $appends = ['url_path'];
 
     /**
@@ -43,6 +44,7 @@ class Document extends Model
             }
         });
     }
+
     public function getUrlPathAttribute(): string
     {
         return asset(Storage::url($this->path));

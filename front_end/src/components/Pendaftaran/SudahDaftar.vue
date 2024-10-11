@@ -51,16 +51,16 @@
 						<td class="py-5 px-4">
 							<div class="flex items-center space-x-3.5">
 								<div class="tooltip" data-tip="Lihat">
-									<a :href="item.url_path ?? ''" class="hover:text-primary" v-if="item.path" target="_blank" rel="noopener noreferrer">
-										<HeroIcon name="view-finder" size="18" />
+									<a :href="item.url_path ?? ''" class="flex items-center hover:text-primary" v-if="item.path" target="_blank" rel="noopener noreferrer">
+										<HeroIcon name="view-finder" size="18" class="h-5 w-5" />
 									</a>
 									<span v-else class="cursor-not-allowed text-gray-400">
-										<HeroIcon name="view-finder" size="18" />
+										<HeroIcon name="view-finder" size="18" class="h-5 w-5" />
 									</span>
 								</div>
 								<div class="tooltip" data-tip="Upload">
-									<button class="hover:text-primary" @click="openUploadModal(item.id)">
-										<HeroIcon name="upload" size="18" />
+									<button class="flex items-center hover:text-primary" @click="openUploadModal(item.id)">
+										<HeroIcon name="upload" size="18" class="h-5 w-5" />
 									</button>
 								</div>
 							</div>
