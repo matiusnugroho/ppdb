@@ -8,9 +8,10 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th	class="text-left">Name</th>
-						<th	class="text-center">NISN</th>
+						<th class="text-left">Name</th>
+						<th class="text-center">NISN</th>
 						<th class="text-center">Status</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -121,7 +122,7 @@ const verifikasiConfirm = async () => {
 	if (response.success) {
 		verifikasiModal.value?.close()
 		let data = getDataById(dataPendaftar.value!, idPendaftaran.value)
-		console.log({data,dataPendaftar:dataPendaftar.value})
+		console.log({ data, dataPendaftar: dataPendaftar.value })
 		if (data) {
 			// Check if data is not null
 			data.status = response.data.status

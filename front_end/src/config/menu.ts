@@ -27,6 +27,12 @@ export const menuGroups = [
 				role: ["sekolah", "verifikator_sekolah"],
 			},
 			{
+				icon: "user-circle",
+				label: "Data Verifikasi",
+				route: "/pendaftaran/verifikasi",
+				role: ["sekolah", "verifikator_sekolah"],
+			},
+			{
 				icon: "document",
 				label: "Dokumen",
 				route: "/dokumen",

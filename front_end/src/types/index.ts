@@ -106,6 +106,7 @@ export interface Registration {
 export interface Pendaftar extends Registration {
 	student: Student
 	status: string
+	documents: Document[]
 }
 export interface RegistrationRequest {
 	school_id: string

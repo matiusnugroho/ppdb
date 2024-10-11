@@ -240,6 +240,23 @@ class PendaftaranController extends Controller
             'total' => $totalPendaftar,
         ]);
     }
+    public function getPendaftarVerifiedByMe()
+    {
+        if (! auth()->user()->can('lihat_pendaftar')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        }
+        $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
+        $verifier = auth()->user()->id;
+        $pendaftar = Registration::with('student', 'verifiedBy')->where('verified_by', $verifier)->latest('created_at')->get();
+        $totalPendaftar = $pendaftar->count();
+
+        return response()->json([
+            'data' => $pendaftar,
+            'total' => $totalPendaftar,
+        ]);
+    }
 
     public function verifikasi(Request $request)
     {
@@ -272,5 +289,25 @@ class PendaftaranController extends Controller
             'message' => 'Data pendaftaran berhasil diverifikasi',
             'data' => $registration,
         ]);
+    }
+
+    public function detail (Registration $registration)
+    {
+        if (! auth()->user()->can('lihat_pendaftar')) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+        
+        if (! $registration) {
+            return response()->json(['message' => 'Data pendaftaran tidak ditemukan'], 404);
+        }
+        
+        if ($registration->verified_by !== auth()->user()->id) {
+            return response()->json(['message' => 'Anda tidak berhak mengakses data pendaftaran ini'], 403);
+        }
+        $registration->load('student','documents');
+        return response()->json([
+            'success' => true,
+            'data' => $registration,
+        ]);        
     }
 }

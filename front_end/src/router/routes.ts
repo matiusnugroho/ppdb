@@ -54,6 +54,33 @@ export default [
 		},
 	},
 	{
+		path: "/pendaftaran/verifikasi",
+		name: "verifikasi_pendaftaran",
+		component: () => import("@/views/VerifikasiView.vue"),
+		meta: {
+			title: "Verfikasi Pendaftaran",
+			requiresAuth: true,
+		},
+	},
+	{
+		path: "/pendaftaran/verifikasi/:id",
+		name: "data_verifikasi_pendaftaran",
+		component: () => import("@/views/DataPendaftaranView.vue"),
+		meta: {
+			title: "Verfikasi Pendaftaran",
+			requiresAuth: true,
+		},
+	},
+	{
+		path: "/pendaftaran/:id_registration",
+		name: "show_pendaftaran",
+		component: () => import("@/views/PendaftaranView.vue"),
+		meta: {
+			title: "Lihat Pendaftaran",
+			requiresAuth: true,
+		},
+	},
+	{
 		path: "/sekolah/daftar",
 		name: "daftar_sekolah",
 		component: () => import("@/views/Authentication/SchoolSignupView.vue"),

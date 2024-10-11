@@ -3,10 +3,10 @@ interface WithId {
 }
 
 export function getDataById<T extends WithId>(documents: T[], id: string): T | undefined {
-    console.log({ documents, id });
-    if (!Array.isArray(documents)) {
-        console.error("Expected documents to be an array, but got:", typeof documents);
-        return undefined; // or throw an error
-    }
-    return documents.find((doc) => doc.id === id);
+	console.log({ documents, id })
+	if (!Array.isArray(documents)) {
+		console.error("Expected documents to be an array, but got:", typeof documents)
+		return undefined // or throw an error
+	}
+	return documents.find((doc) => doc.id === id)
 }
