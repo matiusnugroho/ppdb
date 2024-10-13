@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('registration_period_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('registration_number')->unique();
             $table->string('status')->default('pending');
+            $table->string('kelulusan')->default('tidak lulus');
             $table->foreignId('verified_by')->nullable()->constrained('users')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade')->onUpdate('cascade');

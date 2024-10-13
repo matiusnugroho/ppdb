@@ -106,6 +106,11 @@ class PendaftaranController extends Controller
                 'message' => 'Anda mengaupload ke pendaftaran yang bukan milik anda.',
             ], 403);
         }
+        if ($document->status === 'diverifikasi') {
+            return response()->json([
+                'message' => 'Dokumen ini sudah diverifikasi.',
+            ], 403);
+        }
         $data = $request->validated();
         $documentFile = $request->file('file');
         $documentType = str_replace(['/', '\\'], '_', Str::snake($document->documentType->label));
@@ -312,4 +317,35 @@ class PendaftaranController extends Controller
             'data' => $registration,
         ]);
     }
+    public function verifikasiDokumen(Request $request, Document $document)
+    {
+        if (! auth()->user()->can('verifikasi_dokumen_siswa')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        }
+        $document->status = 'diverifikasi';
+        $document->save();
+        return response()->json([
+            'success' => true,
+            'data' => $document,
+        ]);
+    }
+    public function luluskan(Request $request, Registration $registration)
+    {
+        /* if (! auth()->user()->can('luluskan_siswa')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        } */
+        $data = $request->validate([
+            'kelulusan' => 'required|in:lulus,tidak_lulus',
+        ]);
+        $registration->update($data);
+        $registration->save();
+        return response()->json([
+            'success' => true,
+            'data' => $registration,
+        ]);
+    }   
 }

@@ -26,7 +26,7 @@
 				</tr>
 				<tr>
 					<td class="py-5 px-4 text-center" colspan="3">
-						<p class="inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium bg-warning text-warning">{{ registration.status }}</p>
+						<p class="inline-flex rounded-full py-1 px-3 text-sm font-medium" :class="statusColorMap[registration.status]">{{ registration.status }}</p>
 					</td>
 				</tr>
 			</table>
@@ -36,7 +36,7 @@
 				<thead>
 					<tr class="bg-gray-2 text-left dark:bg-meta-4">
 						<th class="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">Dokumen</th>
-						<th class="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Status</th>
+						<th class="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white text-center">Status</th>
 						<th class="py-4 px-4 font-medium text-black dark:text-white">Actions</th>
 					</tr>
 				</thead>
@@ -45,8 +45,8 @@
 						<td class="py-5 px-4 pl-9 xl:pl-11">
 							<h5 class="font-medium text-black dark:text-white">{{ item.document_type!.label }}</h5>
 						</td>
-						<td>
-							<p class="inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium bg-warning text-warning">{{ item.status }}</p>
+						<td class="text-center">
+							<p class="inline-flex rounded-full py-1 px-3 text-sm font-medium" :class="statusColorMap[item.status]">{{ item.status }}</p>
 						</td>
 						<td class="py-5 px-4">
 							<div class="flex items-center space-x-3.5">
@@ -59,7 +59,7 @@
 									</span>
 								</div>
 								<div class="tooltip" data-tip="Upload">
-									<button class="flex items-center hover:text-primary" @click="openUploadModal(item.id)">
+									<button :disabled="item.status === 'diverifikasi'" class="flex items-center hover:text-primary" @click="openUploadModal(item.id)">
 										<HeroIcon name="upload" size="18" class="h-5 w-5" />
 									</button>
 								</div>
@@ -95,6 +95,7 @@ import { field_error_html } from "@/helpers/fieldErrorHtml"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { useMessagesStore } from "@/stores/messages"
 import AlertSuccess from "../Alerts/AlertSuccess.vue"
+import statusColorMap from "@/config/statusColorMap"
 const { fetchDocumentType, loadingDocumentType, documentTypeList } = useDocumentType()
 const messagesStore = useMessagesStore()
 const uploadModal = ref<null | HTMLDialogElement>(null)
@@ -137,7 +138,8 @@ const handleUploadDokumen = async () => {
 		file: selectedFile,
 	}
 	const response = await uploadDokumen(data)
-	if (response) {
+	console.log({response})
+	if (response.success) {
 		let currentData = getDocumentById(documentTypeList.value, document_id.value!)
 		let theData = response.data
 		if (currentData) {
@@ -149,6 +151,13 @@ const handleUploadDokumen = async () => {
 		showToast({
 			message: "Dokumen berhasil diupload",
 			type: "success",
+		})
+	}
+	else {
+		closeUploadModal()
+		showToast({
+			message: "Dokumen gagal diupload, " + response.message,
+			type: "error",
 		})
 	}
 }

@@ -97,6 +97,7 @@ export interface Registration {
 	school_id: string
 	jenjang: string
 	student_id: string
+	kelulusan: string
 	registration_period_id: string
 	registration_number: string
 	verified_by?: User | null

@@ -4,13 +4,20 @@ import BreadcrumbDefault from "@/components/Breadcrumbs/BreadcrumbDefault.vue"
 import DefaultLayout from "@/layouts/DefaultLayout.vue"
 import { usePendaftaran } from "@/composable/usePendaftaran"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
+import { getDataById } from "@/helpers/getDataById"
 
 const pageTitle = ref("Verifikasi")
-const { dataPendaftar, loadingVerifikasi, totalPendaftar, getVerifiedByMe } = usePendaftaran()
+const { dataPendaftar, loadingVerifikasi, totalPendaftar, getVerifiedByMe, luluskan } = usePendaftaran()
 const verifikasi = (id: string) => {
 	console.log(`Verifikasi ID : ${id}`)
 }
-
+function handleKelulusanChange(event: Event, id: string){
+	const target = event.target as HTMLInputElement
+  	const isChecked = target.checked
+	const kelulusan = isChecked ? 'lulus' : 'tidak lulus'
+	let data = getDataById(dataPendaftar.value!, id)
+	luluskan(data?.id!, kelulusan)
+}
 onMounted(() => {
 	getVerifiedByMe()
 })
@@ -32,6 +39,7 @@ onMounted(() => {
 								<th class="text-left">Name</th>
 								<th class="text-center">NISN</th>
 								<th class="text-center">Status</th>
+								<th>Kelulusan</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -84,6 +92,10 @@ onMounted(() => {
 										<div v-if="pendaftar?.status === 'diverifikasi'" class="badge badge-warning">
 											{{ pendaftar.verified_by?.username }}
 										</div>
+									</td>
+									<td class="text-center">
+										<input type="checkbox" class="toggle toggle-success" :checked="pendaftar?.kelulusan==='lulus'"
+										@change="(event) => handleKelulusanChange(event, pendaftar.id)" />
 									</td>
 									<td class="py-5 px-4">
 										<div class="flex items-center space-x-3.5">

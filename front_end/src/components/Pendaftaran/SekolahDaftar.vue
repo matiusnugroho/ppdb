@@ -118,7 +118,6 @@ const verifikasi = (id: string) => {
 }
 const verifikasiConfirm = async () => {
 	const response = await verifikasiPendaftaran(idPendaftaran.value)
-	console.log(response)
 	if (response.success) {
 		verifikasiModal.value?.close()
 		let data = getDataById(dataPendaftar.value!, idPendaftaran.value)
