@@ -240,6 +240,7 @@ class PendaftaranController extends Controller
             'total' => $totalPendaftar,
         ]);
     }
+
     public function getPendaftarVerifiedByMe()
     {
         if (! auth()->user()->can('lihat_pendaftar')) {
@@ -291,23 +292,24 @@ class PendaftaranController extends Controller
         ]);
     }
 
-    public function detail (Registration $registration)
+    public function detail(Registration $registration)
     {
         if (! auth()->user()->can('lihat_pendaftar')) {
             return response()->json(['message' => 'Unauthorized'], 403);
         }
-        
+
         if (! $registration) {
             return response()->json(['message' => 'Data pendaftaran tidak ditemukan'], 404);
         }
-        
+
         if ($registration->verified_by !== auth()->user()->id) {
             return response()->json(['message' => 'Anda tidak berhak mengakses data pendaftaran ini'], 403);
         }
-        $registration->load('student','documents');
+        $registration->load('student', 'documents.documentType', 'verifiedBy');
+
         return response()->json([
             'success' => true,
             'data' => $registration,
-        ]);        
+        ]);
     }
 }

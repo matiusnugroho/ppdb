@@ -17,7 +17,9 @@ class Student extends Model
         'id' => 'string',
     ];
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
+
+    public $incrementing = false;
 
     public function getThumbnailUrlAttribute()
     {

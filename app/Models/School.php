@@ -18,6 +18,8 @@ class School extends Model
 
     protected $guarded = ['id'];
 
+    public $incrementing = false;
+
     protected static function boot()
     {
         parent::boot();

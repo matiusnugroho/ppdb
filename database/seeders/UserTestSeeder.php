@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\DocumentType;
 use App\Models\Kecamatan;
+use App\Models\RegistrationPeriod;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\User;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -42,25 +45,38 @@ class UserTestSeeder extends Seeder
         $roleSekolah = Role::firstOrCreate(['name' => 'sekolah']);
         $roleSiswa = Role::firstOrCreate(['name' => 'siswa']);
 
+        $currentYear = Carbon::now()->year;
+        $tahunAjaran = $currentYear.'/'.($currentYear + 1);
+
+        $registrationPeriod = RegistrationPeriod::firstOrCreate([
+            'tahun_ajaran' => $tahunAjaran,
+            'start_date' => Carbon::now()->toDateString(),
+            'end_date' => Carbon::now()->addDays(30)->toDateString(),
+            'is_open' => true,
+        ]);
+        $this->command->info('Registration Period created: '.$registrationPeriod->id);
+
         // Create a user with role 'sekolah'
-        $userSekolah = User::create([
+        /* $userSekolah = User::create([
             'username' => $faker->userName,
             'email' => $faker->unique()->safeEmail,
             'password' => Hash::make('password'), // or use a secure password
         ]);
-        $userSekolah->assignRole($roleSekolah);
+        $userSekolah->assignRole($roleSekolah); */
 
-        // Create a user with role 'siswa'
+        // Create a user with role 'siswa' for testing first data
         $userSiswa = User::create([
-            'username' => /* $faker->userName */ 'saritri',
+            'username' => 'saritri', // You can replace this with static data if needed
             'email' => $faker->unique()->safeEmail,
-            'password' => Hash::make('password'), // or use a secure password
+            'password' => Hash::make('password'), // You can replace 'password' with a secure password if desired
         ]);
+
+        // Assign the 'siswa' role to the user
         $userSiswa->assignRole($roleSiswa);
         Student::create([
-            'user_id' => $userSiswa->id, // Set the user_id here
+            'user_id' => $userSiswa->id,
             'nisn' => $faker->unique()->numerify('######'),
-            'nama' => /* $faker->name */ 'Sari Tri Wulandari',
+            'nama' => 'Saritri Putri', // Replace this with static data if needed
             'tempat_lahir' => $faker->city,
             'tanggal_lahir' => $faker->date,
             'nama_bapak' => $faker->name('male'),
@@ -69,9 +85,36 @@ class UserTestSeeder extends Seeder
             'no_kk' => $faker->unique()->numerify('################'),
             'no_hp_ortu' => $faker->phoneNumber,
         ]);
+        $dataSiswa = [];
+        //populate 10 data siswa untuk didaftarkan testing only
+        foreach (range(1, 10) as $index) {
+            $userSiswa = User::create([
+                'username' => $faker->userName, // You can replace this with static data if needed
+                'email' => $faker->unique()->safeEmail,
+                'password' => Hash::make('password'), // You can replace 'password' with a secure password if desired
+            ]);
 
+            // Assign the 'siswa' role to the user
+            $userSiswa->assignRole($roleSiswa);
+
+            $student = Student::create([
+                'user_id' => $userSiswa->id,
+                'nisn' => $faker->unique()->numerify('######'),
+                'nama' => $faker->name, // Replace this with static data if needed
+                'tempat_lahir' => $faker->city,
+                'tanggal_lahir' => $faker->date,
+                'nama_bapak' => $faker->name('male'),
+                'nama_ibu' => $faker->name('female'),
+                'nik' => $faker->unique()->numerify('################'),
+                'no_kk' => $faker->unique()->numerify('################'),
+                'no_hp_ortu' => $faker->phoneNumber,
+            ]);
+
+            $dataSiswa[] = $student;
+            $this->command->info('Student created: '.$dataSiswa[$index - 1]->id);
+        }
         $kecamatans = Kecamatan::all(); // Get all Kecamatan
-
+        $dataSekolah = [];
         foreach ($kecamatans as $kecamatan) {
             for ($i = 0; $i < 10; $i++) {
                 $schoolType = $faker->randomElement($schoolTypes); // Randomly select SMAN or SMP
@@ -85,7 +128,7 @@ class UserTestSeeder extends Seeder
                 ]);
                 $userSekolah->assignRole($roleSekolah);
 
-                School::create([
+                $dataSekolah[] = School::create([
                     'nama_sekolah' => $schoolName,
                     'jenjang' => $schoolType['jenjang'],
                     'nss' => $faker->unique()->numerify('######'),
@@ -97,8 +140,30 @@ class UserTestSeeder extends Seeder
                     'kecamatan_id' => $kecamatan->id, // Assign the current Kecamatan
                     'user_id' => $userSekolah->id, // Assuming $userSekolah is already defined
                 ]);
+
             }
         }
+        $sekolahPercontohan = $dataSekolah[0];
+        $documentTypes = DocumentType::all();
+        //daftarkan siswa ke sekolah percontohan
+        foreach ($dataSiswa as $siswa) {
+
+            $data = [
+                'registration_period_id' => $registrationPeriod->id,
+                'school_id' => $sekolahPercontohan->id,
+                'jenjang' => $sekolahPercontohan->jenjang,
+                'registration_number' => generateRegistrationNumber($sekolahPercontohan->jenjang),
+                'status' => 'pending',
+                //'student_id' => $siswa->id, // Make sure to include this
+            ];
+            try {
+                $siswa->registration()->create($data);
+                $this->command->info('Registration created for student: ' . $siswa->nama.'username : '.$siswa->user->username);
+            } catch (\Exception $e) {
+                $this->command->error('Failed to create registration for student: ' . $siswa->nama . '. Error: ' . $e->getMessage());
+            }
+        }
+        $this->command->info('Sekolah Percontohan adalah : '.$sekolahPercontohan->nama_sekolah.' username : '.$sekolahPercontohan->user->username);
 
     }
 }
