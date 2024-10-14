@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             KecamatanSeeder::class,
             PermissionSeeder::class,
             AdminUserSeeder::class,
-            UserTestSeeder::class,
             DocumentTypeSeeder::class,
+            UserTestSeeder::class,
+            
         ]);
     }
 }

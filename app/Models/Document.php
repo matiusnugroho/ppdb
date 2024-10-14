@@ -47,9 +47,10 @@ class Document extends Model
 
     public function getUrlPathAttribute(): string
     {
-        if(empty($this->path)) {
+        if (empty($this->path)) {
             return '';
         }
+
         return asset(Storage::url($this->path));
     }
 }

@@ -317,6 +317,7 @@ class PendaftaranController extends Controller
             'data' => $registration,
         ]);
     }
+
     public function verifikasiDokumen(Request $request, Document $document)
     {
         if (! auth()->user()->can('verifikasi_dokumen_siswa')) {
@@ -326,11 +327,13 @@ class PendaftaranController extends Controller
         }
         $document->status = 'diverifikasi';
         $document->save();
+
         return response()->json([
             'success' => true,
             'data' => $document,
         ]);
     }
+
     public function luluskan(Request $request, Registration $registration)
     {
         /* if (! auth()->user()->can('luluskan_siswa')) {
@@ -343,9 +346,10 @@ class PendaftaranController extends Controller
         ]);
         $registration->update($data);
         $registration->save();
+
         return response()->json([
             'success' => true,
             'data' => $registration,
         ]);
-    }   
+    }
 }
