@@ -36,14 +36,16 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request)
     {
         $validatedData = $request->validated();
-        //dd($validatedData);
+        $userData = array_intersect_key($validatedData, array_flip(['email', 'username', 'password']));
+        $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak', 'nama_ibu', 'nik','nisn','no_kk', 'no_hp_ortu']));
+        //dd($validatedData, $userData, $studentData);
         $user = User::create([
             'username' => $validatedData['username'] ?? null, // Allow name to be null
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
         $user->assignRole('siswa');
-        $student = $user->student()->create($validatedData);
+        $student = $user->student()->create($studentData);
 
         return response()->json([
             'success' => true,
@@ -62,7 +64,7 @@ class StudentController extends Controller
         //dd($validatedData);
         if ($user->can('edit_my_profile_siswa')) {
             $userData = array_intersect_key($validatedData, array_flip(['email', 'username', 'password']));
-            $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak_ibu', 'nik', 'no_kk', 'no_hp_ortu']));
+            $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak', 'nama_ibu', 'nik', 'nisn', 'no_kk', 'no_hp_ortu']));
 
             // Hash the password if it's present in the validated data
             if (isset($userData['password'])) {

@@ -31,7 +31,7 @@ class StoreSchoolRequest extends FormRequest
             'nama_kepsek' => 'required|string|max:255',
             'kecamatan_id' => 'required|numeric|max:255',
             'password' => 'required|string|min:8',
-            'username' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
         ];
     }
 }

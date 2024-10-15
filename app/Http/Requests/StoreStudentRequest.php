@@ -26,7 +26,7 @@ class StoreStudentRequest extends StudentRequest
         return [
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'username' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
             'nama' => 'required|string|max:255|regex:/^[a-zA-Z\s,\'-]+$/',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
