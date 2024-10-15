@@ -3,7 +3,6 @@ import DefaultAuthCard from "@/components/Auths/DefaultAuthCard.vue"
 import InputGroup from "@/components/Forms/InputGroup.vue"
 import PasswordInput from "@/components/Forms/PasswordInput.vue"
 import PlainLayout from "@/layouts/PlainLayout.vue"
-import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher.vue"
 import { FwbAlert } from "flowbite-vue"
 import { onMounted, ref } from "vue"
 import { useAuth } from "@/composable/authComposable"
@@ -70,9 +69,6 @@ onMounted(async () => {
 
 <template>
 	<PlainLayout>
-		<div class="flex justify-center">
-			<DarkModeSwitcher />
-		</div>
 		<DefaultAuthCard subtitle="PPDB Online Kuantan Singingi v1" title="Login">
 			<div v-if="loginGagal" class="mb-2 mt-4 transform transition-all duration-500 ease-out" :class="{ 'opacity-0 translate-y-5': !loginGagal, 'opacity-100 translate-y-0': loginGagal }">
 				<fwb-alert icon type="danger">{{ loginGagalMessage }}</fwb-alert>
