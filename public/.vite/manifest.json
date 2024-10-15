@@ -1,10 +1,34 @@
 {
+  "_AlertSuccess.js": {
+    "file": "js/AlertSuccess.js",
+    "name": "AlertSuccess",
+    "imports": [
+      "index.html",
+      "__plugin-vue_export-helper.js"
+    ]
+  },
+  "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js": {
+    "file": "js/BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
+    "name": "BreadcrumbDefault.vue_vue_type_script_setup_true_lang",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.js": {
+    "file": "js/ConfirmationComponent.vue_vue_type_script_setup_true_lang.js",
+    "name": "ConfirmationComponent.vue_vue_type_script_setup_true_lang",
+    "imports": [
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "index.html"
+    ]
+  },
   "_DefaultLayout.vue_vue_type_script_setup_true_lang.js": {
     "file": "js/DefaultLayout.vue_vue_type_script_setup_true_lang.js",
     "name": "DefaultLayout.vue_vue_type_script_setup_true_lang",
     "imports": [
-      "_authComposable.js",
       "index.html",
+      "_authComposable.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js"
     ],
     "assets": [
@@ -27,12 +51,35 @@
       "src/assets/icons/circle-check.svg?raw",
       "src/assets/icons/circle-exclamation.svg?raw",
       "src/assets/icons/close.svg?raw",
+      "src/assets/icons/document-check.svg?raw",
       "src/assets/icons/document.svg?raw",
       "src/assets/icons/home.svg?raw",
       "src/assets/icons/lock-closed.svg?raw",
       "src/assets/icons/lock-open.svg?raw",
       "src/assets/icons/triangle-exclamation.svg?raw",
-      "src/assets/icons/user-circle.svg?raw"
+      "src/assets/icons/upload.svg?raw",
+      "src/assets/icons/user-circle.svg?raw",
+      "src/assets/icons/view-finder.svg?raw"
+    ]
+  },
+  "_PlainLayout.js": {
+    "file": "js/PlainLayout.js",
+    "name": "PlainLayout",
+    "imports": [
+      "_login-ilustrasi.js",
+      "index.html",
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "assets": [
+      "images/logo-ppdb.png"
+    ]
+  },
+  "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js": {
+    "file": "js/SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+    "name": "SpinnerLoading.vue_vue_type_script_setup_true_lang",
+    "imports": [
+      "index.html"
     ]
   },
   "__plugin-vue_export-helper.js": {
@@ -53,11 +100,11 @@
       "index.html"
     ]
   },
-  "_flowbite-vue.js": {
-    "file": "js/flowbite-vue.js",
-    "name": "flowbite-vue",
+  "_fieldErrorHtml.js": {
+    "file": "js/fieldErrorHtml.js",
+    "name": "fieldErrorHtml",
     "imports": [
-      "index.html"
+      "_formValidationErrors.js"
     ]
   },
   "_formValidationErrors.js": {
@@ -67,24 +114,18 @@
       "index.html"
     ]
   },
+  "_getDataById.js": {
+    "file": "js/getDataById.js",
+    "name": "getDataById",
+    "imports": [
+      "index.html"
+    ]
+  },
   "_login-ilustrasi.js": {
     "file": "js/login-ilustrasi.js",
     "name": "login-ilustrasi",
     "assets": [
       "images/login-ilustrasi.svg"
-    ]
-  },
-  "_messages.js": {
-    "file": "js/messages.js",
-    "name": "messages",
-    "imports": [
-      "_login-ilustrasi.js",
-      "index.html",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
-      "__plugin-vue_export-helper.js"
-    ],
-    "assets": [
-      "images/logo-ppdb.png"
     ]
   },
   "_toast.js": {
@@ -99,6 +140,13 @@
       "css/toast.css"
     ]
   },
+  "_useKecamatan.js": {
+    "file": "js/useKecamatan.js",
+    "name": "useKecamatan",
+    "imports": [
+      "index.html"
+    ]
+  },
   "index.html": {
     "file": "index.js",
     "name": "index",
@@ -110,6 +158,10 @@
       "src/views/BiodataView.vue",
       "src/views/Authentication/SigninView.vue",
       "src/views/Authentication/SignupView.vue",
+      "src/views/PendaftaranView.vue",
+      "src/views/VerifikasiView.vue",
+      "src/views/DataPendaftaranView.vue",
+      "src/views/PendaftaranView.vue",
       "src/views/Authentication/SchoolSignupView.vue",
       "src/views/Errors/Error404View.vue"
     ],
@@ -300,6 +352,12 @@
     "src": "src/assets/icons/close.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/document-check.svg?raw": {
+    "file": "js/document-check.js",
+    "name": "document-check",
+    "src": "src/assets/icons/document-check.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/document.svg?raw": {
     "file": "js/document.js",
     "name": "document",
@@ -330,10 +388,22 @@
     "src": "src/assets/icons/triangle-exclamation.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/upload.svg?raw": {
+    "file": "js/upload.js",
+    "name": "upload",
+    "src": "src/assets/icons/upload.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/user-circle.svg?raw": {
     "file": "js/user-circle.js",
     "name": "user-circle",
     "src": "src/assets/icons/user-circle.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/view-finder.svg?raw": {
+    "file": "js/view-finder.js",
+    "name": "view-finder",
+    "src": "src/assets/icons/view-finder.svg?raw",
     "isDynamicEntry": true
   },
   "src/assets/images/favicon.ico": {
@@ -375,9 +445,10 @@
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_messages.js",
+      "_PlainLayout.js",
       "_formValidationErrors.js",
       "_toast.js",
+      "_useKecamatan.js",
       "_login-ilustrasi.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js"
@@ -390,11 +461,12 @@
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_messages.js",
+      "_PlainLayout.js",
       "__plugin-vue_export-helper.js",
+      "_AlertSuccess.js",
       "_authComposable.js",
-      "_flowbite-vue.js",
       "_toast.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
       "_login-ilustrasi.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js"
     ]
@@ -406,7 +478,7 @@
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_messages.js",
+      "_PlainLayout.js",
       "_formValidationErrors.js",
       "_component.js",
       "_toast.js",
@@ -421,12 +493,14 @@
     "src": "src/views/BiodataView.vue",
     "isDynamicEntry": true,
     "imports": [
+      "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_toast.js",
       "_formValidationErrors.js",
       "_component.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
-      "_flowbite-vue.js",
+      "_fieldErrorHtml.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js",
       "_authComposable.js"
@@ -442,6 +516,24 @@
       "index.html",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "_authComposable.js"
+    ]
+  },
+  "src/views/DataPendaftaranView.vue": {
+    "file": "js/DataPendaftaranView.js",
+    "name": "DataPendaftaranView",
+    "src": "src/views/DataPendaftaranView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
+      "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
+      "index.html",
+      "_getDataById.js",
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.js",
+      "_toast.js",
+      "_authComposable.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "__plugin-vue_export-helper.js"
     ]
   },
   "src/views/Errors/Error404View.vue": {
@@ -463,6 +555,42 @@
     "imports": [
       "__plugin-vue_export-helper.js",
       "index.html"
+    ]
+  },
+  "src/views/PendaftaranView.vue": {
+    "file": "js/PendaftaranView.js",
+    "name": "PendaftaranView",
+    "src": "src/views/PendaftaranView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
+      "_formValidationErrors.js",
+      "index.html",
+      "_useKecamatan.js",
+      "_AlertSuccess.js",
+      "_fieldErrorHtml.js",
+      "_toast.js",
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.js",
+      "__plugin-vue_export-helper.js",
+      "_getDataById.js",
+      "_authComposable.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js"
+    ]
+  },
+  "src/views/VerifikasiView.vue": {
+    "file": "js/VerifikasiView.js",
+    "name": "VerifikasiView",
+    "src": "src/views/VerifikasiView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
+      "_getDataById.js",
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "index.html",
+      "_authComposable.js"
     ]
   }
 }
