@@ -3,7 +3,7 @@
 		<h1 class="text-xl font-bold mb-5 text-center">Pendaftaran</h1>
 		<form @submit.prevent="handleSubmit">
 			<div class="mb-4">
-				<SelectGroup label="Pilih Kecamatan" placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" />
+				<SearchableSelect required label="Pilih Kecamatan" placeholder="Pilih Kecmatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
 				<div v-html="field_error_html('kecamatan_id')"></div>
 			</div>
 			<div class="mb-4">
@@ -11,7 +11,7 @@
 				<div v-html="field_error_html('jenjang')"></div>
 			</div>
 			<div class="mb-4">
-				<SelectGroup label="Pilih Sekolah" placeholder="Pilih Sekolah" :options="sekolahOption" v-model="sekolah_id" />
+				<SearchableSelect label="Pilih Sekolah" placeholder="Pilih Sekolah" :options="sekolahOption" v-model="sekolah_id" :loading="loadingSekolah" />
 				<div v-html="field_error_html('sekolah_id')"></div>
 			</div>
 
@@ -42,9 +42,10 @@ import { field_error_html } from "@/helpers/fieldErrorHtml"
 import router from "@/router"
 import { useMessagesStore } from "@/stores/messages"
 import { showToast } from "@/utils/ui/toast"
+import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
 
-const { fetchKecamatan, kecamatanList } = useKecamatan()
-const { fetchSekolah, sekolahList } = useSekolah()
+const { fetchKecamatan, kecamatanList, loadingKecamatan } = useKecamatan()
+const { fetchSekolah, sekolahList, loadingSekolah } = useSekolah()
 const { loadingRegister, registerSekolah, errorDaftar } = useDaftarKesekolah()
 const formValidationError = useFormValidationErrorsStore()
 const emit = defineEmits(["refreshParent"])
@@ -99,6 +100,7 @@ watch(kecamatan_id, (newKecamatanId) => {
 })
 watch(jenjang, (newJenjang) => {
 	if (newJenjang) {
+		sekolah_id.value = ""
 		fetchSekolah(kecamatan_id.value, newJenjang)
 	}
 })

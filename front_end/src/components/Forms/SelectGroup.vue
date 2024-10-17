@@ -28,6 +28,7 @@ const props = defineProps({
 	required: { type: Boolean, default: false },
 	modelValue: { type: String, default: "" },
 	placeholder: { type: String, default: "Pilih" },
+	loading: { type: Boolean, default: false },
 })
 
 // Define the emit event for v-model binding

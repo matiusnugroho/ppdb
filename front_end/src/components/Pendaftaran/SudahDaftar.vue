@@ -6,29 +6,31 @@
 	<div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
 		<div class="max-w-full overflow-x-auto">
 			<table class="w-full table-auto">
-				<tr>
-					<td class="py-5 px-4">
-						<h4 class="text-xl font-semibold text-black dark:text-white">Nama Sekolah</h4>
-					</td>
-					<td>:</td>
-					<td class="py-5 px-4">
-						<h4 class="text-xl font-semibold text-black dark:text-white">{{ registration.school.nama_sekolah }}</h4>
-					</td>
-				</tr>
-				<tr>
-					<td class="py-5 px-4">
-						<h4 class="text-xl font-semibold text-black dark:text-white">Nomor Pendaftaran</h4>
-					</td>
-					<td>:</td>
-					<td class="py-5 px-4">
-						<h4 class="text-xl font-semibold text-black dark:text-white">{{ registration.registration_number }}</h4>
-					</td>
-				</tr>
-				<tr>
-					<td class="py-5 px-4 text-center" colspan="3">
-						<p class="inline-flex rounded-full py-1 px-3 text-sm font-medium" :class="statusColorMap[registration.status]">{{ registration.status }}</p>
-					</td>
-				</tr>
+				<thead>
+					<tr>
+						<td class="py-5 px-4">
+							<h4 class="text-xl font-semibold text-black dark:text-white">Nama Sekolah</h4>
+						</td>
+						<td>:</td>
+						<td class="py-5 px-4">
+							<h4 class="text-xl font-semibold text-black dark:text-white">{{ registration.school.nama_sekolah }}</h4>
+						</td>
+					</tr>
+					<tr>
+						<td class="py-5 px-4">
+							<h4 class="text-xl font-semibold text-black dark:text-white">Nomor Pendaftaran</h4>
+						</td>
+						<td>:</td>
+						<td class="py-5 px-4">
+							<h4 class="text-xl font-semibold text-black dark:text-white">{{ registration.registration_number }}</h4>
+						</td>
+					</tr>
+					<tr>
+						<td class="py-5 px-4 text-center" colspan="3">
+							<p class="inline-flex rounded-full py-1 px-3 text-sm font-medium" :class="statusColorMap[registration.status]">{{ registration.status }}</p>
+						</td>
+					</tr>
+				</thead>
 			</table>
 		</div>
 		<div class="max-w-full overflow-x-auto">
@@ -138,7 +140,7 @@ const handleUploadDokumen = async () => {
 		file: selectedFile,
 	}
 	const response = await uploadDokumen(data)
-	console.log({response})
+	console.log({ response })
 	if (response.success) {
 		let currentData = getDocumentById(documentTypeList.value, document_id.value!)
 		let theData = response.data
@@ -152,8 +154,7 @@ const handleUploadDokumen = async () => {
 			message: "Dokumen berhasil diupload",
 			type: "success",
 		})
-	}
-	else {
+	} else {
 		closeUploadModal()
 		showToast({
 			message: "Dokumen gagal diupload, " + response.message,

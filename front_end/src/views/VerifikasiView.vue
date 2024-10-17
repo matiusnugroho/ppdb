@@ -11,10 +11,10 @@ const { dataPendaftar, loadingVerifikasi, totalPendaftar, getVerifiedByMe, lulus
 const verifikasi = (id: string) => {
 	console.log(`Verifikasi ID : ${id}`)
 }
-function handleKelulusanChange(event: Event, id: string){
+function handleKelulusanChange(event: Event, id: string) {
 	const target = event.target as HTMLInputElement
-  	const isChecked = target.checked
-	const kelulusan = isChecked ? 'lulus' : 'tidak lulus'
+	const isChecked = target.checked
+	const kelulusan = isChecked ? "lulus" : "tidak lulus"
 	let data = getDataById(dataPendaftar.value!, id)
 	luluskan(data?.id!, kelulusan)
 }
@@ -94,8 +94,11 @@ onMounted(() => {
 										</div>
 									</td>
 									<td class="text-center">
-										<input type="checkbox" class="toggle toggle-success" :checked="pendaftar?.kelulusan==='lulus'"
-										@change="(event) => handleKelulusanChange(event, pendaftar.id)" />
+										<input
+											type="checkbox"
+											class="toggle toggle-success"
+											:checked="pendaftar?.kelulusan === 'lulus'"
+											@change="(event) => handleKelulusanChange(event, pendaftar.id)" />
 									</td>
 									<td class="py-5 px-4">
 										<div class="flex items-center space-x-3.5">

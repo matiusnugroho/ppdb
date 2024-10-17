@@ -69,7 +69,7 @@ export function usePendaftaran() {
 		loadingLuluskan.value = true
 		const url = replacePlaceholder(ENDPOINTS.LULUSKAN, { id })
 		try {
-			const response = await requestor.post(url,{ kelulusan })
+			const response = await requestor.post(url, { kelulusan })
 			return response.data
 		} catch (err) {
 			if (axios.isAxiosError(err) && err.response) {
@@ -137,6 +137,6 @@ export function usePendaftaran() {
 		getVerifiedByMe,
 		getDetailVerifikasi,
 		verifikasiDokumen,
-		luluskan
+		luluskan,
 	}
 }

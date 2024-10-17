@@ -2,7 +2,7 @@
 import DefaultLayout from "@/layouts/DefaultLayout.vue"
 import BreadcrumbDefault from "@/components/Breadcrumbs/BreadcrumbDefault.vue"
 import { useRoute } from "vue-router"
-import { onMounted,ref } from "vue"
+import { onMounted, ref } from "vue"
 import { usePendaftaran } from "@/composable/usePendaftaran"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
 import ConfirmationComponent from "@/components/UI/ConfirmationComponent.vue"
@@ -20,14 +20,13 @@ const verifikasi = (id: string) => {
 	id_dokumen.value = ""
 	id_dokumen.value = id
 	verifikasiModal.value?.show()
-	
 }
 const verifikasiConfirm = async () => {
 	const response = await verifikasiDokumen(id_dokumen.value)
 	if (response.success) {
 		verifikasiModal.value?.close()
 		let data = getDataById(dataDetailVerifikasi.value!.documents, id_dokumen.value)
-		console.log({ data})
+		console.log({ data })
 		if (data) {
 			// Check if data is not null
 			data.status = response.data.status
@@ -161,15 +160,15 @@ onMounted(async () => {
 										</span>
 									</div>
 									<button
-	:disabled="!document.url_path || document.status === 'diverifikasi'"
-	class="px-3 py-1 text-sm font-semibold rounded flex items-center mr-2"
-	@click="verifikasi(document.id)"
-	:class="document.url_path && document.status !== 'diverifikasi' 
-		? 'bg-green-100 text-green-700 hover:bg-green-200' 
-		: 'bg-gray-100 text-gray-400 cursor-not-allowed'">
-	<HeroIcon name="circle-check" size="18" class="h-5 w-5" />
-	<span class="ml-2">Verifikasi</span>
-</button>
+										:disabled="!document.url_path || document.status === 'diverifikasi'"
+										class="px-3 py-1 text-sm font-semibold rounded flex items-center mr-2"
+										@click="verifikasi(document.id)"
+										:class="
+											document.url_path && document.status !== 'diverifikasi' ? 'bg-green-100 text-green-700 hover:bg-green-200' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+										">
+										<HeroIcon name="circle-check" size="18" class="h-5 w-5" />
+										<span class="ml-2">Verifikasi</span>
+									</button>
 									<button
 										:disabled="!document.url_path"
 										class="px-3 py-1 text-sm font-semibold rounded hover:bg-red-200 flex items-center"
@@ -189,13 +188,13 @@ onMounted(async () => {
 			</div>
 		</div>
 		<ConfirmationComponent
-		ref="verifikasiModal"
-		title="Verifikasi pendaftaran"
-		message="Apakah anda yakin ingin verifikasi dokumen ini?"
-		confirmLabel="Ya"
-		cancelLabel="Batal"
-		:loading="loadingVerifikasi"
-		:confirmHandler="verifikasiConfirm"
-		:cancelHandler="verifikasiCancel" />
+			ref="verifikasiModal"
+			title="Verifikasi pendaftaran"
+			message="Apakah anda yakin ingin verifikasi dokumen ini?"
+			confirmLabel="Ya"
+			cancelLabel="Batal"
+			:loading="loadingVerifikasi"
+			:confirmHandler="verifikasiConfirm"
+			:cancelHandler="verifikasiCancel" />
 	</DefaultLayout>
 </template>

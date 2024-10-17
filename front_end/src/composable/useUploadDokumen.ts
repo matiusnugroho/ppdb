@@ -23,7 +23,7 @@ export function useUploadDokumen() {
 				return false
 			}
 		} catch (error: any) {
-			formValidationErrors.errors = error.response?.data?.errors || {file: [error.response.message]}
+			formValidationErrors.errors = error.response?.data?.errors || { file: [error.response.message] }
 			return error.response.data
 		} finally {
 			loadingUploadDokumen.value = false
