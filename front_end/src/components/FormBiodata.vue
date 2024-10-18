@@ -215,17 +215,17 @@ onMounted(async () => {
 
 						<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-3">
 							<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
-							<div class="md:col-span-3">
-								<InputGroup label="Tempat Lahir" v-model="localState.biodata!.tempat_lahir" :error="hasError('tempat_lahir')" name="tempat_lahir" inputmode="text" required />
+							<div class="md:col-span-3 flex flex-col">
+								<InputGroup class="h-full" label="Tempat Lahir" v-model="localState.biodata!.tempat_lahir" :error="hasError('tempat_lahir')" name="tempat_lahir" inputmode="text" required />
 								<div v-html="field_error_html('tempat_lahir')"></div>
 							</div>
 							<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->
-							<div class="md:col-span-2">
+							<div class="md:col-span-2 flex flex-col">
 								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
-								<div class="relative">
+								<div class="relative flex-grow">
 									<flat-pickr
 										v-model="localState.biodata!.tanggal_lahir"
-										class="w-full rounded border border-stroke bg-gray py-1 px-2.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+										class="w-full rounded border border-stroke bg-gray py-1 px-2.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary h-full"
 										:config="tanggalLahirConfig"
 										id="tanggal-lahir">
 									</flat-pickr>

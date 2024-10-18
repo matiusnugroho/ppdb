@@ -9,6 +9,10 @@ import PasswordInput from "@/components/Forms/PasswordInput.vue"
 import { useMessagesStore } from "@/stores/messages"
 import router from "@/router"
 import { showToast } from "@/utils/ui/toast"
+import { hasError } from "@/helpers/hasError"
+import { field_error_html } from "@/helpers/fieldErrorHtml"
+import InputGroup from "@/components/Forms/InputGroup.vue"
+import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
 // Define individual refs for each form field
 const nisn = ref("")
 const nik = ref("")
@@ -59,18 +63,6 @@ const tanggalLahirConfig = ref({
 	allowInput: true,
 	format: "d-m-Y",
 })
-const field_error_html = (field: string) => {
-	const errors = formValidationErrors.errors[field]
-
-	if (errors && errors.length > 0) {
-		return `
-      <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-        ${errors.join(", ")}
-      </span>
-    `
-	}
-	return ""
-}
 
 onMounted(() => {
 	formValidationErrors.clearErrors()
@@ -81,108 +73,55 @@ onMounted(() => {
 	<PlainLayout>
 		<DefaultAuthCard subtitle="Start for free" title="Sign Up to TailAdmin">
 			<form @submit.prevent="handleSubmit">
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nisn">NISN</label>
-					<input
-						v-model="nisn"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="nisn"
-						id="nisn"
-						inputmode="numeric" />
+				<div class="mb-3">
+					<InputGroup label="Nomor Induk Siswa Nasional" v-model="nisn" :error="hasError('nisn')" name="nisn" inputmode="numeric" required />
 					<div v-html="field_error_html('nisn')"></div>
 				</div>
-
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nik">NIK</label>
-					<input
-						v-model="nik"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="nik"
-						id="nik"
-						inputmode="numeric" />
+				<div class="mb-3">
+					<InputGroup label="Nomor Induk Kependudukan" v-model="nik" :error="hasError('nik')" name="nik" inputmode="numeric" required />
 					<div v-html="field_error_html('nik')"></div>
 				</div>
-
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="no_kk">No. Kartu Keluarga</label>
-					<input
-						v-model="no_kk"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="no_kk"
-						id="no_kk"
-						inputmode="numeric" />
+				<div class="mb-3">
+					<InputGroup label="Nomor Kartu Keluarga" v-model="no_kk" :error="hasError('no_kk')" name="no_kk" inputmode="numeric" required />
 					<div v-html="field_error_html('no_kk')"></div>
 				</div>
-
 				<!-- Full Name Section -->
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="fullName">Nama</label>
-					<input
-						v-model="nama"
-						class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="fullName"
-						id="fullName" />
+				<div class="mb-3">
+					<InputGroup label="Nama" v-model="nama" :error="hasError('nama')" name="nama" inputmode="text" required />
 					<div v-html="field_error_html('nama')"></div>
 				</div>
 
 				<!-- Email Address Section -->
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="emailAddress">Email Address</label>
-					<input
-						v-model="email"
-						class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="email"
-						name="emailAddress"
-						id="emailAddress"
-						inputmode="email" />
+				<div class="mb-3">
+					<InputGroup label="Email" v-model="email" :error="hasError('email')" name="email" type="email" inputmode="email" required />
 					<div v-html="field_error_html('email')"></div>
 				</div>
 
 				<!-- Username Section -->
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Username</label>
-					<input
-						v-model="username"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="Username"
-						id="Username"
-						placeholder="devidjhon24" />
+				<div class="mb-3">
+					<InputGroup label="Username" v-model="username" :error="hasError('username')" name="username" inputmode="text" required />
 					<div v-html="field_error_html('username')"></div>
 				</div>
-
 				<!-- Password Section -->
-				<div class="mb-5.5">
-					<PasswordInput label="Password" v-model="password" />
+				<div class="mb-3">
+					<PasswordInput label="Password" name="password" v-model="password" />
 					<div v-html="field_error_html('password')"></div>
 				</div>
 
-				<!-- Tempat Lahir Section -->
-				<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-5.5">
+				<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-3">
 					<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
-					<div class="md:col-span-3">
-						<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tempat_lahir"> Tempat Lahir </label>
-						<input
-							v-model="tempat_lahir"
-							class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-							type="text"
-							name="tempat_lahir"
-							id="tempat_lahir"
-							placeholder="Tempat lahir anda" />
+					<div class="md:col-span-3 flex flex-col">
+						<InputGroup label="Tempat Lahir" v-model="tempat_lahir" :error="hasError('tempat_lahir')" name="tempat_lahir" inputmode="text" required class="h-full" />
 						<div v-html="field_error_html('tempat_lahir')"></div>
 					</div>
-
 					<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->
-					<div class="md:col-span-2">
+					<div class="md:col-span-2 flex flex-col">
 						<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
-						<div class="relative">
+						<div class="relative flex-grow">
+							<!-- Ensure it uses available height -->
 							<flat-pickr
 								v-model="tanggal_lahir"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+								class="w-full rounded border border-stroke bg-gray py-1 px-2.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary h-full"
 								:config="tanggalLahirConfig"
 								id="tanggal-lahir">
 							</flat-pickr>
@@ -194,45 +133,29 @@ onMounted(() => {
 					</div>
 				</div>
 
-				<!-- Nama Bapak Section -->
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nama_bapak">Nama Bapak</label>
-					<input
-						v-model="nama_bapak"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="nama_bapak"
-						id="nama_bapak" />
+				<div class="mb-3">
+					<InputGroup label="Nama Ayah" v-model="nama_bapak" :error="hasError('nama_bapak')" name="nama_bapak" inputmode="text" required />
 					<div v-html="field_error_html('nama_bapak')"></div>
 				</div>
-
-				<!-- Nama Ibu Section -->
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nama_ibu">Nama Ibu</label>
-					<input
-						v-model="nama_ibu"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="nama_ibu"
-						id="nama_ibu" />
+				<div class="mb-3">
+					<InputGroup label="Nama Ibu" v-model="nama_ibu" :error="hasError('nama_ibu')" name="nama_ibu" inputmode="text" required />
 					<div v-html="field_error_html('nama_ibu')"></div>
 				</div>
-
-				<!-- No. Hp Orang Tua Section -->
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="no_hp_ortu">No. Hp Orang Tua</label>
-					<input
-						v-model="no_hp_ortu"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="no_hp_ortu"
-						id="no_hp_ortu"
-						inputmode="numeric" />
+				<div class="mb-3">
+					<InputGroup label="No. HP Orang Tua" v-model="no_hp_ortu" :error="hasError('no_hp_ortu')" name="no_hp_ortu" inputmode="text" required />
 					<div v-html="field_error_html('no_hp_ortu')"></div>
 				</div>
-
 				<div class="mb-5.5">
-					<button :disabled="loadingRegister" class="w-full rounded bg-primary p-3 text-white">Submit</button>
+					<button :disabled="loadingRegister" class="w-full flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90">
+						<span class="flex items-center gap-2">
+							<SpinnerLoading
+								:loading="loadingRegister"
+								size="xs"
+								class="transition-transform duration-300 ease-in-out gap-2"
+								:class="loadingRegister ? 'translate-x-[-10px]' : 'translate-x-0'" />
+							Daftar
+						</span>
+					</button>
 				</div>
 			</form>
 		</DefaultAuthCard>
