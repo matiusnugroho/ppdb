@@ -4,6 +4,8 @@ import { ref } from "vue"
 import { useAuthStore } from "@/stores/auth"
 import { useAuth } from "@/composable/authComposable"
 
+import nopp from "@/assets/images/nopp.png"
+
 const target = ref(null)
 const dropdownOpen = ref(false)
 const authStore = useAuthStore()
@@ -31,7 +33,7 @@ onClickOutside(target, () => {
 			</span>
 
 			<span class="h-12 w-12 rounded-full overflow-hidden">
-				<img :src="authStore.biodata?.thumbnail_url" alt="User" class="w-full h-full object-cover" />
+				<img :src="authStore.biodata?.thumbnail_url || nopp" alt="User" class="w-full h-full object-cover" />
 			</span>
 
 			<svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
