@@ -23,6 +23,8 @@ class UpdateStudentRequest extends StudentRequest
     {
         $studentId = auth()->user()->student->id;
         $userId = auth()->user()->id;
+        $user = auth()->user();
+        //dd($user->id, $user->username);
 
         return [
             'email' => [
@@ -37,7 +39,7 @@ class UpdateStudentRequest extends StudentRequest
                 'sometimes',
                 'string',
                 'max:255',
-                Rule::unique('users', 'username')->ignore($userId),
+                Rule::unique('users')->ignore($userId),
             ],
             'nisn' => 'sometimes|required|numeric',
             'nama' => 'sometimes|required|string|max:255|regex:/^[a-zA-Z\s,\'-]+$/',

@@ -8,11 +8,19 @@ export default defineComponent({
 		placeholder: String,
 		customClasses: String,
 		name: String,
+		inputmode: {
+			type: String as () => "text" | "email" | "search" | "tel" | "url" | "none" | "numeric" | "decimal",
+			default: "text",
+		},
 		required: {
 			type: Boolean,
 			default: false,
 		},
 		modelValue: String,
+		error: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: ["update:modelValue"],
 	methods: {
@@ -25,7 +33,7 @@ export default defineComponent({
 
 <template>
 	<div :class="customClasses">
-		<label class="mb-2.5 block text-black dark:text-white">
+		<label :for="name" class="mb-2.5 block text-black dark:text-white">
 			{{ label }}
 			<span v-if="required" class="text-meta-1">*</span>
 		</label>
@@ -34,8 +42,12 @@ export default defineComponent({
 			:placeholder="placeholder"
 			:value="modelValue"
 			:name="name"
+			:required="required"
+			:id="name"
 			:autocomplete="name"
+			:inputmode="inputmode"
 			@input="updateValue($event.target as HTMLInputElement)"
-			class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-2 px-2 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+			class="w-full rounded border-[1.5px] text-black border-stroke bg-gray py-1 px-2 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+			:class="error ? 'border-red-500 dark:border-red-500 bg-red-200 focus:border-red-500 focus-visible:outline-none' : ''" />
 	</div>
 </template>

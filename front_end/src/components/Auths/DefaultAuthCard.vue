@@ -15,7 +15,7 @@ const props = defineProps(["subtitle", "title", "customClasses"])
 								<img class="dark:hidden max-w-[50px] max-h-[50px]" src="@/assets/images/logo/logo-ppdb.png" alt="Logo" />
 							</router-link>
 
-							<span class=" hidden sm:mt-15 md:inline-block">
+							<span class="hidden sm:mt-15 md:inline-block">
 								<img src="@/assets/images/illustration/login-ilustrasi.svg" alt="illustration" />
 							</span>
 						</div>

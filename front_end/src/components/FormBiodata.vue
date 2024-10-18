@@ -13,6 +13,8 @@ import { useSmoothScrollToTop } from "@/composable/useSmoothScrollToTop"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
 import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
+import { hasError } from "@/helpers/hasError"
+import InputGroup from "./Forms/InputGroup.vue"
 //import { formatDateToStandar } from "@/utils/formatDateToStandar"
 
 const authstore = useAuthStore()
@@ -181,98 +183,49 @@ onMounted(async () => {
 				</div>
 				<div class="p-7" v-if="localState.biodata">
 					<form @submit.prevent="handleSubmit">
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nisn">NISN</label>
-							<input
-								v-model="localState.biodata!.nisn"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="nisn"
-								id="nisn"
-								inputmode="numeric" />
+						<div class="mb-3">
+							<InputGroup label="Nomor Induk Siswa Nasional" v-model="localState.biodata!.nisn" :error="hasError('nisn')" name="nisn" inputmode="numeric" required />
 							<div v-html="field_error_html('nisn')"></div>
 						</div>
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nik">NIK</label>
-							<input
-								v-model="localState.biodata!.nik"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="nik"
-								id="nik"
-								inputmode="numeric" />
+						<div class="mb-3">
+							<InputGroup label="Nomor Induk Kependudukan" v-model="localState.biodata!.nik" :error="hasError('nik')" name="nik" inputmode="numeric" required />
 							<div v-html="field_error_html('nik')"></div>
 						</div>
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nik">No. Kartu Keluarga</label>
-							<input
-								v-model="localState.biodata!.no_kk"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="no_kk"
-								id="no_kk"
-								inputmode="numeric" />
+						<div class="mb-3">
+							<InputGroup label="Nomor Kartu Keluarga" v-model="localState.biodata!.no_kk" :error="hasError('no_kk')" name="no_kk" inputmode="numeric" required />
 							<div v-html="field_error_html('no_kk')"></div>
 						</div>
 						<!-- Full Name Section -->
 						<div class="mb-3">
-							<label class="mb-1 block text-sm font-medium text-black dark:text-white" for="fullName">Nama</label>
-							<input
-								v-model="localState.biodata!.nama"
-								class="w-full rounded border border-stroke bg-gray py-1 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="fullName"
-								id="fullName" />
+							<InputGroup label="Nama" v-model="localState.biodata!.nama" :error="hasError('nama')" name="nama" inputmode="text" required />
 							<div v-html="field_error_html('nama')"></div>
 						</div>
 
 						<!-- Email Address Section -->
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="emailAddress">Email Address</label>
-							<input
-								v-model="localState.user!.email"
-								class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="email"
-								name="emailAddress"
-								id="emailAddress"
-								inputmode="email" />
+						<div class="mb-3">
+							<InputGroup label="Email" v-model="localState.user!.email" :error="hasError('email')" name="email" type="email" inputmode="email" required />
 							<div v-html="field_error_html('email')"></div>
 						</div>
 
 						<!-- Username Section -->
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Username</label>
-							<input
-								v-model="localState.user!.username"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="Username"
-								id="Username"
-								placeholder="devidjhon24" />
+						<div class="mb-3">
+							<InputGroup label="Username" v-model="localState.user!.username" :error="hasError('username')" name="username" inputmode="text" required />
 							<div v-html="field_error_html('username')"></div>
 						</div>
 
-						<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-5.5">
+						<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-3">
 							<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
 							<div class="md:col-span-3">
-								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tempat_lahir"> Tempat Lahir </label>
-								<input
-									v-model="localState.biodata!.tempat_lahir"
-									class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-									type="text"
-									name="tempat_lahir"
-									id="tempat_lahir"
-									placeholder="Tempat lahir anda" />
+								<InputGroup label="Tempat Lahir" v-model="localState.biodata!.tempat_lahir" :error="hasError('tempat_lahir')" name="tempat_lahir" inputmode="text" required />
 								<div v-html="field_error_html('tempat_lahir')"></div>
 							</div>
-
 							<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->
 							<div class="md:col-span-2">
 								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
 								<div class="relative">
 									<flat-pickr
 										v-model="localState.biodata!.tanggal_lahir"
-										class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+										class="w-full rounded border border-stroke bg-gray py-1 px-2.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
 										:config="tanggalLahirConfig"
 										id="tanggal-lahir">
 									</flat-pickr>
@@ -284,34 +237,16 @@ onMounted(async () => {
 							</div>
 						</div>
 
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Nama Bapak</label>
-							<input
-								v-model="localState.biodata!.nama_bapak"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="nama_bapak"
-								id="nama_bapak" />
+						<div class="mb-3">
+							<InputGroup label="Nama Ayah" v-model="localState.biodata!.nama_bapak" :error="hasError('nama_bapak')" name="nama_bapak" inputmode="text" required />
 							<div v-html="field_error_html('nama_bapak')"></div>
 						</div>
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Nama Ibu</label>
-							<input
-								v-model="localState.biodata!.nama_ibu"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="nama_ibu"
-								id="nama_ibu" />
+						<div class="mb-3">
+							<InputGroup label="Nama Ibu" v-model="localState.biodata!.nama_ibu" :error="hasError('nama_ibu')" name="nama_ibu" inputmode="text" required />
 							<div v-html="field_error_html('nama_ibu')"></div>
 						</div>
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">No. Hp Orang Tua</label>
-							<input
-								v-model="localState.biodata!.no_hp_ortu"
-								class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-								type="text"
-								name="no_hp_ortu"
-								id="no_hp_ortu" />
+						<div class="mb-3">
+							<InputGroup label="No. HP Orang Tua" v-model="localState.biodata!.no_hp_ortu" :error="hasError('no_hp_ortu')" name="no_hp_ortu" inputmode="text" required />
 							<div v-html="field_error_html('no_hp_ortu')"></div>
 						</div>
 
@@ -325,7 +260,11 @@ onMounted(async () => {
 							</button>
 							<button class="flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90" type="submit" :disabled="loadingUpdateProfile">
 								<span class="flex items-center gap-2">
-									<SpinnerLoading :loading="loadingUpdateProfile" size="xs" />
+									<SpinnerLoading
+										:loading="loadingUpdateProfile"
+										size="xs"
+										class="transition-transform duration-300 ease-in-out"
+										:class="loadingUpdateProfile ? 'translate-x-[-10px]' : 'translate-x-0'" />
 									Simpan
 								</span>
 							</button>
@@ -350,7 +289,7 @@ onMounted(async () => {
 								'border-green-500': isDragging,
 								'border-primary': !isDragging,
 							}"
-							class="relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed bg-gray py-4 px-4 dark:bg-meta-4 sm:py-7.5"
+							class="relative mb-3 block w-full cursor-pointer appearance-none rounded border-2 border-dashed bg-gray py-4 px-4 dark:bg-meta-4 sm:py-7.5"
 							@dragover.prevent="handleDragOver"
 							@dragleave.prevent="handleDragLeave"
 							@drop.prevent="handleDrop">
@@ -364,7 +303,7 @@ onMounted(async () => {
 								<p class="mt-1.5 text-sm font-medium">JPG atau JPEG</p>
 							</div>
 						</div>
-						<div class="mb-5.5" v-html="field_error_html('foto')"></div>
+						<div class="mb-3" v-html="field_error_html('foto')"></div>
 						<div v-if="displayPreview" class="relative mt-4 flex items-center justify-center mb-3">
 							<!-- Image Preview -->
 							<img :src="imagePreview" alt="Image Preview" class="max-w-full h-auto rounded" />
