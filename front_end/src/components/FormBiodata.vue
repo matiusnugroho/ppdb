@@ -216,7 +216,14 @@ onMounted(async () => {
 						<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-3">
 							<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
 							<div class="md:col-span-3 flex flex-col">
-								<InputGroup class="h-full" label="Tempat Lahir" v-model="localState.biodata!.tempat_lahir" :error="hasError('tempat_lahir')" name="tempat_lahir" inputmode="text" required />
+								<InputGroup
+									class="h-full"
+									label="Tempat Lahir"
+									v-model="localState.biodata!.tempat_lahir"
+									:error="hasError('tempat_lahir')"
+									name="tempat_lahir"
+									inputmode="text"
+									required />
 								<div v-html="field_error_html('tempat_lahir')"></div>
 							</div>
 							<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->

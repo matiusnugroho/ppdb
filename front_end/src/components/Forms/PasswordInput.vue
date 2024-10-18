@@ -12,7 +12,13 @@
 				:value="modelValue"
 				@input="updateValue"
 				:id="name"
-				class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-1 px-2 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+				class="w-full rounded border-[1.5px] text-black border-stroke py-1 px-2 font-normal outline-none transition disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input"
+				:class="[
+					error
+						? 'border-red-500 dark:border-red-500 bg-red-200 focus:border-red-500 focus-visible:outline-none'
+						: 'bg-gray focus:border-primary active:border-primary dark:focus:border-primary',
+				]" />
+
 			<span class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500" @click="togglePasswordVisibility">
 				<HeroIcon :name="showPassword ? 'lock-closed' : 'lock-open'" class="text-gray-500" />
 			</span>
@@ -33,6 +39,10 @@ defineProps({
 	autocomplete: { type: String, default: "" },
 	modelValue: String,
 	name: String,
+	error: {
+		type: Boolean,
+		default: false,
+	},
 })
 
 const emit = defineEmits(["update:modelValue"])

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue"
+import { computed, onMounted, ref } from "vue"
 import DefaultAuthCard from "@/components/Auths/DefaultAuthCard.vue"
 import PlainLayout from "@/layouts/PlainLayout.vue"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
@@ -12,10 +12,16 @@ import { useKecamatan } from "@/composable/useKecamatan"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
 import InputGroup from "@/components/Forms/InputGroup.vue"
 import { hasError } from "@/helpers/hasError"
+import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
+import { buatOption } from "@/helpers/buatOption"
+import type { Option } from "@/types"
+import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
+import TextAreaGroup from "@/components/Forms/TextAreaGroup.vue"
 // Define individual refs for each form field
 const nama_sekolah = ref("")
 const nss = ref("")
 const npsn = ref("")
+const jenjang = ref("")
 const alamat = ref("")
 const no_telp = ref("")
 const email = ref("")
@@ -23,6 +29,11 @@ const username = ref("")
 const nama_kepsek = ref("")
 const kecamatan_id = ref("")
 const password = ref("")
+
+const jenjangOption = [
+	{ label: "SD", value: "sd" },
+	{ label: "SMP", value: "smp" }
+]
 
 const formValidationErrors = useFormValidationErrorsStore()
 const { registerSekolah, loadingRegister } = useRegisterSekolah()
@@ -33,6 +44,7 @@ const handleSubmit = async () => {
 		nama_sekolah: nama_sekolah.value,
 		nss: nss.value,
 		npsn: npsn.value,
+		jenjang: jenjang.value,
 		alamat: alamat.value,
 		no_telp: no_telp.value,
 		email: email.value,
@@ -56,6 +68,9 @@ const handleSubmit = async () => {
 	}
 }
 
+const kecamatanOption = computed<Option[]>(() => {
+	return buatOption(kecamatanList.value, "nama", "id")
+})
 onMounted(() => {
 	fetchKecamatan()
 	formValidationErrors.clearErrors()
@@ -79,55 +94,25 @@ onMounted(() => {
 					<div v-html="field_error_html('nss')"></div>
 				</div>
 				<div class="mb-1">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nama_kepsek">Nama Kepsek</label>
-					<input
-						v-model="nama_kepsek"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="nama_kepsek"
-						id="nama_kepsek" />
+					<SearchableSelect label="Jenjang" v-model="jenjang" :error="hasError('jenjang')" name="jenjang" :options="jenjangOption" />
+					<div v-html="field_error_html('jenjang')"></div>
+				</div>
+				<div class="mb-1">
+					<InputGroup label="Nama Kepala Sekolah" v-model="nama_kepsek" :error="hasError('nama_kepsek')" name="nama_kepsek" inputmode="text" required />
 					<div v-html="field_error_html('nama_kepsek')"></div>
 				</div>
 				<div class="mb-1">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="no_telp">No. Telp</label>
-					<input
-						v-model="no_telp"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="no_telp"
-						id="no_telp"
-						inputmode="numeric" />
+					<InputGroup label="No. Telp" v-model="no_telp" :error="hasError('no_telp')" name="no_telp" inputmode="numeric" required />
 					<div v-html="field_error_html('no_telp')"></div>
 				</div>
 				<div class="mb-1">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="kecamatan_id">Kecamatan</label>
-
-					<select
-						v-model="kecamatan_id"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						name="kecamatan_id"
-						id="kecamatan_id">
-						<!-- Show 'Loading...' option when loading -->
-						<option v-if="loadingKecamatan" disabled value="">Sedang mengambil data kecamatan</option>
-
-						<!-- Default disabled option when not loading -->
-						<option v-else disabled value="">Pilih Kecamatan</option>
-
-						<!-- Populate kecamatan list once data is loaded -->
-						<option v-for="kecamatan in kecamatanList" :key="kecamatan.id" :value="kecamatan.id">{{ kecamatan.nama }}</option>
-					</select>
+					<SearchableSelect :loading="loadingKecamatan" label="Kecamatan" v-model="kecamatan_id" :error="hasError('kecamatan_id')" name="kecamatan_id" :options="kecamatanOption" />
 
 					<div v-html="field_error_html('kecamatan_id')"></div>
 					<p v-if="error" class="text-red-500">{{ error }}</p>
 				</div>
 				<div class="mb-1">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="alamat">Alamat</label>
-					<textarea
-						v-model="alamat"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						name="alamat"
-						id="alamat"
-						rows="4"></textarea>
+					<TextAreaGroup :error="hasError('alamat')" name="alamat" label="Alamat" v-model="alamat" />
 					<div v-html="field_error_html('alamat')"></div>
 				</div>
 
@@ -135,37 +120,33 @@ onMounted(() => {
 
 				<!-- Email Address Section -->
 				<div class="mb-1">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="emailAddress">Email Address</label>
-					<input
-						v-model="email"
-						class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="email"
-						name="emailAddress"
-						id="emailAddress"
-						inputmode="email" />
+					<InputGroup label="Email" v-model="email" :error="hasError('email')" name="email" inputmode="email" required />
 					<div v-html="field_error_html('email')"></div>
 				</div>
 
 				<!-- Username Section -->
 				<div class="mb-1">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Username</label>
-					<input
-						v-model="username"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="Username"
-						id="Username" />
+					<InputGroup label="Username" v-model="username" :error="hasError('username')" name="username" inputmode="text" required />
 					<div v-html="field_error_html('username')"></div>
 				</div>
 
 				<!-- Password Section -->
 				<div class="mb-1">
-					<PasswordInput label="Password" v-model="password" />
+					<PasswordInput name="password" label="Password" v-model="password" :error="hasError('password')" />
 					<div v-html="field_error_html('password')"></div>
 				</div>
 
-				<div class="mb-1">
-					<button :disabled="loadingRegister" class="w-full rounded bg-primary p-3 text-white">Submit</button>
+				<div class="mb-1 mt-3">
+					<button :disabled="loadingRegister" class="w-full rounded bg-primary p-3 text-white flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90">
+						<span class="flex items-center gap-2">
+							<SpinnerLoading
+								:loading="loadingRegister"
+								size="xs"
+								class="transition-transform duration-300 ease-in-out"
+								:class="loadingRegister ? 'translate-x-[-10px]' : 'translate-x-0'" />
+							Daftar
+						</span>
+					</button>
 				</div>
 			</form>
 		</DefaultAuthCard>

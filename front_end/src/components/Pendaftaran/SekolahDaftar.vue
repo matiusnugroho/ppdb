@@ -1,5 +1,6 @@
 <template>
-	<div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+	<NoPendaftar v-if="dataPendaftar?.length === 0" />
+	<div v-else class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
 		<div class="flex justify-between items-center mb-6">
 			<h2 class="text-xl font-semibold text-black dark:text-white">Daftar Siswa Pendaftar</h2>
 			<p v-if="totalPendaftar" class="text-black dark:text-white">Total {{ totalPendaftar }} Calon Siswa</p>
@@ -105,6 +106,7 @@ import ConfirmationComponent from "@/components/UI/ConfirmationComponent.vue"
 import HeroIcon from "../Icon/HeroIcon.vue"
 import { getDataById } from "@/helpers/getDataById"
 import { showToast } from "@/utils/ui/toast"
+import NoPendaftar from "./NoPendaftar.vue"
 
 const { loadingPendaftar, dataPendaftar, fetchPendaftar, loadingVerifikasi, verifikasiPendaftaran, totalPendaftar } = usePendaftaran()
 const verifikasiModal = ref<null | HTMLDialogElement>(null)

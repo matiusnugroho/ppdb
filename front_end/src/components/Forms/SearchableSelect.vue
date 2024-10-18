@@ -6,7 +6,8 @@
 		</label>
 		<div
 			@click="toggleDropdown"
-			class="cursor-pointer inline-flex justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">
+			class="cursor-pointer inline-flex justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+			:class="[error ? 'border-red-500 dark:border-red-500 bg-red-200 focus:border-red-500 focus-visible:outline-none' : 'bg-white']">
 			<span class="flex items-center mr-2">
 				<span v-if="loading" class="mr-2">
 					<SpinnerLoading :loading="loading" size="xs" />
@@ -59,6 +60,10 @@ const props = defineProps({
 	modelValue: { type: String, default: "" },
 	placeholder: { type: String, default: "Pilih" },
 	loading: { type: Boolean, default: false },
+	error: {
+		type: Boolean,
+		default: false,
+	},
 })
 
 // Define emit
