@@ -215,11 +215,11 @@ onMounted(async () => {
 							<div v-html="field_error_html('no_kk')"></div>
 						</div>
 						<!-- Full Name Section -->
-						<div class="mb-5.5">
-							<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="fullName">Nama</label>
+						<div class="mb-3">
+							<label class="mb-1 block text-sm font-medium text-black dark:text-white" for="fullName">Nama</label>
 							<input
 								v-model="localState.biodata!.nama"
-								class="w-full rounded border border-stroke bg-gray py-3 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+								class="w-full rounded border border-stroke bg-gray py-1 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
 								type="text"
 								name="fullName"
 								id="fullName" />
@@ -339,20 +339,10 @@ onMounted(async () => {
 		<div class="col-span-5 xl:col-span-2" v-if="localState.biodata">
 			<div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 				<div class="border-b border-stroke py-4 px-7 dark:border-strokedark">
-					<h3 class="font-medium text-black dark:text-white">Your Photo</h3>
+					<h3 class="font-medium text-black dark:text-white">Perbarui Foto</h3>
 				</div>
 				<div class="p-7">
 					<form @submit.prevent="handlePhotoSubmit">
-						<!-- User Photo Section -->
-						<div class="mb-4 flex items-center gap-3">
-							<div class="h-14 w-14 rounded-full">
-								<img :src="localState.biodata!.thumbnail_url" alt="User" />
-							</div>
-							<div>
-								<span class="mb-1.5 font-medium text-black dark:text-white">Edit Foto</span>
-							</div>
-						</div>
-
 						<!-- File Upload Section -->
 						<div
 							id="FileUpload"
