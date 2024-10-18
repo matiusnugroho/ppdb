@@ -33,7 +33,7 @@ export default defineComponent({
 
 <template>
 	<div :class="customClasses">
-		<label :for="name" class="mb-2.5 block text-black dark:text-white">
+		<label :for="name" class="mb-1 block text-black dark:text-white">
 			{{ label }}
 			<span v-if="required" class="text-meta-1">*</span>
 		</label>

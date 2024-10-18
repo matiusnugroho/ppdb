@@ -9,6 +9,9 @@ import { useMessagesStore } from "@/stores/messages"
 import router from "@/router"
 import { showToast } from "@/utils/ui/toast"
 import { useKecamatan } from "@/composable/useKecamatan"
+import { field_error_html } from "@/helpers/fieldErrorHtml"
+import InputGroup from "@/components/Forms/InputGroup.vue"
+import { hasError } from "@/helpers/hasError"
 // Define individual refs for each form field
 const nama_sekolah = ref("")
 const nss = ref("")
@@ -52,18 +55,6 @@ const handleSubmit = async () => {
 		})
 	}
 }
-const field_error_html = (field: string) => {
-	const errors = formValidationErrors.errors[field]
-
-	if (errors && errors.length > 0) {
-		return `
-      <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-        ${errors.join(", ")}
-      </span>
-    `
-	}
-	return ""
-}
 
 onMounted(() => {
 	fetchKecamatan()
@@ -73,42 +64,21 @@ onMounted(() => {
 
 <template>
 	<PlainLayout>
-		<DefaultAuthCard subtitle="Start for free" title="Sign Up to TailAdmin">
+		<DefaultAuthCard subtitle="Daftarkan Sekolah Anda" title="PPDB Kuantan Singingi">
 			<form @submit.prevent="handleSubmit">
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="fullName">Nama Sekolah</label>
-					<input
-						v-model="nama_sekolah"
-						class="w-full rounded border border-stroke bg-gray py-3 pr-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="fullName"
-						id="fullName" />
+				<div class="mb-1">
+					<InputGroup label="Nama Sekolah" v-model="nama_sekolah" :error="hasError('nama_sekolah')" name="nama_sekolah" inputmode="text" required />
 					<div v-html="field_error_html('nama_sekolah')"></div>
 				</div>
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="npsn">NPSN</label>
-					<input
-						v-model="npsn"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="npsn"
-						id="npsn"
-						inputmode="numeric" />
+				<div class="mb-1">
+					<InputGroup label="Nomor Pokok Sekolah Nasional (NPSN)" v-model="npsn" :error="hasError('npsn')" name="npsn" inputmode="numeric" required />
 					<div v-html="field_error_html('npsn')"></div>
 				</div>
-
-				<div class="mb-5.5">
-					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nss">NSS</label>
-					<input
-						v-model="nss"
-						class="w-full rounded border border-stroke bg-gray py-3 px-4.5 font-normal text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-						type="text"
-						name="nss"
-						id="nss"
-						inputmode="numeric" />
+				<div class="mb-1">
+					<InputGroup label="Nomor Statistik Sekolah (NSS)" v-model="nss" :error="hasError('nss')" name="nss" inputmode="numeric" required />
 					<div v-html="field_error_html('nss')"></div>
 				</div>
-				<div class="mb-5.5">
+				<div class="mb-1">
 					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="nama_kepsek">Nama Kepsek</label>
 					<input
 						v-model="nama_kepsek"
@@ -118,7 +88,7 @@ onMounted(() => {
 						id="nama_kepsek" />
 					<div v-html="field_error_html('nama_kepsek')"></div>
 				</div>
-				<div class="mb-5.5">
+				<div class="mb-1">
 					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="no_telp">No. Telp</label>
 					<input
 						v-model="no_telp"
@@ -129,7 +99,7 @@ onMounted(() => {
 						inputmode="numeric" />
 					<div v-html="field_error_html('no_telp')"></div>
 				</div>
-				<div class="mb-5.5">
+				<div class="mb-1">
 					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="kecamatan_id">Kecamatan</label>
 
 					<select
@@ -150,7 +120,7 @@ onMounted(() => {
 					<div v-html="field_error_html('kecamatan_id')"></div>
 					<p v-if="error" class="text-red-500">{{ error }}</p>
 				</div>
-				<div class="mb-5.5">
+				<div class="mb-1">
 					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="alamat">Alamat</label>
 					<textarea
 						v-model="alamat"
@@ -164,7 +134,7 @@ onMounted(() => {
 				<!-- Full Name Section -->
 
 				<!-- Email Address Section -->
-				<div class="mb-5.5">
+				<div class="mb-1">
 					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="emailAddress">Email Address</label>
 					<input
 						v-model="email"
@@ -177,7 +147,7 @@ onMounted(() => {
 				</div>
 
 				<!-- Username Section -->
-				<div class="mb-5.5">
+				<div class="mb-1">
 					<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="Username">Username</label>
 					<input
 						v-model="username"
@@ -189,12 +159,12 @@ onMounted(() => {
 				</div>
 
 				<!-- Password Section -->
-				<div class="mb-5.5">
+				<div class="mb-1">
 					<PasswordInput label="Password" v-model="password" />
 					<div v-html="field_error_html('password')"></div>
 				</div>
 
-				<div class="mb-5.5">
+				<div class="mb-1">
 					<button :disabled="loadingRegister" class="w-full rounded bg-primary p-3 text-white">Submit</button>
 				</div>
 			</form>

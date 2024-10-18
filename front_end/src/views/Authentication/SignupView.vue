@@ -73,42 +73,42 @@ onMounted(() => {
 	<PlainLayout>
 		<DefaultAuthCard subtitle="Start for free" title="Sign Up to TailAdmin">
 			<form @submit.prevent="handleSubmit">
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="Nomor Induk Siswa Nasional" v-model="nisn" :error="hasError('nisn')" name="nisn" inputmode="numeric" required />
 					<div v-html="field_error_html('nisn')"></div>
 				</div>
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="Nomor Induk Kependudukan" v-model="nik" :error="hasError('nik')" name="nik" inputmode="numeric" required />
 					<div v-html="field_error_html('nik')"></div>
 				</div>
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="Nomor Kartu Keluarga" v-model="no_kk" :error="hasError('no_kk')" name="no_kk" inputmode="numeric" required />
 					<div v-html="field_error_html('no_kk')"></div>
 				</div>
 				<!-- Full Name Section -->
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="Nama" v-model="nama" :error="hasError('nama')" name="nama" inputmode="text" required />
 					<div v-html="field_error_html('nama')"></div>
 				</div>
 
 				<!-- Email Address Section -->
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="Email" v-model="email" :error="hasError('email')" name="email" type="email" inputmode="email" required />
 					<div v-html="field_error_html('email')"></div>
 				</div>
 
 				<!-- Username Section -->
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="Username" v-model="username" :error="hasError('username')" name="username" inputmode="text" required />
 					<div v-html="field_error_html('username')"></div>
 				</div>
 				<!-- Password Section -->
-				<div class="mb-3">
-					<PasswordInput label="Password" name="password" v-model="password" />
+				<div class="mb-1">
+					<PasswordInput label="Password" name="password" v-model="password" :error="hasError('password')" required />
 					<div v-html="field_error_html('password')"></div>
 				</div>
 
-				<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-3">
+				<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-1">
 					<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
 					<div class="md:col-span-3 flex flex-col">
 						<InputGroup label="Tempat Lahir" v-model="tempat_lahir" :error="hasError('tempat_lahir')" name="tempat_lahir" inputmode="text" required class="h-full" />
@@ -116,7 +116,7 @@ onMounted(() => {
 					</div>
 					<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->
 					<div class="md:col-span-2 flex flex-col">
-						<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
+						<label class="mb-1 block text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
 						<div class="relative flex-grow">
 							<!-- Ensure it uses available height -->
 							<flat-pickr
@@ -133,15 +133,15 @@ onMounted(() => {
 					</div>
 				</div>
 
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="Nama Ayah" v-model="nama_bapak" :error="hasError('nama_bapak')" name="nama_bapak" inputmode="text" required />
 					<div v-html="field_error_html('nama_bapak')"></div>
 				</div>
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="Nama Ibu" v-model="nama_ibu" :error="hasError('nama_ibu')" name="nama_ibu" inputmode="text" required />
 					<div v-html="field_error_html('nama_ibu')"></div>
 				</div>
-				<div class="mb-3">
+				<div class="mb-1">
 					<InputGroup label="No. HP Orang Tua" v-model="no_hp_ortu" :error="hasError('no_hp_ortu')" name="no_hp_ortu" inputmode="text" required />
 					<div v-html="field_error_html('no_hp_ortu')"></div>
 				</div>

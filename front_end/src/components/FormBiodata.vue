@@ -221,7 +221,7 @@ onMounted(async () => {
 							</div>
 							<!-- Tanggal Lahir (1/4 of the width on medium and larger screens) -->
 							<div class="md:col-span-2 flex flex-col">
-								<label class="mb-3 block text-sm font-medium text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
+								<label class="mb-1 block text-black dark:text-white" for="tanggal-lahir"> Tanggal Lahir </label>
 								<div class="relative flex-grow">
 									<flat-pickr
 										v-model="localState.biodata!.tanggal_lahir"

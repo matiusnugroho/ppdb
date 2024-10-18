@@ -1,6 +1,6 @@
 <template>
 	<div class="relative group" v-click-outside="closeDropdown" :class="customClasses">
-		<label class="mb-2.5 block text-black dark:text-white">
+		<label class="mb-1 block text-black dark:text-white">
 			{{ label }}
 			<span v-if="required" class="text-meta-1">*</span>
 		</label>
