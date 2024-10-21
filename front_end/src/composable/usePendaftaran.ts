@@ -124,6 +124,25 @@ export function usePendaftaran() {
 		}
 	}
 
+	const rejectDokumen = async (id: string, alasan: string) => {
+		loadingVerifikasi.value = true
+		const url = replacePlaceholder(ENDPOINTS.REJECT_DOKUMEN, { id_dokumen: id })
+		try {
+			const response = await requestor.post(url, { alasan })
+			return response.data
+		} catch (err) {
+			if (axios.isAxiosError(err) && err.response) {
+				// Log the error for debugging
+				return err.response.data // Return the Axios response error
+			} else {
+				// Log other types of errors
+				return { message: "An unknown error occurred" } // Provide a fallback for unknown errors
+			}
+		} finally {
+			loadingVerifikasi.value = false
+		}
+	}
+
 	return {
 		dataPendaftar,
 		error,
@@ -138,5 +157,6 @@ export function usePendaftaran() {
 		getDetailVerifikasi,
 		verifikasiDokumen,
 		luluskan,
+		rejectDokumen
 	}
 }

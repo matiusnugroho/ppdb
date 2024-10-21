@@ -9,24 +9,39 @@ import ConfirmationComponent from "@/components/UI/ConfirmationComponent.vue"
 import { getDataById } from "@/helpers/getDataById"
 import { showToast } from "@/utils/ui/toast"
 import statusColorMap from "@/config/statusColorMap"
+import ModalComponent from "@/components/UI/ModalComponent.vue"
+import TextAreaGroup from "@/components/Forms/TextAreaGroup.vue"
+import { hasError } from "@/helpers/hasError"
 
 const router = useRoute()
 const id_registrasi = router.params.id as string
-const { getDetailVerifikasi, dataDetailVerifikasi, loadingVerifikasi, verifikasiDokumen } = usePendaftaran()
+const { getDetailVerifikasi, dataDetailVerifikasi, loadingVerifikasi, verifikasiDokumen, rejectDokumen } = usePendaftaran()
 const verifikasiModal = ref<null | HTMLDialogElement>(null)
+const rejectModal = ref<null | HTMLDialogElement>(null)
 const id_dokumen = ref<string>("")
-
+const rejectMessage = ref<string>("")
 const verifikasi = (id: string) => {
 	id_dokumen.value = ""
 	id_dokumen.value = id
-	verifikasiModal.value?.show()
+	if (verifikasiModal.value) {
+    verifikasiModal.value?.show();
+  } else {
+    console.error('verifikasiModal is not defined');
+  }
+}
+const reject = (id: string) => {
+	id_dokumen.value = ""
+	rejectMessage.value = ""
+	id_dokumen.value = id
+	console.log("reject")
+	rejectModal.value?.show()
+
 }
 const verifikasiConfirm = async () => {
 	const response = await verifikasiDokumen(id_dokumen.value)
 	if (response.success) {
 		verifikasiModal.value?.close()
 		let data = getDataById(dataDetailVerifikasi.value!.documents, id_dokumen.value)
-		console.log({ data })
 		if (data) {
 			// Check if data is not null
 			data.status = response.data.status
@@ -41,6 +56,30 @@ const verifikasiConfirm = async () => {
 			message: "Verifikasi document gagal, " + response.message,
 		})
 	}
+}
+const rejectConfirm = async () => {
+	const alasan = rejectMessage.value
+	const response = await rejectDokumen(id_dokumen.value, alasan)
+	if (response.success) {
+		verifikasiModal.value?.close()
+		let data = getDataById(dataDetailVerifikasi.value!.documents, id_dokumen.value)
+		if (data) {
+			// Check if data is not null
+			data.status = response.data.status
+		}
+		showToast({
+			type: "success",
+			message: "Verifikasi pendaftaran berhasil",
+		})
+	} else {
+		showToast({
+			type: "error",
+			message: "Verifikasi document gagal, " + response.message,
+		})
+	}
+}
+const rejectCancel = () => {
+	
 }
 const verifikasiCancel = () => {
 	id_dokumen.value = ""
@@ -172,7 +211,7 @@ onMounted(async () => {
 									<button
 										:disabled="!document.url_path"
 										class="px-3 py-1 text-sm font-semibold rounded hover:bg-red-200 flex items-center"
-										@click="verifikasi(document.id)"
+										@click="reject(document.id)"
 										:class="{
 											'bg-red-100 text-red-700': document.url_path,
 											'bg-gray-100 text-red-500 cursor-not-allowed': !document.url_path,
@@ -187,14 +226,34 @@ onMounted(async () => {
 				</div>
 			</div>
 		</div>
-		<ConfirmationComponent
+		
+	</DefaultLayout>
+	<ConfirmationComponent
 			ref="verifikasiModal"
-			title="Verifikasi pendaftaran"
+			title="Verifikasi dokumen"
 			message="Apakah anda yakin ingin verifikasi dokumen ini?"
 			confirmLabel="Ya"
+			:close-on-click-outside="true"
 			cancelLabel="Batal"
 			:loading="loadingVerifikasi"
 			:confirmHandler="verifikasiConfirm"
 			:cancelHandler="verifikasiCancel" />
-	</DefaultLayout>
+	<ModalComponent
+			ref="rejectModal"
+			title="Tolak dokumen"
+			message="Apakah anda yakin ingin menolak dokumen ini?"
+			confirmLabel="Reject"
+			:close-on-click-outside="true"
+			cancelLabel="Batal"
+			:loading="loadingVerifikasi"
+			:confirmHandler="rejectConfirm"
+			:cancelHandler="rejectCancel">
+			<TextAreaGroup
+				v-model="rejectMessage"
+				:error="hasError('rejectMessage')"
+				name="rejectMessage"
+				label="Alasan ditolak"
+			/>
+	</ModalComponent>>
+
 </template>

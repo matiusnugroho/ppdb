@@ -49,6 +49,7 @@
 						</td>
 						<td class="text-center">
 							<p class="inline-flex rounded-full py-1 px-3 text-sm font-medium" :class="statusColorMap[item.status]">{{ item.status }}</p>
+							<p v-if="item.status === 'ditolak'" class="text-black dark:text-white">{{ item.alasan }}</p>
 						</td>
 						<td class="py-5 px-4">
 							<div class="flex items-center space-x-3.5">

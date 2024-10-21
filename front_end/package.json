@@ -14,7 +14,8 @@
     "auto-build": "npx chokidar \"src/**/*\" -c \"npm run build\""
   },
   "dependencies": {
-    "@vueuse/core": "^10.7.1",
+    "@vueuse/components": "^11.1.0",
+    "@vueuse/core": "^10.11.1",
     "apexcharts": "^3.45.1",
     "axios": "^1.7.2",
     "flatpickr": "^4.6.13",

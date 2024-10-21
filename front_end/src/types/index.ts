@@ -131,6 +131,7 @@ export interface Document {
 	path: string | null
 	url_path: string | null
 	status: string
+	alasan: string
 	created_at: string
 	updated_at: string
 	document_type: DocumentType

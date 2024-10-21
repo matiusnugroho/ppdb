@@ -334,13 +334,33 @@ class PendaftaranController extends Controller
         ]);
     }
 
-    public function luluskan(Request $request, Registration $registration)
+    public function rejectDokumen(Request $request, Document $document)
     {
-        /* if (! auth()->user()->can('luluskan_siswa')) {
+        if (! auth()->user()->can('reject_dokumen_siswa')) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 403);
-        } */
+        }
+        $validated = $request->validate([
+            'alasan' => 'required|string|max:255',
+        ]);
+        $document->status = 'ditolak';
+        $document->alasan = $validated['alasan'];
+        $document->save();
+
+        return response()->json([
+            'success' => true,
+            'data' => $document,
+        ]);
+    }
+
+    public function luluskan(Request $request, Registration $registration)
+    {
+        if (! auth()->user()->can('luluskan_siswa')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        }
         $data = $request->validate([
             'kelulusan' => 'required|in:lulus,tidak_lulus',
         ]);

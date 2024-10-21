@@ -5,20 +5,13 @@
 				<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" @click="closeModal">✕</button>
 			</form>
 
-			<div class="flex flex-col items-center">
-				<!-- Centering container -->
-				<p class="py-4 text-warning text-3xl font-bold">
-					<HeroIcon name="circle-exclamation" size="48" class="text-warning" />
-				</p>
-				<h3 class="text-lg font-bold text-center">{{ title }}</h3>
-				<p class="py-4 text-center">{{ message }}</p>
-			</div>
+			<slot></slot>
 
 			<!-- Buttons: Confirm and Cancel -->
 			<div class="modal-action justify-center">
-				<button class="btn" @click="handleCancel">{{ cancelLabel }}</button>
+				<button class="btn btn-sm" @click="handleCancel">{{ cancelLabel }}</button>
 				<!-- Confirm Button with Loading State -->
-				<button class="btn btn-primary" :disabled="loading" @click="handleConfirm">
+				<button class="btn btn-sm btn-primary" :disabled="loading" @click="handleConfirm">
 					<SpinnerLoading :loading="loading" size="xs" />
 					<span>{{ confirmLabel }}</span>
 				</button>
@@ -30,7 +23,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
-import HeroIcon from "@/components/Icon/HeroIcon.vue"
 import { vOnClickOutside } from '@vueuse/components'
 const modal = ref<HTMLDialogElement | null>(null)
 

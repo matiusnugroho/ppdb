@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     route::post('/pendaftaran/upload_dokumen/{document}', [PendaftaranController::class, 'uploadDokumen']);
     route::post('/pendaftaran/revisi_dokumen/{document}', [PendaftaranController::class, 'revisiDokumen']);
     route::post('/pendaftaran/verifikasi_dokumen/{document}', [PendaftaranController::class, 'verifikasiDokumen']);
+    Route::post('/pendaftaran/reject_dokumen/{document}', [PendaftaranController::class, 'rejectDokumen']);
     route::post('/pendaftaran/luluskan/{registration}', [PendaftaranController::class, 'luluskan']);
 });
 Route::resource('/siswa', StudentController::class);
