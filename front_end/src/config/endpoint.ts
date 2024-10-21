@@ -1,11 +1,13 @@
 // config/endpoint.ts
 
+import type { endpoints } from "@/types"
+
 // Define base URL for your API
 const BASE_URL = "/"
 const BASE_URL_API = "/api"
 
 // Define endpoints
-const ENDPOINTS = {
+const ENDPOINTS: endpoints = {
 	BASE_URL,
 	LOGIN: `${BASE_URL_API}/auth/login`,
 	ME_SISWA: `${BASE_URL_API}/siswa/me`,
@@ -21,7 +23,7 @@ const ENDPOINTS = {
 	UPLOAD_DOKUMEN: `${BASE_URL_API}/pendaftaran/upload_dokumen/{id_dokumen}`,
 	VERIFIKASI_DOKUMEN: `${BASE_URL_API}/pendaftaran/verifikasi_dokumen/{id_dokumen}`,
 	REJECT_DOKUMEN: `${BASE_URL_API}/pendaftaran/reject_dokumen/{id_dokumen}`,
-	REVISI_DOKUMEN: `${BASE_URL_API}/pendaftaran/revisi_dokumen/{document}`,
+	REVISI_DOKUMEN: `${BASE_URL_API}/pendaftaran/revisi_dokumen/{id_dokumen}`,
 	GET_DOCUMENT_TYPE: `${BASE_URL_API}/pendaftaran/dokumen`,
 	VERIFIKASI_PENDAFTARAN: `${BASE_URL_API}/pendaftaran/verifikasi`,
 	GET_VERIFIED_BY_ME: `${BASE_URL_API}/pendaftaran/verified_by_me`,

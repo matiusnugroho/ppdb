@@ -22,7 +22,7 @@ class RevisiDokumenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'document' => 'required|file|mimes:pdf|max:2048',
+            'file' => 'required|file|mimes:pdf|max:2048',
         ];
     }
 }

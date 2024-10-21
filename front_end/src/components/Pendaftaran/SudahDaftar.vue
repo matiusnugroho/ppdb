@@ -61,9 +61,12 @@
 										<HeroIcon name="view-finder" size="18" class="h-5 w-5" />
 									</span>
 								</div>
-								<div class="tooltip" data-tip="Upload">
-									<button :disabled="item.status === 'diverifikasi'" class="flex items-center hover:text-primary" @click="openUploadModal(item.id)">
+								<div class="tooltip" :data-tip="item.status !== 'ditolak' ? 'Upload' : 'Revisi'">
+									<button v-if="item.status !== 'ditolak'" :disabled="item.status === 'diverifikasi'" class="flex items-center hover:text-primary" @click="openUploadModal(item.id, 'upload')">
 										<HeroIcon name="upload" size="18" class="h-5 w-5" />
+									</button>
+									<button v-else class="flex items-center hover:text-primary" @click="openUploadModal(item.id, 'revisi')">
+										<HeroIcon name="upload-double" size="18" class="h-5 w-5" />
 									</button>
 								</div>
 							</div>
@@ -78,9 +81,9 @@
 			<form method="dialog">
 				<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 			</form>
-			<h3 class="text-lg font-bold">Upload {{ selectedType }}</h3>
+			<h3 class="text-lg font-bold">{{modeDokumen==='upload' ? 'Upload' : 'Revisi'}} {{ selectedType }}</h3>
 			<InputFile ref="fileInput" />
-			<button class="btn" @click="handleUploadDokumen"><span v-if="loadingUploadDokumen" class="loading loading-spinner loading-xs"></span> Upload</button>
+			<button class="btn btn-sm" @click="handleUploadDokumen"><span v-if="loadingUploadDokumen" class="loading loading-spinner loading-xs"></span> Upload</button>
 			<div v-html="field_error_html('file')"></div>
 		</div>
 	</dialog>
@@ -106,14 +109,16 @@ const fileInput = ref<null | InstanceType<typeof InputFile>>(null)
 const document_id = ref<null | string>()
 const selectedType = ref<null | string>(null)
 const formValidationErrors = useFormValidationErrorsStore()
+const modeDokumen = ref<"upload" | "revisi">("upload")
 function getDocumentById(documents: Document[], id: string) {
 	return documents.find((doc) => doc.id === id)
 }
 
 const { uploadDokumen, loadingUploadDokumen } = useUploadDokumen()
 
-const openUploadModal = (doc_id: string) => {
+const openUploadModal = (doc_id: string, mode: "upload" | "revisi" = "upload") => {
 	formValidationErrors.clearErrors()
+	modeDokumen.value = mode
 	if (fileInput.value && fileInput.value.fileInput) {
 		fileInput.value.fileInput.value = "" // Reset the file input safely
 	}
@@ -140,8 +145,7 @@ const handleUploadDokumen = async () => {
 		id_dokumen: document_id.value!,
 		file: selectedFile,
 	}
-	const response = await uploadDokumen(data)
-	console.log({ response })
+	const response = await uploadDokumen(data, modeDokumen.value)
 	if (response.success) {
 		let currentData = getDocumentById(documentTypeList.value, document_id.value!)
 		let theData = response.data

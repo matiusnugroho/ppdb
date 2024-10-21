@@ -123,6 +123,7 @@ export interface Option {
 export interface DokumenRequest {
 	id_dokumen: string // The document ID as a string
 	file: File // The file to be uploaded
+	alasan?: string
 }
 export interface Document {
 	id: string
@@ -141,4 +142,7 @@ export interface DocumentType {
 	label: string
 	created_at: string
 	updated_at: string
+}
+export interface endpoints {
+	[key: string]: string
 }

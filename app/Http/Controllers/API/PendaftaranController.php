@@ -156,7 +156,7 @@ class PendaftaranController extends Controller
 
             $path = $document_file->storeAs('uploads/registration/dokumen/'.$registration->id.'/', $filename, 'public');
             $data['path'] = $path;
-            $document->update(['path' => $path]);
+            $document->update(['path' => $path, 'status' => 'menunggu verifikasi']);
 
             return response()->json([
                 'success' => true,
