@@ -32,7 +32,7 @@ const password = ref("")
 
 const jenjangOption = [
 	{ label: "SD", value: "sd" },
-	{ label: "SMP", value: "smp" }
+	{ label: "SMP", value: "smp" },
 ]
 
 const formValidationErrors = useFormValidationErrorsStore()

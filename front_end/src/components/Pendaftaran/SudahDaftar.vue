@@ -62,7 +62,11 @@
 									</span>
 								</div>
 								<div class="tooltip" :data-tip="item.status !== 'ditolak' ? 'Upload' : 'Revisi'">
-									<button v-if="item.status !== 'ditolak'" :disabled="item.status === 'diverifikasi'" class="flex items-center hover:text-primary" @click="openUploadModal(item.id, 'upload')">
+									<button
+										v-if="item.status !== 'ditolak'"
+										:disabled="item.status === 'diverifikasi'"
+										class="flex items-center hover:text-primary"
+										@click="openUploadModal(item.id, 'upload')">
 										<HeroIcon name="upload" size="18" class="h-5 w-5" />
 									</button>
 									<button v-else class="flex items-center hover:text-primary" @click="openUploadModal(item.id, 'revisi')">
@@ -81,7 +85,7 @@
 			<form method="dialog">
 				<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 			</form>
-			<h3 class="text-lg font-bold">{{modeDokumen==='upload' ? 'Upload' : 'Revisi'}} {{ selectedType }}</h3>
+			<h3 class="text-lg font-bold">{{ modeDokumen === "upload" ? "Upload" : "Revisi" }} {{ selectedType }}</h3>
 			<InputFile ref="fileInput" />
 			<button class="btn btn-sm" @click="handleUploadDokumen"><span v-if="loadingUploadDokumen" class="loading loading-spinner loading-xs"></span> Upload</button>
 			<div v-html="field_error_html('file')"></div>

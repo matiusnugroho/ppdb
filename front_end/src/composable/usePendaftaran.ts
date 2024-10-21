@@ -157,6 +157,6 @@ export function usePendaftaran() {
 		getDetailVerifikasi,
 		verifikasiDokumen,
 		luluskan,
-		rejectDokumen
+		rejectDokumen,
 	}
 }

@@ -10,9 +10,9 @@ type EndpointKeys = keyof typeof ENDPOINTS
 export function useUploadDokumen() {
 	const loadingUploadDokumen = ref(false)
 	const formValidationErrors = useFormValidationErrorsStore()
-	const uploadDokumen = async (data: DokumenRequest, mode: UploadMode,alasan?: string) => {
+	const uploadDokumen = async (data: DokumenRequest, mode: UploadMode, alasan?: string) => {
 		loadingUploadDokumen.value = true
-		let urlsegment : EndpointKeys		
+		let urlsegment: EndpointKeys
 		try {
 			switch (mode) {
 				case "upload":
@@ -28,7 +28,7 @@ export function useUploadDokumen() {
 			const formData = new FormData()
 			formData.append("file", data.file)
 			formData.append("id_dokumen", data.id_dokumen)
-			if(alasan) formData.append("alasan", alasan)
+			if (alasan) formData.append("alasan", alasan)
 			const response = await requestor.post(url, formData)
 
 			if (response.data.success) {

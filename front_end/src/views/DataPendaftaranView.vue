@@ -24,10 +24,10 @@ const verifikasi = (id: string) => {
 	id_dokumen.value = ""
 	id_dokumen.value = id
 	if (verifikasiModal.value) {
-    verifikasiModal.value?.show();
-  } else {
-    console.error('verifikasiModal is not defined');
-  }
+		verifikasiModal.value?.show()
+	} else {
+		console.error("verifikasiModal is not defined")
+	}
 }
 const reject = (id: string) => {
 	id_dokumen.value = ""
@@ -35,7 +35,6 @@ const reject = (id: string) => {
 	id_dokumen.value = id
 	console.log("reject")
 	rejectModal.value?.show()
-
 }
 const verifikasiConfirm = async () => {
 	const response = await verifikasiDokumen(id_dokumen.value)
@@ -78,9 +77,7 @@ const rejectConfirm = async () => {
 		})
 	}
 }
-const rejectCancel = () => {
-	
-}
+const rejectCancel = () => {}
 const verifikasiCancel = () => {
 	id_dokumen.value = ""
 	verifikasiModal.value?.close()
@@ -226,34 +223,27 @@ onMounted(async () => {
 				</div>
 			</div>
 		</div>
-		
 	</DefaultLayout>
 	<ConfirmationComponent
-			ref="verifikasiModal"
-			title="Verifikasi dokumen"
-			message="Apakah anda yakin ingin verifikasi dokumen ini?"
-			confirmLabel="Ya"
-			:close-on-click-outside="true"
-			cancelLabel="Batal"
-			:loading="loadingVerifikasi"
-			:confirmHandler="verifikasiConfirm"
-			:cancelHandler="verifikasiCancel" />
+		ref="verifikasiModal"
+		title="Verifikasi dokumen"
+		message="Apakah anda yakin ingin verifikasi dokumen ini?"
+		confirmLabel="Ya"
+		:close-on-click-outside="true"
+		cancelLabel="Batal"
+		:loading="loadingVerifikasi"
+		:confirmHandler="verifikasiConfirm"
+		:cancelHandler="verifikasiCancel" />
 	<ModalComponent
-			ref="rejectModal"
-			title="Tolak dokumen"
-			message="Apakah anda yakin ingin menolak dokumen ini?"
-			confirmLabel="Reject"
-			:close-on-click-outside="true"
-			cancelLabel="Batal"
-			:loading="loadingVerifikasi"
-			:confirmHandler="rejectConfirm"
-			:cancelHandler="rejectCancel">
-			<TextAreaGroup
-				v-model="rejectMessage"
-				:error="hasError('rejectMessage')"
-				name="rejectMessage"
-				label="Alasan ditolak"
-			/>
-	</ModalComponent>>
-
+		ref="rejectModal"
+		title="Tolak dokumen"
+		message="Apakah anda yakin ingin menolak dokumen ini?"
+		confirmLabel="Reject"
+		:close-on-click-outside="true"
+		cancelLabel="Batal"
+		:loading="loadingVerifikasi"
+		:confirmHandler="rejectConfirm"
+		:cancelHandler="rejectCancel">
+		<TextAreaGroup v-model="rejectMessage" :error="hasError('rejectMessage')" name="rejectMessage" label="Alasan ditolak" /> </ModalComponent
+	>>
 </template>

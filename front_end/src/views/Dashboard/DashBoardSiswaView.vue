@@ -1,26 +1,17 @@
 <script setup lang="ts">
-import DataStatsOne from "@/components/DataStats/DataStatsOne.vue"
-import MapOne from "@/components/Maps/MapOne.vue"
-import TableOne from "@/components/Tables/TableOne.vue"
+import DashboardSekolah from "@/components/Dashboard/DashboardSekolah.vue"
+import DashboardSiswa from "@/components/Dashboard/DashboardSiswa.vue"
 import DefaultLayout from "@/layouts/DefaultLayout.vue"
+import { useAuthStore } from "@/stores/auth"
+import { ref, type Component } from "vue"
+const currentComponent = ref<Component | null>(null)
+const authstore = useAuthStore()
+const role = authstore.role
+currentComponent.value = role === "siswa" ? DashboardSiswa : DashboardSekolah
 </script>
 
 <template>
 	<DefaultLayout>
-		<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-			<DataStatsOne />
-		</div>
-
-		<div class="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-			<!-- ====== Map One Start -->
-			<MapOne />
-			<!-- ====== Map One End -->
-
-			<!-- ====== Table One Start -->
-			<div class="col-span-12 xl:col-span-8">
-				<TableOne />
-			</div>
-			<!-- ====== Table One End -->
-		</div>
+			<component :is="currentComponent" />
 	</DefaultLayout>
 </template>

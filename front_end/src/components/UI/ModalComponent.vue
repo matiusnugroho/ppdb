@@ -1,5 +1,5 @@
 <template>
-	<dialog ref="modal" class="modal" >
+	<dialog ref="modal" class="modal">
 		<div class="modal-box" v-on-click-outside="handleClickOutside">
 			<form method="dialog">
 				<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" @click="closeModal">✕</button>
@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
-import { vOnClickOutside } from '@vueuse/components'
+import { vOnClickOutside } from "@vueuse/components"
 const modal = ref<HTMLDialogElement | null>(null)
 
 // Props for dynamic content and actions
@@ -63,7 +63,7 @@ const props = defineProps({
 	closeOnClickOutside: {
 		type: Boolean,
 		default: false,
-	}
+	},
 })
 const show = () => {
 	modal.value?.showModal()
@@ -94,11 +94,7 @@ const handleClickOutside = (event: Event) => {
 	console.log("Clicked outside")
 	const target = event.target as HTMLElement
 	console.log(target)
-	if (
-		props.closeOnClickOutside &&
-		modal.value?.open &&
-		!target.closest(".modal-box")
-	) {
+	if (props.closeOnClickOutside && modal.value?.open && !target.closest(".modal-box")) {
 		closeModal()
 	}
 }
