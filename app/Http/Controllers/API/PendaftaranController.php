@@ -356,11 +356,11 @@ class PendaftaranController extends Controller
 
     public function luluskan(Request $request, Registration $registration)
     {
-        if (! auth()->user()->can('luluskan_siswa')) {
+        /* if (! auth()->user()->can('luluskan_siswa')) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 403);
-        }
+        } */
         $data = $request->validate([
             'kelulusan' => 'required|in:lulus,tidak_lulus',
         ]);

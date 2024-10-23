@@ -22,7 +22,6 @@ export function useRegisterSiswa() {
 				return false
 			}
 		} catch (error: any) {
-			console.error("Update profile error:", error.response)
 			formValidationErrors.errors = error.response?.data?.errors || {}
 			return false
 		} finally {

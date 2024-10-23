@@ -147,3 +147,6 @@ export interface DocumentType {
 export interface endpoints {
 	[key: string]: string
 }
+export interface StatistikData {
+	[key: string]: number | string
+}

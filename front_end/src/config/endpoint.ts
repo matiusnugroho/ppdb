@@ -29,6 +29,8 @@ const ENDPOINTS: endpoints = {
 	GET_VERIFIED_BY_ME: `${BASE_URL_API}/pendaftaran/verified_by_me`,
 	DETAIL_VERIFIKASI: `${BASE_URL_API}/pendaftaran/detail/{id}`,
 	LULUSKAN: `${BASE_URL_API}/pendaftaran/luluskan/{id}`,
+	GET_PENDAFTARAN: `${BASE_URL_API}/pendaftaran/get-pendaftaran`,
+	STATISTIK_SEKOLAH: `${BASE_URL_API}/statistik/sekolah`,
 }
 
 // Helper function to replace placeholders with actual values

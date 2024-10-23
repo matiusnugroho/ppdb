@@ -5,31 +5,31 @@
 		</span>
 
 		<div>
-			<p class="text-2xl font-medium text-gray-900">{{value}}</p>
+			<p class="text-2xl font-medium text-gray-900">{{ value }}</p>
 
-			<p class="text-sm text-gray-500">{{label}}</p>
+			<p class="text-sm text-gray-500">{{ label }}</p>
 		</div>
 	</article>
 </template>
 <script setup lang="ts">
-import HeroIcon from '../Icon/HeroIcon.vue'
+import HeroIcon from "@/components/Icon/HeroIcon.vue"
 
 defineProps({
-    icon : {
-        type : String,
-        default : "user-circle"
-    },
-    label : {
-        type : String,
-        default : "Info Label di sini"
-    },
-    value : {
-        type : String,
-        default : "Info Value di sini"
-    },
-    color : {
-        type : String,
-        default : "red"
-    }
+	icon: {
+		type: String,
+		default: "user-circle",
+	},
+	label: {
+		type: String,
+		default: "Info Label di sini",
+	},
+	value: {
+		type: [String, Number],
+		default: "Info Value di sini",
+	},
+	color: {
+		type: String,
+		default: "red",
+	},
 })
 </script>
