@@ -1,10 +1,11 @@
+<script setup lang="ts">
+import StatsCardComponent from '../UI/StatsCardComponent.vue'
+</script>
+
 <template>
-	<div class="hero bg-white min-h-screen">
-		<div class="hero-content text-center">
-			<div class="max-w-md">
-				<h1 class="text-5xl font-bold">Selamat Sekolah</h1>
-				<p class="py-6">Silahkan pilih menu yang ingin diakses.</p>
-			</div>
-		</div>
+	<div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+		<StatsCardComponent />
+		<StatsCardComponent />
+		<StatsCardComponent />
 	</div>
 </template>

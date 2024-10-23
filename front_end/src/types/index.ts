@@ -101,6 +101,7 @@ export interface Registration {
 	registration_period_id: string
 	registration_number: string
 	verified_by?: User | null
+	school?: School
 	created_at: string
 	updated_at: string
 }

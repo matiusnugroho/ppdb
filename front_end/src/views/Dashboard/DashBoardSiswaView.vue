@@ -12,6 +12,6 @@ currentComponent.value = role === "siswa" ? DashboardSiswa : DashboardSekolah
 
 <template>
 	<DefaultLayout>
-			<component :is="currentComponent" />
+		<component :is="currentComponent" />
 	</DefaultLayout>
 </template>
