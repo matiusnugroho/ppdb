@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\School;
+use Carbon\Carbon;
+use App\Models\RegistrationPeriod;
 
 class StatistikController extends Controller
 {
@@ -24,10 +26,31 @@ class StatistikController extends Controller
             'diverifikasi' => $diverifikasi,
             'ditolak' => $ditolak,
             'lulus' => $lulusCount,
-            'tidak_lulus' => $tidakLulusCount
+            'tidak_lulus' => $tidakLulusCount,
         ];
 
         // Return JSON response
+        return response()->json($statistics);
+    }
+
+    public function admin()
+    {
+        $schoolCount = School::count();
+        $sdSchollCount = School::where('jenjang', 'sd')->count();
+        $smpSchoolCount = School::where('jenjang', 'smp')->count();
+        $currentRegistrationPeriod = RegistrationPeriod::where('is_open', true)->first();
+        $startDate = Carbon::parse($currentRegistrationPeriod->start_date);
+        $endDate = Carbon::parse($currentRegistrationPeriod->end_date);
+        $formattedDateRange = $startDate->translatedFormat('d F Y').' - '.$endDate->translatedFormat('d F Y');
+
+        $statistics = [
+            'sekolah' => $schoolCount,
+            'sd' => $sdSchollCount,
+            'smp' => $smpSchoolCount,
+            'tahun_ajaran' => $currentRegistrationPeriod->tahun_ajaran,
+            'periode' => $formattedDateRange,
+        ];
+
         return response()->json($statistics);
     }
 }

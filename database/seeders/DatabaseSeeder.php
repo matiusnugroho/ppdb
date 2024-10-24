@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             DocumentTypeSeeder::class,
             UserTestSeeder::class,
-            
+
         ]);
     }
 }

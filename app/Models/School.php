@@ -52,20 +52,24 @@ class School extends Model
     {
         return $this->hasMany(Registration::class);
     }
+
     public function activeRegistrations()
     {
         return $this->hasMany(Registration::class)->whereHas('registrationPeriod', function ($query) {
             $query->where('is_open', true);
         });
     }
+
     public function lulusRegistrations()
     {
         return $this->hasMany(Registration::class)->where('kelulusan', 'lulus');
     }
+
     public function tidakLulusRegistrations()
     {
         return $this->hasMany(Registration::class)->where('kelulusan', 'tidak lulus');
     }
+
     public function activeLulusRegistrations()
     {
         return $this->hasMany(Registration::class)
@@ -74,6 +78,7 @@ class School extends Model
                 $query->where('is_open', true);
             });
     }
+
     public function activeTidakLulusRegistrations()
     {
         return $this->hasMany(Registration::class)
@@ -82,6 +87,7 @@ class School extends Model
                 $query->where('is_open', true);
             });
     }
+
     public function activeStatusRegistrations($status)
     {
         return $this->hasMany(Registration::class)

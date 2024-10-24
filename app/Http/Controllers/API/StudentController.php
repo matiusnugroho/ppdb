@@ -37,7 +37,7 @@ class StudentController extends Controller
     {
         $validatedData = $request->validated();
         $userData = array_intersect_key($validatedData, array_flip(['email', 'username', 'password']));
-        $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak', 'nama_ibu', 'nik','nisn','no_kk', 'no_hp_ortu']));
+        $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak', 'nama_ibu', 'nik', 'nisn', 'no_kk', 'no_hp_ortu']));
         //dd($validatedData, $userData, $studentData);
         $user = User::create([
             'username' => $validatedData['username'] ?? null, // Allow name to be null

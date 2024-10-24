@@ -5,8 +5,8 @@ use App\Http\Controllers\API\DocumentTypeController;
 use App\Http\Controllers\API\KecamatanController;
 use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SchoolController;
-use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\StatistikController;
+use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\FileUploadTestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/pendaftaran/reject_dokumen/{document}', [PendaftaranController::class, 'rejectDokumen']);
     route::post('/pendaftaran/luluskan/{registration}', [PendaftaranController::class, 'luluskan']);
     Route::get('/statistik/sekolah', [StatistikController::class, 'sekolah']);
+    Route::get('/statistik/admin', [StatistikController::class, 'admin']);
 });
 Route::resource('/siswa', StudentController::class);
 Route::post('/siswa/register', [StudentController::class, 'store']);

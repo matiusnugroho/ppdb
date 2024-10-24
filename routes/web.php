@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +9,7 @@ Route::get('/migrate', function () {
             '--force' => true, // Required to run migrations in a non-interactive environment
             '--seed' => true,  // Adds the seed option to run database seeding after migrations
         ]);
+
         return 'Migrations and seeding have been run successfully.';
     } catch (\Exception $e) {
         throw $e;
@@ -15,6 +17,7 @@ Route::get('/migrate', function () {
 });
 Route::get('/link', function () {
     Artisan::call('storage:link');
+
     return 'Fresh migrations, seeding, and storage linking to public_html have been run successfully.';
 });
 Route::get('/{any}', function () {
