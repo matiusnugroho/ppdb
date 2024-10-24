@@ -3,10 +3,17 @@ import StatsCardComponent from "@/components/UI/StatsCardComponent.vue"
 import LoadingInfoComponent from "@/components/UI/LoadingInfoComponent.vue"
 import { useStatistik } from "@/composable/useStatistik"
 import { onMounted } from "vue"
+import { showToast } from "@/utils/ui/toast"
 
 const { statistik, fetchStatistik, error, loadingStatistik } = useStatistik()
 onMounted(() => {
 	fetchStatistik()
+	if (error.value) {
+		showToast({
+			message: error?.value ?? "An unknown error occurred",
+			type: "error",
+		})
+	}
 })
 </script>
 

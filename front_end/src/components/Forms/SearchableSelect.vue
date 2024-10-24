@@ -16,7 +16,7 @@
 			</span>
 			<HeroIcon name="caret-down" size="18" />
 		</div>
-		<div v-show="isOpen" class="absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+		<div v-show="isOpen" class="absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-[9999]">
 			<!-- Search input -->
 			<div class="p-1">
 				<input

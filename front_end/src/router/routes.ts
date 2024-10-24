@@ -5,15 +5,27 @@ export default [
 		component: () => import("@/views/HomeView.vue"),
 		meta: {
 			title: "PPDB Kuantan Singing",
+			label: "Home",
 			requiresAuth: false,
 		},
 	},
 	{
 		path: "/dashboard",
 		name: "ppdbDashboard",
-		component: () => import("@/views/Dashboard/DashBoardSiswaView.vue"),
+		component: () => import("@/views/Dashboard/DashboardView.vue"),
 		meta: {
 			title: "PPDB Kuantan Singing",
+			label: "Dashboard",
+			requiresAuth: true,
+		},
+	},
+	{
+		path: "/dashboard/sekolah",
+		name: "sekolahDashboard",
+		component: () => import("@/views/Admin/DataSekolahView.vue"),
+		meta: {
+			title: "Data Sekolah Kuantan Singing",
+			label: "Sekolah",
 			requiresAuth: true,
 		},
 	},
@@ -23,6 +35,7 @@ export default [
 		component: () => import("@/views/BiodataView.vue"),
 		meta: {
 			title: "Biodata",
+			label: "Biodata",
 			requiresAuth: true,
 		},
 	},
@@ -41,6 +54,7 @@ export default [
 		component: () => import("@/views/Authentication/SignupView.vue"),
 		meta: {
 			title: "Daftar",
+			label: "Daftar",
 			requiresAuth: false,
 		},
 	},
@@ -50,6 +64,7 @@ export default [
 		component: () => import("@/views/PendaftaranView.vue"),
 		meta: {
 			title: "Daftar",
+			label: "Pendaftaran",
 			requiresAuth: true,
 		},
 	},
@@ -59,6 +74,7 @@ export default [
 		component: () => import("@/views/VerifikasiView.vue"),
 		meta: {
 			title: "Verfikasi Pendaftaran",
+			label: "Verifikasi Pendaftaran",
 			requiresAuth: true,
 		},
 	},
@@ -68,6 +84,7 @@ export default [
 		component: () => import("@/views/DataPendaftaranView.vue"),
 		meta: {
 			title: "Verfikasi Pendaftaran",
+			label: "Data Verifikasi",
 			requiresAuth: true,
 		},
 	},
@@ -77,6 +94,7 @@ export default [
 		component: () => import("@/views/PendaftaranView.vue"),
 		meta: {
 			title: "Lihat Pendaftaran",
+			label: "Pendaftaran",
 			requiresAuth: true,
 		},
 	},
@@ -86,6 +104,7 @@ export default [
 		component: () => import("@/views/Authentication/SchoolSignupView.vue"),
 		meta: {
 			title: "Daftar",
+			label: "Daftar",
 			requiresAuth: false,
 		},
 	},

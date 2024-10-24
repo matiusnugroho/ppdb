@@ -46,9 +46,16 @@ export interface Student {
 	thumbnail_url: string // URL to the thumbnail
 }
 
+export interface Kecamatan {
+	id: number
+	nama: string
+}
 export interface School {
 	id: string // UUID as a string
 	user_id: number
+	user?: User
+	jenjang: string
+	kecamatan: Kecamatan
 	created_at: string
 	updated_at: string
 	nama_sekolah: string
@@ -149,4 +156,9 @@ export interface endpoints {
 }
 export interface StatistikData {
 	[key: string]: number | string
+}
+
+export interface DataSekolah {
+	total: number
+	data: School[]
 }

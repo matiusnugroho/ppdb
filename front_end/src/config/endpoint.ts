@@ -15,6 +15,7 @@ const ENDPOINTS: endpoints = {
 	REGISTER_SEKOLAH: `${BASE_URL_API}/sekolah/register`,
 	UPDATE_PHOTO_SISWA: `${BASE_URL_API}/siswa/update-foto`,
 	GET_KECAMATAN: `${BASE_URL_API}/kecamatan/`,
+	GET_SEKOLAH_ALL: `${BASE_URL_API}/sekolah`,
 	GET_SEKOLAH: `${BASE_URL_API}/sekolah/kecamatan/{kecamatan_id}/{jenjang}`,
 	CSRF: `${BASE_URL_API}/sanctum/csrf-cookie`,
 	DAFTAR_KE_SEKOLAH: `${BASE_URL_API}/pendaftaran/daftar`,
@@ -31,6 +32,7 @@ const ENDPOINTS: endpoints = {
 	LULUSKAN: `${BASE_URL_API}/pendaftaran/luluskan/{id}`,
 	GET_PENDAFTARAN: `${BASE_URL_API}/pendaftaran/get-pendaftaran`,
 	STATISTIK_SEKOLAH: `${BASE_URL_API}/statistik/sekolah`,
+	STATISTIK_ADMIN: `${BASE_URL_API}/statistik/admin`,
 }
 
 // Helper function to replace placeholders with actual values

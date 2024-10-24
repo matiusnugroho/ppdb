@@ -2,6 +2,7 @@ import { ref } from "vue"
 import requestor from "@/services/requestor"
 import type { StatistikData } from "@/types"
 import { ENDPOINTS } from "@/config/endpoint"
+import { useAuthStore } from "@/stores/auth"
 
 export function useStatistik() {
 	const error = ref<string | null>(null)
@@ -9,12 +10,16 @@ export function useStatistik() {
 	const statistik = ref<StatistikData | null>(null)
 
 	const fetchStatistik = async () => {
+		const authStore = useAuthStore()
+		const url = authStore.role === "super_admin" ? ENDPOINTS.STATISTIK_ADMIN : ENDPOINTS.STATISTIK_SEKOLAH
 		loadingStatistik.value = true
 		try {
-			const response = await requestor.get(ENDPOINTS.STATISTIK_SEKOLAH)
+			const response = await requestor.get(url)
+			console.log(response.data)
 			statistik.value = response.data // Adjust this based on API structure
 			return true
 		} catch (err: any) {
+			console.error(err)
 			error.value = "Failed to load statistik " + err.response?.message
 			return false
 		} finally {

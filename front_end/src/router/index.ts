@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import routes from "@/router/routes"
 import { useAuthStore } from "@/stores/auth"
 import { useMessagesStore } from "@/stores/messages"
+import { useSidebarStore } from "@/stores/sidebar"
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,10 @@ router.beforeEach((to, from, next) => {
 	const messagesStore = useMessagesStore()
 	document.title = `PPDB ${to.meta.title}`
 	const authStore = useAuthStore()
+	const sidebarStore = useSidebarStore()
+	if (sidebarStore.page !== to.meta.label) {
+		sidebarStore.selected = to.meta.label as string
+	}
 	if (to.meta.requiresAuth && !authStore.isLoggedIn()) {
 		authStore.intendedURL = to.fullPath
 		next({ name: "login" })

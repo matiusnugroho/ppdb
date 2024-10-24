@@ -9,10 +9,16 @@ export const menuGroups = [
 				role: "all",
 			},
 			{
+				icon: "toga",
+				label: "Sekolah",
+				route: "/dashboard/sekolah",
+				role: "super_admin",
+			},
+			{
 				icon: "document",
 				label: "Pendaftaran",
 				route: "/pendaftaran",
-				role: "all",
+				role: ["siswa", "sekolah", "verifikator_sekolah"],
 			},
 			{
 				icon: "user-circle",
