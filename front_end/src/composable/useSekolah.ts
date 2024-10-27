@@ -14,7 +14,7 @@ export function useSekolah() {
 		loadingSekolah.value = true
 		try {
 			const response = await requestor.get(url)
-			dataSekolah.value = null // response.data // Adjust this based on API structure
+			dataSekolah.value = response.data // response.data // Adjust this based on API structure
 		} catch (err) {
 			error.value = "Failed to load sekolah list"
 		} finally {

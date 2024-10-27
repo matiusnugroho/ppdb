@@ -23,6 +23,7 @@ class SchoolController extends Controller
         $response = [
             'total' => $schools->total(),
             'currentPage' => $schools->currentPage(),
+            'prevPage' => $schools->currentPage() > 1 ? $schools->currentPage() - 1 : null,
             'nextPage' => $schools->hasMorePages() ? $schools->currentPage() + 1 : null,
             'lastPage' => $schools->lastPage(),
             'data' => $schools->items(), // Optional: Include the items in the response

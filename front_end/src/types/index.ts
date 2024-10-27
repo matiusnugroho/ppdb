@@ -160,5 +160,9 @@ export interface StatistikData {
 
 export interface DataSekolah {
 	total: number
+	currentPage: number
+	prevPage: number | null
+	nextPage: number | null
+	lastPage: number
 	data: School[]
 }
