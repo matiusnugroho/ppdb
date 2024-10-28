@@ -32,10 +32,7 @@
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js"
     ],
     "assets": [
-      "images/user-01.png",
-      "images/user-02.png",
-      "images/user-03.png",
-      "images/user-04.png",
+      "images/nopp.png",
       "images/logo.svg"
     ]
   },
@@ -48,6 +45,8 @@
     "dynamicImports": [
       "src/assets/icons/add-photo.svg?raw",
       "src/assets/icons/calendar-search.svg?raw",
+      "src/assets/icons/calendar.svg?raw",
+      "src/assets/icons/caret-down.svg?raw",
       "src/assets/icons/circle-check.svg?raw",
       "src/assets/icons/circle-exclamation.svg?raw",
       "src/assets/icons/close.svg?raw",
@@ -56,10 +55,28 @@
       "src/assets/icons/home.svg?raw",
       "src/assets/icons/lock-closed.svg?raw",
       "src/assets/icons/lock-open.svg?raw",
+      "src/assets/icons/toga.svg?raw",
       "src/assets/icons/triangle-exclamation.svg?raw",
+      "src/assets/icons/upload-double.svg?raw",
       "src/assets/icons/upload.svg?raw",
       "src/assets/icons/user-circle.svg?raw",
       "src/assets/icons/view-finder.svg?raw"
+    ]
+  },
+  "_InputGroup.js": {
+    "file": "js/InputGroup.js",
+    "name": "InputGroup",
+    "imports": [
+      "index.html",
+      "__plugin-vue_export-helper.js"
+    ]
+  },
+  "_NoDataComponent.vue_vue_type_script_setup_true_lang.js": {
+    "file": "js/NoDataComponent.vue_vue_type_script_setup_true_lang.js",
+    "name": "NoDataComponent.vue_vue_type_script_setup_true_lang",
+    "imports": [
+      "__plugin-vue_export-helper.js",
+      "index.html"
     ]
   },
   "_PlainLayout.js": {
@@ -82,6 +99,14 @@
       "index.html"
     ]
   },
+  "_TextAreaGroup.js": {
+    "file": "js/TextAreaGroup.js",
+    "name": "TextAreaGroup",
+    "imports": [
+      "index.html",
+      "__plugin-vue_export-helper.js"
+    ]
+  },
   "__plugin-vue_export-helper.js": {
     "file": "js/_plugin-vue_export-helper.js",
     "name": "_plugin-vue_export-helper"
@@ -91,6 +116,19 @@
     "name": "authComposable",
     "imports": [
       "index.html"
+    ]
+  },
+  "_buatOption.js": {
+    "file": "js/buatOption.js",
+    "name": "buatOption",
+    "imports": [
+      "index.html",
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "css/buatOption.css"
     ]
   },
   "_component.js": {
@@ -121,6 +159,13 @@
       "index.html"
     ]
   },
+  "_hasError.js": {
+    "file": "js/hasError.js",
+    "name": "hasError",
+    "imports": [
+      "_formValidationErrors.js"
+    ]
+  },
   "_login-ilustrasi.js": {
     "file": "js/login-ilustrasi.js",
     "name": "login-ilustrasi",
@@ -140,9 +185,16 @@
       "css/toast.css"
     ]
   },
-  "_useKecamatan.js": {
-    "file": "js/useKecamatan.js",
-    "name": "useKecamatan",
+  "_useCekPendaftaran.js": {
+    "file": "js/useCekPendaftaran.js",
+    "name": "useCekPendaftaran",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "_useSekolah.js": {
+    "file": "js/useSekolah.js",
+    "name": "useSekolah",
     "imports": [
       "index.html"
     ]
@@ -154,7 +206,8 @@
     "isEntry": true,
     "dynamicImports": [
       "src/views/HomeView.vue",
-      "src/views/Dashboard/DashBoardSiswaView.vue",
+      "src/views/Dashboard/DashboardView.vue",
+      "src/views/Admin/DataSekolahView.vue",
       "src/views/BiodataView.vue",
       "src/views/Authentication/SigninView.vue",
       "src/views/Authentication/SignupView.vue",
@@ -334,6 +387,18 @@
     "src": "src/assets/icons/calendar-search.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/calendar.svg?raw": {
+    "file": "js/calendar.js",
+    "name": "calendar",
+    "src": "src/assets/icons/calendar.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/caret-down.svg?raw": {
+    "file": "js/caret-down.js",
+    "name": "caret-down",
+    "src": "src/assets/icons/caret-down.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/circle-check.svg?raw": {
     "file": "js/circle-check.js",
     "name": "circle-check",
@@ -382,10 +447,22 @@
     "src": "src/assets/icons/lock-open.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/toga.svg?raw": {
+    "file": "js/toga.js",
+    "name": "toga",
+    "src": "src/assets/icons/toga.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/triangle-exclamation.svg?raw": {
     "file": "js/triangle-exclamation.js",
     "name": "triangle-exclamation",
     "src": "src/assets/icons/triangle-exclamation.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/upload-double.svg?raw": {
+    "file": "js/upload-double.js",
+    "name": "upload-double",
+    "src": "src/assets/icons/upload-double.svg?raw",
     "isDynamicEntry": true
   },
   "src/assets/icons/upload.svg?raw": {
@@ -422,21 +499,28 @@
     "file": "images/logo.svg",
     "src": "src/assets/images/logo/logo.svg"
   },
-  "src/assets/images/user/user-01.png": {
-    "file": "images/user-01.png",
-    "src": "src/assets/images/user/user-01.png"
+  "src/assets/images/nopp.png": {
+    "file": "images/nopp.png",
+    "src": "src/assets/images/nopp.png"
   },
-  "src/assets/images/user/user-02.png": {
-    "file": "images/user-02.png",
-    "src": "src/assets/images/user/user-02.png"
-  },
-  "src/assets/images/user/user-03.png": {
-    "file": "images/user-03.png",
-    "src": "src/assets/images/user/user-03.png"
-  },
-  "src/assets/images/user/user-04.png": {
-    "file": "images/user-04.png",
-    "src": "src/assets/images/user/user-04.png"
+  "src/views/Admin/DataSekolahView.vue": {
+    "file": "js/DataSekolahView.js",
+    "name": "DataSekolahView",
+    "src": "src/views/Admin/DataSekolahView.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
+      "index.html",
+      "_useSekolah.js",
+      "_NoDataComponent.vue_vue_type_script_setup_true_lang.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
+      "_buatOption.js",
+      "_InputGroup.js",
+      "__plugin-vue_export-helper.js",
+      "_authComposable.js",
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js"
+    ]
   },
   "src/views/Authentication/SchoolSignupView.vue": {
     "file": "js/SchoolSignupView.js",
@@ -448,7 +532,12 @@
       "_PlainLayout.js",
       "_formValidationErrors.js",
       "_toast.js",
-      "_useKecamatan.js",
+      "_buatOption.js",
+      "_fieldErrorHtml.js",
+      "_InputGroup.js",
+      "_hasError.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "_TextAreaGroup.js",
       "_login-ilustrasi.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js"
@@ -462,13 +551,14 @@
     "imports": [
       "index.html",
       "_PlainLayout.js",
-      "__plugin-vue_export-helper.js",
+      "_InputGroup.js",
       "_AlertSuccess.js",
       "_authComposable.js",
       "_toast.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
       "_login-ilustrasi.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.js"
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "__plugin-vue_export-helper.js"
     ]
   },
   "src/views/Authentication/SignupView.vue": {
@@ -482,6 +572,10 @@
       "_formValidationErrors.js",
       "_component.js",
       "_toast.js",
+      "_hasError.js",
+      "_fieldErrorHtml.js",
+      "_InputGroup.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
       "_login-ilustrasi.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js"
@@ -501,20 +595,26 @@
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "_fieldErrorHtml.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "_hasError.js",
+      "_InputGroup.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js",
       "_authComposable.js"
     ]
   },
-  "src/views/Dashboard/DashBoardSiswaView.vue": {
-    "file": "js/DashBoardSiswaView.js",
-    "name": "DashBoardSiswaView",
-    "src": "src/views/Dashboard/DashBoardSiswaView.vue",
+  "src/views/Dashboard/DashboardView.vue": {
+    "file": "js/DashboardView.js",
+    "name": "DashboardView",
+    "src": "src/views/Dashboard/DashboardView.vue",
     "isDynamicEntry": true,
     "imports": [
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "index.html",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "_toast.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
+      "_useCekPendaftaran.js",
+      "__plugin-vue_export-helper.js",
       "_authComposable.js"
     ]
   },
@@ -531,9 +631,12 @@
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.js",
       "_toast.js",
-      "_authComposable.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
-      "__plugin-vue_export-helper.js"
+      "_TextAreaGroup.js",
+      "_hasError.js",
+      "_authComposable.js",
+      "__plugin-vue_export-helper.js",
+      "_formValidationErrors.js"
     ]
   },
   "src/views/Errors/Error404View.vue": {
@@ -566,8 +669,10 @@
       "_BreadcrumbDefault.vue_vue_type_script_setup_true_lang.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "_formValidationErrors.js",
+      "_useCekPendaftaran.js",
       "index.html",
-      "_useKecamatan.js",
+      "_buatOption.js",
+      "_useSekolah.js",
       "_AlertSuccess.js",
       "_fieldErrorHtml.js",
       "_toast.js",
@@ -575,6 +680,7 @@
       "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js",
       "_getDataById.js",
+      "_NoDataComponent.vue_vue_type_script_setup_true_lang.js",
       "_authComposable.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js"
     ]
@@ -589,8 +695,10 @@
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "_getDataById.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
+      "_NoDataComponent.vue_vue_type_script_setup_true_lang.js",
       "index.html",
-      "_authComposable.js"
+      "_authComposable.js",
+      "__plugin-vue_export-helper.js"
     ]
   }
 }

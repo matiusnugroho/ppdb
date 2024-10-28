@@ -13,7 +13,7 @@
 						</td>
 						<td>:</td>
 						<td class="py-5 px-4">
-							<h4 class="text-xl font-semibold text-black dark:text-white">{{ registration.school.nama_sekolah }}</h4>
+							<h4 class="text-xl font-semibold text-black dark:text-white">{{ registration.school?.nama_sekolah }}</h4>
 						</td>
 					</tr>
 					<tr>

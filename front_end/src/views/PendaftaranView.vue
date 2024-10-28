@@ -10,6 +10,7 @@ import SudahDaftar from "@/components/Pendaftaran/SudahDaftar.vue"
 import BelumBukaPendaftaran from "@/components/Pendaftaran/BelumBukaPendaftaran.vue"
 import { useAuthStore } from "@/stores/auth"
 import SekolahDaftar from "@/components/Pendaftaran/SekolahDaftar.vue"
+import type { Registration } from "@/types"
 
 const pageTitle = ref("Pendaftaran")
 const formValidationErrors = useFormValidationErrorsStore()
@@ -40,8 +41,11 @@ onMounted(async () => {
 		currentComponent.value = SekolahDaftar
 	}
 })
-function refreshComponent() {
-	componentKey.value++
+function refreshComponent(data: Registration) {
+	registrationData.value = data
+	currentComponent.value = SudahDaftar
+	console.log("componen direfresh, data pendaftaran di bawah")
+	console.log(registrationData.value)
 }
 </script>
 

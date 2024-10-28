@@ -31,7 +31,7 @@
 			<div class="custom-scrollbar max-h-48 overflow-y-auto">
 				<a
 					v-for="item in filteredItems"
-					:key="item.value"
+					:key="item.value as string"
 					href="#"
 					@click.prevent="selectOption(item)"
 					class="block w-full px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md">

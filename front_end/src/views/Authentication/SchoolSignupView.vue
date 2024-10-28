@@ -59,7 +59,7 @@ const handleSubmit = async () => {
 			title: "Pendaftaran Berhasil",
 			detail: "Silakan Login dengan akun yang telah dibuat",
 		})
-		await router.push({ name: "login" })
+		await router.push({ name: "pendaftaran" })
 	} else {
 		showToast({
 			message: "Gagal Mendaftar, perhatikan kesalahan pengisian data",

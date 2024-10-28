@@ -87,7 +87,7 @@ export interface ProfileSiswaRequest extends Omit<Student, "foto" | "foto_url" |
 	password?: string // Optional password field
 }
 
-export interface ProfileSekolahRequest extends Omit<School, "created_at" | "updated_at" | "id" | "user_id">, Pick<User, "username"> {
+export interface ProfileSekolahRequest extends Omit<School, "created_at" | "updated_at" | "id" | "user_id" | "kecamatan">, Pick<User, "username"> {
 	id?: string // Optional id field
 	user_id?: number // Optional user_id field
 	password?: string // Optional password field

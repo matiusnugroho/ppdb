@@ -24,7 +24,7 @@ export const usePaginationStore = defineStore(
 			jenjang,
 			kecamatan_id,
 			currentPage,
-			resetTodefault
+			resetTodefault,
 		}
 	},
 	{ persist: true },

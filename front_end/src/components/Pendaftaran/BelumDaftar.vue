@@ -39,7 +39,6 @@ import { FwbSpinner } from "flowbite-vue"
 import { useDaftarKesekolah } from "@/composable/useDaftarKesekolah"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
-import router from "@/router"
 import { useMessagesStore } from "@/stores/messages"
 import { showToast } from "@/utils/ui/toast"
 import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
@@ -54,6 +53,7 @@ const kecamatan_id = ref("")
 const sekolah_id = ref("")
 const jenjang = ref("")
 const jenjangOption = ref<Option[]>([
+	{ label: "Pilih Jenjang", value: null },
 	{ label: "SD", value: "sd" },
 	{ label: "SMP", value: "smp" },
 ])
@@ -78,13 +78,13 @@ const handleSubmit = async () => {
 		jenjang: jenjang.value,
 	}
 	const registerResponse = await registerSekolah(data)
-	if (registerResponse) {
+	console.log({ registerResponse })
+	if (registerResponse.data.success) {
 		messageStore.addMessage("success", {
 			title: "Pendaftaran Berhasil",
 			detail: "Silakan Lengkapi dokumen",
 		})
-		emit("refreshParent")
-		await router.go(0)
+		emit("refreshParent", registerResponse.data.data)
 	} else {
 		console.log(errorDaftar.value, "errrrrrrr")
 		showToast({

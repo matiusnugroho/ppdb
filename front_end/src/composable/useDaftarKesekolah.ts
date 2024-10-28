@@ -12,23 +12,12 @@ export function useDaftarKesekolah() {
 		loadingRegister.value = true
 		try {
 			const response = await requestor.post(ENDPOINTS.DAFTAR_KE_SEKOLAH, data)
-
-			console.log({ response }, "response from daftar kesekolah")
-
-			if (response.data.success) {
-				//kembalikan response untuk diolah lebih lanjut
-				return response
-			} else {
-				formValidationErrors.errors = response.data.errors
-				console.log({ response }, "response from daftar kesekolah")
-				errorDaftar.value = response.data.message
-				return false
-			}
+			return response
 		} catch (error: any) {
 			formValidationErrors.errors = error.response?.data?.errors || {}
 			const message = error.response?.data?.message
 			errorDaftar.value = message
-			return false
+			return error.response
 		} finally {
 			loadingRegister.value = false
 		}

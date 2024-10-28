@@ -9,7 +9,7 @@
 			@change="updateValue"
 			class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-2 px-2 font-normal outline-none transition focus:border-primary active:border-primary dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
 			<option value="">{{ props.placeholder }}</option>
-			<option v-for="option in options" :key="option.value" :value="option.value">
+			<option v-for="option in options" :key="option.value as string" :value="option.value">
 				{{ option.label }}
 			</option>
 		</select>
@@ -17,11 +17,14 @@
 </template>
 
 <script setup lang="ts">
+import type { Option } from "@/types"
+import type { PropType } from "vue"
+
 // Define the props for the select component
 const props = defineProps({
 	label: String,
 	options: {
-		type: Array as () => { label: string; value: string | number }[],
+		type: Array as PropType<Option[]>,
 		required: true,
 	},
 	customClasses: String,

@@ -4,5 +4,5 @@
 	</div>
 </template>
 <script setup lang="ts">
-import NoDataComponent from '@/components/UI/NoDataComponent.vue'
+import NoDataComponent from "@/components/UI/NoDataComponent.vue"
 </script>

@@ -86,7 +86,8 @@ class PendaftaranController extends Controller
                 'status' => 'belum upload',
             ]);
         }
-
+        $registration = $student->registration;
+        $registration->load('school', 'documents');
         return response()->json([
             'success' => true,
             'data' => $student->registration,
