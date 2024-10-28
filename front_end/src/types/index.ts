@@ -126,7 +126,7 @@ export interface RegistrationResponse {
 }
 export interface Option {
 	label: string
-	value: string | number // Value can be string or number, depending on the data
+	value: string | number | null // Value can be string or number, depending on the data
 }
 export interface DokumenRequest {
 	id_dokumen: string // The document ID as a string

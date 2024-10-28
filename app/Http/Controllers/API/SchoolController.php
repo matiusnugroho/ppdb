@@ -14,20 +14,58 @@ class SchoolController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $perPage = 20; // Default per page
-        $schools = School::with('kecamatan')->paginate($perPage);
+        // Validate the request parameters
+        $validated = $request->validate([
+            'page' => 'nullable|integer|min:1',
+            'per_page' => 'nullable|string',
+            'jenjang' => 'nullable|string',
+            'kecamatan_id' => 'nullable|string',
+        ]);
 
-        // Prepare the response structure
-        $response = [
-            'total' => $schools->total(),
-            'currentPage' => $schools->currentPage(),
-            'prevPage' => $schools->currentPage() > 1 ? $schools->currentPage() - 1 : null,
-            'nextPage' => $schools->hasMorePages() ? $schools->currentPage() + 1 : null,
-            'lastPage' => $schools->lastPage(),
-            'data' => $schools->items(), // Optional: Include the items in the response
-        ];
+        // Create the query builder
+        $query = School::with('kecamatan');
+
+        // Apply filters if they are provided
+        if (! empty($validated['jenjang'])) {
+            $query->where('jenjang', $validated['jenjang']);
+        }
+
+        if (! empty($validated['kecamatan_id'])) {
+            $query->where('kecamatan_id', $validated['kecamatan_id']);
+        }
+
+        // Check if per_page is 'all' to return all results without pagination
+        if (isset($validated['per_page']) && strtolower($validated['per_page']) === 'all') {
+            $schools = $query->get();
+
+            // Prepare the response structure without pagination
+            $response = [
+                'total' => $schools->count(),
+                'currentPage' => 1,
+                'prevPage' => null,
+                'nextPage' => null,
+                'lastPage' => 1,
+                'data' => $schools,
+            ];
+        } else {
+            // Set default pagination value
+            $perPage = is_numeric($validated['per_page']) ? (int) $validated['per_page'] : 20;
+
+            // Paginate the results
+            $schools = $query->paginate($perPage);
+
+            // Prepare the response structure
+            $response = [
+                'total' => $schools->total(),
+                'currentPage' => $schools->currentPage(),
+                'prevPage' => $schools->currentPage() > 1 ? $schools->currentPage() - 1 : null,
+                'nextPage' => $schools->hasMorePages() ? $schools->currentPage() + 1 : null,
+                'lastPage' => $schools->lastPage(),
+                'data' => $schools->items(),
+            ];
+        }
 
         return response()->json($response);
     }

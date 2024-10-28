@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col h-full">
 		<!-- Scrollable Table Area -->
-		<div class="flex-grow overflow-x-auto overflow-y-auto max-h-[calc(100vh-300px)] custom-scrollbar"> 
+		<div class="flex-grow overflow-x-auto overflow-y-auto max-h-[calc(100vh-300px)] custom-scrollbar">
 			<table class="table table-pin-rows table-pin-cols">
 				<thead>
 					<tr>
@@ -32,6 +32,13 @@
 							</td>
 						</tr>
 					</template>
+					<template v-else-if="data?.data.length === 0">
+						<tr>
+							<th colspan="5" class="text-center">
+								<NoDataComponent title="Data Sekolah" message="Data Tidak Ditemukan" />
+							</th>
+						</tr>
+					</template>
 					<tr v-else v-for="(sekolah, index) in data?.data" :key="index">
 						<th>{{ sekolah.nama_sekolah }}</th>
 						<td>{{ sekolah.jenjang }}</td>
@@ -56,7 +63,7 @@
 		<div class="rounded-b-lg border-t border-gray-200 px-4 py-2">
 			<ol class="flex justify-end gap-1 text-xs font-medium">
 				<li v-if="data?.prevPage">
-					<a href="#cikontot" class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
+					<a @click.prevent="emitPrevPage" href="#cikontot" class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
 						<span class="sr-only">Prev Page</span>
 						<svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 20 20" fill="currentColor">
 							<path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -65,11 +72,17 @@
 				</li>
 
 				<li v-for="page in Array.from({ length: data?.lastPage || 1 }, (_, index) => index + 1)" :key="page">
-					<a href="#" class="block size-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"> {{ page }} </a>
+					<a
+						href="#"
+						class="block size-8 rounded border text-center leading-8"
+						:class="paginationStore.currentPage === page ? 'bg-primary text-white border-primary hover:bg-blue-500' : 'text-gray-900 border-gray-100 bg-white hover:bg-gray-100'"
+						@click.prevent="emitPageChange(page)">
+						{{ page }}
+					</a>
 				</li>
 
 				<li v-if="data?.nextPage">
-					<a href="#cikontot" class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
+					<a @click.prevent="emitNextPage" href="#cikontot" class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
 						<span class="sr-only">Next Page</span>
 						<svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 20 20" fill="currentColor">
 							<path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
@@ -84,14 +97,23 @@
 import { usePaginationStore } from "@/stores/paginationStore"
 import type { DataSekolah } from "@/types"
 import { type PropType } from "vue"
+import NoDataComponent from "@/components/UI/NoDataComponent.vue"
 
-//to do go to prev page
-const goToPrevPage = () => {
-	//paginationStore.goToPrevPage()
+const emit = defineEmits<{
+	(event: "prev-page"): void
+	(event: "next-page"): void
+	(event: "page-change", page: number): void
+}>()
+const emitPrevPage = () => {
+	emit("prev-page")
 }
 
-const goToNextPage = () => {
-	//paginationStore.goToNextPage()
+const emitNextPage = () => {
+	emit("next-page")
+}
+
+const emitPageChange = (page: number) => {
+	emit("page-change", page)
 }
 
 defineProps({

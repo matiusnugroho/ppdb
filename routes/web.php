@@ -15,6 +15,19 @@ Route::get('/migrate', function () {
         throw $e;
     }
 });
+Route::get('/setup', function () {
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('clear-compiled');
+    Artisan::call('optimize');
+
+    Artisan::call('route:cache');
+    Artisan::call('view:cache');
+    Artisan::call('config:cache');
+
+});
 Route::get('/link', function () {
     Artisan::call('storage:link');
 

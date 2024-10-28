@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\RegistrationPeriod;
 use App\Models\School;
 use Carbon\Carbon;
-use App\Models\RegistrationPeriod;
 
 class StatistikController extends Controller
 {

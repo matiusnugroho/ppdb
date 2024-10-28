@@ -23,6 +23,7 @@ class PermissionSeeder extends Seeder
             'edit_registration_status',
             'lihat_pendaftar',
             'daftar_sekolah',
+            'luluskan_siswa',
 
         ];
         $permissionVerifikatorSekolah = [
@@ -30,6 +31,7 @@ class PermissionSeeder extends Seeder
             'reject_dokumen_siswa',
             'edit_registration_status',
             'lihat_pendaftar',
+            'luluskan_siswa',
         ];
         $permissionSiswa = [
             'edit_my_profile_siswa',

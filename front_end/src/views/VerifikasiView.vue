@@ -5,6 +5,7 @@ import DefaultLayout from "@/layouts/DefaultLayout.vue"
 import { usePendaftaran } from "@/composable/usePendaftaran"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
 import { getDataById } from "@/helpers/getDataById"
+import NoDataComponent from "@/components/UI/NoDataComponent.vue"
 
 const pageTitle = ref("Verifikasi")
 const { dataPendaftar, loadingVerifikasi, totalPendaftar, getVerifiedByMe, luluskan } = usePendaftaran()
@@ -65,6 +66,15 @@ onMounted(() => {
 										<button class="btn btn-ghost btn-xs">Status</button>
 									</td>
 									<td></td>
+								</tr>
+							</template>
+
+							<!-- No Data Rows (show when data is empty) -->
+							<template v-if="dataPendaftar?.length === 0">
+								<tr>
+									<td colspan="4" class="text-center">
+										<NoDataComponent title="Tidak ada data" message="Belum ada pendaftar" />
+									</td>
 								</tr>
 							</template>
 
