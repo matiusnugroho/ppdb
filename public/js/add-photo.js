@@ -4,3 +4,4 @@ const t=`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
 <path d="M19 3L19 7" stroke="currentColor" stroke-width="null" stroke-linecap="round" class="my-path"></path>
 <path d="M21 5H17" stroke="currentColor" stroke-width="null" stroke-linecap="round" class="my-path"></path>
 </svg>`;export{t as default};
+//# sourceMappingURL=add-photo.js.map

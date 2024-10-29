@@ -10,6 +10,36 @@ export default [
 		},
 	},
 	{
+		path: "/statistik",
+		name: "statistik",
+		component: () => import("@/views/Pages/StatistikPages.vue"),
+		meta: {
+			title: "PPDB Kuantan Singing",
+			label: "Statistik",
+			requiresAuth: false,
+		},
+	},
+	{
+		path: "/sekolah",
+		name: "sekolah",
+		component: () => import("@/views/Pages/SekolahPages.vue"),
+		meta: {
+			title: "PPDB Kuantan Singing",
+			label: "Sekolah",
+			requiresAuth: false,
+		},
+	},
+	{
+		path: "/persyaratan",
+		name: "persyaratan",
+		component: () => import("@/views/Pages/PersyaratanPages.vue"),
+		meta: {
+			title: "PPDB Kuantan Singing",
+			label: "Persyaratan",
+			requiresAuth: false,
+		},
+	},
+	{
 		path: "/dashboard",
 		name: "ppdbDashboard",
 		component: () => import("@/views/Dashboard/DashboardView.vue"),

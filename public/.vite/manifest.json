@@ -29,11 +29,11 @@
     "imports": [
       "index.html",
       "_authComposable.js",
+      "_logo-ppdb.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js"
     ],
     "assets": [
-      "images/nopp.png",
-      "images/logo.svg"
+      "images/nopp.png"
     ]
   },
   "_HeroIcon.vue_vue_type_script_setup_true_lang.js": {
@@ -63,12 +63,33 @@
       "src/assets/icons/view-finder.svg?raw"
     ]
   },
+  "_HomeLayout.vue_vue_type_script_setup_true_lang.js": {
+    "file": "js/HomeLayout.vue_vue_type_script_setup_true_lang.js",
+    "name": "HomeLayout.vue_vue_type_script_setup_true_lang",
+    "imports": [
+      "_NavBar.vue_vue_type_style_index_0_lang.js",
+      "index.html"
+    ]
+  },
   "_InputGroup.js": {
     "file": "js/InputGroup.js",
     "name": "InputGroup",
     "imports": [
       "index.html",
       "__plugin-vue_export-helper.js"
+    ]
+  },
+  "_NavBar.vue_vue_type_style_index_0_lang.js": {
+    "file": "js/NavBar.vue_vue_type_style_index_0_lang.js",
+    "name": "NavBar.vue_vue_type_style_index_0_lang",
+    "imports": [
+      "index.html",
+      "_useSmoothScrollToTop.js",
+      "_logo-ppdb.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "css/NavBar.css"
     ]
   },
   "_NoDataComponent.vue_vue_type_script_setup_true_lang.js": {
@@ -204,6 +225,10 @@
       "index.html"
     ]
   },
+  "_useSmoothScrollToTop.js": {
+    "file": "js/useSmoothScrollToTop.js",
+    "name": "useSmoothScrollToTop"
+  },
   "index.html": {
     "file": "index.js",
     "name": "index",
@@ -211,6 +236,9 @@
     "isEntry": true,
     "dynamicImports": [
       "src/views/HomeView.vue",
+      "src/views/Pages/StatistikPages.vue",
+      "src/views/Pages/SekolahPages.vue",
+      "src/views/Pages/PersyaratanPages.vue",
       "src/views/Dashboard/DashboardView.vue",
       "src/views/Admin/DataSekolahView.vue",
       "src/views/BiodataView.vue",
@@ -500,10 +528,6 @@
     "file": "images/logo-ppdb.png",
     "src": "src/assets/images/logo/logo-ppdb.png"
   },
-  "src/assets/images/logo/logo.svg": {
-    "file": "images/logo.svg",
-    "src": "src/assets/images/logo/logo.svg"
-  },
   "src/assets/images/nopp.png": {
     "file": "images/nopp.png",
     "src": "src/assets/images/nopp.png"
@@ -523,6 +547,7 @@
       "_InputGroup.js",
       "__plugin-vue_export-helper.js",
       "_authComposable.js",
+      "_logo-ppdb.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js"
     ]
@@ -600,6 +625,7 @@
       "_toast.js",
       "_formValidationErrors.js",
       "_component.js",
+      "_useSmoothScrollToTop.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "_fieldErrorHtml.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
@@ -607,7 +633,8 @@
       "_InputGroup.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js",
-      "_authComposable.js"
+      "_authComposable.js",
+      "_logo-ppdb.js"
     ]
   },
   "src/views/Dashboard/DashboardView.vue": {
@@ -623,7 +650,8 @@
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "_useCekPendaftaran.js",
       "__plugin-vue_export-helper.js",
-      "_authComposable.js"
+      "_authComposable.js",
+      "_logo-ppdb.js"
     ]
   },
   "src/views/DataPendaftaranView.vue": {
@@ -643,6 +671,7 @@
       "_TextAreaGroup.js",
       "_hasError.js",
       "_authComposable.js",
+      "_logo-ppdb.js",
       "__plugin-vue_export-helper.js",
       "_formValidationErrors.js"
     ]
@@ -666,10 +695,54 @@
     "imports": [
       "index.html",
       "__plugin-vue_export-helper.js",
+      "_HomeLayout.vue_vue_type_script_setup_true_lang.js",
+      "_NavBar.vue_vue_type_style_index_0_lang.js",
+      "_useSmoothScrollToTop.js",
       "_logo-ppdb.js"
     ],
     "css": [
       "css/HomeView.css"
+    ]
+  },
+  "src/views/Pages/PersyaratanPages.vue": {
+    "file": "js/PersyaratanPages.js",
+    "name": "PersyaratanPages",
+    "src": "src/views/Pages/PersyaratanPages.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_HomeLayout.vue_vue_type_script_setup_true_lang.js",
+      "index.html",
+      "_NavBar.vue_vue_type_style_index_0_lang.js",
+      "_useSmoothScrollToTop.js",
+      "_logo-ppdb.js",
+      "__plugin-vue_export-helper.js"
+    ]
+  },
+  "src/views/Pages/SekolahPages.vue": {
+    "file": "js/SekolahPages.js",
+    "name": "SekolahPages",
+    "src": "src/views/Pages/SekolahPages.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_NavBar.vue_vue_type_style_index_0_lang.js",
+      "index.html",
+      "_useSmoothScrollToTop.js",
+      "_logo-ppdb.js",
+      "__plugin-vue_export-helper.js"
+    ]
+  },
+  "src/views/Pages/StatistikPages.vue": {
+    "file": "js/StatistikPages.js",
+    "name": "StatistikPages",
+    "src": "src/views/Pages/StatistikPages.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_HomeLayout.vue_vue_type_script_setup_true_lang.js",
+      "index.html",
+      "_NavBar.vue_vue_type_style_index_0_lang.js",
+      "_useSmoothScrollToTop.js",
+      "_logo-ppdb.js",
+      "__plugin-vue_export-helper.js"
     ]
   },
   "src/views/PendaftaranView.vue": {
@@ -694,6 +767,7 @@
       "_getDataById.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.js",
       "_authComposable.js",
+      "_logo-ppdb.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js"
     ]
   },
@@ -710,6 +784,7 @@
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_authComposable.js",
+      "_logo-ppdb.js",
       "__plugin-vue_export-helper.js"
     ]
   }

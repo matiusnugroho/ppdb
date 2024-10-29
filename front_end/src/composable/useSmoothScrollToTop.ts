@@ -1,5 +1,6 @@
 export function useSmoothScrollToTop() {
 	const smoothScrollToTop = (selector: string, options?: ScrollToOptions) => {
+		console.log({ selector, options })
 		try {
 			const container = document.querySelector(selector) as HTMLElement
 
@@ -11,6 +12,7 @@ export function useSmoothScrollToTop() {
 				}
 
 				container.scrollTo(defaultOptions)
+				window.scrollTo({ top: 0, behavior: "smooth" })
 			} else {
 				console.warn(`Element with selector ${selector} not found.`)
 			}

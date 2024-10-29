@@ -1,29 +1,29 @@
 <template>
-	<nav id="navbar" class="relative z-10 w-full text-neutral-800">
-		<div class="flex flex-col max-w-screen-xl px-8 mx-auto lg:items-center lg:justify-between lg:flex-row py-4">
+	<nav id="navbar" class="fixed top-0 left-0 z-10 w-full text-neutral-800 shadow-sm bg-white transition-all duration-300">
+		<div class="flex flex-col max-w-screen-xl px-8 mx-auto lg:items-center lg:justify-between lg:flex-row py-2">
 			<div class="flex flex-col lg:flex-row items-center space-x-4 xl:space-x-8">
-				<div class="w-full flex flex-row items-center justify-between py-6">
+				<div class="w-full flex flex-row items-center justify-between py-2">
 					<div>
-						<img :src="logoppdb" class="w-24 xl:w-28" alt="Nefa Logo" />
+						<RouterLink to="/">
+							<img :src="logoppdb" class="w-24 xl:w-28" alt="Logo PPDB" />
+						</RouterLink>
 					</div>
-					<button class="rounded-lg lg:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+					<button class="rounded-sm lg:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
 						<SegmentIcon v-if="!open" :size="24" />
 						<CloseIcon v-else :size="24" />
 					</button>
 				</div>
+			</div>
+			<div class="flex items-center" :class="[open ? 'justify-start' : 'justify-end ml-auto']">
 				<ul
 					:class="[open ? 'flex' : 'hidden lg:flex']"
 					class="w-full h-auto flex flex-col flex-grow lg:items-center pb-4 lg:pb-0 lg:justify-end lg:flex-row origin-top duration-300 xl:space-x-2 space-y-3 lg:space-y-0">
-					<NavLink name="Cryptocurrency" url="#" />
-					<DropDownMenu title="Luncur" :items="dropdownAItems" />
-
-					<NavLink name="Exchanges" url="#" />
-					<NavLink name="Watchlist" url="#" />
-					<NavLink name="NFT" url="#" />
-					<NavLink name="Portfolio" url="#" />
+					<DropDownMenu title="Informasi" :items="dropdownAItems" />
+					<NavLink name="Statistik" url="/statistik" />
 				</ul>
 			</div>
-			<div :class="[open ? 'flex' : 'hidden lg:flex']" class="space-x-3">
+
+			<div :class="[open ? 'flex' : 'hidden lg:flex', 'space-x-3', 'ml-2']">
 				<router-link to="/login" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-bold py-2 px-4 rounded-full"> Login </router-link>
 			</div>
 		</div>
@@ -42,10 +42,8 @@ import logoppdb from "@/assets/images/logo/logo-ppdb.png"
 // Reactive state for open dropdown and navbar
 const open = ref(false)
 const dropdownAItems = [
-	{ label: "Dashboard", url: "#" },
-	{ label: "Settings", url: "#" },
-	{ label: "Earnings", url: "#" },
-	{ label: "Sign out", url: "#" },
+	{ label: "Sekolah", url: "/sekolah" },
+	{ label: "Persyaratan", url: "/persyaratan" },
 ]
 </script>
 
