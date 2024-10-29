@@ -73,7 +73,7 @@ onMounted(async () => {
 			<div v-if="loginGagal" class="mb-2 mt-4 transform transition-all duration-500 ease-out" :class="{ 'opacity-0 translate-y-5': !loginGagal, 'opacity-100 translate-y-0': loginGagal }">
 				<fwb-alert icon type="danger">{{ loginGagalMessage }}</fwb-alert>
 			</div>
-			<AlertSuccess v-if="messagesStore.messages.success" class="mb-5" :message="messagesStore.messages.success.title as string" :detail="messagesStore.messages.success.detail as string" />
+			<AlertSuccess v-if="messagesStore.messages?.success" class="mb-5" :message="messagesStore.messages?.success.title as string" :detail="messagesStore.messages?.success.detail as string" />
 			<form @submit.prevent="handleLogin">
 				<InputGroup name="username" label="Email / Username" type="email" placeholder="Enter your email" v-model="emailValue" />
 				<PasswordInput label="Password anda" v-model="passwordValue" />

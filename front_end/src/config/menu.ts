@@ -38,12 +38,6 @@ export const menuGroups = [
 				route: "/pendaftaran/verifikasi",
 				role: ["sekolah", "verifikator_sekolah"],
 			},
-			{
-				icon: "document",
-				label: "Dokumen",
-				route: "/dokumen",
-				role: "siswa",
-			},
 		],
 	},
 ]

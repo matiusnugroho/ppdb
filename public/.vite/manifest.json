@@ -83,13 +83,11 @@
     "file": "js/PlainLayout.js",
     "name": "PlainLayout",
     "imports": [
+      "_logo-ppdb.js",
       "_login-ilustrasi.js",
       "index.html",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js"
-    ],
-    "assets": [
-      "images/logo-ppdb.png"
     ]
   },
   "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js": {
@@ -171,6 +169,13 @@
     "name": "login-ilustrasi",
     "assets": [
       "images/login-ilustrasi.svg"
+    ]
+  },
+  "_logo-ppdb.js": {
+    "file": "js/logo-ppdb.js",
+    "name": "logo-ppdb",
+    "assets": [
+      "images/logo-ppdb.png"
     ]
   },
   "_toast.js": {
@@ -538,6 +543,7 @@
       "_hasError.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
       "_TextAreaGroup.js",
+      "_logo-ppdb.js",
       "_login-ilustrasi.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js"
@@ -556,6 +562,7 @@
       "_authComposable.js",
       "_toast.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "_logo-ppdb.js",
       "_login-ilustrasi.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js"
@@ -576,6 +583,7 @@
       "_fieldErrorHtml.js",
       "_InputGroup.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "_logo-ppdb.js",
       "_login-ilustrasi.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js"
@@ -656,8 +664,12 @@
     "src": "src/views/HomeView.vue",
     "isDynamicEntry": true,
     "imports": [
+      "index.html",
       "__plugin-vue_export-helper.js",
-      "index.html"
+      "_logo-ppdb.js"
+    ],
+    "css": [
+      "css/HomeView.css"
     ]
   },
   "src/views/PendaftaranView.vue": {
