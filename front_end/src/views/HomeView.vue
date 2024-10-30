@@ -56,9 +56,7 @@
 	</HomeLayout>
 </template>
 
-
 <script setup lang="ts">
 import GradeIllustration from "@/components/Illustration/GradeIllustration.vue"
 import HomeLayout from "@/layouts/HomeLayout.vue"
-
 </script>

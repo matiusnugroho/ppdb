@@ -1,11 +1,10 @@
 <template>
 	<NavBar ref="navbarRef" />
 	<main :style="{ paddingTop: `${navbarHeight}px` }" class="bg-white dark:bg-gray-900 min-h-screen" id="main-home">
-        <slot></slot>
+		<slot></slot>
 	</main>
 	<HomeFooter />
 </template>
-
 
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from "vue"

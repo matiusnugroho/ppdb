@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/statistik/admin', [StatistikController::class, 'admin']);
 });
 Route::resource('/siswa', StudentController::class);
+Route::get('/statistik/', [StatistikController::class, 'admin']);
 Route::post('/siswa/register', [StudentController::class, 'store']);
 Route::post('/sekolah/register', [SchoolController::class, 'store']);
 Route::get('/kecamatan/', [KecamatanController::class, 'index']);

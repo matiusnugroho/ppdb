@@ -26,11 +26,26 @@ export function useStatistik() {
 			loadingStatistik.value = false
 		}
 	}
+	const fetchPublicStatistik = async () => {
+		loadingStatistik.value = true
+		try {
+			const response = await requestor.get(ENDPOINTS.STATISTIK_PUBLIC)
+			statistik.value = response.data // Adjust this based on API structure
+			return true
+		} catch (err: any) {
+			console.error(err)
+			error.value = "Failed to load statistik " + err.response?.message
+			return false
+		} finally {
+			loadingStatistik.value = false
+		}
+	}
 
 	return {
 		statistik,
 		error,
 		loadingStatistik,
 		fetchStatistik,
+		fetchPublicStatistik,
 	}
 }
