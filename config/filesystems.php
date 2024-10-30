@@ -73,7 +73,7 @@ return [
         public_path('storage') => storage_path('app/public'),
     ], */
     'links' => [
-    (env('APP_ENV') === 'production' ? base_path('public_html/storage') : public_path('storage')) => storage_path('app/public'),
-],
+        (env('APP_ENV') === 'production' ? base_path('public_html/storage') : public_path('storage')) => storage_path('app/public'),
+    ],
 
 ];

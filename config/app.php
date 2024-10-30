@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'admin_email' => env('ADMIN_EMAIL'),
+    'route_protection_token' => env('ROUTE_PROTECTION_TOKEN'),
 
     /*
     |--------------------------------------------------------------------------

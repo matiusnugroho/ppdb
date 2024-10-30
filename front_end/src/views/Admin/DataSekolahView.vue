@@ -7,10 +7,11 @@
 		<!-- <NoDataComponent v-if="dataSekolah?.data?.length === 0" title="Data Sekolah" message="Tidak ada data sekolah" /> -->
 		<!-- Data available state -->
 		<!-- <template v-else> -->
-		<div class="flex justify-end gap-4 mb-4">
+		<div class="flex justify-end gap-4 mb-4 items-center">
 			<SearchableSelect placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
 			<SearchableSelect placeholder="Pilih Jenjang" :options="jenjangOption" v-model="jenjang" />
-			<InputGroup palaceholder="per_page" v-model="per_page" name="per_page" />
+			<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" />
+			<HeroIcon name="file-spreadsheet" size="32" class="h-24 w-24" />
 			<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
 		</div>
 		<TabelSekolahComponent :data="loadingSekolah ? loadingDataSekolah : dataSekolah!" :loading="loadingSekolah" @prev-page="goToPrevPage" @next-page="goToNextPage" @page-change="goToPage" />
@@ -30,7 +31,7 @@ import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
 import { useKecamatan } from "@/composable/useKecamatan"
 import { buatOption } from "@/helpers/buatOption"
 import type { DataSekolah, Option } from "@/types"
-import InputGroup from "@/components/Forms/InputGroup.vue"
+import HeroIcon from "@/components/Icon/HeroIcon.vue"
 const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
 const kecamatan_id = ref("")
 const jenjang = ref("")
@@ -43,6 +44,14 @@ const jenjangOption = ref<Option[]>([
 	{ label: "Semua Jenjang", value: null },
 	{ label: "SD", value: "sd" },
 	{ label: "SMP", value: "smp" },
+])
+
+const perPageOption = ref<Option[]>([
+	{ label: "10", value: 10 },
+	{ label: "25", value: 25 },
+	{ label: "50", value: 50 },
+	{ label: "100", value: 100 },
+	{ label: "Semua", value: 'all' },
 ])
 const paginationStore = usePaginationStore()
 const { fetchAllSekolah, loadingSekolah, dataSekolah } = useSekolah()
@@ -62,6 +71,11 @@ watch(kecamatan_id, (newVal) => {
 
 watch(jenjang, (newVal) => {
 	paginationStore.jenjang = newVal
+	fetchAllSekolah(paginationStore.per_page as number, 1, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
+})
+
+watch(per_page, (newVal) => {
+	paginationStore.per_page = newVal
 	fetchAllSekolah(paginationStore.per_page as number, 1, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
 })
 

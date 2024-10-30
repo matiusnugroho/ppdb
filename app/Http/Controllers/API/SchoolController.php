@@ -8,6 +8,9 @@ use App\Models\School;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SchoolExport;
+use Carbon\Carbon;
 
 class SchoolController extends Controller
 {
@@ -150,5 +153,43 @@ class SchoolController extends Controller
             'success' => true,
             'data' => $schools,
         ]);
+    }
+
+    public function excel(Request $request)
+    {
+        // Validate the request parameters
+        $validated = $request->validate([
+            'page' => 'nullable|integer|min:1',
+            'per_page' => 'nullable|string',
+            'jenjang' => 'nullable|string',
+            'kecamatan_id' => 'nullable|string',
+        ]);
+
+        // Create the query builder
+        $query = School::with('kecamatan');
+
+        // Apply filters if they are provided
+        if (! empty($validated['jenjang'])) {
+            $query->where('jenjang', $validated['jenjang']);
+        }
+
+        if (! empty($validated['kecamatan_id'])) {
+            $query->where('kecamatan_id', $validated['kecamatan_id']);
+        }
+
+        // Check if per_page is 'all' to return all results without pagination
+        if (isset($validated['per_page']) && strtolower($validated['per_page']) === 'all') {
+            $schools = $query->get();
+        } else {
+            // Set default pagination value
+            $perPage = is_numeric($validated['per_page'] ?? null) ? (int) $validated['per_page'] : 20;
+
+            // Paginate the results
+            $paginatedSchools = $query->paginate($perPage);
+            $schools = $paginatedSchools->items();
+        }
+
+        return Excel::download(new SchoolExport($schools), "datasekolah-{Carbon::now()->format('Y-m-d_His')}.xlsx");
+
     }
 }

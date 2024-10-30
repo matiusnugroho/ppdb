@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder
     {
         $user = User::create([
             'username' => 'admin',
-            'email' => env('ADMIN_EMAIL'),
+            'email' => config('app.admin_email'),
             'password' => bcrypt('ppdbroot'),
         ]);
 

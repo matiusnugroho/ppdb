@@ -88,6 +88,7 @@ class PendaftaranController extends Controller
         }
         $registration = $student->registration;
         $registration->load('school', 'documents');
+
         return response()->json([
             'success' => true,
             'data' => $student->registration,

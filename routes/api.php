@@ -18,7 +18,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::group(['prefix' => 'auth'], function () {
+Route::group(['prefix' => 'auth', 'middleware' => 'throttle:5,1'], function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::post('logout', [AuthController::class, 'logout']);
@@ -57,6 +57,7 @@ Route::resource('/siswa', StudentController::class);
 Route::get('/statistik/', [StatistikController::class, 'admin']);
 Route::post('/siswa/register', [StudentController::class, 'store']);
 Route::post('/sekolah/register', [SchoolController::class, 'store']);
+Route::get('/sekolah/excel', [SchoolController::class, 'excel']);
 Route::get('/kecamatan/', [KecamatanController::class, 'index']);
 Route::get('/sekolah/', [SchoolController::class, 'index']);
 Route::get('/sekolah/kecamatan/{kecamatanId}', [SchoolController::class, 'getByKecamatan']);

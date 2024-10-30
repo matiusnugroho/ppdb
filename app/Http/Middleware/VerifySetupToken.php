@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Hash;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Hash;
 
 class VerifySetupToken
 {
@@ -17,11 +17,12 @@ class VerifySetupToken
     public function handle(Request $request, Closure $next): Response
     {
         $token = $request->query('token'); // Token from the request
-        $hashedToken = env('ROUTE_PROTECTION_TOKEN'); // Hashed token from the .env file
+        $hashedToken = config('app.route_protection_token'); // Hashed token from the .env file
 
-        if (!Hash::check($token, $hashedToken)) {
+        if (! Hash::check($token, $hashedToken)) {
             abort(403, 'Unauthorized access.');
         }
+
         return $next($request);
     }
 }
