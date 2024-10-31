@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
       '/api': {
         target: 'http://ppdbv11.test',
         changeOrigin: true
-      }
+      },
     }
   },
   build: {

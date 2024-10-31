@@ -1,22 +1,14 @@
 <template>
 	<DefaultLayout>
 		<BreadcrumbDefault pageTitle="Data Sekolah" />
-		<!-- <div> -->
-		<!-- No data state -->
-
-		<!-- <NoDataComponent v-if="dataSekolah?.data?.length === 0" title="Data Sekolah" message="Tidak ada data sekolah" /> -->
-		<!-- Data available state -->
-		<!-- <template v-else> -->
 		<div class="flex justify-end gap-4 mb-4 items-center">
 			<SearchableSelect placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
 			<SearchableSelect placeholder="Pilih Jenjang" :options="jenjangOption" v-model="jenjang" />
 			<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" />
-			<HeroIcon name="file-spreadsheet" size="32" class="h-24 w-24" />
+			<IconButton icon="file-spreadsheet" mode="round" color="blue" @click.prevent="exportSekolah" />
 			<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
 		</div>
 		<TabelSekolahComponent :data="loadingSekolah ? loadingDataSekolah : dataSekolah!" :loading="loadingSekolah" @prev-page="goToPrevPage" @next-page="goToNextPage" @page-change="goToPage" />
-		<!-- </template> -->
-		<!-- </div> -->
 	</DefaultLayout>
 </template>
 
@@ -31,7 +23,8 @@ import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
 import { useKecamatan } from "@/composable/useKecamatan"
 import { buatOption } from "@/helpers/buatOption"
 import type { DataSekolah, Option } from "@/types"
-import HeroIcon from "@/components/Icon/HeroIcon.vue"
+import IconButton from "@/components/UI/Buttons/IconButton.vue"
+import { ENDPOINTS } from "@/config/endpoint"
 const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
 const kecamatan_id = ref("")
 const jenjang = ref("")
@@ -95,6 +88,16 @@ const goToPrevPage = () => {
 	fetchAllSekolah(paginationStore.per_page as number, paginationStore.page as number, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
 }
 
+const exportSekolah = () => {
+	const base_export_api = ENDPOINTS.DOWNLOAD_EXCEL_SEKOLAH
+	const params = new URLSearchParams()
+	if(paginationStore.jenjang !== null) params.append("jenjang", paginationStore.jenjang)
+	if(paginationStore.kecamatan_id !== null) params.append("kecamatan_id", paginationStore.kecamatan_id)
+	if (paginationStore.per_page !== null) params.append("per_page", paginationStore.per_page as unknown as string)
+	if (paginationStore.page !== null) params.append("page", paginationStore.page as unknown as string)
+	const export_api = `${base_export_api}?${params.toString()}`
+	window.open(export_api, "_blank")
+}
 onMounted(async () => {
 	await paginationStore.resetTodefault()
 	fetchKecamatan()

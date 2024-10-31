@@ -164,6 +164,7 @@ class SchoolController extends Controller
             'jenjang' => 'nullable|string',
             'kecamatan_id' => 'nullable|string',
         ]);
+        
 
         // Create the query builder
         $query = School::with('kecamatan');
@@ -186,10 +187,10 @@ class SchoolController extends Controller
 
             // Paginate the results
             $paginatedSchools = $query->paginate($perPage);
-            $schools = $paginatedSchools->items();
+            $schools = $paginatedSchools->getCollection();
         }
-
-        return Excel::download(new SchoolExport($schools), "datasekolah-{Carbon::now()->format('Y-m-d_His')}.xlsx");
+        //dd($schools);
+        return Excel::download(new SchoolExport($schools), "datasekolah-" . Carbon::now()->format('Y-m-d_His') . ".xlsx");
 
     }
 }

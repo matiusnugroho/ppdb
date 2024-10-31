@@ -5,6 +5,8 @@ use App\Http\Middleware\VerifySetupToken;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/sekolah/excel', [SchoolController::class, 'excel']);
+
 Route::group(['middleware' => [VerifySetupToken::class]], function () {
     Route::get('/migrate', function () {
         try {
