@@ -46,20 +46,20 @@ export default defineConfig(({ mode }) => {
           if (name === 'index') {
             return 'index.js'   // Place 'index.js' in 'special' folder
           }
-          return 'js/[name].js'          // All other JavaScript files go into 'js' folder
+          return 'js/[name].[hash].js'          // All other JavaScript files go into 'js' folder
         },
-        chunkFileNames: 'js/[name].js',
+        chunkFileNames: 'js/[name].[hash].js',
         assetFileNames:({name})=>{
           if (name === 'index.css') {
             return '[name].[ext]'      // Place 'index.css' in the root directory
           }
           if (name && name.endsWith('.css')) {
-            return 'css/[name].[ext]'      // CSS files go into the 'css' folder
+            return 'css/[name].[hash].[ext]'      // CSS files go into the 'css' folder
           }
           if (name && /\.(png|jpe?g|gif|svg)$/.test(name)) {
-            return 'images/[name].[ext]'   // Image files go into the 'images' folder
+            return 'images/[name].[hash].[ext]'   // Image files go into the 'images' folder
           }
-          return 'assets/[name].[ext]' 
+          return 'assets/[name].[hash].[ext]' 
         } ,
       },
     },
