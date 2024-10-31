@@ -52,6 +52,7 @@
       "src/assets/icons/close.svg?raw",
       "src/assets/icons/document-check.svg?raw",
       "src/assets/icons/document.svg?raw",
+      "src/assets/icons/file-spreadsheet.svg?raw",
       "src/assets/icons/home.svg?raw",
       "src/assets/icons/lock-closed.svg?raw",
       "src/assets/icons/lock-open.svg?raw",
@@ -472,6 +473,12 @@
     "src": "src/assets/icons/document.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/file-spreadsheet.svg?raw": {
+    "file": "js/file-spreadsheet.js",
+    "name": "file-spreadsheet",
+    "src": "src/assets/icons/file-spreadsheet.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/home.svg?raw": {
     "file": "js/home.js",
     "name": "home",
@@ -553,13 +560,12 @@
       "_useSekolah.js",
       "_DefaultLayout.vue_vue_type_script_setup_true_lang.js",
       "_buatOption.js",
-      "_InputGroup.js",
+      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "index.html",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.js",
       "__plugin-vue_export-helper.js",
       "_authComposable.js",
       "_logo-ppdb.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js"
     ]
   },
