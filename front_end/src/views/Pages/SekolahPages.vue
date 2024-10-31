@@ -36,7 +36,7 @@ const perPageOption = ref<Option[]>([
 	{ label: "25", value: 25 },
 	{ label: "50", value: 50 },
 	{ label: "100", value: 100 },
-	{ label: "Semua", value: 'all' },
+	{ label: "Semua", value: "all" },
 ])
 
 watch(kecamatan_id, (newVal) => {
@@ -77,13 +77,11 @@ onMounted(async () => {
 </script>
 
 <template>
-	
-		<div class="flex justify-end gap-4 mb-4 p-8 items-center">
-			<SearchableSelect placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
-			<SearchableSelect placeholder="Pilih Jenjang" :options="jenjangOption" v-model="jenjang" />
-			<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" />
-			<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
-		</div>
-		<TabelSekolahComponent :data="loadingSekolah ? loadingDataSekolah : dataSekolah!" :loading="loadingSekolah" @prev-page="goToPrevPage" @next-page="goToNextPage" @page-change="goToPage" />
-
+	<div class="flex justify-end gap-4 mb-4 p-8 items-center">
+		<SearchableSelect placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
+		<SearchableSelect placeholder="Pilih Jenjang" :options="jenjangOption" v-model="jenjang" />
+		<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" />
+		<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
+	</div>
+	<TabelSekolahComponent :data="loadingSekolah ? loadingDataSekolah : dataSekolah!" :loading="loadingSekolah" @prev-page="goToPrevPage" @next-page="goToNextPage" @page-change="goToPage" />
 </template>

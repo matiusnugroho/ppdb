@@ -18,7 +18,8 @@ export default [
 					label: "Home",
 					requiresAuth: false,
 				},
-			},{
+			},
+			{
 				path: "statistik",
 				name: "statistik",
 				component: () => import("@/views/Pages/StatistikPages.vue"),
@@ -48,9 +49,9 @@ export default [
 					requiresAuth: false,
 				},
 			},
-		]
+		],
 	},
-	
+
 	{
 		path: "/dashboard",
 		name: "ppdbDashboard",

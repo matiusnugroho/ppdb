@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-
 // Define props using defineProps from Vue
 defineProps<{
 	name: string

@@ -54,15 +54,15 @@ export default defineComponent({
 			:class="error ? 'border-red-500 dark:border-red-500 bg-red-200 focus:border-red-500 focus-visible:outline-none' : ''" />
 	</div> -->
 	<label :for="name" class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-		<input 
-			:type="type" 
-			:id="name" 
-			:value="modelValue" 
-			@input="updateValue($event.target as HTMLInputElement)" 
+		<input
+			:type="type"
+			:id="name"
+			:value="modelValue"
+			@input="updateValue($event.target as HTMLInputElement)"
 			:name="name"
 			:required="required"
 			:inputmode="inputmode"
-			class="peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0" 
+			class="peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
 			:placeholder="name"
 			:class="error ? 'border-red-500 dark:border-red-500 bg-red-200 focus:border-red-500 focus-visible:outline-none' : ''" />
 

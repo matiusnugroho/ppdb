@@ -51,7 +51,7 @@ const perPageOption = ref<Option[]>([
 	{ label: "25", value: 25 },
 	{ label: "50", value: 50 },
 	{ label: "100", value: 100 },
-	{ label: "Semua", value: 'all' },
+	{ label: "Semua", value: "all" },
 ])
 const paginationStore = usePaginationStore()
 const { fetchAllSekolah, loadingSekolah, dataSekolah } = useSekolah()
