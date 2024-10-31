@@ -1,6 +1,5 @@
 <template>
-	<HomeLayout>
-		<section class="mb-8">
+		<section class="flex max-h-screen mb-8">
 			<div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
 				<!-- Image container - shown at top on mobile, right side on desktop -->
 				<div class="mb-8 order-1 lg:order-2 lg:mb-0 lg:mt-0 lg:col-span-5 flex justify-center lg:justify-end">
@@ -53,10 +52,8 @@
 				</div>
 			</div>
 		</section>
-	</HomeLayout>
 </template>
 
 <script setup lang="ts">
 import GradeIllustration from "@/components/Illustration/GradeIllustration.vue"
-import HomeLayout from "@/layouts/HomeLayout.vue"
 </script>

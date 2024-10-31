@@ -64,19 +64,6 @@
       "src/assets/icons/view-finder.svg?raw"
     ]
   },
-  "_HomeLayout.vue_vue_type_script_setup_true_lang.js": {
-    "file": "js/HomeLayout.vue_vue_type_script_setup_true_lang.js",
-    "name": "HomeLayout.vue_vue_type_script_setup_true_lang",
-    "imports": [
-      "index.html",
-      "_useSmoothScrollToTop.js",
-      "_logo-ppdb.js",
-      "__plugin-vue_export-helper.js"
-    ],
-    "css": [
-      "css/HomeLayout.css"
-    ]
-  },
   "_InputGroup.js": {
     "file": "js/InputGroup.js",
     "name": "InputGroup",
@@ -246,6 +233,7 @@
     "src": "index.html",
     "isEntry": true,
     "dynamicImports": [
+      "src/layouts/HomeLayout.vue",
       "src/views/HomeView.vue",
       "src/views/Pages/StatistikPages.vue",
       "src/views/Pages/SekolahPages.vue",
@@ -549,6 +537,21 @@
     "file": "images/nopp.png",
     "src": "src/assets/images/nopp.png"
   },
+  "src/layouts/HomeLayout.vue": {
+    "file": "js/HomeLayout.js",
+    "name": "HomeLayout",
+    "src": "src/layouts/HomeLayout.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_useSmoothScrollToTop.js",
+      "_logo-ppdb.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "css/HomeLayout.css"
+    ]
+  },
   "src/views/Admin/DataSekolahView.vue": {
     "file": "js/DataSekolahView.js",
     "name": "DataSekolahView",
@@ -712,10 +715,7 @@
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "__plugin-vue_export-helper.js",
-      "_HomeLayout.vue_vue_type_script_setup_true_lang.js",
-      "_useSmoothScrollToTop.js",
-      "_logo-ppdb.js"
+      "__plugin-vue_export-helper.js"
     ],
     "css": [
       "css/HomeView.css"
@@ -727,11 +727,8 @@
     "src": "src/views/Pages/PersyaratanPages.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_HomeLayout.vue_vue_type_script_setup_true_lang.js",
-      "index.html",
-      "_useSmoothScrollToTop.js",
-      "_logo-ppdb.js",
-      "__plugin-vue_export-helper.js"
+      "__plugin-vue_export-helper.js",
+      "index.html"
     ]
   },
   "src/views/Pages/SekolahPages.vue": {
@@ -740,16 +737,13 @@
     "src": "src/views/Pages/SekolahPages.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_HomeLayout.vue_vue_type_script_setup_true_lang.js",
       "_TabelSekolahComponent.vue_vue_type_script_setup_true_lang.js",
       "_useSekolah.js",
       "_buatOption.js",
       "_InputGroup.js",
       "index.html",
-      "_useSmoothScrollToTop.js",
-      "_logo-ppdb.js",
-      "__plugin-vue_export-helper.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.js",
+      "__plugin-vue_export-helper.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js"
     ]
@@ -760,15 +754,12 @@
     "src": "src/views/Pages/StatistikPages.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_HomeLayout.vue_vue_type_script_setup_true_lang.js",
       "_useStatistik.js",
       "_toast.js",
       "index.html",
-      "_useSmoothScrollToTop.js",
-      "_logo-ppdb.js",
-      "__plugin-vue_export-helper.js",
       "_HeroIcon.vue_vue_type_script_setup_true_lang.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js"
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.js",
+      "__plugin-vue_export-helper.js"
     ]
   },
   "src/views/PendaftaranView.vue": {

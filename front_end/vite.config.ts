@@ -36,7 +36,6 @@ export default defineConfig(({ mode }) => {
     outDir: '../public',
     emptyOutDir: true,
     manifest: true,
-    sourcemap: true,
     rollupOptions: {
       plugins: [
         

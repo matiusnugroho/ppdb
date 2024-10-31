@@ -9,4 +9,3 @@ const t=`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http
 <path d="M19.5 19.5L21 21" stroke="currentColor" stroke-width="null" stroke-linecap="round" class="my-path"></path>
 <path d="M20 17.5C20 18.8807 18.8807 20 17.5 20C16.1193 20 15 18.8807 15 17.5C15 16.1193 16.1193 15 17.5 15C18.8807 15 20 16.1193 20 17.5Z" stroke="currentColor" stroke-width="null" class="my-path"></path>
 </svg>`;export{t as default};
-//# sourceMappingURL=calendar-search.js.map

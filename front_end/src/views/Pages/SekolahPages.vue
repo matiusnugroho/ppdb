@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, computed, ref, watch } from "vue"
-import HomeLayout from "@/layouts/HomeLayout.vue"
 import TabelSekolahComponent from "@/components/Dashboard/TabelSekolahComponent.vue"
 import { useSekolah } from "@/composable/useSekolah"
 import { usePaginationStore } from "@/stores/paginationStore"
@@ -8,7 +7,6 @@ import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
 import { useKecamatan } from "@/composable/useKecamatan"
 import { buatOption } from "@/helpers/buatOption"
 import type { DataSekolah, Option } from "@/types"
-import InputGroup from "@/components/Forms/InputGroup.vue"
 const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
 const kecamatan_id = ref("")
 const jenjang = ref("")
@@ -33,6 +31,14 @@ const loadingDataSekolah: DataSekolah = {
 	data: [],
 }
 
+const perPageOption = ref<Option[]>([
+	{ label: "10", value: 10 },
+	{ label: "25", value: 25 },
+	{ label: "50", value: 50 },
+	{ label: "100", value: 100 },
+	{ label: "Semua", value: 'all' },
+])
+
 watch(kecamatan_id, (newVal) => {
 	paginationStore.kecamatan_id = newVal
 	fetchAllSekolah(paginationStore.per_page as number, 1, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
@@ -43,6 +49,10 @@ watch(jenjang, (newVal) => {
 	fetchAllSekolah(paginationStore.per_page as number, 1, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
 })
 
+watch(per_page, (newVal) => {
+	paginationStore.per_page = newVal
+	fetchAllSekolah(paginationStore.per_page as number, 1, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
+})
 const goToPage = (page: number) => {
 	paginationStore.page = page
 	paginationStore.currentPage = page
@@ -67,13 +77,13 @@ onMounted(async () => {
 </script>
 
 <template>
-	<HomeLayout>
-		<div class="flex justify-end gap-4 mb-4 p-8">
+	
+		<div class="flex justify-end gap-4 mb-4 p-8 items-center">
 			<SearchableSelect placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
 			<SearchableSelect placeholder="Pilih Jenjang" :options="jenjangOption" v-model="jenjang" />
-			<InputGroup palaceholder="per_page" v-model="per_page" name="per_page" />
+			<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" />
 			<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
 		</div>
 		<TabelSekolahComponent :data="loadingSekolah ? loadingDataSekolah : dataSekolah!" :loading="loadingSekolah" @prev-page="goToPrevPage" @next-page="goToNextPage" @page-change="goToPage" />
-</HomeLayout>
+
 </template>

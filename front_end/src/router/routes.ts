@@ -2,49 +2,61 @@ export default [
 	{
 		path: "/",
 		name: "home",
-		component: () => import("@/views/HomeView.vue"),
+		component: () => import("@/layouts/HomeLayout.vue"),
 		meta: {
-			title: "PPDB Kuantan Singing",
+			title: "PPDB Kuantan Singingi",
 			label: "Home",
 			requiresAuth: false,
 		},
+		children: [
+			{
+				path: "",
+				name: "home",
+				component: () => import("@/views/HomeView.vue"),
+				meta: {
+					title: "PPDB Kuantan Singingi",
+					label: "Home",
+					requiresAuth: false,
+				},
+			},{
+				path: "statistik",
+				name: "statistik",
+				component: () => import("@/views/Pages/StatistikPages.vue"),
+				meta: {
+					title: "PPDB Kuantan Singingi",
+					label: "Statistik",
+					requiresAuth: false,
+				},
+			},
+			{
+				path: "sekolah",
+				name: "sekolah",
+				component: () => import("@/views/Pages/SekolahPages.vue"),
+				meta: {
+					title: "PPDB Kuantan Singingi",
+					label: "Sekolah",
+					requiresAuth: false,
+				},
+			},
+			{
+				path: "/persyaratan",
+				name: "persyaratan",
+				component: () => import("@/views/Pages/PersyaratanPages.vue"),
+				meta: {
+					title: "PPDB Kuantan Singingi",
+					label: "Persyaratan",
+					requiresAuth: false,
+				},
+			},
+		]
 	},
-	{
-		path: "/statistik",
-		name: "statistik",
-		component: () => import("@/views/Pages/StatistikPages.vue"),
-		meta: {
-			title: "PPDB Kuantan Singing",
-			label: "Statistik",
-			requiresAuth: false,
-		},
-	},
-	{
-		path: "/sekolah",
-		name: "sekolah",
-		component: () => import("@/views/Pages/SekolahPages.vue"),
-		meta: {
-			title: "PPDB Kuantan Singing",
-			label: "Sekolah",
-			requiresAuth: false,
-		},
-	},
-	{
-		path: "/persyaratan",
-		name: "persyaratan",
-		component: () => import("@/views/Pages/PersyaratanPages.vue"),
-		meta: {
-			title: "PPDB Kuantan Singing",
-			label: "Persyaratan",
-			requiresAuth: false,
-		},
-	},
+	
 	{
 		path: "/dashboard",
 		name: "ppdbDashboard",
 		component: () => import("@/views/Dashboard/DashboardView.vue"),
 		meta: {
-			title: "PPDB Kuantan Singing",
+			title: "PPDB Kuantan Singingi",
 			label: "Dashboard",
 			requiresAuth: true,
 		},
@@ -54,7 +66,7 @@ export default [
 		name: "sekolahDashboard",
 		component: () => import("@/views/Admin/DataSekolahView.vue"),
 		meta: {
-			title: "Data Sekolah Kuantan Singing",
+			title: "Data Sekolah Kuantan Singingi",
 			label: "Sekolah",
 			requiresAuth: true,
 		},
