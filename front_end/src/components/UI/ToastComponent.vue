@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed, ref, onMounted } from "vue"
+import {computed, ref, onMounted } from "vue"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
 
 const props = defineProps<{
