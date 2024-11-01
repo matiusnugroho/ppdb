@@ -6,6 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import removeConsole from 'vite-plugin-remove-console'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -21,6 +22,11 @@ export default defineConfig(({ mode }) => {
       targets: [
         { src: '../public_files/**/*', dest: '../public/' } // Adjust paths as needed
       ]
+    }),
+    visualizer({
+      filename: 'dist/stats.html', // Output file for the report
+      open: true, // Automatically open the report in your browser after the build
+      template: 'sunburst',
     })
     
   ],
