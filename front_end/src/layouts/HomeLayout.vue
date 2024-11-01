@@ -1,6 +1,6 @@
 <template>
 	<NavBar ref="navbarRef" />
-	<main :style="{ paddingTop: `${navbarHeight}px` }" class="bg-white dark:bg-gray-900 min-h-screen" id="main-home">
+	<main :style="{ marginTop: `${navbarHeight}px` }" class="bg-white dark:bg-gray-900 min-h-screen" id="main-home">
 		<router-view />
 	</main>
 	<HomeFooter />
@@ -28,6 +28,7 @@ onMounted(async () => {
 			for (const entry of entries) {
 				navbarHeight.value = entry.contentRect.height
 			}
+			console.log(navbarHeight.value)
 		})
 
 		resizeObserver.observe(navbarRef.value.$el)

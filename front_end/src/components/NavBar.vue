@@ -1,5 +1,5 @@
 <template>
-	<nav id="navbar" class="fixed top-0 left-0 z-10 w-full text-neutral-800 shadow-sm bg-white transition-all duration-300">
+	<nav id="navbar" class="fixed top-0 left-0 z-10 w-full text-neutral-800 shadow-sm bg-white transition-all duration-300 h-16">
 		<div class="flex flex-col max-w-screen-xl px-8 mx-auto lg:items-center lg:justify-between lg:flex-row py-2">
 			<div class="flex flex-col lg:flex-row items-center space-x-4 xl:space-x-8">
 				<div class="w-full flex flex-row items-center justify-between py-2">

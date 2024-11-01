@@ -3,6 +3,8 @@ import routes from "@/router/routes"
 import { useAuthStore } from "@/stores/auth"
 import { useMessagesStore } from "@/stores/messages"
 import { useSidebarStore } from "@/stores/sidebar"
+import { useLoadingStore } from "@/stores/loadingStore"
+
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +19,8 @@ router.beforeEach((to, from, next) => {
 	document.title = `PPDB ${to.meta.title}`
 	const authStore = useAuthStore()
 	const sidebarStore = useSidebarStore()
+	const loadingStore = useLoadingStore()
+	loadingStore.startLoading()
 	if (sidebarStore.page !== to.meta.label) {
 		sidebarStore.selected = to.meta.label as string
 	}
@@ -35,6 +39,11 @@ router.beforeEach((to, from, next) => {
 		messagesStore.markForRemoval()
 	}
 	next()
+})
+
+router.afterEach(() => {
+	const loadingStore = useLoadingStore()
+	loadingStore.stopLoading()
 })
 
 export default router

@@ -35,6 +35,7 @@ export default defineConfig(({ mode }) => {
   build: {
     outDir: '../public',
     emptyOutDir: true,
+    cssCodeSplit: true,
     manifest: true,
     rollupOptions: {
       plugins: [

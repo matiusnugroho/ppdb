@@ -1,7 +1,7 @@
 export default [
 	{
 		path: "/",
-		name: "home",
+		name: "root",
 		component: () => import("@/layouts/HomeLayout.vue"),
 		meta: {
 			title: "PPDB Kuantan Singingi",
@@ -40,7 +40,7 @@ export default [
 				},
 			},
 			{
-				path: "/persyaratan",
+				path: "persyaratan",
 				name: "persyaratan",
 				component: () => import("@/views/Pages/PersyaratanPages.vue"),
 				meta: {

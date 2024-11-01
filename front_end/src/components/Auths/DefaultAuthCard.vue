@@ -21,7 +21,7 @@ const props = defineProps(["subtitle", "title", "customClasses"])
 						</div>
 					</div>
 					<div class="w-full border-stroke dark:border-strokedark sm:w-1/2 xl:border-l-2">
-						<div class="w-full p-0 sm:p-12.5 xl:p-17.5">
+						<div class="w-full p-12 sm:p-12.5 xl:p-17.5">
 							<span class="mb-1.5 block font-medium">{{ props.subtitle }}</span>
 							<h2 class="mb-2 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
 								{{ props.title }}

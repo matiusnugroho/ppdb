@@ -7,6 +7,5 @@ import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
 		<span class="mr-2">
 			<SpinnerLoading size="lg" :loading="true" />
 		</span>
-		<p class="text-sm text-gray-700">Mengambil Data</p>
 	</div>
 </template>

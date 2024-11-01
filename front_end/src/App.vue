@@ -2,11 +2,12 @@
 import { RouterView, useRoute } from "vue-router"
 import { useSidebarStore } from "@/stores/sidebar"
 import { onMounted, watch } from "vue"
+import { useLoadingStore } from "@/stores/loadingStore"
+import WebLoadingComponent from "@/components/UI/WebLoadingComponent.vue"
 const sidebarStore = useSidebarStore()
 const route = useRoute()
-// Set the selected page when the component is mounted
+const loadingStore = useLoadingStore()
 onMounted(() => {
-	console.log({ route })
 	if (sidebarStore.page !== route.meta.label) {
 		sidebarStore.page = route.meta.label as string
 	}
@@ -25,5 +26,8 @@ watch(
 </script>
 
 <template>
-	<RouterView />
+	<router-view v-slot="{ Component }">
+      <WebLoadingComponent v-if="loadingStore.loading" />
+      <component v-else :is="Component" />
+    </router-view>
 </template>
