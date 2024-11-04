@@ -268,6 +268,7 @@ class PendaftaranController extends Controller
 
     public function verifikasi(Request $request)
     {
+        //dd(auth()->user()->can('verifikasi_siswa'));
         if (! auth()->user()->can('verifikasi_siswa')) {
             return response()->json([
                 'message' => 'Unauthorized',

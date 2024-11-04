@@ -38,6 +38,11 @@ export default defineConfig(({ mode }) => {
         target: 'http://ppdbv11.test',
         changeOrigin: true
       },
+      '/sanctum': {
+        target: 'http://ppdbv11.test',
+        changeOrigin: true,
+        secure: false
+      }
     }
   },
   build: {
