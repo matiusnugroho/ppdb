@@ -27,10 +27,16 @@ export function useAuth() {
 		const cookies = document.cookie.split(";")
 
 		for (let i = 0; i < cookies.length; i++) {
-			const cookie = cookies[i]
+			const cookie = cookies[i].trim()
 			const eqPos = cookie.indexOf("=")
 			const name = eqPos > -1 ? cookie.slice(0, eqPos) : cookie
-			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`
+
+			// Clear the cookie for all paths (use `path` if needed)
+			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;`
+
+			// Optional: If you have secure cookies, you may want to clear them for the secure flag
+			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;secure`
+			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=None`
 		}
 	}
 

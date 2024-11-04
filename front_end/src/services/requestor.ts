@@ -16,7 +16,7 @@ requestor.interceptors.response.use(
 	(error) => {
 		// Check if the error response exists and if the Bypass-Interceptor header is not set
 		if (error.response && error.response.status === 401) {
-			if (!error.config.headers['Bypass-Interceptor']) {
+			if (!error.config.headers["Bypass-Interceptor"]) {
 				const fromRoute = router.currentRoute.value.fullPath
 				router.push({
 					name: "login",

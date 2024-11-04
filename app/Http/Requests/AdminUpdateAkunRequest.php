@@ -11,6 +11,7 @@ class AdminUpdateAkunRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        //dd($this->user()->role);
         return $this->user()->role === 'super_admin';
     }
 
@@ -23,8 +24,8 @@ class AdminUpdateAkunRequest extends FormRequest
     {
         return [
             'username' => 'sometimes|required|string|min:3|max:20|unique:users,username,'.$this->user()->id,
-            'currentPassword' => 'sometimes|required|string|current_password',
-            'newPassword' => 'sometimes|required|string|min:8|confirmed',
+            'currentPassword' => 'sometimes|required|string',
+            'newPassword' => 'sometimes|required|string|min:8',
         ];
     }
 }

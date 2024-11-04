@@ -12,7 +12,7 @@ import { showToast } from "@/utils/ui/toast"
 import { computed, onMounted, ref } from "vue"
 
 const authStore = useAuthStore()
-const {loadingAkun, updateAkun} = useAkun()
+const { loadingAkun, updateAkun } = useAkun()
 const username = computed({
 	get: () => authStore.user?.username,
 	set: (value: string) => {
@@ -53,8 +53,7 @@ const saveCredentials = async () => {
 			type: "success",
 			message: "Akun berhasil diperbarui",
 		})
-	}
-	else {
+	} else {
 		const errors = response.errors
 		formValidationErrors.errors = errors
 		showToast({
@@ -91,8 +90,7 @@ onMounted(() => {
 								<path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
 							</svg>
 						</InputGroup>
-						
-						
+
 						<InputGroup v-model="email" label="Email" name="email" placeholder="Email baru">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 								<circle cx="12" cy="12" r="4" />
@@ -108,9 +106,9 @@ onMounted(() => {
 					<div class="p-6 border-t border-stroke dark:border-strokedark flex justify-end">
 						<button @click="saveCredentials" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 							<span class="flex items-center gap-2">
-									<SpinnerLoading :loading="loadingAkun" size="xs" />
-									Simpan
-								</span>
+								<SpinnerLoading :loading="loadingAkun" size="xs" />
+								Simpan
+							</span>
 						</button>
 					</div>
 				</div>
