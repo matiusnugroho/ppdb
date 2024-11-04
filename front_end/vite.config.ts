@@ -17,7 +17,9 @@ export default defineConfig(({ mode }) => {
     vue(),
     vueJsx(),
     VueDevTools(),
-    isProduction && removeConsole(),
+    isProduction && removeConsole({
+      includes: ['error', 'log', 'warn', 'info', 'debug'],
+    }),
     viteStaticCopy({
       targets: [
         { src: '../public_files/**/*', dest: '../public/' } // Adjust paths as needed

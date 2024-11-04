@@ -11,6 +11,7 @@ import BelumBukaPendaftaran from "@/components/Pendaftaran/BelumBukaPendaftaran.
 import { useAuthStore } from "@/stores/auth"
 import SekolahDaftar from "@/components/Pendaftaran/SekolahDaftar.vue"
 import type { Registration } from "@/types"
+import { getCSRFToken } from "@/services/csrf"
 
 const pageTitle = ref("Pendaftaran")
 const formValidationErrors = useFormValidationErrorsStore()
@@ -47,6 +48,9 @@ function refreshComponent(data: Registration) {
 	console.log("componen direfresh, data pendaftaran di bawah")
 	console.log(registrationData.value)
 }
+onMounted(async () => {
+	await getCSRFToken()
+})
 </script>
 
 <template>
