@@ -38,6 +38,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () 
     Route::post('/pendaftaran/buka-pendaftaran', [PendaftaranController::class, 'bukaPendaftaran']);
     Route::resource('/sekolah', SchoolController::class)->only(['create', 'update', 'destroy']);
     Route::post('/akun/update', [AdminController::class, 'updateAkun']);
+    //Setup Persyaratan
+    Route::resource('/persyaratan', DocumentTypeController::class)->only(['create', 'update', 'destroy']);
 });
 Route::group(['middleware' => 'auth:sanctum'], function () {
     route::post('/pendaftaran/daftar', [PendaftaranController::class, 'daftar']);
