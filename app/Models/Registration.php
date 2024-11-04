@@ -62,6 +62,10 @@ class Registration extends Model
     {
         return $this->belongsTo(RegistrationPeriod::class);
     }
+    public function registrationPath(): BelongsTo
+    {
+        return $this->belongsTo(RegistrationPath::class);
+    }
 
     public function verifiedBy(): BelongsTo
     {
