@@ -45,13 +45,21 @@ const handleLogin = async () => {
 	try {
 		await login(emailValue.value, passwordValue.value)
 	} catch (error: any) {
+		console.log('Error object handleLogin:', error)
+		console.log('Error response handleLogin:', error?.response)
 		if (error?.response?.status === 401 || error?.response?.status === 422) {
 			loginGagal.value = true
 			loginGagalMessage.value = "Username atau password salah"
-		} else if (error?.code === "ERR_NETWORK") {
+		}
+		else if(error?.response?.status === 429){
+			loginGagal.value = true
+			loginGagalMessage.value = "Terlalu banyak percobaan login, coba lagi beberapa saat"
+		} 
+		else if (error?.code === "ERR_NETWORK") {
 			loginGagal.value = true
 			loginGagalMessage.value = "Koneksi internet bermasalah"
-		} else {
+		} 
+		else {
 			loginGagal.value = true
 			loginGagalMessage.value = "Sepertinya jaringan anda atau server kami mengalami masalah, coba lagi beberapa saat"
 		}

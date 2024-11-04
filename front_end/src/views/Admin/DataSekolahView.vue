@@ -91,8 +91,8 @@ const goToPrevPage = () => {
 const exportSekolah = () => {
 	const base_export_api = ENDPOINTS.DOWNLOAD_EXCEL_SEKOLAH
 	const params = new URLSearchParams()
-	if(paginationStore.jenjang !== null) params.append("jenjang", paginationStore.jenjang)
-	if(paginationStore.kecamatan_id !== null) params.append("kecamatan_id", paginationStore.kecamatan_id)
+	if (paginationStore.jenjang !== null) params.append("jenjang", paginationStore.jenjang)
+	if (paginationStore.kecamatan_id !== null) params.append("kecamatan_id", paginationStore.kecamatan_id)
 	if (paginationStore.per_page !== null) params.append("per_page", paginationStore.per_page as unknown as string)
 	if (paginationStore.page !== null) params.append("page", paginationStore.page as unknown as string)
 	const export_api = `${base_export_api}?${params.toString()}`

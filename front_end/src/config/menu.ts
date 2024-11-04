@@ -15,6 +15,12 @@ export const menuGroups = [
 				role: "super_admin",
 			},
 			{
+				icon: "toga",
+				label: "Akun",
+				route: "/dashboard/akun",
+				role: "super_admin",
+			},
+			{
 				icon: "document",
 				label: "Pendaftaran",
 				route: "/pendaftaran",

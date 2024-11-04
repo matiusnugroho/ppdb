@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Exports\SchoolExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Models\School;
 use App\Models\User;
+use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\SchoolExport;
-use Carbon\Carbon;
 
 class SchoolController extends Controller
 {
@@ -164,7 +164,6 @@ class SchoolController extends Controller
             'jenjang' => 'nullable|string',
             'kecamatan_id' => 'nullable|string',
         ]);
-        
 
         // Create the query builder
         $query = School::with('kecamatan');
@@ -189,8 +188,9 @@ class SchoolController extends Controller
             $paginatedSchools = $query->paginate($perPage);
             $schools = $paginatedSchools->getCollection();
         }
+
         //dd($schools);
-        return Excel::download(new SchoolExport($schools), "datasekolah-" . Carbon::now()->format('Y-m-d_His') . ".xlsx");
+        return Excel::download(new SchoolExport($schools), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
 
     }
 }

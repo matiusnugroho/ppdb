@@ -13,7 +13,7 @@ export function useAuth() {
 				await router.push(intendedURL)
 			}
 		} catch (error: any) {
-			console.error("Login error:", error)
+			console.error("Login error from authComposable:", error)
 			throw error
 		}
 	}

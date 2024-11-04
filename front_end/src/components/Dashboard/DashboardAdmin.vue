@@ -4,6 +4,7 @@ import LoadingInfoComponent from "@/components/UI/LoadingInfoComponent.vue"
 import { useStatistik } from "@/composable/useStatistik"
 import { onMounted } from "vue"
 import { showToast } from "@/utils/ui/toast"
+import BreadcrumbDefault from "../Breadcrumbs/BreadcrumbDefault.vue"
 
 const { statistik, fetchStatistik, error, loadingStatistik } = useStatistik()
 onMounted(() => {
@@ -19,6 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
+	<BreadcrumbDefault pageTitle="Dashboard" />
 	<LoadingInfoComponent v-if="loadingStatistik" />
 	<div v-else class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
 		<StatsCardComponent icon="document-check" label="Sekolah" :value="statistik?.sekolah" color="blue" />

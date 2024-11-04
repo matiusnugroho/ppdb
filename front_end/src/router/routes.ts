@@ -63,6 +63,16 @@ export default [
 		},
 	},
 	{
+		path: "/dashboard/akun",
+		name: "akunDashboard",
+		component: () => import("@/views/Admin/AkunView.vue"),
+		meta: {
+			title: "PPDB Kuantan Singingi",
+			label: "Akun",
+			requiresAuth: true,
+		},
+	},
+	{
 		path: "/dashboard/sekolah",
 		name: "sekolahDashboard",
 		component: () => import("@/views/Admin/DataSekolahView.vue"),

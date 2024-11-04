@@ -13,13 +13,17 @@ export const useAuthStore = defineStore(
 		const intendedURL = ref<string | null>(null)
 		const login = async (username: string, password: string) => {
 			try {
-				const response = await requestor.post(ENDPOINTS.LOGIN, { username, password })
+				const response = await requestor.post(ENDPOINTS.LOGIN, { username, password },{
+					headers: {
+						'Bypass-Interceptor': 'true'
+					},
+				})
 				user.value = response.data.user
 				biodata.value = response.data.biodata
 				role.value = response.data.role
 				return response.data
 			} catch (error) {
-				console.error("Login error:", error)
+				console.error("Login error from authstore:", error)
 				throw error
 			}
 		}

@@ -27,7 +27,7 @@ watch(
 
 <template>
 	<router-view v-slot="{ Component }">
-      <WebLoadingComponent v-if="loadingStore.loading" />
-      <component v-else :is="Component" />
-    </router-view>
+		<WebLoadingComponent v-if="loadingStore.loading" />
+		<component v-else :is="Component" />
+	</router-view>
 </template>

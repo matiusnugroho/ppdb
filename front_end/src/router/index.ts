@@ -5,7 +5,6 @@ import { useMessagesStore } from "@/stores/messages"
 import { useSidebarStore } from "@/stores/sidebar"
 import { useLoadingStore } from "@/stores/loadingStore"
 
-
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes,

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DocumentTypeController;
 use App\Http\Controllers\API\KecamatanController;
@@ -36,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () 
     //Registration
     Route::post('/pendaftaran/buka-pendaftaran', [PendaftaranController::class, 'bukaPendaftaran']);
     Route::resource('/sekolah', SchoolController::class)->only(['create', 'update', 'destroy']);
+    Route::post('/akun/update', [AdminController::class, 'updateAkun']);
 });
 Route::group(['middleware' => 'auth:sanctum'], function () {
     route::post('/pendaftaran/daftar', [PendaftaranController::class, 'daftar']);

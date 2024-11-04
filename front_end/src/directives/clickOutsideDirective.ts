@@ -1,6 +1,5 @@
 import type { DirectiveBinding } from "vue"
 interface HTMLElementWithClickOutside extends HTMLElement {
-	
 	clickOutsideEvent?: (_event: MouseEvent) => void
 }
 
