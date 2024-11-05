@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateStudentRequest;
+use App\Http\Requests\Siswa\StoreStudentRequest;
+use App\Http\Requests\Siswa\UpdateStudentRequest;
 use App\Models\Student;
 use App\Models\User;
 use Hash;
@@ -37,7 +37,7 @@ class StudentController extends Controller
     {
         $validatedData = $request->validated();
         $userData = array_intersect_key($validatedData, array_flip(['email', 'username', 'password']));
-        $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak', 'nama_ibu', 'nik', 'nisn', 'no_kk', 'no_hp_ortu']));
+        $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak', 'nama_ibu', 'nik', 'nisn', 'no_kk', 'no_hp_ortu','kecamatan_id', 'alamat','jenis_kelamin','jenjang']));
         //dd($validatedData, $userData, $studentData);
         $user = User::create([
             'username' => $validatedData['username'] ?? null, // Allow name to be null
@@ -64,7 +64,7 @@ class StudentController extends Controller
         //dd($validatedData);
         if ($user->can('edit_my_profile_siswa')) {
             $userData = array_intersect_key($validatedData, array_flip(['email', 'username', 'password']));
-            $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak', 'nama_ibu', 'nik', 'nisn', 'no_kk', 'no_hp_ortu']));
+            $studentData = array_intersect_key($validatedData, array_flip(['nama', 'tempat_lahir', 'tanggal_lahir', 'nama_bapak', 'nama_ibu', 'nik', 'nisn', 'no_kk', 'no_hp_ortu','kecamatan_id', 'alamat','jenis_kelamin', 'jenjang']));
 
             // Hash the password if it's present in the validated data
             if (isset($userData['password'])) {

@@ -32,7 +32,7 @@ export const useAuthStore = defineStore(
 			}
 		}
 
-		const logout = async() => {
+		const logout = async () => {
 			user.value = null
 			biodata.value = null
 			role.value = null

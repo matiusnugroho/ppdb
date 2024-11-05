@@ -60,14 +60,42 @@ class SetupSeeder extends Seeder
                     'ijazah/skl smp sederajat' => [
                         'is_required' => true,
                         'display_order' => 1,
+                        'jenjang' => 'smp'
+                    ],
+                    'ijazah/skl TK sederajat' => [
+                        'is_required' => false,
+                        'display_order' => 1,
+                        'jenjang' => 'sd'
+                    ],
+                    'kartu keluarga' => [
+                        'is_required' => true,
+                        'display_order' => 2,
+                        'jenjang' => 'sd'
+                    ],
+                    'kartu keluarga' => [
+                        'is_required' => true,
+                        'display_order' => 2,
+                        'jenjang' => 'smp'
                     ],
                     'akta kelahiran' => [
                         'is_required' => true,
-                        'display_order' => 2,
+                        'display_order' => 3,
+                        'jenjang' => 'sd'
+                    ],
+                    'akta kelahiran' => [
+                        'is_required' => true,
+                        'display_order' => 3,
+                        'jenjang' => 'smp'
                     ],
                     'surat pernyataan keabsahan dokumen' => [
                         'is_required' => true,
-                        'display_order' => 3,
+                        'display_order' => 4,
+                        'jenjang' => 'sd'
+                    ],
+                    'surat pernyataan keabsahan dokumen' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'smp'
                     ],
                 ],
             ],
@@ -79,14 +107,52 @@ class SetupSeeder extends Seeder
                     'ijazah/skl smp sederajat' => [
                         'is_required' => true,
                         'display_order' => 1,
+                        'jenjang' => 'smp'
+                    ],
+                    'ijazah/skl TK sederajat' => [
+                        'is_required' => false,
+                        'display_order' => 1,
+                        'jenjang' => 'sd'
+                    ],
+                    'kartu keluarga' => [
+                        'is_required' => true,
+                        'display_order' => 2,
+                        'jenjang' => 'sd'
+                    ],
+                    'kartu keluarga' => [
+                        'is_required' => true,
+                        'display_order' => 2,
+                        'jenjang' => 'smp'
                     ],
                     'akta kelahiran' => [
                         'is_required' => true,
-                        'display_order' => 2,
+                        'display_order' => 3,
+                        'jenjang' => 'sd'
+                    ],
+                    'akta kelahiran' => [
+                        'is_required' => true,
+                        'display_order' => 3,
+                        'jenjang' => 'smp'
+                    ],
+                    'surat keterangan tidak mampu / Kartu PKH' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'sd'
+                    ],
+                    'surat keterangan tidak mampu / Kartu PKH' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'smp'
                     ],
                     'surat pernyataan keabsahan dokumen' => [
                         'is_required' => true,
-                        'display_order' => 3,
+                        'display_order' => 5,
+                        'jenjang' => 'sd'
+                    ],
+                    'surat pernyataan keabsahan dokumen' => [
+                        'is_required' => true,
+                        'display_order' => 5,
+                        'jenjang' => 'smp'
                     ],
                 ],
             ],
@@ -98,18 +164,52 @@ class SetupSeeder extends Seeder
                     'ijazah/skl smp sederajat' => [
                         'is_required' => true,
                         'display_order' => 1,
+                        'jenjang' => 'smp'
                     ],
-                    'nilai rata-rata rapor' => [
+                    'ijazah/skl TK sederajat' => [
+                        'is_required' => false,
+                        'display_order' => 1,
+                        'jenjang' => 'sd'
+                    ],
+                    'kartu keluarga' => [
                         'is_required' => true,
                         'display_order' => 2,
+                        'jenjang' => 'sd'
+                    ],
+                    'kartu keluarga' => [
+                        'is_required' => true,
+                        'display_order' => 2,
+                        'jenjang' => 'smp'
                     ],
                     'akta kelahiran' => [
                         'is_required' => true,
                         'display_order' => 3,
+                        'jenjang' => 'sd'
+                    ],
+                    'akta kelahiran' => [
+                        'is_required' => true,
+                        'display_order' => 3,
+                        'jenjang' => 'smp'
+                    ],
+                    'sertifikat' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'sd'
+                    ],
+                    'sertifikat' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'smp'
                     ],
                     'surat pernyataan keabsahan dokumen' => [
                         'is_required' => true,
                         'display_order' => 4,
+                        'jenjang' => 'sd'
+                    ],
+                    'surat pernyataan keabsahan dokumen' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'smp'
                     ],
                 ],
             ],
@@ -121,14 +221,52 @@ class SetupSeeder extends Seeder
                     'ijazah/skl smp sederajat' => [
                         'is_required' => true,
                         'display_order' => 1,
+                        'jenjang' => 'smp'
+                    ],
+                    'ijazah/skl TK sederajat' => [
+                        'is_required' => false,
+                        'display_order' => 1,
+                        'jenjang' => 'sd'
+                    ],
+                    'kartu keluarga' => [
+                        'is_required' => true,
+                        'display_order' => 2,
+                        'jenjang' => 'sd'
+                    ],
+                    'kartu keluarga' => [
+                        'is_required' => true,
+                        'display_order' => 2,
+                        'jenjang' => 'smp'
                     ],
                     'akta kelahiran' => [
                         'is_required' => true,
-                        'display_order' => 2,
+                        'display_order' => 3,
+                        'jenjang' => 'sd'
+                    ],
+                    'akta kelahiran' => [
+                        'is_required' => true,
+                        'display_order' => 3,
+                        'jenjang' => 'smp'
+                    ],
+                    'surat keterangan pindah orang tua' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'sd'
+                    ],
+                    'surat keterangan pindah orang tua' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'smp'
                     ],
                     'surat pernyataan keabsahan dokumen' => [
                         'is_required' => true,
-                        'display_order' => 3,
+                        'display_order' => 4,
+                        'jenjang' => 'sd'
+                    ],
+                    'surat pernyataan keabsahan dokumen' => [
+                        'is_required' => true,
+                        'display_order' => 4,
+                        'jenjang' => 'smp'
                     ],
                 ],
             ],
@@ -143,6 +281,7 @@ class SetupSeeder extends Seeder
                 if ($documentType) {
                     PathRequirement::create([
                         'registration_path_id' => $pathConfig['path']->id,
+                        'jenjang' => $config['jenjang'],
                         'document_type_id' => $documentType->id,
                         'is_required' => $config['is_required'],
                         'display_order' => $config['display_order'],

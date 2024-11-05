@@ -26,6 +26,7 @@ import type { DataSekolah, Option } from "@/types"
 import IconButton from "@/components/UI/Buttons/IconButton.vue"
 import { ENDPOINTS } from "@/config/endpoint"
 const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
+import jenjangData from "@/config/jenjang"
 const kecamatan_id = ref("")
 const jenjang = ref("")
 const per_page = ref()
@@ -35,8 +36,7 @@ const kecamatanOption = computed<Option[]>(() => {
 })
 const jenjangOption = ref<Option[]>([
 	{ label: "Semua Jenjang", value: null },
-	{ label: "SD", value: "sd" },
-	{ label: "SMP", value: "smp" },
+	...jenjangData,
 ])
 
 const perPageOption = ref<Option[]>([

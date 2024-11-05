@@ -3,11 +3,12 @@ MEnangani hal hal terkait pendaftaran ke sekolah
 */
 import { ENDPOINTS, replacePlaceholder } from "@/config/endpoint"
 import requestor from "@/services/requestor"
-import type { Pendaftar } from "@/types"
+import type { Pendaftar, JalurPendaftaran } from "@/types"
 import { ref } from "vue"
 import axios from "axios"
 export function usePendaftaran() {
 	const dataPendaftar = ref<Pendaftar[] | null>(null)
+	const dataJalurPendaftaran = ref<JalurPendaftaran[] | []>([])
 	const dataDetailVerifikasi = ref<Pendaftar | null>(null)
 	const loadingPendaftar = ref<boolean>(false)
 	const loadingVerifikasi = ref<boolean>(false)
@@ -143,6 +144,24 @@ export function usePendaftaran() {
 		}
 	}
 
+	const fetchJalurPendaftaran = async () => {
+		loadingPendaftar.value = true
+		try {
+			const response = await requestor.get(ENDPOINTS.GET_JALUR)
+			dataJalurPendaftaran.value = response.data // Adjust this based on API structure
+		} catch (err) {
+			if (axios.isAxiosError(err) && err.response) {
+				// Log the error for debugging
+				return err.response.data // Return the Axios response error
+			} else {
+				// Log other types of errors
+				return { message: "An unknown error occurred" } // Provide a fallback for unknown errors
+			}
+		} finally {
+			loadingPendaftar.value = false
+		}
+	}
+
 	return {
 		dataPendaftar,
 		error,
@@ -151,6 +170,7 @@ export function usePendaftaran() {
 		loadingLuluskan,
 		totalPendaftar,
 		dataDetailVerifikasi,
+		dataJalurPendaftaran,
 		fetchPendaftar,
 		verifikasiPendaftaran,
 		getVerifiedByMe,
@@ -158,5 +178,6 @@ export function usePendaftaran() {
 		verifikasiDokumen,
 		luluskan,
 		rejectDokumen,
+		fetchJalurPendaftaran
 	}
 }

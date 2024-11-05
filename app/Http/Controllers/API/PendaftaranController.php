@@ -4,13 +4,14 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RevisiDokumenRequest;
-use App\Http\Requests\StoreDaftarRequest;
+use App\Http\Requests\Pendaftaran\StoreDaftarRequest;
 use App\Http\Requests\StoreRegistrationPeriodRequest;
 use App\Http\Requests\UploadDokumenRequest;
 use App\Models\Document;
 use App\Models\DocumentType;
 use App\Models\Registration;
 use App\Models\RegistrationPeriod;
+use App\Models\RegistrationPath;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Storage;
@@ -57,7 +58,8 @@ class PendaftaranController extends Controller
 
         return response()->json($period);
     }
-
+    
+    //daftar siswa ke sekolah
     public function daftar(StoreDaftarRequest $request)
     {
         if (! $request->user()->can('daftar_siswa')) {
@@ -79,7 +81,8 @@ class PendaftaranController extends Controller
             ], 400);
         }
         $student->registration()->create($data);
-        $documentTypes = DocumentType::all();
+        $jalur = RegistrationPath::find($data['registration_path_id']);
+        $documentTypes = $jalur->requirements->pluck('documentType');
         foreach ($documentTypes as $documentType) {
             $student->registration->documents()->create([
                 'document_type_id' => $documentType->id,

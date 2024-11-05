@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('registration_path_id')->constrained()->onDelete('cascade');
             $table->uuid('document_type_id');  // Changed to reference document_types table
+            $table->string('jenjang')->nullable();
             $table->boolean('is_required')->default(true);
             $table->string('allowed_file_types')->nullable();  // e.g., 'pdf,jpg,png'
             $table->integer('max_file_size')->nullable();      // in KB

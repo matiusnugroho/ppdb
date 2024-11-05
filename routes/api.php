@@ -8,6 +8,7 @@ use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SchoolController;
 use App\Http\Controllers\API\StatistikController;
 use App\Http\Controllers\API\StudentController;
+use App\Http\Controllers\API\JalurController;
 use App\Http\Controllers\FileUploadTestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/statistik/admin', [StatistikController::class, 'admin']);
 });
 Route::resource('/siswa', StudentController::class);
+Route::get('/jalur', [JalurController::class, 'index']);
+Route::get('/jalur/{registrationPath}/persyaratan', [JalurController::class, 'persyaratan']);
+Route::get('/jalur/persyaratan', [JalurController::class, 'denganPersyaratan']);
 Route::get('/statistik/', [StatistikController::class, 'admin']);
 Route::post('/siswa/register', [StudentController::class, 'store']);
 Route::post('/sekolah/register', [SchoolController::class, 'store']);

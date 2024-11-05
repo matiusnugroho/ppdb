@@ -37,6 +37,9 @@ const ENDPOINTS: endpoints = {
 	STATISTIK_PUBLIC: `${BASE_URL_API}/statistik/`,
 	DOWNLOAD_EXCEL_SEKOLAH: `/sekolah/excel`,
 	UPDATE_AKUN_ADMIN: `${BASE_URL_API}/admin/akun/update`,
+	GET_JALUR: `${BASE_URL_API}/jalur`,
+	GET_JALUR_PERSYARATAN: `${BASE_URL_API}/jalur/{id}/persyaratan`,
+	GET_JALUR_DENGAN_PERSYARATAN: `${BASE_URL_API}/jalur/persyaratan`,
 }
 
 // Helper function to replace placeholders with actual values

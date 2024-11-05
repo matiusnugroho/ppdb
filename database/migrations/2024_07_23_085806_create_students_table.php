@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('nisn')->unique();
+            $table->string('jenjang')->nullable();
+            $table->integer('nisn')->unique()->nullable();
             $table->string('nama'); // Nama
+            $table->string('jenis_kelamin')->nullable();
             $table->string('tempat_lahir'); // Tempat Lahir
             $table->date('tanggal_lahir'); // Tanggal Lahir
             $table->string('nama_bapak');
@@ -22,11 +24,14 @@ return new class extends Migration
             $table->string('nik')->unique(); // NIK
             $table->string('no_kk')->unique(); // No. KK
             $table->string('no_hp_ortu'); // No. HP Ortu
+            $table->string('alamat'); // Email Ortu
             $table->string('foto')->nullable();
             $table->string('foto_url')->nullable();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('kecamatan_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('kecamatan_id')->references('id')->on('kecamatans')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -15,8 +15,13 @@ class DocumentTypeSeeder extends Seeder
     {
         $documentTypes = [
             'ijazah/skl smp sederajat',
+            'ijazah/skl TK sederajat',
+            'kartu keluarga',
+            'sertifikat',
             'nilai rata-rata rapor',
             'akta kelahiran',
+            'surat keterangan pindah orang tua',
+            'surat keterangan tidak mampu / Kartu PKH',
             'surat pernyataan keabsahan dokumen',
         ];
 

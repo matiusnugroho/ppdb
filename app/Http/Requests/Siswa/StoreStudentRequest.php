@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Siswa;
 
 use Illuminate\Validation\Rule;
 
@@ -32,7 +32,7 @@ class StoreStudentRequest extends StudentRequest
             'tanggal_lahir' => 'required|date',
             'nama_bapak' => 'required|string|max:255',
             'nama_ibu' => 'required|string|max:255',
-            'nisn' => 'required|numeric|unique:students',
+            'nisn' => 'nullable|numeric|unique:students',
             'nik' => [
                 'required',
                 'numeric',
@@ -46,6 +46,10 @@ class StoreStudentRequest extends StudentRequest
                 Rule::unique('students')->ignore($studentId),
             ],
             'no_hp_ortu' => 'required|string|max:15',
+            'alamat' => 'required|string|max:255',
+            'kecamatan_id' => 'required|numeric',
+            'jenjang' => 'required|string|max:4',
+            'jenis_kelamin' => 'required|string|max:2',
         ];
     }
 }

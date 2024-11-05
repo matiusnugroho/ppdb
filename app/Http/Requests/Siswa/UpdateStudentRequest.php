@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Siswa;
 
 use Illuminate\Validation\Rule;
 
@@ -63,6 +63,10 @@ class UpdateStudentRequest extends StudentRequest
             ],
             'no_hp_ortu' => 'sometimes|required|string|max:15',
             'foto' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'alamat' => 'sometimes|required|string|max:500',
+            'kecamatan_id' => 'sometimes|required|exists:kecamatans,id',
+            'jenjang' => 'sometimes|required|string|max:255',
+            'jenis_kelamin' => 'sometimes|required|string|max:2',
         ];
     }
 }

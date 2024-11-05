@@ -18,10 +18,17 @@ class JalurController extends Controller
         $jalur = RegistrationPath::all();
         return response()->json($jalur);
     }
-    public function persyaratan()
+    public function denganPersyaratan()
     {
-        $jalur = RegistrationPath::with('requirements.documentType')->all();
+        $jalur = RegistrationPath::with('requirements.documentType')->get();
         return response()->json($jalur);
+    }
+
+    public function persyaratan(RegistrationPath $registrationPath)
+    {
+        $persyaratan = $registrationPath->requirements;
+        $persyaratan->load('documentType');
+        return response()->json($persyaratan);
     }
 
     /**

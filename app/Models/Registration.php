@@ -13,7 +13,7 @@ class Registration extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id', 'student_id', 'school_id', 'registration_number', 'registration_period_id', 'jenjang', 'status', 'kelulusan', 'verified_by', 'created_at', 'updated_at',
+        'id', 'student_id', 'school_id', 'registration_number', 'registration_period_id', 'jenjang', 'status', 'kelulusan','registration_path_id','verified_by', 'created_at', 'updated_at',
     ];
 
     protected $casts = [

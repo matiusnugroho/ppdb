@@ -32,6 +32,9 @@ export interface Student {
 	nisn: string
 	nama: string
 	tempat_lahir: string
+	jenis_kelamin: string
+	jenjang: string
+	kecamatan_id: string
 	tanggal_lahir: string // Date in ISO format (e.g., 'YYYY-MM-DD')
 	nama_bapak: string
 	nama_ibu: string
@@ -151,6 +154,31 @@ export interface DocumentType {
 	created_at: string
 	updated_at: string
 }
+export type Requirement = {
+	id: number
+	registration_path_id: number
+	document_type_id: string
+	is_required: boolean
+	allowed_file_types?: string
+	max_file_size?: number
+	display_order?: number
+	validation_rules?: string | null
+	document_type?: DocumentType
+	created_at: string // or Date if you want to parse it as a Date object
+	updated_at: string // or Date if you want to parse it as a Date object
+  }
+export type JalurPendaftaran = {
+	id: number
+	name: string
+	description: string
+	quota_percentage: number
+	is_active?: boolean
+	display_order?: number
+	requirements?: Requirement[]
+	created_at?: string
+	updated_at?: string
+  }
+  
 export interface endpoints {
 	[key: string]: string
 }

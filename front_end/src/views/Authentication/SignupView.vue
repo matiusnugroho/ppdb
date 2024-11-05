@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue"
+import { onMounted, computed, ref } from "vue"
 import DefaultAuthCard from "@/components/Auths/DefaultAuthCard.vue"
 import PlainLayout from "@/layouts/PlainLayout.vue"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
@@ -13,11 +13,22 @@ import { hasError } from "@/helpers/hasError"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
 import InputGroup from "@/components/Forms/InputGroup.vue"
 import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
+import jenjangData from "@/config/jenjang"
+import type { Option } from "@/types"
+import SelectGroup from "@/components/Forms/SelectGroup.vue"
+import { useKecamatan } from "@/composable/useKecamatan"
+import { buatOption } from "@/helpers/buatOption"
+import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
+import TextAreaGroup from "@/components/Forms/TextAreaGroup.vue"
 // Define individual refs for each form field
+const jenjang = ref("")
+const kecamatan_id = ref("")
+const alamat = ref("")
 const nisn = ref("")
 const nik = ref("")
 const no_kk = ref("")
 const nama = ref("")
+const jenis_kelamin = ref("")
 const email = ref("")
 const username = ref("")
 const tempat_lahir = ref("")
@@ -26,16 +37,23 @@ const nama_bapak = ref("")
 const nama_ibu = ref("")
 const no_hp_ortu = ref("")
 const password = ref("")
-
+const jenjangOption = ref<Option[]>([
+	...jenjangData,
+])
 const formValidationErrors = useFormValidationErrorsStore()
 const { registerSiswa, loadingRegister } = useRegisterSiswa()
+const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
 const messagesStore = useMessagesStore()
 const handleSubmit = async () => {
 	const data = {
+		jenjang: jenjang.value,
+		kecamatan_id: kecamatan_id.value,
+		alamat: alamat.value,
 		nisn: nisn.value,
 		nik: nik.value,
 		no_kk: no_kk.value,
 		nama: nama.value,
+		jenis_kelamin: jenis_kelamin.value,
 		email: email.value,
 		username: username.value,
 		tempat_lahir: tempat_lahir.value,
@@ -63,18 +81,38 @@ const tanggalLahirConfig = ref({
 	allowInput: true,
 	format: "d-m-Y",
 })
-
+const kecamatanOption = computed<Option[]>(() => {
+	return buatOption(kecamatanList.value, "nama", "id")
+})
+const jenisKelaminOption = computed<Option[]>(() => {
+	return [
+		{ label: "Laki-laki", value: "L" },
+		{ label: "Perempuan", value: "P" },
+	]
+})
 onMounted(() => {
 	formValidationErrors.clearErrors()
+	fetchKecamatan()
 })
 </script>
 
 <template>
 	<PlainLayout>
-		<DefaultAuthCard subtitle="Start for free" title="Sign Up to TailAdmin">
+		<DefaultAuthCard subtitle="PPDB Online Kabupaten Kuantan singingi" title="Daftarkan Siswa">
 			<form @submit.prevent="handleSubmit">
 				<div class="mb-1">
-					<InputGroup label="Nomor Induk Siswa Nasional" v-model="nisn" :error="hasError('nisn')" name="nisn" inputmode="numeric" required />
+					<SelectGroup
+						v-model="jenjang"
+						:error="hasError('jenjang')"
+						name="jenjang"
+						label="Jenjang"
+						:options="jenjangOption"
+					/>
+					<div v-html="field_error_html('jenjang')"></div>
+				</div>
+
+				<div class="mb-1">
+					<InputGroup label="Nomor Induk Siswa Nasional" v-model="nisn" :error="hasError('nisn')" name="nisn" inputmode="numeric" />
 					<div v-html="field_error_html('nisn')"></div>
 				</div>
 				<div class="mb-1">
@@ -89,6 +127,16 @@ onMounted(() => {
 				<div class="mb-1">
 					<InputGroup label="Nama" v-model="nama" :error="hasError('nama')" name="nama" inputmode="text" required />
 					<div v-html="field_error_html('nama')"></div>
+				</div>
+				<div class="mb-1">
+					<SelectGroup
+						v-model="jenis_kelamin"
+						:error="hasError('jenis_kelamin')"
+						name="jenis_kelamin"
+						label="Jenis Kelamin"
+						:options="jenisKelaminOption"
+					/>
+					<div v-html="field_error_html('jenjang')"></div>
 				</div>
 
 				<!-- Email Address Section -->
@@ -107,7 +155,14 @@ onMounted(() => {
 					<PasswordInput label="Password" name="password" v-model="password" :error="hasError('password')" required />
 					<div v-html="field_error_html('password')"></div>
 				</div>
-
+				<div class="mb-1">
+					<SearchableSelect required label="Pilih Kecamatan" placeholder="Pilih Kecmatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
+					<div v-html="field_error_html('kecamatan_id')"></div>
+				</div>
+				<div class="mb-1">
+					<TextAreaGroup :error="hasError('alamat')" name="alamat" label="Alamat" v-model="alamat" />
+					<div v-html="field_error_html('alamat')"></div>
+				</div>
 				<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-1">
 					<!-- Tempat Lahir (3/4 of the width on medium and larger screens) -->
 					<div class="md:col-span-3 flex flex-col">

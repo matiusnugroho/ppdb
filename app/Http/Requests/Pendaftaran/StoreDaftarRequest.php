@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Pendaftaran;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,8 +22,9 @@ class StoreDaftarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'school_id' => 'required',
+            'school_id' => 'required|string',
             'jenjang' => 'required|string|max:4',
+            'registration_path_id' => 'required|numeric',
         ];
     }
 }

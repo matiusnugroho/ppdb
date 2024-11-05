@@ -19,7 +19,6 @@
 				:placeholder="placeholder"
 				:value="modelValue"
 				:name="name"
-				:required="required"
 				:id="name"
 				:autocomplete="name"
 				:inputmode="inputmode"

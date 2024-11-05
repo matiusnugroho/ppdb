@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue"
+import { onMounted, ref, markRaw } from "vue"
 import type { Component } from "vue"
 import BreadcrumbDefault from "@/components/Breadcrumbs/BreadcrumbDefault.vue"
 import DefaultLayout from "@/layouts/DefaultLayout.vue"
@@ -17,9 +17,15 @@ const pageTitle = ref("Pendaftaran")
 const formValidationErrors = useFormValidationErrorsStore()
 const { fetchRegistration, loadingRegistration, registrationData } = useCekPendaftaran()
 const authstore = useAuthStore()
-
+const components = {
+  BelumDaftar: markRaw(BelumDaftar),
+  SudahDaftar: markRaw(SudahDaftar),
+  BelumBukaPendaftaran: markRaw(BelumBukaPendaftaran),
+  SekolahDaftar: markRaw(SekolahDaftar)
+}
 const currentComponent = ref<Component | null>(null)
 const componentKey = ref(0)
+
 
 onMounted(async () => {
 	formValidationErrors.clearErrors()
@@ -31,20 +37,20 @@ onMounted(async () => {
 			const cekPendaftaran = await fetchRegistration()
 			console.log({ cekPendaftaran })
 			if (cekPendaftaran.success) {
-				currentComponent.value = registrationData.value !== null ? SudahDaftar : BelumDaftar
+				currentComponent.value = registrationData.value !== null ? components.SudahDaftar : components.BelumDaftar
 			} else {
-				currentComponent.value = BelumBukaPendaftaran
+				currentComponent.value = components.BelumBukaPendaftaran
 			}
 		} catch (e) {
 			console.log(e)
 		}
 	} else if (role === "sekolah" || role === "verifikator_sekolah") {
-		currentComponent.value = SekolahDaftar
+		currentComponent.value = components.SekolahDaftar
 	}
 })
 function refreshComponent(data: Registration) {
 	registrationData.value = data
-	currentComponent.value = SudahDaftar
+	currentComponent.value = components.SudahDaftar
 	console.log("componen direfresh, data pendaftaran di bawah")
 	console.log(registrationData.value)
 }

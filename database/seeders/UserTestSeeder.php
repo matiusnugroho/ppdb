@@ -40,7 +40,7 @@ class UserTestSeeder extends Seeder
             ['nama' => 'SD', 'jenjang' => 'sd'],
             ['nama' => 'SD Negeri', 'jenjang' => 'sd'],
         ];
-        $numberRange = range(1, 100);
+        $numberRange = range(1, 15);
 
         // Ensure the roles exist
         $roleSekolah = Role::firstOrCreate(['name' => 'sekolah']);
@@ -85,6 +85,8 @@ class UserTestSeeder extends Seeder
             'nik' => $faker->unique()->numerify('################'),
             'no_kk' => $faker->unique()->numerify('################'),
             'no_hp_ortu' => $faker->phoneNumber,
+            'alamat' => $faker->address,
+            'kecamatan_id' => 1,
         ]);
         $dataSiswa = [];
         //populate 10 data siswa untuk didaftarkan testing only
@@ -109,6 +111,8 @@ class UserTestSeeder extends Seeder
                 'nik' => $faker->unique()->numerify('################'),
                 'no_kk' => $faker->unique()->numerify('################'),
                 'no_hp_ortu' => $faker->phoneNumber,
+                'alamat' => $faker->address,
+                'kecamatan_id' => $faker->randomElement($numberRange),
             ]);
 
             $dataSiswa[] = $student;
@@ -121,7 +125,7 @@ class UserTestSeeder extends Seeder
         $progressBar = new ProgressBar($this->command->getOutput(), $total);
         $progressBar->start();
         foreach ($kecamatans as $kecamatan) {
-            for ($i = 0; $i < 10; $i++) {
+            for ($i = 0; $i < 5; $i++) {
                 $schoolType = $faker->randomElement($schoolTypes); // Randomly select SMAN or SMP
                 $schoolNumber = $faker->randomElement($numberRange); // Randomly select a number
                 $city = $kecamatan->nama; // Random city name
@@ -164,6 +168,7 @@ class UserTestSeeder extends Seeder
                 'school_id' => $sekolahPercontohan->id,
                 'jenjang' => $sekolahPercontohan->jenjang,
                 'registration_number' => generateRegistrationNumber($sekolahPercontohan->jenjang),
+                'registration_path_id' => 1,
                 'status' => 'pending',
                 //'student_id' => $siswa->id, // Make sure to include this
             ];
@@ -173,7 +178,6 @@ class UserTestSeeder extends Seeder
             // Reload the registration relationship to ensure it's available
             $siswa->load('registration');
             $registration = $siswa->registration;
-            $this->command->info('Registration created for student: '.$siswa->nama.' regis id: '.$registration->id);
 
             // Advance the progress bar
             $progressBar->advance();
