@@ -79,6 +79,7 @@ class UserTestSeeder extends Seeder
             'nisn' => $faker->unique()->numerify('######'),
             'nama' => 'Saritri Putri', // Replace this with static data if needed
             'tempat_lahir' => $faker->city,
+            'jenjang' => 'sd',
             'tanggal_lahir' => $faker->date,
             'nama_bapak' => $faker->name('male'),
             'nama_ibu' => $faker->name('female'),
@@ -120,7 +121,7 @@ class UserTestSeeder extends Seeder
         }
         $kecamatans = Kecamatan::all(); // Get all Kecamatan
         $dataSekolah = [];
-        $total = count($kecamatans) * 10;
+        $total = count($kecamatans) * 5;
         $this->command->info('Membuatkan sekolah');
         $progressBar = new ProgressBar($this->command->getOutput(), $total);
         $progressBar->start();
@@ -181,21 +182,6 @@ class UserTestSeeder extends Seeder
 
             // Advance the progress bar
             $progressBar->advance();
-            foreach ($documentTypes as $documentType) {
-                $this->command->info('Creating document for document type: '.$documentType->label);
-                $documents = $registration->documents()->create([
-                    'document_type_id' => $documentType->id,
-                    'status' => 'belum upload',
-                ]);
-                if ($documents) {
-                    $this->command->info('Document created for document type: '.$documentType->label);
-                } else {
-                    $this->command->error('Document not created for document type: '.$documentType->label);
-                }
-
-            }
-
-            // Output success message
             $this->command->info('Registration created for student: '.$siswa->nama.' username: '.$siswa->user->username);
 
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Exports\SchoolExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSchoolRequest;
+use App\Models\RegistrationPath;
 use App\Models\School;
 use App\Models\User;
 use Carbon\Carbon;
@@ -192,5 +193,13 @@ class SchoolController extends Controller
         //dd($schools);
         return Excel::download(new SchoolExport($schools), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
 
+    }
+
+    public function tes()
+    {
+        $jalur = RegistrationPath::find(1);
+        $documentTypes = $jalur->requirements->where('jenjang', 'sd')->pluck('documentType');
+
+        dd($documentTypes);
     }
 }

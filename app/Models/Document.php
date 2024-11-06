@@ -10,7 +10,7 @@ use Storage;
 class Document extends Model
 {
     protected $fillable = [
-        'id', 'registration_id', 'document_type_id', 'path', 'status',
+        'id', 'registration_id', 'path_requirement_id', 'path', 'status',
     ];
 
     public $incrementing = false;
@@ -28,9 +28,9 @@ class Document extends Model
     /**
      * Get the document type that owns the document.
      */
-    public function documentType(): BelongsTo
+    public function pathRequirement(): BelongsTo
     {
-        return $this->belongsTo(DocumentType::class);
+        return $this->belongsTo(PathRequirement::class);
     }
 
     protected static function boot()

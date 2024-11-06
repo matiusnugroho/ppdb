@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\RegistrationPath;
-use Illuminate\Http\Request;
 use App\Http\Requests\Jalur\CreateJalurRequest;
 use App\Http\Requests\Jalur\UpdateJalurRequest;
+use App\Models\RegistrationPath;
+use Illuminate\Http\Request;
 
 class JalurController extends Controller
 {
@@ -16,11 +16,14 @@ class JalurController extends Controller
     public function index()
     {
         $jalur = RegistrationPath::all();
+
         return response()->json($jalur);
     }
+
     public function denganPersyaratan()
     {
         $jalur = RegistrationPath::with('requirements.documentType')->get();
+
         return response()->json($jalur);
     }
 
@@ -28,6 +31,7 @@ class JalurController extends Controller
     {
         $persyaratan = $registrationPath->requirements;
         $persyaratan->load('documentType');
+
         return response()->json($persyaratan);
     }
 
@@ -46,6 +50,7 @@ class JalurController extends Controller
     {
         $data = $request->validated();
         $jalur = RegistrationPath::create($data);
+
         return response()->json([
             'success' => true,
             'data' => $jalur,
@@ -75,6 +80,7 @@ class JalurController extends Controller
     {
         $data = $request->validated();
         $registrationPath->update($data);
+
         return response()->json([
             'success' => true,
             'data' => $registrationPath,
@@ -87,12 +93,15 @@ class JalurController extends Controller
     public function destroy(RegistrationPath $registrationPath)
     {
         $registrationPath->delete();
+
         return response()->json([
             'success' => true,
             'data' => $registrationPath,
         ]);
     }
-    public function setPersyaratan(Request $request, RegistrationPath $registrationPath){
+
+    public function setPersyaratan(Request $request, RegistrationPath $registrationPath)
+    {
         $validatedData = $request->validate([
             'document_type_id' => 'required|exists:document_types,id', // Ensure the document type exists
             'is_required' => 'required|boolean',

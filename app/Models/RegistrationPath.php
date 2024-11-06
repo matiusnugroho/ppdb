@@ -30,5 +30,4 @@ class RegistrationPath extends Model
     {
         return $this->hasMany(PathRequirement::class);
     }
-    
 }

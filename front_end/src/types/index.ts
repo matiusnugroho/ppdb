@@ -146,7 +146,8 @@ export interface Document {
 	alasan: string
 	created_at: string
 	updated_at: string
-	document_type: DocumentType
+	document_type?: DocumentType
+	path_requirement?: Requirement
 }
 export interface DocumentType {
 	id: string

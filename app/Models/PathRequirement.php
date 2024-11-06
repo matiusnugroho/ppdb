@@ -45,8 +45,8 @@ class PathRequirement extends Model
      */
     public function getAllowedExtensions(): array
     {
-        return $this->allowed_file_types ? 
-            explode(',', $this->allowed_file_types) : 
+        return $this->allowed_file_types ?
+            explode(',', $this->allowed_file_types) :
             [];
     }
 
@@ -83,8 +83,8 @@ class PathRequirement extends Model
 
         // Check file extension
         $extension = $file->getClientOriginalExtension();
-        if (!$this->isExtensionAllowed($extension)) {
-            $errors[] = "File type .$extension is not allowed. Allowed types: " . $this->allowed_file_types;
+        if (! $this->isExtensionAllowed($extension)) {
+            $errors[] = "File type .$extension is not allowed. Allowed types: ".$this->allowed_file_types;
         }
 
         return $errors;

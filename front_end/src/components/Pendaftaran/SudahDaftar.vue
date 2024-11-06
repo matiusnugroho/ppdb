@@ -45,7 +45,7 @@
 				<tbody>
 					<tr v-for="(item, index) in documentTypeList" :key="index">
 						<td class="py-5 px-4 pl-9 xl:pl-11">
-							<h5 class="font-medium text-black dark:text-white">{{ item.document_type!.label }}</h5>
+							<h5 class="font-medium text-black dark:text-white">{{ item.path_requirement?.document_type!.label }}</h5>
 						</td>
 						<td class="text-center">
 							<p class="inline-flex rounded-full py-1 px-3 text-sm font-medium" :class="statusColorMap[item.status]">{{ item.status }}</p>
@@ -131,7 +131,7 @@ const openUploadModal = (doc_id: string, mode: "upload" | "revisi" = "upload") =
 		uploadModal.value.showModal()
 		document_id.value = doc_id
 		let doc = getDocumentById(documentTypeList.value, doc_id)
-		selectedType.value = doc!.document_type.label
+		selectedType.value = doc!.path_requirement?.document_type?.label!
 	}
 }
 

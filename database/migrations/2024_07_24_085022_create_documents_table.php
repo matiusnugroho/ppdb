@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('registration_id');
-            $table->uuid('document_type_id');
+            $table->unsignedBigInteger('path_requirement_id');
             $table->string('path')->nullable(); // Path to the uploaded document
             $table->string('status')->default('pending'); // Status of the document
             $table->timestamps();
 
             $table->foreign('registration_id')->references('id')->on('registrations')->onDelete('cascade');
-            $table->foreign('document_type_id')->references('id')->on('document_types')->onDelete('cascade');
+            $table->foreign('path_requirement_id')->references('id')->on('path_requirements')->onDelete('cascade');
         });
     }
 
@@ -31,7 +31,7 @@ return new class extends Migration
     {
         Schema::table('documents', function (Blueprint $table) {
             $table->dropForeign(['registration_id']);
-            $table->dropForeign(['document_type_id']);
+            $table->dropForeign(['path_requirement_id']);
         });
         Schema::dropIfExists('documents');
     }

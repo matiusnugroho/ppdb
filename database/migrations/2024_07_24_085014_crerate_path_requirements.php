@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('display_order')->default(0);      // For controlling display order in UI
             $table->json('validation_rules')->nullable();      // Additional validation rules if needed
             $table->timestamps();
-            
+
             // Foreign key for document_type_id
             $table->foreign('document_type_id')->references('id')->on('document_types')->onDelete('cascade');
         });

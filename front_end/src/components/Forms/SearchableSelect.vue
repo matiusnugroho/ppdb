@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, defineEmits, nextTick } from "vue"
+import { ref, computed,nextTick } from "vue"
 import type { PropType } from "vue"
 import type { Option } from "@/types"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"

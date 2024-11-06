@@ -3,12 +3,12 @@
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DocumentTypeController;
+use App\Http\Controllers\API\JalurController;
 use App\Http\Controllers\API\KecamatanController;
 use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SchoolController;
 use App\Http\Controllers\API\StatistikController;
 use App\Http\Controllers\API\StudentController;
-use App\Http\Controllers\API\JalurController;
 use App\Http\Controllers\FileUploadTestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

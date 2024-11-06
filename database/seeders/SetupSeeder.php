@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\RegistrationPath;
 use App\Models\DocumentType;
 use App\Models\PathRequirement;
+use App\Models\RegistrationPath;
+use Illuminate\Database\Seeder;
+
 class SetupSeeder extends Seeder
 {
     /**
@@ -46,249 +46,64 @@ class SetupSeeder extends Seeder
         ];
 
         foreach ($paths as $path) {
-            RegistrationPath::create($path);
+            $registrationPath = RegistrationPath::create($path);
+            $this->insertPathRequirements($registrationPath);
         }
-        $zonasi = RegistrationPath::where('name', 'zonasi')->first();
-        $afirmasi = RegistrationPath::where('name', 'afirmasi')->first();
-        $prestasi = RegistrationPath::where('name', 'prestasi')->first();
-        $orangTua = RegistrationPath::where('name', 'orang tua')->first();
-        $requirements = [
-            // Zonasi Path Requirements
-            [
-                'path' => $zonasi,
-                'documents' => [
-                    'ijazah/skl smp sederajat' => [
-                        'is_required' => true,
-                        'display_order' => 1,
-                        'jenjang' => 'smp'
-                    ],
-                    'ijazah/skl TK sederajat' => [
-                        'is_required' => false,
-                        'display_order' => 1,
-                        'jenjang' => 'sd'
-                    ],
-                    'kartu keluarga' => [
-                        'is_required' => true,
-                        'display_order' => 2,
-                        'jenjang' => 'sd'
-                    ],
-                    'kartu keluarga' => [
-                        'is_required' => true,
-                        'display_order' => 2,
-                        'jenjang' => 'smp'
-                    ],
-                    'akta kelahiran' => [
-                        'is_required' => true,
-                        'display_order' => 3,
-                        'jenjang' => 'sd'
-                    ],
-                    'akta kelahiran' => [
-                        'is_required' => true,
-                        'display_order' => 3,
-                        'jenjang' => 'smp'
-                    ],
-                    'surat pernyataan keabsahan dokumen' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'sd'
-                    ],
-                    'surat pernyataan keabsahan dokumen' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'smp'
-                    ],
-                ],
-            ],
-            
-            // Afirmasi Path Requirements
-            [
-                'path' => $afirmasi,
-                'documents' => [
-                    'ijazah/skl smp sederajat' => [
-                        'is_required' => true,
-                        'display_order' => 1,
-                        'jenjang' => 'smp'
-                    ],
-                    'ijazah/skl TK sederajat' => [
-                        'is_required' => false,
-                        'display_order' => 1,
-                        'jenjang' => 'sd'
-                    ],
-                    'kartu keluarga' => [
-                        'is_required' => true,
-                        'display_order' => 2,
-                        'jenjang' => 'sd'
-                    ],
-                    'kartu keluarga' => [
-                        'is_required' => true,
-                        'display_order' => 2,
-                        'jenjang' => 'smp'
-                    ],
-                    'akta kelahiran' => [
-                        'is_required' => true,
-                        'display_order' => 3,
-                        'jenjang' => 'sd'
-                    ],
-                    'akta kelahiran' => [
-                        'is_required' => true,
-                        'display_order' => 3,
-                        'jenjang' => 'smp'
-                    ],
-                    'surat keterangan tidak mampu / Kartu PKH' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'sd'
-                    ],
-                    'surat keterangan tidak mampu / Kartu PKH' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'smp'
-                    ],
-                    'surat pernyataan keabsahan dokumen' => [
-                        'is_required' => true,
-                        'display_order' => 5,
-                        'jenjang' => 'sd'
-                    ],
-                    'surat pernyataan keabsahan dokumen' => [
-                        'is_required' => true,
-                        'display_order' => 5,
-                        'jenjang' => 'smp'
-                    ],
-                ],
-            ],
-            
-            // Prestasi Path Requirements
-            [
-                'path' => $prestasi,
-                'documents' => [
-                    'ijazah/skl smp sederajat' => [
-                        'is_required' => true,
-                        'display_order' => 1,
-                        'jenjang' => 'smp'
-                    ],
-                    'ijazah/skl TK sederajat' => [
-                        'is_required' => false,
-                        'display_order' => 1,
-                        'jenjang' => 'sd'
-                    ],
-                    'kartu keluarga' => [
-                        'is_required' => true,
-                        'display_order' => 2,
-                        'jenjang' => 'sd'
-                    ],
-                    'kartu keluarga' => [
-                        'is_required' => true,
-                        'display_order' => 2,
-                        'jenjang' => 'smp'
-                    ],
-                    'akta kelahiran' => [
-                        'is_required' => true,
-                        'display_order' => 3,
-                        'jenjang' => 'sd'
-                    ],
-                    'akta kelahiran' => [
-                        'is_required' => true,
-                        'display_order' => 3,
-                        'jenjang' => 'smp'
-                    ],
-                    'sertifikat' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'sd'
-                    ],
-                    'sertifikat' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'smp'
-                    ],
-                    'surat pernyataan keabsahan dokumen' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'sd'
-                    ],
-                    'surat pernyataan keabsahan dokumen' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'smp'
-                    ],
-                ],
-            ],
+    }
 
-            // Orang Tua Path Requirements
-            [
-                'path' => $orangTua,
-                'documents' => [
-                    'ijazah/skl smp sederajat' => [
-                        'is_required' => true,
-                        'display_order' => 1,
-                        'jenjang' => 'smp'
-                    ],
-                    'ijazah/skl TK sederajat' => [
-                        'is_required' => false,
-                        'display_order' => 1,
-                        'jenjang' => 'sd'
-                    ],
-                    'kartu keluarga' => [
-                        'is_required' => true,
-                        'display_order' => 2,
-                        'jenjang' => 'sd'
-                    ],
-                    'kartu keluarga' => [
-                        'is_required' => true,
-                        'display_order' => 2,
-                        'jenjang' => 'smp'
-                    ],
-                    'akta kelahiran' => [
-                        'is_required' => true,
-                        'display_order' => 3,
-                        'jenjang' => 'sd'
-                    ],
-                    'akta kelahiran' => [
-                        'is_required' => true,
-                        'display_order' => 3,
-                        'jenjang' => 'smp'
-                    ],
-                    'surat keterangan pindah orang tua' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'sd'
-                    ],
-                    'surat keterangan pindah orang tua' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'smp'
-                    ],
-                    'surat pernyataan keabsahan dokumen' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'sd'
-                    ],
-                    'surat pernyataan keabsahan dokumen' => [
-                        'is_required' => true,
-                        'display_order' => 4,
-                        'jenjang' => 'smp'
-                    ],
-                ],
+    private function insertPathRequirements(RegistrationPath $registrationPath)
+    {
+        $requirements = [
+            'zonasi' => [
+                'ijazah/skl sd sederajat' => ['smp' => true],
+                'ijazah/skl TK sederajat' => ['sd' => false],
+                'nilai rata-rata rapor' => ['sd' => true, 'smp' => true],
+                'kartu keluarga' => ['sd' => true, 'smp' => true],
+                'akta kelahiran' => ['sd' => true, 'smp' => true],
+                'surat pernyataan keabsahan dokumen' => ['sd' => true, 'smp' => true],
+            ],
+            'afirmasi' => [
+                'ijazah/skl sd sederajat' => ['smp' => true],
+                'ijazah/skl TK sederajat' => ['sd' => false],
+                'nilai rata-rata rapor' => ['sd' => true, 'smp' => true],
+                'kartu keluarga' => ['sd' => true, 'smp' => true],
+                'akta kelahiran' => ['sd' => true, 'smp' => true],
+                'surat keterangan tidak mampu / Kartu PKH' => ['sd' => true, 'smp' => true],
+                'surat pernyataan keabsahan dokumen' => ['sd' => true, 'smp' => true],
+            ],
+            'prestasi' => [
+                'ijazah/skl sd sederajat' => ['smp' => true],
+                'ijazah/skl TK sederajat' => ['sd' => false],
+                'nilai rata-rata rapor' => ['sd' => true, 'smp' => true],
+                'kartu keluarga' => ['sd' => true, 'smp' => true],
+                'akta kelahiran' => ['sd' => true, 'smp' => true],
+                'sertifikat' => ['sd' => true, 'smp' => true],
+                'surat pernyataan keabsahan dokumen' => ['sd' => true, 'smp' => true],
+            ],
+            'orang tua' => [
+                'ijazah/skl sd sederajat' => ['smp' => true],
+                'ijazah/skl TK sederajat' => ['sd' => false],
+                'nilai rata-rata rapor' => ['sd' => true, 'smp' => true],
+                'kartu keluarga' => ['sd' => true, 'smp' => true],
+                'akta kelahiran' => ['sd' => true, 'smp' => true],
+                'surat keterangan pindah orang tua' => ['sd' => true, 'smp' => true],
+                'surat pernyataan keabsahan dokumen' => ['sd' => true, 'smp' => true],
             ],
         ];
 
-        // Create requirements
-        foreach ($requirements as $pathConfig) {
-            foreach ($pathConfig['documents'] as $documentLabel => $config) {
-                // Find the document type
-                $documentType = DocumentType::where('label', $documentLabel)->first();
-                
-                if ($documentType) {
-                    PathRequirement::create([
-                        'registration_path_id' => $pathConfig['path']->id,
-                        'jenjang' => $config['jenjang'],
-                        'document_type_id' => $documentType->id,
-                        'is_required' => $config['is_required'],
-                        'display_order' => $config['display_order'],
-                        'allowed_file_types' => 'pdf',
-                        'max_file_size' => 2048,
-                    ]);
-                }
+        foreach ($requirements[$registrationPath->name] as $label => $jenjangConfig) {
+            $documentType = DocumentType::firstOrCreate(['label' => $label]);
+
+            foreach ($jenjangConfig as $level => $isRequired) {
+                PathRequirement::create([
+                    'registration_path_id' => $registrationPath->id,
+                    'jenjang' => $level,
+                    'document_type_id' => $documentType->id,
+                    'is_required' => $isRequired,
+                    'display_order' => 1, // Assuming unique IDs for DocumentType
+                    'allowed_file_types' => 'pdf',
+                    'max_file_size' => 2048,
+                ]);
             }
         }
     }

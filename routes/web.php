@@ -39,6 +39,7 @@ Route::group(['middleware' => [VerifySetupToken::class]], function () {
         return 'Fresh migrations, seeding, and storage linking to public_html have been run successfully.';
     });
 });
+Route::get('/tes', [SchoolController::class, 'tes']);
 Route::get('/cekext', function () {
     $extensions = get_loaded_extensions();
 

@@ -69,6 +69,7 @@ const jalur = ref("")
 	return buatOption(kecamatanList.value, "nama", "id")
 }) */
 const sekolahOption = computed<Option[]>(() => {
+	console.log('dari sekolah option', sekolahList.value)
 	return buatOption(sekolahList.value, "nama_sekolah", "id")
 })
 const jalurOption = computed<Option[]>(() => {
@@ -92,7 +93,6 @@ const handleSubmit = async () => {
 		registration_path_id: jalur.value,
 	}
 	const registerResponse = await registerSekolah(data)
-	console.log('response pendaftaran',{ registerResponse })
 	if (registerResponse.data.success) {
 		messageStore.addMessage("success", {
 			title: "Pendaftaran Berhasil",
@@ -122,6 +122,7 @@ watch(jenjang, (newJenjang) => {
 }) */
 onMounted(() => {
 	//fetchKecamatan()
+	console.log("Mounted belum daftar")
 	fetchSekolah(authStore!.biodata!.kecamatan_id, authStore!.biodata!.jenjang)
 	fetchJalurPendaftaran()
 })

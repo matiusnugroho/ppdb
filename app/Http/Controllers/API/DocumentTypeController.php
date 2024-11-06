@@ -12,6 +12,7 @@ class DocumentTypeController extends Controller
     {
         return DocumentType::get(['label', 'id']);
     }
+
     public function store(DocumentTypeRequest $request)
     {
         $data = $request->validated();
@@ -22,6 +23,7 @@ class DocumentTypeController extends Controller
             'data' => $documentType,
         ]);
     }
+
     public function update(DocumentTypeRequest $request, DocumentType $documentType)
     {
         $data = $request->validated();
@@ -36,6 +38,7 @@ class DocumentTypeController extends Controller
     public function destroy(DocumentType $documentType)
     {
         $documentType->delete();
+
         return response()->json([
             'success' => true,
             'data' => $documentType,

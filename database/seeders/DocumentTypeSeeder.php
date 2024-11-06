@@ -14,7 +14,7 @@ class DocumentTypeSeeder extends Seeder
     public function run(): void
     {
         $documentTypes = [
-            'ijazah/skl smp sederajat',
+            'ijazah/skl sd sederajat',
             'ijazah/skl TK sederajat',
             'kartu keluarga',
             'sertifikat',
