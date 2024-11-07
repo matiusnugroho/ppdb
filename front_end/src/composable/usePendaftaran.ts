@@ -178,6 +178,6 @@ export function usePendaftaran() {
 		verifikasiDokumen,
 		luluskan,
 		rejectDokumen,
-		fetchJalurPendaftaran
+		fetchJalurPendaftaran,
 	}
 }

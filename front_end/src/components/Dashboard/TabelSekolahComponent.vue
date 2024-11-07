@@ -9,15 +9,19 @@
 						<td>Jenjang</td>
 						<td>NSS</td>
 						<td>NPSN</td>
+						<td>Daya Tampung</td>
 						<td>Kecamatan</td>
 					</tr>
 				</thead>
 				<tbody>
 					<template v-if="loading">
-						<tr v-for="n in 2" :key="n">
+						<tr v-for="n in 5" :key="n">
 							<th>
 								<span class="skeleton h-4 w-36 rounded block"></span>
 							</th>
+							<td>
+								<span class="skeleton h-4 w-24 rounded block"></span>
+							</td>
 							<td>
 								<span class="skeleton h-4 w-24 rounded block"></span>
 							</td>
@@ -44,6 +48,7 @@
 						<td>{{ sekolah.jenjang }}</td>
 						<td>{{ sekolah.nss }}</td>
 						<td>{{ sekolah.npsn }}</td>
+						<td>{{ sekolah.daya_tampung }}</td>
 						<td>{{ sekolah.kecamatan.nama }}</td>
 					</tr>
 				</tbody>
@@ -53,6 +58,7 @@
 						<td>Jenjang</td>
 						<td>NSS</td>
 						<td>NPSN</td>
+						<td>Daya Tampung</td>
 						<td>Kecamatan</td>
 					</tr>
 				</tfoot>

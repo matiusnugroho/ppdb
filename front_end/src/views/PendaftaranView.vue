@@ -18,14 +18,13 @@ const formValidationErrors = useFormValidationErrorsStore()
 const { fetchRegistration, loadingRegistration, registrationData } = useCekPendaftaran()
 const authstore = useAuthStore()
 const components = {
-  BelumDaftar: markRaw(BelumDaftar),
-  SudahDaftar: markRaw(SudahDaftar),
-  BelumBukaPendaftaran: markRaw(BelumBukaPendaftaran),
-  SekolahDaftar: markRaw(SekolahDaftar)
+	BelumDaftar: markRaw(BelumDaftar),
+	SudahDaftar: markRaw(SudahDaftar),
+	BelumBukaPendaftaran: markRaw(BelumBukaPendaftaran),
+	SekolahDaftar: markRaw(SekolahDaftar),
 }
 const currentComponent = ref<Component | null>(null)
 const componentKey = ref(0)
-
 
 onMounted(async () => {
 	formValidationErrors.clearErrors()

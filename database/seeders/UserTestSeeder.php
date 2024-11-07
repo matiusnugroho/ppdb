@@ -8,6 +8,8 @@ use App\Models\RegistrationPeriod;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\Registration;
+use App\Models\RegistrationPath;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
@@ -111,7 +113,7 @@ class UserTestSeeder extends Seeder
                 'nama_ibu' => $faker->name('female'),
                 'nik' => $faker->unique()->numerify('################'),
                 'no_kk' => $faker->unique()->numerify('################'),
-                'no_hp_ortu' => $faker->phoneNumber,
+                'no_hp_ortu' => $faker->unique()->numerify('08##########'),
                 'alamat' => $faker->address,
                 'kecamatan_id' => $faker->randomElement($numberRange),
             ]);
@@ -160,32 +162,128 @@ class UserTestSeeder extends Seeder
         //daftarkan siswa ke sekolah percontohan
         $countSiswa = count($dataSiswa);
         $this->command->info("Daftarkan {$countSiswa} siswa ke sekolah percontohan");
-        $progressBar = new ProgressBar($this->command->getOutput(), count($dataSiswa));
-        $progressBar->start();
-        foreach ($dataSiswa as $siswa) {
-
+        $registrationPathIds = RegistrationPath::pluck('id');
+        /* foreach ($dataSiswa as $siswa) {
+            $registrationPathId = $faker->randomElement($registrationPathIds);
+            $jalur = RegistrationPath::find($registrationPathId);
+            $requirements = $jalur->requirements()->where('jenjang', $sekolahPercontohan->jenjang)->get();
+            
             $data = [
                 'registration_period_id' => $registrationPeriod->id,
                 'school_id' => $sekolahPercontohan->id,
                 'jenjang' => $sekolahPercontohan->jenjang,
                 'registration_number' => generateRegistrationNumber($sekolahPercontohan->jenjang),
-                'registration_path_id' => 1,
+                'registration_path_id' => $faker->randomElement($registrationPathIds),
                 'status' => 'pending',
-                //'student_id' => $siswa->id, // Make sure to include this
             ];
             // Start by creating the registration for the student
             $siswa->registration()->create($data);
 
+            
+
             // Reload the registration relationship to ensure it's available
             $siswa->load('registration');
             $registration = $siswa->registration;
-
-            // Advance the progress bar
-            $progressBar->advance();
+            if (!$siswa->registration) {
+                $this->command->error('Failed to create registration for student: '.$siswa->nama);
+                continue; // Skip to the next student if registration fails
+            }
+            foreach ($requirements as $requirement) {
+                $siswa->registration->documents()->create([
+                    'path_requirement_id' => $requirement->id,
+                    'status' => 'belum upload',
+                ]);
+            }
             $this->command->info('Registration created for student: '.$siswa->nama.' username: '.$siswa->user->username);
 
+        } */
+
+        foreach ($dataSiswa as $siswa) {
+            try {
+                $registrationPathId = $faker->randomElement($registrationPathIds);
+                $jalur = RegistrationPath::find($registrationPathId);
+                $requirements = $jalur->requirements()
+                    ->where('jenjang', $sekolahPercontohan->jenjang)
+                    ->get()->load('documentType');
+                
+                $data = [
+                    'registration_period_id' => $registrationPeriod->id,
+                    'school_id' => $sekolahPercontohan->id,
+                    'jenjang' => $sekolahPercontohan->jenjang,
+                    'registration_number' => generateRegistrationNumber($sekolahPercontohan->jenjang),
+                    'registration_path_id' => $registrationPathId,
+                    'status' => 'pending',
+                ];
+        
+                // Create registration and store the result
+                $registration = $siswa->registration()->create($data);
+                
+                // Reload and verify registration
+                $siswa->load('registration');
+                
+                if (!$siswa->registration) {
+                    $this->command->error('❌ Failed to create registration for student: '.$siswa->nama);
+                    $this->command->error('Payload data:');
+                    $this->command->error('   - Registration Period ID: '.$data['registration_period_id']);
+                    $this->command->error('   - School ID: '.$data['school_id']);
+                    $this->command->error('   - Jenjang: '.$data['jenjang']);
+                    $this->command->error('   - Registration Number: '.$data['registration_number']);
+                    $this->command->error('   - Registration Path ID: '.$data['registration_path_id']);
+                    $this->command->error('   - Status: '.$data['status']);
+                    $this->command->error('Student data:');
+                    $this->command->error('   - Student ID: '.$siswa->id);
+                    $this->command->error('   - NISN: '.$siswa->nisn);
+                    $this->command->error('   - User ID: '.$siswa->user_id);
+                    $this->command->line('----------------------------------------');
+                    continue;
+                }
+        
+                // Success message for registration creation
+                $this->command->info('✅ Registration created successfully:');
+                $this->command->info('   - Student: '.$siswa->nama);
+                $this->command->info('   - Username: '.$siswa->user->username);
+                $this->command->info('   - Registration Number: '.$registration->registration_number);
+                
+                // Create documents with status display
+                $this->command->info('   Creating documents...');
+                foreach ($requirements as $requirement) {
+                    try {
+                        $siswa->registration->documents()->create([
+                            'path_requirement_id' => $requirement->id,
+                            'status' => 'belum upload',
+                        ]);
+                        $this->command->info('   ✓ Document created for requirement: '.$requirement->documentType->label);
+                    } catch (\Exception $e) {
+                        $this->command->error('   ✗ Failed to create document for requirement: '.$requirement->documentType->label);
+                        $this->command->error('   ✗ Error: '.$e->getMessage());
+                    }
+                }
+                
+                $this->command->info('   Documents creation completed');
+                $this->command->line('----------------------------------------');
+        
+            } catch (\Exception $e) {
+                $this->command->error('❌ Error processing registration:');
+                $this->command->error('   - Student: '.$siswa->nama);
+                $this->command->error('   - Error: '.$e->getMessage());
+                $this->command->error('Payload data:');
+                if (isset($data)) {
+                    $this->command->error('   - Registration Period ID: '.$data['registration_period_id']);
+                    $this->command->error('   - School ID: '.$data['school_id']);
+                    $this->command->error('   - Jenjang: '.$data['jenjang']);
+                    $this->command->error('   - Registration Number: '.$data['registration_number']);
+                    $this->command->error('   - Registration Path ID: '.$data['registration_path_id']);
+                    $this->command->error('   - Status: '.$data['status']);
+                } else {
+                    $this->command->error('   No payload data available - error occurred before data creation');
+                }
+                $this->command->error('Student data:');
+                $this->command->error('   - Student ID: '.$siswa->id);
+                $this->command->error('   - NISN: '.$siswa->nisn);
+                $this->command->error('   - User ID: '.$siswa->user_id);
+                $this->command->line('----------------------------------------');
+            }
         }
-        $progressBar->finish();
         $this->command->info('Sekolah Percontohan adalah : '.$sekolahPercontohan->nama_sekolah.' username : '.$sekolahPercontohan->user->username);
 
     }

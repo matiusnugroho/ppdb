@@ -39,10 +39,31 @@ class SchoolController extends Controller
         if (! empty($validated['kecamatan_id'])) {
             $query->where('kecamatan_id', $validated['kecamatan_id']);
         }
+        $registrationPaths = RegistrationPath::all();
+
+        // Add registration counts for each path
+        $query->with(['registrations' => function ($query) {
+            $query->selectRaw('school_id, registration_path_id, count(*) as jalur_count, registration_paths.name')
+                ->join('registration_paths', 'registrations.registration_path_id', '=', 'registration_paths.id')
+                ->whereHas('registrationPeriod', function ($query) {
+                    $query->where('is_open', true);
+                })
+                ->groupBy('school_id', 'registration_path_id', 'registration_paths.name');
+        }]);
 
         // Check if per_page is 'all' to return all results without pagination
         if (isset($validated['per_page']) && strtolower($validated['per_page']) === 'all') {
             $schools = $query->get();
+            $schools = $schools->transform(function ($school) {
+                $pathCounts = [];
+            
+                foreach ($school->registrations as $jalur) {
+                    $pathCounts[$jalur->name] = $jalur->jalur_count;
+                }
+            
+                // Return the school with the path counts in the desired format
+                return $school->setAttribute('path_counts', $pathCounts);
+            });
 
             // Prepare the response structure without pagination
             $response = [
@@ -59,6 +80,19 @@ class SchoolController extends Controller
 
             // Paginate the results
             $schools = $query->paginate($perPage);
+            $schools->getCollection()->transform(function ($school) {
+                $pathCounts = [];
+            
+                // Assuming 'registrations' has been loaded via 'jalur'
+                foreach ($school->registrations as $jalur) {
+                    $pathCounts[$jalur->name] = $jalur->jalur_count;
+                }
+            
+                // Add the 'path_counts' attribute to each school
+                $school->setAttribute('path_counts', $pathCounts);
+            
+                return $school;
+            });
 
             // Prepare the response structure
             $response = [

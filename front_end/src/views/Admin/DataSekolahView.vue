@@ -34,10 +34,7 @@ const kecamatanOption = computed<Option[]>(() => {
 	const options = buatOption(kecamatanList.value, "nama", "id")
 	return [{ value: null, label: "Semua Kecamatan" }, ...options]
 })
-const jenjangOption = ref<Option[]>([
-	{ label: "Semua Jenjang", value: null },
-	...jenjangData,
-])
+const jenjangOption = ref<Option[]>([{ label: "Semua Jenjang", value: null }, ...jenjangData])
 
 const perPageOption = ref<Option[]>([
 	{ label: "10", value: 10 },

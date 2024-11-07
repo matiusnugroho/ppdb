@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\RegistrationPeriod;
+use App\Models\RegistrationPath;
 use App\Models\School;
+use DB;
 use Carbon\Carbon;
 
 class StatistikController extends Controller
@@ -19,6 +21,20 @@ class StatistikController extends Controller
         $lulusCount = $school->activeLulusRegistrations()->count();
         $tidakLulusCount = $school->activeTidakLulusRegistrations()->count();
 
+        $pathCounts = $school->registrations()
+        ->select('registration_path_id', DB::raw('count(*) as count'))
+        ->groupBy('registration_path_id')
+        ->pluck('count', 'registration_path_id');
+
+    // Fetch registration paths to map IDs to names
+    $registrationPaths = RegistrationPath::all()->pluck('name', 'id');
+
+    // Prepare the path counts with names
+    $formattedPathCounts = [];
+    foreach ($pathCounts as $pathId => $count) {
+        $formattedPathCounts[$registrationPaths[$pathId] ?? "Unknown Path"] = $count;
+    }
+
         // Prepare the response data
         $statistics = [
             'pendaftar' => $pendaftarCount,
@@ -27,6 +43,7 @@ class StatistikController extends Controller
             'ditolak' => $ditolak,
             'lulus' => $lulusCount,
             'tidak_lulus' => $tidakLulusCount,
+            'jumlah_per_jalur' => $formattedPathCounts,
         ];
 
         // Return JSON response

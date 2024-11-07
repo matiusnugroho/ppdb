@@ -37,9 +37,7 @@ const nama_bapak = ref("")
 const nama_ibu = ref("")
 const no_hp_ortu = ref("")
 const password = ref("")
-const jenjangOption = ref<Option[]>([
-	...jenjangData,
-])
+const jenjangOption = ref<Option[]>([...jenjangData])
 const formValidationErrors = useFormValidationErrorsStore()
 const { registerSiswa, loadingRegister } = useRegisterSiswa()
 const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
@@ -101,13 +99,7 @@ onMounted(() => {
 		<DefaultAuthCard subtitle="PPDB Online Kabupaten Kuantan singingi" title="Daftarkan Siswa">
 			<form @submit.prevent="handleSubmit">
 				<div class="mb-1">
-					<SelectGroup
-						v-model="jenjang"
-						:error="hasError('jenjang')"
-						name="jenjang"
-						label="Jenjang"
-						:options="jenjangOption"
-					/>
+					<SelectGroup v-model="jenjang" :error="hasError('jenjang')" name="jenjang" label="Jenjang" :options="jenjangOption" />
 					<div v-html="field_error_html('jenjang')"></div>
 				</div>
 
@@ -129,13 +121,7 @@ onMounted(() => {
 					<div v-html="field_error_html('nama')"></div>
 				</div>
 				<div class="mb-1">
-					<SelectGroup
-						v-model="jenis_kelamin"
-						:error="hasError('jenis_kelamin')"
-						name="jenis_kelamin"
-						label="Jenis Kelamin"
-						:options="jenisKelaminOption"
-					/>
+					<SelectGroup v-model="jenis_kelamin" :error="hasError('jenis_kelamin')" name="jenis_kelamin" label="Jenis Kelamin" :options="jenisKelaminOption" />
 					<div v-html="field_error_html('jenjang')"></div>
 				</div>
 

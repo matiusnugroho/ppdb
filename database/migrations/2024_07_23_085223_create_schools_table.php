@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('nama_kepsek'); // Nama Kepsek
             $table->string('kecamatan_id'); // Kecamatan
             $table->unsignedBigInteger('user_id');
+            $table->integer('daya_tampung')->default(10);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

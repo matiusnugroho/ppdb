@@ -8,10 +8,10 @@
 		</a>
 
 		<!-- Dropdown menu -->
-		<div v-if="isOpen" class="z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute">
+		<div v-if="isOpen" class="z-10 font-normal bg-white divide-y divide-gray-100 shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute">
 			<ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
 				<li v-for="(item, index) in items" :key="index">
-					<RouterLink :to="item.url" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+					<RouterLink :to="item.url" class="block px-4 py-2 hover:bg-blue-100 hover:rounded-md dark:hover:bg-blue-200 dark:hover:text-white">
 						{{ item.label }}
 					</RouterLink>
 				</li>

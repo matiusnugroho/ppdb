@@ -63,10 +63,12 @@ export interface School {
 	updated_at: string
 	nama_sekolah: string
 	nss: string
+	path_counts: { [key: string]: number }
 	npsn: string
 	alamat: string
 	no_telp: string
 	nama_kepsek: string
+	daya_tampung: number
 	kecamatan_id: string
 }
 
@@ -167,7 +169,7 @@ export type Requirement = {
 	document_type?: DocumentType
 	created_at: string // or Date if you want to parse it as a Date object
 	updated_at: string // or Date if you want to parse it as a Date object
-  }
+}
 export type JalurPendaftaran = {
 	id: number
 	name: string
@@ -178,13 +180,13 @@ export type JalurPendaftaran = {
 	requirements?: Requirement[]
 	created_at?: string
 	updated_at?: string
-  }
-  
+}
+
 export interface endpoints {
 	[key: string]: string
 }
 export interface StatistikData {
-	[key: string]: number | string
+	[key: string]: number | string | { [key: string]: number }
 }
 
 export interface DataSekolah {

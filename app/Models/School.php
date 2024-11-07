@@ -96,4 +96,13 @@ class School extends Model
                 $query->where('is_open', true);
             });
     }
+    public function activeCountByJalur($jalur)
+    {
+        return $this->hasMany(Registration::class)
+            ->where('registration_path_id', $jalur)
+            ->whereHas('registrationPeriod', function ($query) {
+                $query->where('is_open', true);
+            })
+            ->count();
+    }
 }

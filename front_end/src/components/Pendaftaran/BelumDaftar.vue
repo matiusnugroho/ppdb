@@ -1,6 +1,7 @@
 <template>
 	<div class="max-w-md mx-auto mt-10 p-5 bg-white rounded-lg shadow-md">
 		<h1 class="text-xl font-bold mb-5 text-center">Pendaftaran</h1>
+		<AlertError v-if="errorDaftar" message="Gagal Mendaftar" :detail="errorDaftar" class="mb-5" />
 		<form @submit.prevent="handleSubmit">
 			<!-- <div class="mb-4">
 				<SearchableSelect required label="Pilih Kecamatan" placeholder="Pilih Kecmatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
@@ -35,24 +36,24 @@
 <script lang="ts" setup>
 //import { useKecamatan } from "@/composable/useKecamatan"
 import { useSekolah } from "@/composable/useSekolah"
-import { onMounted, ref, computed, /* watch */ } from "vue"
+import { onMounted, ref, computed /* watch */ } from "vue"
 import type { Option } from "@/types"
 import { buatOption } from "@/helpers/buatOption"
-import SelectGroup from "../Forms/SelectGroup.vue"
+import SelectGroup from "@/components/Forms/SelectGroup.vue"
 import { FwbSpinner } from "flowbite-vue"
 import { useDaftarKesekolah } from "@/composable/useDaftarKesekolah"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
 import { useMessagesStore } from "@/stores/messages"
-import { showToast } from "@/utils/ui/toast"
 import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
 //import jenjangData  from "@/config/jenjang"
 
 //const { fetchKecamatan, kecamatanList, loadingKecamatan } = useKecamatan()
 const { fetchSekolah, sekolahList, loadingSekolah } = useSekolah()
 const { loadingRegister, registerSekolah, errorDaftar } = useDaftarKesekolah()
-import {usePendaftaran} from "@/composable/usePendaftaran"
+import { usePendaftaran } from "@/composable/usePendaftaran"
 import { useAuthStore } from "@/stores/auth"
+import AlertError from "@/components/Alerts/AlertError.vue"
 const formValidationError = useFormValidationErrorsStore()
 const emit = defineEmits(["refreshParent"])
 const { dataJalurPendaftaran, fetchJalurPendaftaran } = usePendaftaran()
@@ -69,17 +70,17 @@ const jalur = ref("")
 	return buatOption(kecamatanList.value, "nama", "id")
 }) */
 const sekolahOption = computed<Option[]>(() => {
-	console.log('dari sekolah option', sekolahList.value)
+	console.log("dari sekolah option", sekolahList.value)
 	return buatOption(sekolahList.value, "nama_sekolah", "id")
 })
 const jalurOption = computed<Option[]>(() => {
-	console.log({ daya:dataJalurPendaftaran.value })
+	console.log({ daya: dataJalurPendaftaran.value })
 	return buatOption(dataJalurPendaftaran.value, "name", "id")
 })
 const messageStore = useMessagesStore()
 const handleSubmit = async () => {
 	formValidationError.clearErrors()
-	if (!jalur.value || !sekolah_id.value/*  || !jenjang.value */) {
+	if (!jalur.value || !sekolah_id.value /*  || !jenjang.value */) {
 		// Add error messages for missing fields
 		/* if (!kecamatan_id.value) formValidationError.addError("kecamatan_id", "Pilih Kecamatan terlebih dahulu") */
 		if (!sekolah_id.value) formValidationError.addError("sekolah_id", "Pilih Sekolah terlebih dahulu")
@@ -99,15 +100,8 @@ const handleSubmit = async () => {
 			detail: "Silakan Lengkapi dokumen",
 		})
 		emit("refreshParent", registerResponse.data.data)
-	} else {
-		console.log(errorDaftar.value, "errrrrrrr")
-		showToast({
-			message: "Pendaftaran gagal, " + errorDaftar.value,
-			type: "error",
-		})
 	}
 }
-
 
 /* watch(kecamatan_id, (newKecamatanId) => {
 	if (newKecamatanId) {

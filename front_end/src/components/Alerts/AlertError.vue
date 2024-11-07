@@ -9,10 +9,25 @@
 			</svg>
 		</div>
 		<div class="w-full">
-			<h5 class="mb-3 font-bold text-[#B45454]">There were 1 errors with your submission</h5>
-			<ul>
-				<li class="leading-relaxed text-[#CD5D5D]">Lorem Ipsum is simply dummy text of the printing</li>
-			</ul>
+			<h5 class="mb-3 text-lg font-bold text-black dark:text-[#34D399]">{{ message }}</h5>
+			<p v-if="detail" class="text-base leading-relaxed text-body">{{ detail }}</p>
 		</div>
 	</div>
 </template>
+<script lang="ts">
+import { defineComponent } from "vue"
+
+export default defineComponent({
+	name: "AlertError",
+	props: {
+		message: {
+			type: String,
+			required: true,
+		},
+		detail: {
+			type: String,
+			required: false,
+		},
+	},
+})
+</script>
