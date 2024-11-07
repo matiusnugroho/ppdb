@@ -40,6 +40,7 @@ const ENDPOINTS: endpoints = {
 	GET_JALUR: `${BASE_URL_API}/jalur`,
 	GET_JALUR_PERSYARATAN: `${BASE_URL_API}/jalur/{id}/persyaratan`,
 	GET_JALUR_DENGAN_PERSYARATAN: `${BASE_URL_API}/jalur/persyaratan`,
+	GET_SETTING: `${BASE_URL_API}/setting`,
 }
 
 // Helper function to replace placeholders with actual values

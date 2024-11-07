@@ -14,7 +14,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         Setting::create([
-            'url_video_tutorial' => 'https://example.com/tutorial',
+            'url_video_tutorial' => 'https://www.youtube.com/watch?v=G_3V80LynwU',
             'header' => 'Welcome to PPDB Kuansing',
             'social_media' => json_encode([
                 'facebook' => 'https://facebook.com/ppdbkuansing',

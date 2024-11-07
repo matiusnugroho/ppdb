@@ -33,11 +33,11 @@
 	<section class="bg-gray-50 dark:bg-gray-800 py-8 w-full">
 		<div class="flex justify-center w-full">
 			<div class="rounded-lg shadow-lg bg-white w-full max-w-screen-xl mx-auto">
-				<a href="https://youtu.be/YE7VzlLtp-4" target="_blank">
+				<a :href="ytURL as string" target="_blank">
 					<iframe
 						class="w-full rounded-t-lg h-60 sm:h-80 md:h-96"
-						src="https://www.youtube.com/embed/YE7VzlLtp-4"
-						title="YouTube video player"
+						:src="ytURL as string"
+						title="Tutorial PPDB Kuantan Singingi"
 						frameborder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen>
@@ -53,4 +53,12 @@
 
 <script setup lang="ts">
 import GradeIllustration from "@/components/Illustration/GradeIllustration.vue"
+import { useSetting } from "@/composable/useSetting"
+import { onMounted, computed } from "vue"
+
+const {settingData, fetchSetting, ytURL} = useSetting()
+
+onMounted(async() => {
+	await fetchSetting()
+})
 </script>

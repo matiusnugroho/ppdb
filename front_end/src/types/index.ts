@@ -188,7 +188,9 @@ export interface endpoints {
 export interface StatistikData {
 	[key: string]: number | string | { [key: string]: number }
 }
-
+export interface CommonData {
+	[key: string]: number | string | { [key: string]: number | string } 
+}
 export interface DataSekolah {
 	total: number
 	currentPage: number
