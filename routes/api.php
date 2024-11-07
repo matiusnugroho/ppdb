@@ -10,12 +10,14 @@ use App\Http\Controllers\API\SchoolController;
 use App\Http\Controllers\API\StatistikController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\FileUploadTestController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/sanctum/csrf-cookie', function () {
     return response()->json(['message' => 'CSRF cookie set.']);
 });
+Route::resource('/setting', SettingController::class);
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');

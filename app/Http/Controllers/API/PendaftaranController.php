@@ -333,7 +333,7 @@ class PendaftaranController extends Controller
         if ($registration->verified_by !== auth()->user()->id) {
             return response()->json(['message' => 'Anda tidak berhak mengakses data pendaftaran ini'], 403);
         }
-        $registration->load('student', 'documents.documentType', 'verifiedBy');
+        $registration->load('student', 'documents.pathRequirement.documentType', 'verifiedBy');
 
         return response()->json([
             'success' => true,

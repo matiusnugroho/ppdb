@@ -12,6 +12,7 @@ import statusColorMap from "@/config/statusColorMap"
 import ModalComponent from "@/components/UI/ModalComponent.vue"
 import TextAreaGroup from "@/components/Forms/TextAreaGroup.vue"
 import { hasError } from "@/helpers/hasError"
+import nopp from "@/assets/images/nopp.png"
 
 const router = useRoute()
 const id_registrasi = router.params.id as string
@@ -104,7 +105,7 @@ onMounted(async () => {
 							<!-- Student Photo -->
 							<div class="mb-4 md:mb-0 md:mr-6">
 								<!-- Added margin-bottom for small devices -->
-								<img class="w-32 h-32 rounded-md object-cover" :src="dataDetailVerifikasi?.student.foto_url" alt="Student Photo" />
+								<img class="w-32 h-32 rounded-md object-cover" :src="dataDetailVerifikasi?.student.foto_url || nopp" alt="Student Photo" />
 							</div>
 							<!-- Registration and Student Info -->
 							<div class="flex-1">
@@ -170,7 +171,7 @@ onMounted(async () => {
 									<!-- File Name and Status -->
 									<div class="ml-2 flex-1">
 										<!-- Reduced left margin -->
-										<h2 class="text-lg font-semibold text-gray-900">{{ document.document_type.label }}</h2>
+										<h2 class="text-lg font-semibold text-gray-900">{{ document.path_requirement?.document_type?.label }}</h2>
 										<span class="mt-1 inline-block px-2 py-1 text-sm font-medium rounded-full" :class="statusColorMap[document.status]">
 											<!-- Reduced padding -->
 											{{ document.status }}
