@@ -74,17 +74,15 @@ class PendaftaranController extends Controller
         $jalurPendaftaran = RegistrationPath::find($data['registration_path_id']);
         $quota_percentage_of_jalur = $jalurPendaftaran->quota_percentage;
         $quota = ceil($dayaTampungSekolah * $quota_percentage_of_jalur / 100);
-        
-        $currentRegistationOfJalur =  $school->activeCountByJalur($data['registration_path_id']);
-        
+
+        $currentRegistationOfJalur = $school->activeCountByJalur($data['registration_path_id']);
+
         if ($currentRegistationOfJalur >= $quota) {
             return response()->json([
                 'message' => 'Daya Tampung Sekolah '.$school->name.' untuk jalur '.$jalurPendaftaran->name.' sudah mencapai batas quota. Silahkan pilih jalur atau sekolah lain',
             ], 400);
         }
 
-
-        
         $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
         $data['registration_period_id'] = $registrationPeriod->id;
         $data['registration_number'] = $this->generateRegistrationNumber($data['jenjang']);

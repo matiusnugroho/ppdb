@@ -54,11 +54,11 @@
 <script setup lang="ts">
 import GradeIllustration from "@/components/Illustration/GradeIllustration.vue"
 import { useSetting } from "@/composable/useSetting"
-import { onMounted, computed } from "vue"
+import { onMounted } from "vue"
 
-const {settingData, fetchSetting, ytURL} = useSetting()
+const { settingData, fetchSetting, ytURL } = useSetting()
 
-onMounted(async() => {
+onMounted(async () => {
 	await fetchSetting()
 })
 </script>

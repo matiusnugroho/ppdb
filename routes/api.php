@@ -6,6 +6,7 @@ use App\Http\Controllers\API\DocumentTypeController;
 use App\Http\Controllers\API\JalurController;
 use App\Http\Controllers\API\KecamatanController;
 use App\Http\Controllers\API\PendaftaranController;
+use App\Http\Controllers\API\PersyaratanController;
 use App\Http\Controllers\API\SchoolController;
 use App\Http\Controllers\API\StatistikController;
 use App\Http\Controllers\API\StudentController;
@@ -43,6 +44,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () 
     Route::post('/akun/update', [AdminController::class, 'updateAkun']);
     //Setup Persyaratan
     Route::resource('/persyaratan', DocumentTypeController::class)->only(['create', 'update', 'destroy']);
+    Route::post('setting/update', [SettingController::class, 'update']);
+    Route::get('/persyaratan-jalur', [PersyaratanController::class, 'index']);
 });
 Route::group(['middleware' => 'auth:sanctum'], function () {
     route::post('/pendaftaran/daftar', [PendaftaranController::class, 'daftar']);

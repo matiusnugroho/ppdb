@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\RegistrationPeriod;
 use App\Models\RegistrationPath;
+use App\Models\RegistrationPeriod;
 use App\Models\School;
-use DB;
 use Carbon\Carbon;
+use DB;
 
 class StatistikController extends Controller
 {
@@ -22,18 +22,18 @@ class StatistikController extends Controller
         $tidakLulusCount = $school->activeTidakLulusRegistrations()->count();
 
         $pathCounts = $school->registrations()
-        ->select('registration_path_id', DB::raw('count(*) as count'))
-        ->groupBy('registration_path_id')
-        ->pluck('count', 'registration_path_id');
+            ->select('registration_path_id', DB::raw('count(*) as count'))
+            ->groupBy('registration_path_id')
+            ->pluck('count', 'registration_path_id');
 
-    // Fetch registration paths to map IDs to names
-    $registrationPaths = RegistrationPath::all()->pluck('name', 'id');
+        // Fetch registration paths to map IDs to names
+        $registrationPaths = RegistrationPath::all()->pluck('name', 'id');
 
-    // Prepare the path counts with names
-    $formattedPathCounts = [];
-    foreach ($pathCounts as $pathId => $count) {
-        $formattedPathCounts[$registrationPaths[$pathId] ?? "Unknown Path"] = $count;
-    }
+        // Prepare the path counts with names
+        $formattedPathCounts = [];
+        foreach ($pathCounts as $pathId => $count) {
+            $formattedPathCounts[$registrationPaths[$pathId] ?? 'Unknown Path'] = $count;
+        }
 
         // Prepare the response data
         $statistics = [

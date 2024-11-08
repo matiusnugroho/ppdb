@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Setting;
+use Illuminate\Database\Seeder;
 
 class SettingSeeder extends Seeder
 {
@@ -16,11 +15,11 @@ class SettingSeeder extends Seeder
         Setting::create([
             'url_video_tutorial' => 'https://www.youtube.com/watch?v=G_3V80LynwU',
             'header' => 'Welcome to PPDB Kuansing',
-            'social_media' => json_encode([
+            'social_media' => [
                 'facebook' => 'https://facebook.com/ppdbkuansing',
                 'twitter' => 'https://twitter.com/ppdbkuansing',
                 'instagram' => 'https://instagram.com/ppdbkuansing',
-            ]),
+            ],
         ]);
     }
 }

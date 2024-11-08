@@ -22,6 +22,12 @@ export const menuGroups = [
 			},
 			{
 				icon: "document",
+				label: "Persyaratan",
+				route: "/dashboard/persyaratan",
+				role: "super_admin",
+			},
+			{
+				icon: "document",
 				label: "Pendaftaran",
 				route: "/pendaftaran",
 				role: ["siswa", "sekolah", "verifikator_sekolah"],

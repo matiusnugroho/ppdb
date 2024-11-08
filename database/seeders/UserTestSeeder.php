@@ -4,12 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\DocumentType;
 use App\Models\Kecamatan;
+use App\Models\Registration;
+use App\Models\RegistrationPath;
 use App\Models\RegistrationPeriod;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\User;
-use App\Models\Registration;
-use App\Models\RegistrationPath;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
@@ -167,7 +167,7 @@ class UserTestSeeder extends Seeder
             $registrationPathId = $faker->randomElement($registrationPathIds);
             $jalur = RegistrationPath::find($registrationPathId);
             $requirements = $jalur->requirements()->where('jenjang', $sekolahPercontohan->jenjang)->get();
-            
+
             $data = [
                 'registration_period_id' => $registrationPeriod->id,
                 'school_id' => $sekolahPercontohan->id,
@@ -179,7 +179,7 @@ class UserTestSeeder extends Seeder
             // Start by creating the registration for the student
             $siswa->registration()->create($data);
 
-            
+
 
             // Reload the registration relationship to ensure it's available
             $siswa->load('registration');
@@ -205,7 +205,7 @@ class UserTestSeeder extends Seeder
                 $requirements = $jalur->requirements()
                     ->where('jenjang', $sekolahPercontohan->jenjang)
                     ->get()->load('documentType');
-                
+
                 $data = [
                     'registration_period_id' => $registrationPeriod->id,
                     'school_id' => $sekolahPercontohan->id,
@@ -214,14 +214,14 @@ class UserTestSeeder extends Seeder
                     'registration_path_id' => $registrationPathId,
                     'status' => 'pending',
                 ];
-        
+
                 // Create registration and store the result
                 $registration = $siswa->registration()->create($data);
-                
+
                 // Reload and verify registration
                 $siswa->load('registration');
-                
-                if (!$siswa->registration) {
+
+                if (! $siswa->registration) {
                     $this->command->error('❌ Failed to create registration for student: '.$siswa->nama);
                     $this->command->error('Payload data:');
                     $this->command->error('   - Registration Period ID: '.$data['registration_period_id']);
@@ -235,15 +235,16 @@ class UserTestSeeder extends Seeder
                     $this->command->error('   - NISN: '.$siswa->nisn);
                     $this->command->error('   - User ID: '.$siswa->user_id);
                     $this->command->line('----------------------------------------');
+
                     continue;
                 }
-        
+
                 // Success message for registration creation
                 $this->command->info('✅ Registration created successfully:');
                 $this->command->info('   - Student: '.$siswa->nama);
                 $this->command->info('   - Username: '.$siswa->user->username);
                 $this->command->info('   - Registration Number: '.$registration->registration_number);
-                
+
                 // Create documents with status display
                 $this->command->info('   Creating documents...');
                 foreach ($requirements as $requirement) {
@@ -258,10 +259,10 @@ class UserTestSeeder extends Seeder
                         $this->command->error('   ✗ Error: '.$e->getMessage());
                     }
                 }
-                
+
                 $this->command->info('   Documents creation completed');
                 $this->command->line('----------------------------------------');
-        
+
             } catch (\Exception $e) {
                 $this->command->error('❌ Error processing registration:');
                 $this->command->error('   - Student: '.$siswa->nama);

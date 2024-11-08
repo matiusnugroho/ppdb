@@ -1,8 +1,6 @@
 // config/endpoint.ts
 
 import type { endpoints } from "@/types"
-
-// Define base URL for your API
 const BASE_URL = "/"
 const BASE_URL_API = "/api"
 
@@ -41,6 +39,8 @@ const ENDPOINTS: endpoints = {
 	GET_JALUR_PERSYARATAN: `${BASE_URL_API}/jalur/{id}/persyaratan`,
 	GET_JALUR_DENGAN_PERSYARATAN: `${BASE_URL_API}/jalur/persyaratan`,
 	GET_SETTING: `${BASE_URL_API}/setting`,
+	UPDATE_SETTING: `${BASE_URL_API}/admin/setting/update`,
+	PERSYARATAN: `${BASE_URL_API}/admin/persyaratan-jalur`,
 }
 
 // Helper function to replace placeholders with actual values

@@ -63,13 +63,13 @@ export interface School {
 	updated_at: string
 	nama_sekolah: string
 	nss: string
-	path_counts: { [key: string]: number }
+	path_counts?: { [key: string]: number }
 	npsn: string
 	alamat: string
 	no_telp: string
 	nama_kepsek: string
-	daya_tampung: number
-	kecamatan_id: string
+	daya_tampung?: number
+	kecamatan_id?: string
 }
 
 // Define the interface for user data
@@ -189,8 +189,10 @@ export interface StatistikData {
 	[key: string]: number | string | { [key: string]: number }
 }
 export interface CommonData {
-	[key: string]: number | string | { [key: string]: number | string } 
+	[key: string]: any | null | undefined
+	social_media?: { [key: string]: string } | null | undefined
 }
+
 export interface DataSekolah {
 	total: number
 	currentPage: number

@@ -4,12 +4,14 @@ import InputGroup from "@/components/Forms/InputGroup.vue"
 import PasswordInput from "@/components/Forms/PasswordInput.vue"
 import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
 import { useAkun } from "@/composable/useAkun"
+import { useSetting } from "@/composable/useSetting"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
 import DefaultLayout from "@/layouts/DefaultLayout.vue"
 import { useAuthStore } from "@/stores/auth"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { showToast } from "@/utils/ui/toast"
 import { computed, onMounted, ref } from "vue"
+const { settingData, fetchSetting, updateSetting, isLoading} = useSetting()
 
 const authStore = useAuthStore()
 const { loadingAkun, updateAkun } = useAkun()
@@ -36,11 +38,25 @@ const credentials = ref({
 	newPassword: "",
 	confirmPassword: "",
 })
+const instagram = computed({
+	get: () => settingData.value.social_media?.instagram,
+	set: (value: string) => {
+		settingData.value.social_media!.instagram = value
+	},
+})
 
-const socialMedia = ref({
-	instagram: "",
-	twitter: "",
-	tiktok: "",
+const twitter = computed({
+	get: () => settingData.value.social_media?.twitter,
+	set: (value: string) => {
+		settingData.value.social_media!.twitter = value
+	},
+})
+
+const tiktok = computed({
+	get: () => settingData.value.social_media?.tiktok,
+	set: (value: string) => {
+		settingData.value.social_media!.tiktok = value
+	},
 })
 const formValidationErrors = useFormValidationErrorsStore()
 
@@ -63,12 +79,23 @@ const saveCredentials = async () => {
 	}
 }
 
-const saveSocialMedia = () => {
-	console.log("Saving social media:", socialMedia.value)
-	// Add your save logic here
+const saveSocialMedia = async () => {
+	const data = {
+		url_video_tutorial: settingData.value.url_video_tutorial,
+		social_media: {
+			instagram: instagram.value as string,
+			twitter: twitter.value as string,
+			tiktok: tiktok.value as string,
+		},
+	}
+
+	const response = await updateSetting(data)
+	console.log('respon dari update social media',response)
 }
-onMounted(() => {
+onMounted(async () => {
 	formValidationErrors.clearErrors()
+	await fetchSetting()
+	console.log(settingData.value.social_media!.facebook)
 })
 </script>
 
@@ -120,7 +147,7 @@ onMounted(() => {
 					</div>
 					<div class="p-6 border-t border-stroke dark:border-strokedark space-y-4">
 						<!-- Instagram -->
-						<InputGroup v-model="socialMedia.instagram" label="Instagram" name="instagram" placeholder="Enter Instagram username">
+						<InputGroup v-model="instagram" label="Instagram" name="instagram" placeholder="Enter Instagram username">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 								<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
 								<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -128,14 +155,14 @@ onMounted(() => {
 							</svg>
 						</InputGroup>
 						<!-- Twitter -->
-						<InputGroup v-model="socialMedia.twitter" label="Twitter" name="twitter" placeholder="Enter Twitter username">
+						<InputGroup v-model="twitter" label="Twitter" name="twitter" placeholder="Enter Twitter username">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 								<path
 									d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
 							</svg>
 						</InputGroup>
 						<!-- TikTok -->
-						<InputGroup v-model="socialMedia.tiktok" label="TikTok" name="tiktok" placeholder="Enter TikTok username">
+						<InputGroup v-model="tiktok" label="TikTok" name="tiktok" placeholder="Enter TikTok username">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 								<path d="M21 8v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5z" />
 								<path d="M10 12a3 3 0 1 1-3 3V6a3 3 0 0 1 3-3" />
@@ -144,7 +171,8 @@ onMounted(() => {
 					</div>
 					<div class="p-6 border-t border-stroke dark:border-strokedark flex justify-end">
 						<button @click="saveSocialMedia" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-							Save Social Media
+							<SpinnerLoading :loading="isLoading" size="xs" />
+							<span>Simpan</span>
 						</button>
 					</div>
 				</div>

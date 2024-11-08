@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     use HasFactory;
-     /**
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -27,6 +28,7 @@ class Setting extends Model
     protected $casts = [
         'social_media' => 'array',
     ];
+
     public function updateSocialMedia($platform, $url)
     {
         $socialMedia = $this->social_media ?? [];

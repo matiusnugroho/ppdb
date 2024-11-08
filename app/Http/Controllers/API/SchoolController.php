@@ -56,11 +56,11 @@ class SchoolController extends Controller
             $schools = $query->get();
             $schools = $schools->transform(function ($school) {
                 $pathCounts = [];
-            
+
                 foreach ($school->registrations as $jalur) {
                     $pathCounts[$jalur->name] = $jalur->jalur_count;
                 }
-            
+
                 // Return the school with the path counts in the desired format
                 return $school->setAttribute('path_counts', $pathCounts);
             });
@@ -82,15 +82,15 @@ class SchoolController extends Controller
             $schools = $query->paginate($perPage);
             $schools->getCollection()->transform(function ($school) {
                 $pathCounts = [];
-            
+
                 // Assuming 'registrations' has been loaded via 'jalur'
                 foreach ($school->registrations as $jalur) {
                     $pathCounts[$jalur->name] = $jalur->jalur_count;
                 }
-            
+
                 // Add the 'path_counts' attribute to each school
                 $school->setAttribute('path_counts', $pathCounts);
-            
+
                 return $school;
             });
 

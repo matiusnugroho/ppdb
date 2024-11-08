@@ -35,11 +35,11 @@ export default defineConfig(({ mode }) => {
   server: {
     proxy: {
       '/api': {
-        target: 'http://ppdb.test',
+        target: 'http://ppdbv11.test',
         changeOrigin: true
       },
       '/sanctum': {
-        target: 'http://ppdb.test',
+        target: 'http://ppdbv11.test',
         changeOrigin: true,
         secure: false
       }

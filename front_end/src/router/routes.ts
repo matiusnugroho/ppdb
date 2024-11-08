@@ -83,6 +83,16 @@ export default [
 		},
 	},
 	{
+		path: "/dashboard/persyaratan",
+		name: "persyaratanDashboard",
+		component: () => import("@/views/Admin/PersyaratanView.vue"),
+		meta: {
+			title: "Data Persyaratan Sekolah Kuantan Singingi",
+			label: "Persyaratan",
+			requiresAuth: true,
+		},
+	},
+	{
 		path: "/biodata",
 		name: "biodata",
 		component: () => import("@/views/BiodataView.vue"),

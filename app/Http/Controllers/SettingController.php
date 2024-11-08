@@ -13,6 +13,7 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::first();
+
         return response()->json($setting);
     }
 
@@ -51,9 +52,22 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request)
     {
-        //
+        $setting = Setting::first();
+        if (auth()->user()->hasRole('super_admin')) {
+            $setting->update($request->all());
+
+            return response()->json([
+                'success' => true,
+                'data' => $setting,
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Anda bukan super admin',
+        ], 401);
     }
 
     /**
