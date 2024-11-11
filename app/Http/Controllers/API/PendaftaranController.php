@@ -133,7 +133,7 @@ class PendaftaranController extends Controller
         }
         $data = $request->validated();
         $documentFile = $request->file('file');
-        $documentType = str_replace(['/', '\\'], '_', Str::snake($document->documentType->label));
+        $documentType = str_replace(['/', '\\'], '_', Str::snake($document->pathRequirement->documentType->label));
         $extension = $documentFile->getClientOriginalExtension();
         $filename = "{$documentType}.{$extension}";
 
