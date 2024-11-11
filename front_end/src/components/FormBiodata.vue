@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { reactive, ref, onMounted } from "vue"
+import { reactive, ref, onMounted, computed } from "vue"
 
 import { showToast } from "@/utils/ui/toast"
 import { useAuthStore } from "@/stores/auth"
 import { useUpdateProfile } from "@/composable/useUpdateProfile"
-import type { ProfileSiswaRequest } from "@/types"
+import type { ProfileSiswaRequest, Option } from "@/types"
 import requestor from "@/services/requestor"
 import { ENDPOINTS } from "@/config/endpoint"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
@@ -14,12 +14,16 @@ import HeroIcon from "@/components/Icon/HeroIcon.vue"
 import { field_error_html } from "@/helpers/fieldErrorHtml"
 import SpinnerLoading from "@/components/UI/SpinnerLoading.vue"
 import { hasError } from "@/helpers/hasError"
-import InputGroup from "./Forms/InputGroup.vue"
-//import { formatDateToStandar } from "@/utils/formatDateToStandar"
+import InputGroup from "@/components/Forms/InputGroup.vue"
+import SelectGroup from "@/components/Forms/SelectGroup.vue"
+import PasswordInput from "./Forms/PasswordInput.vue"
+import { useAkun } from "@/composable/useAkun"
 
 const authstore = useAuthStore()
 const { smoothScrollToTop } = useSmoothScrollToTop()
 const formValidationErrors = useFormValidationErrorsStore()
+const passwordLama = ref("")
+const passwordBaru = ref("")
 let localState = reactive({
 	user: authstore.user ? { ...authstore.user } : null,
 	biodata: authstore.biodata ? { ...authstore.biodata } : null,
@@ -29,7 +33,13 @@ const fileFoto = ref<File | null>(null)
 const displayPreview = ref<boolean>(false)
 
 const { uploadPhoto, loadingUpdatePhoto, uploadProgress, updateProfile, uploadError, loadingUpdateProfile } = useUpdateProfile()
-
+const {loadingGantiPassword, gantiPassword} = useAkun()
+const jenisKelaminOption = computed<Option[]>(() => {
+	return [
+		{ label: "Laki-laki", value: "L" },
+		{ label: "Perempuan", value: "P" },
+	]
+})
 const handleSubmit = async () => {
 	formValidationErrors.clearErrors()
 	const { foto, ...tanpaFoto } = localState.biodata!
@@ -156,6 +166,27 @@ const processFile = (file: File) => {
 	displayPreview.value = true
 }
 
+const handleGantiPassword = async () => {
+	const data= {
+		password_lama: passwordLama.value,
+		password_baru: passwordBaru.value
+	}
+	const result = await gantiPassword(data)
+	if(result.success){
+		showToast({
+			message: "Password berhasil diganti",
+		})
+		passwordLama.value = ""
+		passwordBaru.value = ""
+	}
+	else{
+		showToast({
+			message: "Password gagal diganti " + result.message,
+			type: "error",
+		})
+	}
+}
+
 onMounted(async () => {
 	console.log("Mounted")
 	if (!authstore.biodata) {
@@ -200,7 +231,10 @@ onMounted(async () => {
 							<InputGroup label="Nama" v-model="localState.biodata!.nama" :error="hasError('nama')" name="nama" inputmode="text" required />
 							<div v-html="field_error_html('nama')"></div>
 						</div>
-
+						<div class="mb-3">
+							<SelectGroup v-model="localState.biodata.jenis_kelamin" :error="hasError('jenis_kelamin')" name="jenis_kelamin" label="Jenis Kelamin" :options="jenisKelaminOption" />
+							<div v-html="field_error_html('jenis_kelamin')"></div>
+						</div>
 						<!-- Email Address Section -->
 						<div class="mb-3">
 							<InputGroup label="Email" v-model="localState.user!.email" :error="hasError('email')" name="email" type="email" inputmode="email" required />
@@ -342,6 +376,33 @@ onMounted(async () => {
 							</button>
 						</div>
 					</form>
+				</div>
+			</div>
+			<div class="mt-5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+				<div class="border-b border-stroke py-4 px-7 dark:border-strokedark">
+					<h3 class="font-medium text-black dark:text-white">Perbarui Password</h3>
+				</div>
+				<div class="p-7">
+					<div class="mb-3">
+						<PasswordInput label="Password Lama" v-model="passwordLama" />
+						<div v-html="field_error_html('password_lama')"></div>
+					</div>
+					<div class="mb-3">
+						<PasswordInput label="Password Baru" v-model="passwordBaru" />
+						<div v-html="field_error_html('password_baru')"></div>
+					</div>
+					<div class="flex justify-end gap-4.5 m-2">
+						<button
+							class="flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90"
+							@click="handleGantiPassword"
+							type="button"
+							:disabled="loadingGantiPassword">
+							<span class="flex items-center gap-2">
+								<SpinnerLoading :loading="loadingGantiPassword" size="xs" />
+								Ganti Password
+							</span>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

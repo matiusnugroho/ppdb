@@ -9,7 +9,7 @@
 			@change="updateValue"
 			class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-2 px-2 font-normal outline-none transition focus:border-primary active:border-primary dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
 			<option value="">{{ props.placeholder }}</option>
-			<option v-for="option in options" :key="option.value as string" :value="option.value">
+			<option v-for="option in options" :key="option.value as string" :value="option.value" :selected="option.value === modelValue">
 				{{ option.label }}
 			</option>
 		</select>

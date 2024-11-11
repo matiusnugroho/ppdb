@@ -66,7 +66,7 @@
 						<td>{{ sekolah.nss }}</td>
 						<td>{{ sekolah.npsn }}</td>
 						<td>{{ sekolah.daya_tampung }}</td>
-						<td v-for="(jalur, index) in dataJalurPendaftaran" :key="index">{{ sekolah.path_counts && sekolah.path_counts[jalur.name] ? sekolah.path_counts[jalur.name] : 0 }}</td>						
+						<td v-for="(jalur, index) in dataJalurPendaftaran" :key="index">{{ sekolah.path_counts && sekolah.path_counts[jalur.name] ? sekolah.path_counts[jalur.name] : 0 }}</td>
 						<td>{{ sekolah.kecamatan.nama }}</td>
 					</tr>
 				</tbody>

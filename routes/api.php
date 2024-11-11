@@ -28,6 +28,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'throttle:5,1'], function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('change-password', [AuthController::class, 'changePassword']);
     Route::post('me', [AuthController::class, 'me']);
 });
 

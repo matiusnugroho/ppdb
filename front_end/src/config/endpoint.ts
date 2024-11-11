@@ -41,6 +41,8 @@ const ENDPOINTS: endpoints = {
 	GET_SETTING: `${BASE_URL_API}/setting`,
 	UPDATE_SETTING: `${BASE_URL_API}/admin/setting/update`,
 	PERSYARATAN: `${BASE_URL_API}/admin/persyaratan-jalur`,
+
+	GANTI_PASSWORD: `${BASE_URL_API}/auth/change-password`,
 }
 
 // Helper function to replace placeholders with actual values

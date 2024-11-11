@@ -11,7 +11,7 @@ import { useAuthStore } from "@/stores/auth"
 import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 import { showToast } from "@/utils/ui/toast"
 import { computed, onMounted, ref } from "vue"
-const { settingData, fetchSetting, updateSetting, isLoading} = useSetting()
+const { settingData, fetchSetting, updateSetting, isLoading } = useSetting()
 
 const authStore = useAuthStore()
 const { loadingAkun, updateAkun } = useAkun()
@@ -90,7 +90,7 @@ const saveSocialMedia = async () => {
 	}
 
 	const response = await updateSetting(data)
-	console.log('respon dari update social media',response)
+	console.log("respon dari update social media", response)
 }
 onMounted(async () => {
 	formValidationErrors.clearErrors()

@@ -122,7 +122,7 @@ onMounted(() => {
 				</div>
 				<div class="mb-1">
 					<SelectGroup v-model="jenis_kelamin" :error="hasError('jenis_kelamin')" name="jenis_kelamin" label="Jenis Kelamin" :options="jenisKelaminOption" />
-					<div v-html="field_error_html('jenjang')"></div>
+					<div v-html="field_error_html('jenis_kelamin')"></div>
 				</div>
 
 				<!-- Email Address Section -->
