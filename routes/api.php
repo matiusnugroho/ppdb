@@ -72,6 +72,7 @@ Route::get('/statistik/', [StatistikController::class, 'admin']);
 Route::post('/siswa/register', [StudentController::class, 'store']);
 Route::post('/sekolah/register', [SchoolController::class, 'store']);
 Route::get('/sekolah/excel', [SchoolController::class, 'excel']);
+Route::get('/sekolah/excel-with-data', [SchoolController::class, 'excelWithData']);
 Route::get('/kecamatan/', [KecamatanController::class, 'index']);
 Route::get('/sekolah/', [SchoolController::class, 'index']);
 Route::get('/sekolah/kecamatan/{kecamatanId}', [SchoolController::class, 'getByKecamatan']);

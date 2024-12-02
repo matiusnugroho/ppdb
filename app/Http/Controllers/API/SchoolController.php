@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Exports\SchoolExport;
+use App\Exports\SchoolWithDataExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Models\RegistrationPath;
@@ -227,6 +228,76 @@ class SchoolController extends Controller
         //dd($schools);
         return Excel::download(new SchoolExport($schools), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
 
+    }
+    public function excelWithData(Request $request)
+    {
+        $validated = $request->validate([
+            'page' => 'nullable|integer|min:1',
+            'per_page' => 'nullable|string',
+            'jenjang' => 'nullable|string',
+            'kecamatan_id' => 'nullable|string',
+        ]);
+
+        // Create the query builder
+        $query = School::with('kecamatan');
+
+        // Apply filters if they are provided
+        if (! empty($validated['jenjang'])) {
+            $query->where('jenjang', $validated['jenjang']);
+        }
+
+        if (! empty($validated['kecamatan_id'])) {
+            $query->where('kecamatan_id', $validated['kecamatan_id']);
+        }
+        $registrationPaths = RegistrationPath::all();
+
+        // Add registration counts for each path
+        $query->with(['registrations' => function ($query) {
+            $query->selectRaw('school_id, registration_path_id, count(*) as jalur_count, registration_paths.name')
+                ->join('registration_paths', 'registrations.registration_path_id', '=', 'registration_paths.id')
+                ->whereHas('registrationPeriod', function ($query) {
+                    $query->where('is_open', true);
+                })
+                ->groupBy('school_id', 'registration_path_id', 'registration_paths.name');
+        }]);
+
+        // Check if per_page is 'all' to return all results without pagination
+        if (isset($validated['per_page']) && strtolower($validated['per_page']) === 'all') {
+            $schools = $query->get();
+            $schools = $schools->transform(function ($school) {
+                $pathCounts = [];
+
+                foreach ($school->registrations as $jalur) {
+                    $pathCounts[$jalur->name] = $jalur->jalur_count;
+                }
+
+                // Return the school with the path counts in the desired format
+                return $school->setAttribute('path_counts', $pathCounts);
+            });
+        } else {
+            // Set default pagination value
+            $perPage = is_numeric($validated['per_page'] ?? null) ? (int) $validated['per_page'] : 20;
+
+            // Paginate the results
+            $paginatedSchools = $query->paginate($perPage);
+            $schools = $paginatedSchools->getCollection();
+            $schools->getCollection()->transform(function ($school) {
+                $pathCounts = [];
+
+                // Assuming 'registrations' has been loaded via 'jalur'
+                foreach ($school->registrations as $jalur) {
+                    $pathCounts[$jalur->name] = $jalur->jalur_count;
+                }
+
+                // Add the 'path_counts' attribute to each school
+                $school->setAttribute('path_counts', $pathCounts);
+
+                return $school;
+            });
+        }
+
+        //dd($schools);
+        return Excel::download(new SchoolWithDataExport($schools, $registrationPaths ), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
     }
 
     public function tes()

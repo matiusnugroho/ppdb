@@ -7,7 +7,7 @@ import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
 import { useKecamatan } from "@/composable/useKecamatan"
 import { buatOption } from "@/helpers/buatOption"
 import type { DataSekolah, Option } from "@/types"
-const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
+const { kecamatanList, fetchKecamatan} = useKecamatan()
 const kecamatan_id = ref("")
 const jenjang = ref("")
 const per_page = ref()
@@ -32,10 +32,10 @@ const loadingDataSekolah: DataSekolah = {
 }
 
 const perPageOption = ref<Option[]>([
-	{ label: "10", value: 10 },
-	{ label: "25", value: 25 },
-	{ label: "50", value: 50 },
-	{ label: "100", value: 100 },
+	{ label: "10", value: "10" },
+	{ label: "25", value: "25" },
+	{ label: "50", value: "50" },
+	{ label: "100", value: "100" },
 	{ label: "Semua", value: "all" },
 ])
 
@@ -68,6 +68,10 @@ const goToPrevPage = () => {
 	paginationStore.currentPage = paginationStore.currentPage - 1
 	fetchAllSekolah(paginationStore.per_page as number, paginationStore.page as number, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
 }
+const handleFilter = (kecamatan: string, jenjang_: string) => {
+  kecamatan_id.value = kecamatan
+  jenjang.value = jenjang_
+}
 
 onMounted(async () => {
 	await paginationStore.resetTodefault()
@@ -78,10 +82,16 @@ onMounted(async () => {
 
 <template>
 	<div class="flex justify-end gap-4 mb-4 p-8 items-center">
-		<SearchableSelect placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
-		<SearchableSelect placeholder="Pilih Jenjang" :options="jenjangOption" v-model="jenjang" />
 		<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" />
 		<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
 	</div>
-	<TabelSekolahComponent :data="loadingSekolah ? loadingDataSekolah : dataSekolah!" :loading="loadingSekolah" @prev-page="goToPrevPage" @next-page="goToNextPage" @page-change="goToPage" />
+	<TabelSekolahComponent
+			:kecamatan-options="kecamatanOption"
+			:jenjang-options="jenjangOption"
+			:data="loadingSekolah ? loadingDataSekolah : dataSekolah!"
+			:loading="loadingSekolah"
+			@filter="handleFilter"
+			@prev-page="goToPrevPage"
+			@next-page="goToNextPage"
+			@page-change="goToPage" />
 </template>

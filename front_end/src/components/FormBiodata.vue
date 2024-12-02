@@ -33,7 +33,7 @@ const fileFoto = ref<File | null>(null)
 const displayPreview = ref<boolean>(false)
 
 const { uploadPhoto, loadingUpdatePhoto, uploadProgress, updateProfile, uploadError, loadingUpdateProfile } = useUpdateProfile()
-const {loadingGantiPassword, gantiPassword} = useAkun()
+const { loadingGantiPassword, gantiPassword } = useAkun()
 const jenisKelaminOption = computed<Option[]>(() => {
 	return [
 		{ label: "Laki-laki", value: "L" },
@@ -167,19 +167,18 @@ const processFile = (file: File) => {
 }
 
 const handleGantiPassword = async () => {
-	const data= {
+	const data = {
 		password_lama: passwordLama.value,
-		password_baru: passwordBaru.value
+		password_baru: passwordBaru.value,
 	}
 	const result = await gantiPassword(data)
-	if(result.success){
+	if (result.success) {
 		showToast({
 			message: "Password berhasil diganti",
 		})
 		passwordLama.value = ""
 		passwordBaru.value = ""
-	}
-	else{
+	} else {
 		showToast({
 			message: "Password gagal diganti " + result.message,
 			type: "error",

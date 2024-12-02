@@ -49,6 +49,7 @@ Route::get('/cekext', function () {
     }
 });
 Route::get('/sekolah/excel', [SchoolController::class, 'excel']);
+Route::get('/sekolah/excel-with-data', [SchoolController::class, 'excelWithData']);
 
 Route::get('/{any}', function () {
     if (request()->is('api/*')) {

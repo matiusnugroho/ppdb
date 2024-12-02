@@ -8,6 +8,7 @@ const { fetchPersyaratan, persyaratan } = usePersyaratan()
 
 onMounted(async () => {
 	await fetchPersyaratan()
+	console.log(persyaratan.value)
 })
 </script>
 
@@ -27,24 +28,29 @@ onMounted(async () => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="(requirements, jenjang) in jenjangs" :key="jenjang">
-							<td class="border border-gray-300 px-4 py-2 font-medium">{{ jenjang }}</td>
-							<td class="border border-gray-300 px-4 py-2">
-								<ul class="list-disc list-inside">
-									<li v-for="requirement in requirements" :key="requirement.id">
-										{{ requirement.document_type.label || "Unknown Document" }}
-									</li>
-								</ul>
-							</td>
-							<td class="border border-gray-300 px-4 py-2">
-								<ul class="list-disc list-inside">
-									<li v-for="requirement in requirements" :key="requirement.id">
-										<span v-if="requirement.is_required" class="text-green-500">✅</span>
-										<span v-else class="text-red-500">❌</span>
-									</li>
-								</ul>
-							</td>
-						</tr>
+						<template v-for="(requirements, jenjang) in jenjangs" :key="jenjang">
+							<tr v-if="requirements.length > 0">
+								<td class="border border-gray-300 px-4 py-2 font-medium" :rowspan="requirements.length">
+									{{ jenjang }}
+								</td>
+								<td class="border border-gray-300 px-4 py-2">
+									{{ requirements[0].document_type.label || "Unknown Document" }}
+								</td>
+								<td class="border border-gray-300 px-4 py-2">
+									<span v-if="requirements[0].is_required" class="text-green-500">✅</span>
+									<span v-else class="text-red-500">❌</span>
+								</td>
+							</tr>
+							<tr v-for="requirement in requirements.slice(1)" :key="requirement.id">
+								<td class="border border-gray-300 px-4 py-2">
+									{{ requirement.document_type.label || "Unknown Document" }}
+								</td>
+								<td class="border border-gray-300 px-4 py-2">
+									<span v-if="requirement.is_required" class="text-green-500">✅</span>
+									<span v-else class="text-red-500">❌</span>
+								</td>
+							</tr>
+						</template>
 					</tbody>
 				</table>
 			</div>

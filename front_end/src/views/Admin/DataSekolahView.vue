@@ -2,13 +2,19 @@
 	<DefaultLayout>
 		<BreadcrumbDefault pageTitle="Data Sekolah" />
 		<div class="flex justify-end gap-4 mb-4 items-center">
-			<SearchableSelect placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" />
-			<SearchableSelect placeholder="Pilih Jenjang" :options="jenjangOption" v-model="jenjang" />
 			<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" />
 			<IconButton icon="file-spreadsheet" mode="round" color="blue" @click.prevent="exportSekolah" />
 			<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
 		</div>
-		<TabelSekolahComponent :data="loadingSekolah ? loadingDataSekolah : dataSekolah!" :loading="loadingSekolah" @prev-page="goToPrevPage" @next-page="goToNextPage" @page-change="goToPage" />
+		<TabelSekolahComponent
+			:kecamatan-options="kecamatanOption"
+			:jenjang-options="jenjangOption"
+			:data="loadingSekolah ? loadingDataSekolah : dataSekolah!"
+			:loading="loadingSekolah"
+			@filter="handleFilter"
+			@prev-page="goToPrevPage"
+			@next-page="goToNextPage"
+			@page-change="goToPage" />
 	</DefaultLayout>
 </template>
 
@@ -25,7 +31,7 @@ import { buatOption } from "@/helpers/buatOption"
 import type { DataSekolah, Option } from "@/types"
 import IconButton from "@/components/UI/Buttons/IconButton.vue"
 import { ENDPOINTS } from "@/config/endpoint"
-const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
+const { kecamatanList, fetchKecamatan} = useKecamatan()
 import jenjangData from "@/config/jenjang"
 const kecamatan_id = ref("")
 const jenjang = ref("")
@@ -37,10 +43,10 @@ const kecamatanOption = computed<Option[]>(() => {
 const jenjangOption = ref<Option[]>([{ label: "Semua Jenjang", value: null }, ...jenjangData])
 
 const perPageOption = ref<Option[]>([
-	{ label: "10", value: 10 },
-	{ label: "25", value: 25 },
-	{ label: "50", value: 50 },
-	{ label: "100", value: 100 },
+	{ label: "10", value: "10" },
+	{ label: "25", value: "25" },
+	{ label: "50", value: "50" },
+	{ label: "100", value: "100" },
 	{ label: "Semua", value: "all" },
 ])
 const paginationStore = usePaginationStore()
@@ -83,6 +89,10 @@ const goToPrevPage = () => {
 	paginationStore.page = paginationStore.page - 1
 	paginationStore.currentPage = paginationStore.currentPage - 1
 	fetchAllSekolah(paginationStore.per_page as number, paginationStore.page as number, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
+}
+const handleFilter = (kecamatan: string, jenjang_: string) => {
+  kecamatan_id.value = kecamatan
+  jenjang.value = jenjang_
 }
 
 const exportSekolah = () => {

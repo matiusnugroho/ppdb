@@ -2,12 +2,6 @@
 	<div class="flex flex-col h-full">
 		<div class="flex flex-wrap justify-end gap-2 sm:gap-4 mb-4 items-center">
 			<div class="w-full sm:w-auto">
-				<SearchableSelect placeholder="Pilih Kecamatan" :options="kecamatanOption" v-model="kecamatan_id" :loading="loadingKecamatan" class="w-full sm:w-auto" />
-			</div>
-			<div class="w-full sm:w-auto">
-				<SearchableSelect placeholder="Pilih Jenjang" :options="jenjangOption" v-model="jenjang" class="w-full sm:w-auto" />
-			</div>
-			<div class="w-full sm:w-auto">
 				<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" class="w-full sm:w-auto" />
 			</div>
 			<!-- Container for button and total sekolah -->
@@ -22,12 +16,12 @@
 				<thead>
 					<tr>
 						<th>Nama Sekolah</th>
-						<td>Jenjang</td>
+						<td><FilterSelect v-model="jenjang" :options="jenjangOption!" class="w-full" placeholder="Jenjang" :customClasses="'border-0 shadow-none'" /></td>
 						<td>NSS</td>
 						<td>NPSN</td>
 						<td>Daya Tampung</td>
 						<td v-for="(jalur, index) in dataJalurPendaftaran" :key="index">{{ jalur.name }}</td>
-						<td>Kecamatan</td>
+						<td><FilterSelect v-model="kecamatan_id" :options="kecamatanOption!" class="w-full" placeholder="Kecamatan" :customClasses="'border-0 shadow-none'" /></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -130,8 +124,9 @@ import { buatOption } from "@/helpers/buatOption"
 import type { DataSekolah, Option } from "@/types"
 import IconButton from "@/components/UI/Buttons/IconButton.vue"
 import { ENDPOINTS } from "@/config/endpoint"
-const { kecamatanList, fetchKecamatan, loadingKecamatan } = useKecamatan()
+const { kecamatanList, fetchKecamatan } = useKecamatan()
 import jenjangData from "@/config/jenjang"
+import FilterSelect from "@/components/Forms/FilterSelect.vue"
 const kecamatan_id = ref("")
 const jenjang = ref("")
 const per_page = ref()
@@ -183,7 +178,7 @@ const goToPrevPage = () => {
 }
 
 const exportSekolah = () => {
-	const base_export_api = ENDPOINTS.DOWNLOAD_EXCEL_SEKOLAH
+	const base_export_api = ENDPOINTS.DOWNLOAD_EXCEL_SEKOLAH_WITH_DATA
 	const params = new URLSearchParams()
 	if (paginationStore.jenjang !== null) params.append("jenjang", paginationStore.jenjang)
 	if (paginationStore.kecamatan_id !== null) params.append("kecamatan_id", paginationStore.kecamatan_id)

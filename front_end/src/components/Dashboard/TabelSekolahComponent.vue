@@ -6,11 +6,19 @@
 				<thead>
 					<tr>
 						<th>Nama Sekolah</th>
-						<td>Jenjang</td>
+						<td class="align-top">
+							<div class="flex flex-col items-start gap-2">
+								<FilterSelect v-model="jenjang" :options="jenjangOptions!" class="w-full" placeholder="Jenjang" :customClasses="'border-0 shadow-none'" />
+							</div>
+						</td>
 						<td>NSS</td>
 						<td>NPSN</td>
 						<td>Daya Tampung</td>
-						<td>Kecamatan</td>
+						<td class="align-top">
+							<div class="flex flex-col items-start gap-2">
+								<FilterSelect v-model="kecamatan" :options="kecamatanOptions!" class="w-full" placeholder="Kecamatan" :customClasses="'border-0 shadow-none'" />
+							</div>
+						</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -101,14 +109,19 @@
 </template>
 <script setup lang="ts">
 import { usePaginationStore } from "@/stores/paginationStore"
-import type { DataSekolah } from "@/types"
-import { type PropType } from "vue"
+import type { DataSekolah, Option } from "@/types"
+import { type PropType, ref, watch } from "vue"
 import NoDataComponent from "@/components/UI/NoDataComponent.vue"
+import FilterSelect from "@/components/Forms/FilterSelect.vue"
+
+const kecamatan = ref("")
+const jenjang = ref("")
 
 const emit = defineEmits<{
 	(event: "prev-page"): void
 	(event: "next-page"): void
 	(event: "page-change", page: number): void
+	(event: "filter", kecamatan: string, jenjang: string): void
 }>()
 const emitPrevPage = () => {
 	emit("prev-page")
@@ -122,10 +135,23 @@ const emitPageChange = (page: number) => {
 	emit("page-change", page)
 }
 
+const emitFilter = (kecamatan: string, jenjang: string) => {
+	emit("filter", kecamatan, jenjang)
+}
+watch([kecamatan, jenjang], ([newKecamatan, newJenjang]) => {
+  emitFilter(newKecamatan, newJenjang)
+})
+
 defineProps({
 	data: {
 		type: Object as PropType<DataSekolah>,
 		required: false,
+	},
+	kecamatanOptions: {
+		type: Array as PropType<Option[]>,
+	},
+	jenjangOptions: {
+		type: Array as PropType<Option[]>,
 	},
 	loading: {
 		type: Boolean,
