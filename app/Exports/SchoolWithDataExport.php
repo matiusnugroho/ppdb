@@ -2,16 +2,17 @@
 
 namespace App\Exports;
 
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Illuminate\Support\Collection;
 
-class SchoolWithDataExport implements FromCollection,WithHeadings
+class SchoolWithDataExport implements FromCollection, WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     private $schools;
+
     private $jalurPendaftaran;
 
     public function __construct(Collection $schools, Collection $jalurPendaftaran)
@@ -19,9 +20,10 @@ class SchoolWithDataExport implements FromCollection,WithHeadings
         $this->schools = $schools;
         $this->jalurPendaftaran = $jalurPendaftaran;
     }
+
     public function collection()
     {
-        $data =$this->schools->map(function ($school) {
+        $data = $this->schools->map(function ($school) {
             // Prepare the row data
             $row = [
                 'ID' => $school->id,
@@ -40,9 +42,11 @@ class SchoolWithDataExport implements FromCollection,WithHeadings
 
             return $row;
         });
+
         //dd($data);
         return $data;
     }
+
     public function headings(): array
     {
         // Static headers

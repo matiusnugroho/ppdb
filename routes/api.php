@@ -75,6 +75,7 @@ Route::get('/sekolah/excel', [SchoolController::class, 'excel']);
 Route::get('/sekolah/excel-with-data', [SchoolController::class, 'excelWithData']);
 Route::get('/kecamatan/', [KecamatanController::class, 'index']);
 Route::get('/sekolah/', [SchoolController::class, 'index']);
+Route::post('/sekolah/import', [SchoolController::class, 'import']);
 Route::get('/sekolah/kecamatan/{kecamatanId}', [SchoolController::class, 'getByKecamatan']);
 Route::get('/sekolah/kecamatan/{kecamatanId}/{jenjang}', [SchoolController::class, 'getByKecamatan']);
 Route::get('/registration/get-opened', [PendaftaranController::class, 'getOpenPeriods']);

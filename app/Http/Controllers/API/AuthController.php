@@ -62,16 +62,18 @@ class AuthController extends Controller
             'message' => 'Logged out successfully',
         ]);
     }
+
     public function changePassword(Request $request)
     {
         $oldPassword = $request->password_lama;
         $newPassword = $request->password_baru;
         $user = Auth::user();
-        if (!Hash::check($oldPassword, $user->password)) {
+        if (! Hash::check($oldPassword, $user->password)) {
             return response()->json(['success' => false, 'message' => 'Password lama salah'], 400);
         }
         $user->password = bcrypt($newPassword);
         $user->save();
+
         return response()->json(['success' => true, 'message' => 'Password changed successfully']);
     }
 }

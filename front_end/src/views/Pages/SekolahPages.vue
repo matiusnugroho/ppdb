@@ -7,7 +7,7 @@ import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
 import { useKecamatan } from "@/composable/useKecamatan"
 import { buatOption } from "@/helpers/buatOption"
 import type { DataSekolah, Option } from "@/types"
-const { kecamatanList, fetchKecamatan} = useKecamatan()
+const { kecamatanList, fetchKecamatan } = useKecamatan()
 const kecamatan_id = ref("")
 const jenjang = ref("")
 const per_page = ref()
@@ -69,8 +69,8 @@ const goToPrevPage = () => {
 	fetchAllSekolah(paginationStore.per_page as number, paginationStore.page as number, paginationStore.jenjang as string, paginationStore.kecamatan_id as string)
 }
 const handleFilter = (kecamatan: string, jenjang_: string) => {
-  kecamatan_id.value = kecamatan
-  jenjang.value = jenjang_
+	kecamatan_id.value = kecamatan
+	jenjang.value = jenjang_
 }
 
 onMounted(async () => {
@@ -86,12 +86,12 @@ onMounted(async () => {
 		<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
 	</div>
 	<TabelSekolahComponent
-			:kecamatan-options="kecamatanOption"
-			:jenjang-options="jenjangOption"
-			:data="loadingSekolah ? loadingDataSekolah : dataSekolah!"
-			:loading="loadingSekolah"
-			@filter="handleFilter"
-			@prev-page="goToPrevPage"
-			@next-page="goToNextPage"
-			@page-change="goToPage" />
+		:kecamatan-options="kecamatanOption"
+		:jenjang-options="jenjangOption"
+		:data="loadingSekolah ? loadingDataSekolah : dataSekolah!"
+		:loading="loadingSekolah"
+		@filter="handleFilter"
+		@prev-page="goToPrevPage"
+		@next-page="goToNextPage"
+		@page-change="goToPage" />
 </template>

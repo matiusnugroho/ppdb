@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nama_sekolah'); // Nama Sekolah
-            $table->string('nss')->unique(); // NSS
-            $table->string('npsn')->unique(); // NPSN
+            $table->string('nss')->unique()->nullable(); // NSS
+            $table->string('npsn')->unique()->nullable(); // NPSN
             $table->string('jenjang'); // Jenjang
-            $table->string('alamat'); // Alamat
-            $table->string('no_telp'); // No. Telp
-            $table->string('email')->unique(); // Email
-            $table->string('nama_kepsek'); // Nama Kepsek
+            $table->string('alamat')->nullable(); // Alamat
+            $table->string('no_telp')->nullable(); // No. Telp
+            $table->string('email')->unique()->nullable(); // Email
+            $table->string('nama_kepsek')->nullable(); // Nama Kepsek
             $table->string('kecamatan_id'); // Kecamatan
             $table->unsignedBigInteger('user_id');
             $table->integer('daya_tampung')->default(10);

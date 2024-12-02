@@ -6,8 +6,19 @@
 			</div>
 			<!-- Container for button and total sekolah -->
 			<div class="w-full sm:w-auto flex justify-end items-center gap-2">
-				<IconButton icon="file-spreadsheet" mode="round" color="blue" @click.prevent="exportSekolah" />
-				<span class="text-sm text-black">Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }}</span>
+				<span class="inline-flex overflow-visible rounded-md bg-white shadow-sm">
+					<div class="tooltip" data-tip="Download Excel">
+						<button class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative" title="Edit Product" @click="exportSekolah">
+							<HeroIcon name="file-spreadsheet" size="18" class="h-6 w-6" />
+						</button>
+					</div>
+					<div v-if="needimportbutton" class="tooltip" data-tip="Import Excel">
+						<button class="inline-block p-3 text-gray-700 hover:bg-gray-50 focus:relative" title="Delete Product">
+							<HeroIcon name="upload-double" size="18" class="h-6 w-6" />
+						</button>
+					</div>
+				</span>
+				<span class="text-sm text-black"> Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }} </span>
 			</div>
 		</div>
 		<!-- Scrollable Table Area -->
@@ -122,11 +133,12 @@ import SearchableSelect from "@/components/Forms/SearchableSelect.vue"
 import { useKecamatan } from "@/composable/useKecamatan"
 import { buatOption } from "@/helpers/buatOption"
 import type { DataSekolah, Option } from "@/types"
-import IconButton from "@/components/UI/Buttons/IconButton.vue"
+//import IconButton from "@/components/UI/Buttons/IconButton.vue"
 import { ENDPOINTS } from "@/config/endpoint"
 const { kecamatanList, fetchKecamatan } = useKecamatan()
 import jenjangData from "@/config/jenjang"
 import FilterSelect from "@/components/Forms/FilterSelect.vue"
+import HeroIcon from "@/components/Icon/HeroIcon.vue"
 const kecamatan_id = ref("")
 const jenjang = ref("")
 const per_page = ref()
@@ -197,6 +209,10 @@ defineProps({
 		type: Boolean,
 		default: false,
 	},
+	needimportbutton: {
+		type: Boolean,
+		default: false,
+	}
 })
 const { fetchJalurPendaftaran, dataJalurPendaftaran } = usePendaftaran()
 

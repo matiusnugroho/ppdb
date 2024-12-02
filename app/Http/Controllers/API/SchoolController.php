@@ -6,6 +6,7 @@ use App\Exports\SchoolExport;
 use App\Exports\SchoolWithDataExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSchoolRequest;
+use App\Imports\SchoolsImport;
 use App\Models\RegistrationPath;
 use App\Models\School;
 use App\Models\User;
@@ -229,6 +230,7 @@ class SchoolController extends Controller
         return Excel::download(new SchoolExport($schools), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
 
     }
+
     public function excelWithData(Request $request)
     {
         $validated = $request->validate([
@@ -297,7 +299,7 @@ class SchoolController extends Controller
         }
 
         //dd($schools);
-        return Excel::download(new SchoolWithDataExport($schools, $registrationPaths ), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
+        return Excel::download(new SchoolWithDataExport($schools, $registrationPaths), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
     }
 
     public function tes()
@@ -306,5 +308,30 @@ class SchoolController extends Controller
         $documentTypes = $jalur->requirements->where('jenjang', 'sd')->pluck('documentType');
 
         dd($documentTypes);
+    }
+
+    public function import(Request $request)
+    {
+        // Validate the uploaded file
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv|max:10240',
+        ]);
+
+        // Get the uploaded file
+        $file = $request->file('file');
+
+        // Import the data using the SchoolsImport class
+        try {
+            Excel::import(new SchoolsImport, $file);
+
+            return response()->json([
+                'success' => true,
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }

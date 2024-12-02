@@ -139,7 +139,7 @@ const emitFilter = (kecamatan: string, jenjang: string) => {
 	emit("filter", kecamatan, jenjang)
 }
 watch([kecamatan, jenjang], ([newKecamatan, newJenjang]) => {
-  emitFilter(newKecamatan, newJenjang)
+	emitFilter(newKecamatan, newJenjang)
 })
 
 defineProps({

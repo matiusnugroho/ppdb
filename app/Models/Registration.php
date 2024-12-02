@@ -19,6 +19,7 @@ class Registration extends Model
     protected $casts = [
         'id' => 'string',
     ];
+
     protected $keyType = 'string';
 
     public $incrementing = false;

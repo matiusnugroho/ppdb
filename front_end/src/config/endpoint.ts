@@ -35,6 +35,7 @@ const ENDPOINTS: endpoints = {
 	STATISTIK_PUBLIC: `${BASE_URL_API}/statistik/`,
 	DOWNLOAD_EXCEL_SEKOLAH: `/sekolah/excel`,
 	DOWNLOAD_EXCEL_SEKOLAH_WITH_DATA: `/sekolah/excel-with-data`,
+	IMPORT_SEKOLAH: `${BASE_URL_API}/sekolah/import`,
 	UPDATE_AKUN_ADMIN: `${BASE_URL_API}/admin/akun/update`,
 	GET_JALUR: `${BASE_URL_API}/jalur`,
 	GET_JALUR_PERSYARATAN: `${BASE_URL_API}/jalur/{id}/persyaratan`,
