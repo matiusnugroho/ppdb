@@ -1,11 +1,8 @@
 <template>
         <li
-                ref="dropdownRef"
                 class="relative"
-                @mouseenter="handleMouseEnter"
-                @mouseleave="handleMouseLeave"
-                @focusin="openDropdown"
-                @focusout="handleFocusOut"
+                @mouseenter="openDropdown"
+                @mouseleave="closeDropdown"
         >
                 <button
                         type="button"
@@ -20,25 +17,20 @@
                 </button>
 
                 <div
-                        class="dropdown-portal absolute left-0 top-full z-20 w-56 pt-2"
-                        :class="isOpen ? 'pointer-events-auto' : 'pointer-events-none'"
+                        class="dropdown-menu absolute left-0 mt-2 w-56 origin-top rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5 transition duration-150 ease-out"
+                        :class="isOpen ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-95 opacity-0 pointer-events-none'"
                 >
-                        <div
-                                class="dropdown-menu origin-top rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5 transition duration-150 ease-out"
-                                :class="isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'"
-                        >
-                                <ul class="space-y-1 text-sm text-gray-700">
-                                        <li v-for="(item, index) in items" :key="index">
-                                                <RouterLink
-                                                        :to="item.url"
-                                                        class="block px-4 py-2 transition duration-150 hover:bg-blue-50 hover:text-blue-600"
-                                                        @click="selectItem"
-                                                >
-                                                        {{ item.label }}
-                                                </RouterLink>
-                                        </li>
-                                </ul>
-                        </div>
+                        <ul class="space-y-1 text-sm text-gray-700">
+                                <li v-for="(item, index) in items" :key="index">
+                                        <RouterLink
+                                                :to="item.url"
+                                                class="block px-4 py-2 transition duration-150 hover:bg-blue-50 hover:text-blue-600"
+                                                @click="selectItem"
+                                        >
+                                                {{ item.label }}
+                                        </RouterLink>
+                                </li>
+                        </ul>
                 </div>
         </li>
 </template>
@@ -69,39 +61,6 @@ const toggleDropdown = () => {
 
 const selectItem = () => {
         closeDropdown()
-}
-
-const handleMouseEnter = () => {
-        clearTimeout(focusOutTimer)
-        openDropdown()
-}
-
-const handleMouseLeave = () => {
-        focusOutTimer = window.setTimeout(() => {
-                closeDropdown()
-        }, 120)
-}
-
-const handleFocusOut = (event: FocusEvent) => {
-        const nextTarget = event.relatedTarget as Node | null
-        if (!dropdownRef.value || (nextTarget && dropdownRef.value.contains(nextTarget))) {
-                return
-        }
-        closeDropdown()
-}
-
-const handleDocumentClick = (event: MouseEvent) => {
-        const target = event.target as Node | null
-        if (!dropdownRef.value || (target && dropdownRef.value.contains(target))) {
-                return
-        }
-        closeDropdown()
-}
-
-const handleKeydown = (event: KeyboardEvent) => {
-        if (event.key === "Escape") {
-                closeDropdown()
-        }
 }
 
 onMounted(() => {
