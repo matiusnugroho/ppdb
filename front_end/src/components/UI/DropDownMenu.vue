@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { onBeforeUnmount, onMounted, ref } from "vue"
 
 defineProps<{
         title: string
@@ -44,6 +44,8 @@ defineProps<{
 }>()
 
 const isOpen = ref(false)
+const dropdownRef = ref<HTMLElement | null>(null)
+let focusOutTimer: number | undefined
 
 const openDropdown = () => {
         isOpen.value = true
@@ -60,6 +62,17 @@ const toggleDropdown = () => {
 const selectItem = () => {
         closeDropdown()
 }
+
+onMounted(() => {
+        document.addEventListener("click", handleDocumentClick)
+        document.addEventListener("keydown", handleKeydown)
+})
+
+onBeforeUnmount(() => {
+        document.removeEventListener("click", handleDocumentClick)
+        document.removeEventListener("keydown", handleKeydown)
+        clearTimeout(focusOutTimer)
+})
 </script>
 
 <style scoped>
