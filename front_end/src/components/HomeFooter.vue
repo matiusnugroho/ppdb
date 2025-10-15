@@ -1,25 +1,55 @@
 <template>
-	<footer class="bg-gradient-to-r from-blue-300 to-blue-200">
-		<div class="relative mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 lg:pt-24">
-			<div class="absolute end-4 top-4 sm:end-6 sm:top-6 lg:end-8 lg:top-8">
-				<a
-					class="inline-block rounded-full bg-blue-600 p-2 text-white shadow-lg transition-transform transform hover:bg-blue-500 hover:scale-110 sm:p-3 lg:p-4 cursor-pointer"
-					@click.prevent="scrollToTop">
-					<span class="sr-only">Ke atas</span>
-					<svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 20 20" fill="currentColor">
-						<path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
-					</svg>
-				</a>
-			</div>
-
-			<div class="lg:flex lg:items-center lg:justify-between">
-				<div class="flex items-center">
-					<img :src="logoppdb" class="w-24 xl:w-28 mr-4" alt="Logo PPDB" />
-					<p class="text-sm text-gray-600">&copy; 2024. Dinas Pendidikan Kabupaten Kuantan Singingi.</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+        <footer class="bg-gray-800 text-white">
+                <div class="mx-auto max-w-screen-xl px-6 py-10">
+                        <div class="text-center">
+                                <RouterLink to="/" class="inline-flex items-center justify-center text-2xl font-bold">
+                                        <img :src="logoppdb" class="mr-3 h-10 w-10" alt="Logo PPDB" />
+                                        <span>
+                                                <span class="text-blue-400">PPDB</span>
+                                                <span class="text-white"> Pro</span>
+                                        </span>
+                                </RouterLink>
+                                <p class="mt-4 text-sm text-gray-400">
+                                        Membantu Mewujudkan Pendidikan Generasi Terbaik Bangsa.
+                                </p>
+                                <nav class="mt-6 flex justify-center space-x-6 text-sm font-medium">
+                                        <RouterLink
+                                                to="/informasi"
+                                                class="transition hover:text-blue-400"
+                                        >
+                                                Informasi
+                                        </RouterLink>
+                                        <RouterLink
+                                                to="/statistik"
+                                                class="transition hover:text-blue-400"
+                                        >
+                                                Statistik
+                                        </RouterLink>
+                                        <RouterLink
+                                                to="/faq"
+                                                class="transition hover:text-blue-400"
+                                        >
+                                                FAQ
+                                        </RouterLink>
+                                </nav>
+                        </div>
+                        <div class="mt-8 border-t border-gray-700 pt-6 text-center">
+                                <p class="text-xs text-gray-500">&copy; 2025 Panitia PPDB Pro. Semua Hak Cipta Dilindungi.</p>
+                        </div>
+                        <div class="mt-8 flex justify-center">
+                                <button
+                                        type="button"
+                                        class="inline-flex items-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:bg-blue-500"
+                                        @click="scrollToTop"
+                                >
+                                        <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 3a1 1 0 01.894.553l4 8a1 1 0 01-1.788.894L10 5.618 6.894 12.447a1 1 0 01-1.788-.894l4-8A1 1 0 0110 3z" clip-rule="evenodd" />
+                                        </svg>
+                                        Kembali ke atas
+                                </button>
+                        </div>
+                </div>
+        </footer>
 </template>
 
 <script setup lang="ts">
@@ -29,14 +59,6 @@ import logoppdb from "@/assets/images/logo/logo-ppdb.png"
 const { smoothScrollToTop } = useSmoothScrollToTop()
 
 const scrollToTop = () => {
-	console.log("Scrolling to top")
-	smoothScrollToTop("#main-home")
+        smoothScrollToTop("#main-home")
 }
 </script>
-
-<style scoped>
-/* Additional styles for enhancement */
-footer {
-	border-top: 2px solid rgba(255, 255, 255, 0.2);
-}
-</style>
