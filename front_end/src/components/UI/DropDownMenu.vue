@@ -1,5 +1,6 @@
 <template>
         <li
+                ref="dropdownRef"
                 class="relative"
                 @mouseenter="openDropdown"
                 @mouseleave="closeDropdown"
@@ -45,7 +46,6 @@ defineProps<{
 
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
-let focusOutTimer: number | undefined
 
 const openDropdown = () => {
         isOpen.value = true
@@ -63,6 +63,19 @@ const selectItem = () => {
         closeDropdown()
 }
 
+const handleDocumentClick = (event: MouseEvent) => {
+        const target = event.target as Node | null
+        if (dropdownRef.value && target && !dropdownRef.value.contains(target)) {
+                closeDropdown()
+        }
+}
+
+const handleKeydown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+                closeDropdown()
+        }
+}
+
 onMounted(() => {
         document.addEventListener("click", handleDocumentClick)
         document.addEventListener("keydown", handleKeydown)
@@ -71,7 +84,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
         document.removeEventListener("click", handleDocumentClick)
         document.removeEventListener("keydown", handleKeydown)
-        clearTimeout(focusOutTimer)
 })
 </script>
 
