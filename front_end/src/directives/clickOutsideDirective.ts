@@ -13,18 +13,22 @@ interface ClickOutsideBinding extends DirectiveBinding {
 export const clickOutsideDirective = {
 	beforeMount(el: HTMLElementWithClickOutside, binding: ClickOutsideBinding) {
 		// Define the click handler
-		el.clickOutsideEvent = (_event: MouseEvent) => {
-			// Check if the click was outside the element
-			if (!(el === _event.target || el.contains(_event.target as Node))) {
-				if (typeof binding.value === "function") {
-					// Call the function directly if it's a function
-					binding.value(event)
-				} else if (typeof binding.value.handler === "function") {
-					// Call the handler with parameters if provided
-					binding.value.handler(event, ...(binding.value._args || []))
-				}
-			}
-		}
+                el.clickOutsideEvent = (_event: MouseEvent) => {
+                        // Check if the click was outside the element
+                        if (!(el === _event.target || el.contains(_event.target as Node))) {
+                                const bindingValue = binding.value as
+                                        | ClickOutsideHandler
+                                        | { handler?: ClickOutsideHandler; _args?: unknown[] }
+                                        | undefined
+                                if (typeof bindingValue === "function") {
+                                        // Call the function directly if it's a function
+                                        bindingValue(_event)
+                                } else if (bindingValue && typeof bindingValue.handler === "function") {
+                                        // Call the handler with parameters if provided
+                                        bindingValue.handler(_event, ...(bindingValue._args || []))
+                                }
+                        }
+                }
 		// Add event listener to the document
 		document.addEventListener("click", el.clickOutsideEvent)
 	},
