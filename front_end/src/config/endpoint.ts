@@ -6,10 +6,11 @@ const BASE_URL_API = "/api"
 
 // Define endpoints
 const ENDPOINTS: endpoints = {
-	BASE_URL,
-	LOGIN: `${BASE_URL_API}/auth/login`,
-	LOGOUT: `${BASE_URL_API}/auth/logout`,
-	ME_SISWA: `${BASE_URL_API}/siswa/me`,
+        BASE_URL,
+        LOGIN: `${BASE_URL_API}/auth/login`,
+        LOGOUT: `${BASE_URL_API}/auth/logout`,
+        AUTH_ME: `${BASE_URL_API}/auth/me`,
+        ME_SISWA: `${BASE_URL_API}/siswa/me`,
 	REGISTER_SISWA: `${BASE_URL_API}/siswa/register`,
 	REGISTER_SEKOLAH: `${BASE_URL_API}/sekolah/register`,
 	UPDATE_PHOTO_SISWA: `${BASE_URL_API}/siswa/update-foto`,
