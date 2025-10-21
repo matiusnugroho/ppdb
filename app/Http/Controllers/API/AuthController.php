@@ -66,6 +66,18 @@ class AuthController extends Controller
         $property = $roleMap[$userRole] ?? null;
         $biodata = $property ? $user->$property : null;
 
+        $cookie = cookie(
+            'access_token',
+            $plainTextToken,
+            60,
+            '/',
+            config('session.domain'),
+            $request->isSecure() || config('session.secure', false),
+            true,
+            false,
+            config('session.same_site', 'lax')
+        );
+
         return response()->json([
             'success' => true,
             'user' => $user,
@@ -73,7 +85,7 @@ class AuthController extends Controller
             'role' => $user->role,
             'permissions' => $user->getAllPermissions()->pluck('name'),
             'token' => $plainTextToken,
-        ])->cookie('access_token', $plainTextToken, 60, null, null, true, true);
+        ])->withCookie($cookie);
     }
 
     public function logout(Request $request)
