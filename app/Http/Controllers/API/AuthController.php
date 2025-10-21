@@ -67,12 +67,26 @@ class AuthController extends Controller
 
         $biodata = $this->resolveBiodata($user);
 
-        $cookie = $this->buildAccessTokenCookie($request, $plainTextToken);
+        $cookie = cookie(
+            'access_token',
+            $plainTextToken,
+            60,
+            '/',
+            config('session.domain'),
+            $request->isSecure() || config('session.secure', false),
+            true,
+            false,
+            config('session.same_site', 'lax')
+        );
 
-        return response()->json(array_merge(
-            $this->buildUserPayload($user, $biodata),
-            ['token' => $plainTextToken]
-        ))->withCookie($cookie);
+        return response()->json([
+            'success' => true,
+            'user' => $user,
+            'biodata' => $biodata,
+            'role' => $user->role,
+            'permissions' => $user->getAllPermissions()->pluck('name'),
+            'token' => $plainTextToken,
+        ])->withCookie($cookie);
     }
 
     public function logout(Request $request)
