@@ -68,6 +68,12 @@ const handleLogin = async () => {
 onMounted(async () => {
 	const redirectFrom = route.query.intended || "/dashboard"
 	authStore.intendedURL = redirectFrom as string
+    
+    if (route.query.prompt) {
+        loginGagal.value = true
+        loginGagalMessage.value = route.query.prompt as string
+    }
+
 	await ambilCSRFToken()
 })
 </script>
@@ -75,9 +81,11 @@ onMounted(async () => {
 <template>
 	<PlainLayout>
 		<DefaultAuthCard subtitle="PPDB Online Kuantan Singingi v1" title="Login">
-			<div v-if="loginGagal" class="mb-2 mt-4 transform transition-all duration-500 ease-out" :class="{ 'opacity-0 translate-y-5': !loginGagal, 'opacity-100 translate-y-0': loginGagal }">
-				<fwb-alert icon type="danger">{{ loginGagalMessage }}</fwb-alert>
-			</div>
+			<Transition name="fade-slide-up">
+				<div v-if="loginGagal" class="mb-2 mt-4">
+					<fwb-alert icon type="danger">{{ loginGagalMessage }}</fwb-alert>
+				</div>
+			</Transition>
 			<AlertSuccess v-if="messagesStore.messages?.success" class="mb-5" :message="messagesStore.messages?.success.title as string" :detail="messagesStore.messages?.success.detail as string" />
 			<form @submit.prevent="handleLogin">
 				<InputGroup name="username" label="Email / Username" type="email" placeholder="Enter your email" v-model="emailValue" />
@@ -105,3 +113,22 @@ onMounted(async () => {
 		</DefaultAuthCard>
 	</PlainLayout>
 </template>
+
+<style scoped>
+.fade-slide-up-enter-active,
+.fade-slide-up-leave-active {
+	transition: all 0.5s ease-out;
+}
+
+.fade-slide-up-enter-from,
+.fade-slide-up-leave-to {
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.fade-slide-up-enter-to,
+.fade-slide-up-leave-from {
+	opacity: 1;
+	transform: translateY(0);
+}
+</style>
