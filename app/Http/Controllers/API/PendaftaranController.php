@@ -28,6 +28,12 @@ class PendaftaranController extends Controller
         );
     }
 
+    public function getAllPeriods()
+    {
+        $periods = RegistrationPeriod::orderBy('tahun_ajaran', 'desc')->get();
+        return response()->json($periods);
+    }
+
     public function isTodayOpened()
     {
         $today = Carbon::today();
@@ -59,6 +65,22 @@ class PendaftaranController extends Controller
         return response()->json($period);
     }
 
+    public function tutupPendaftaran(Request $request)
+    {
+        if (! $request->user()->can('create_registration_period')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        }
+
+        RegistrationPeriod::where('is_open', true)->update(['is_open' => false]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Pendaftaran berhasil ditutup.'
+        ]);
+    }
+
     //daftar siswa ke sekolah
     public function daftar(StoreDaftarRequest $request)
     {
@@ -79,7 +101,7 @@ class PendaftaranController extends Controller
 
         if ($currentRegistationOfJalur >= $quota) {
             return response()->json([
-                'message' => 'Daya Tampung Sekolah '.$school->name.' untuk jalur '.$jalurPendaftaran->name.' sudah mencapai batas quota. Silahkan pilih jalur atau sekolah lain',
+                'message' => 'Daya Tampung Sekolah ' . $school->name . ' untuk jalur ' . $jalurPendaftaran->name . ' sudah mencapai batas quota. Silahkan pilih jalur atau sekolah lain',
             ], 400);
         }
 
@@ -137,7 +159,7 @@ class PendaftaranController extends Controller
         $extension = $documentFile->getClientOriginalExtension();
         $filename = "{$documentType}.{$extension}";
 
-        $path = $documentFile->storeAs('uploads/registration/dokumen/'.$registration->id, $filename, 'public');
+        $path = $documentFile->storeAs('uploads/registration/dokumen/' . $registration->id, $filename, 'public');
         $document->update(['path' => $path, 'status' => 'menunggu verifikasi']);
 
         return response()->json([
@@ -174,7 +196,7 @@ class PendaftaranController extends Controller
             $filename = "{$documentType}.{$extension}";
             $registration = $document->registration;
 
-            $path = $document_file->storeAs('uploads/registration/dokumen/'.$registration->id.'/', $filename, 'public');
+            $path = $document_file->storeAs('uploads/registration/dokumen/' . $registration->id . '/', $filename, 'public');
             $data['path'] = $path;
             $document->update(['path' => $path, 'status' => 'menunggu verifikasi']);
 
@@ -210,7 +232,7 @@ class PendaftaranController extends Controller
         }
 
         // Return the new registration number in the format jenjang000001
-        return $jenjang.str_pad($newNumber, 6, '0', STR_PAD_LEFT);
+        return $jenjang . str_pad($newNumber, 6, '0', STR_PAD_LEFT);
     }
 
     //cek pendaftaran di siswa
@@ -244,9 +266,11 @@ class PendaftaranController extends Controller
         $documents->load('pathRequirement.documentType');
 
         return response()->json(
-            $documents);
+            $documents
+        );
     }
 
+    //ambil data pendaftar dari sekolah
     //ambil data pendaftar dari sekolah
     public function getPendaftarSekolah()
     {
@@ -255,9 +279,27 @@ class PendaftaranController extends Controller
                 'message' => 'Unauthorized',
             ], 403);
         }
+
+        // Get the active registration period
         $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
+
+        // If no active registration period, return empty data
+        if (! $registrationPeriod) {
+            return response()->json([
+                'data' => [],
+                'total' => 0,
+            ]);
+        }
+
         $school = auth()->user()->school;
-        $pendaftar = Registration::with('student', 'verifiedBy')->where('school_id', $school->id)->latest('created_at')->get();
+
+        // Fetch registrations for the school within the active period
+        $pendaftar = Registration::with('student', 'verifiedBy')
+            ->where('school_id', $school->id)
+            ->where('registration_period_id', $registrationPeriod->id)
+            ->latest('created_at')
+            ->get();
+
         $totalPendaftar = $pendaftar->count();
 
         return response()->json([
@@ -273,9 +315,27 @@ class PendaftaranController extends Controller
                 'message' => 'Unauthorized',
             ], 403);
         }
+
+        // Get the active registration period
         $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
+
+        // If no active registration period, return empty data
+        if (! $registrationPeriod) {
+            return response()->json([
+                'data' => [],
+                'total' => 0,
+            ]);
+        }
+
         $verifier = auth()->user()->id;
-        $pendaftar = Registration::with('student', 'verifiedBy')->where('verified_by', $verifier)->latest('created_at')->get();
+
+        // Fetch registrations verified by the user within the active period
+        $pendaftar = Registration::with('student', 'verifiedBy')
+            ->where('verified_by', $verifier)
+            ->where('registration_period_id', $registrationPeriod->id)
+            ->latest('created_at')
+            ->get();
+
         $totalPendaftar = $pendaftar->count();
 
         return response()->json([
@@ -304,7 +364,7 @@ class PendaftaranController extends Controller
         }
         if ($registration->verifiedBy) {
             return response()->json([
-                'message' => 'Data pendaftaran sudah diverifikasi oleh '.$registration->verifiedBy->username,
+                'message' => 'Data pendaftaran sudah diverifikasi oleh ' . $registration->verifiedBy->username,
             ], 400);
         }
 

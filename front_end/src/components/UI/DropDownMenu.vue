@@ -1,5 +1,6 @@
 <template>
         <li
+                ref="dropdownRef"
                 class="relative"
                 @mouseenter="openDropdown"
                 @mouseleave="closeDropdown"
@@ -61,6 +62,18 @@ const toggleDropdown = () => {
 
 const selectItem = () => {
         closeDropdown()
+}
+
+const handleDocumentClick = (e: MouseEvent) => {
+        if (dropdownRef.value && !dropdownRef.value.contains(e.target as Node)) {
+                isOpen.value = false
+        }
+}
+
+const handleKeydown = (e: KeyboardEvent) => {
+        if (e.key === "Escape" && isOpen.value) {
+                isOpen.value = false
+        }
 }
 
 onMounted(() => {

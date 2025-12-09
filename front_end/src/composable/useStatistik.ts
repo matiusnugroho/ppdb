@@ -9,12 +9,12 @@ export function useStatistik() {
 	const loadingStatistik = ref<boolean>(false)
 	const statistik = ref<StatistikData | null>(null)
 
-	const fetchStatistik = async () => {
+	const fetchStatistik = async (params: any = {}) => {
 		const authStore = useAuthStore()
 		const url = authStore.role === "super_admin" ? ENDPOINTS.STATISTIK_ADMIN : ENDPOINTS.STATISTIK_SEKOLAH
 		loadingStatistik.value = true
 		try {
-			const response = await requestor.get(url)
+			const response = await requestor.get(url, { params }) // Pass params to the request
 			console.log(response.data)
 			statistik.value = response.data // Adjust this based on API structure
 			return true

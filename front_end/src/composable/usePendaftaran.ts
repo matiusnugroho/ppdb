@@ -144,21 +144,62 @@ export function usePendaftaran() {
 		}
 	}
 
+
 	const fetchJalurPendaftaran = async () => {
 		loadingPendaftar.value = true
 		try {
 			const response = await requestor.get(ENDPOINTS.GET_JALUR)
-			dataJalurPendaftaran.value = response.data // Adjust this based on API structure
+			dataJalurPendaftaran.value = response.data
 		} catch (err) {
 			if (axios.isAxiosError(err) && err.response) {
-				// Log the error for debugging
-				return err.response.data // Return the Axios response error
+				return err.response.data
 			} else {
-				// Log other types of errors
-				return { message: "An unknown error occurred" } // Provide a fallback for unknown errors
+				return { message: "An unknown error occurred" }
 			}
 		} finally {
 			loadingPendaftar.value = false
+		}
+	}
+
+	const bukaPendaftaran = async (data: any) => {
+		loadingPendaftar.value = true
+		try {
+			const response = await requestor.post(ENDPOINTS.BUKA_PENDAFTARAN, data)
+			return response.data
+		} catch (err) {
+			if (axios.isAxiosError(err) && err.response) {
+				return err.response.data
+			} else {
+				return { message: "An unknown error occurred" }
+			}
+		} finally {
+			loadingPendaftar.value = false
+		}
+	}
+
+	const tutupPendaftaran = async () => {
+		loadingPendaftar.value = true
+		try {
+			const response = await requestor.post(ENDPOINTS.TUTUP_PENDAFTARAN)
+			return response.data
+		} catch (err) {
+			if (axios.isAxiosError(err) && err.response) {
+				return err.response.data
+			} else {
+				return { message: "An unknown error occurred" }
+			}
+		} finally {
+			loadingPendaftar.value = false
+		}
+	}
+
+	const fetchAllPeriods = async () => {
+		try {
+			const response = await requestor.get(ENDPOINTS.GET_ALL_PERIODS)
+			return response.data
+		} catch (err) {
+			console.error("Failed to fetch periods", err)
+			return []
 		}
 	}
 
@@ -179,5 +220,8 @@ export function usePendaftaran() {
 		luluskan,
 		rejectDokumen,
 		fetchJalurPendaftaran,
+		bukaPendaftaran,
+		tutupPendaftaran,
+		fetchAllPeriods,
 	}
 }

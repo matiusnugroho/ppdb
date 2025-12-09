@@ -1,29 +1,32 @@
 <template>
-	<div class="flex flex-col h-full">
-		<div class="flex flex-wrap justify-end gap-2 sm:gap-4 mb-4 items-center">
-			<div class="w-full sm:w-auto">
-				<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" class="w-full sm:w-auto" />
-			</div>
-			<!-- Container for button and total sekolah -->
-			<div class="w-full sm:w-auto flex justify-end items-center gap-2">
-				<span class="inline-flex overflow-visible rounded-md bg-white shadow-sm">
-					<div class="tooltip" data-tip="Download Excel">
-						<button class="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative" title="Edit Product" @click="exportSekolah">
-							<HeroIcon name="file-spreadsheet" size="18" class="h-6 w-6" />
-						</button>
+	<div class="flex flex-col h-full rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+		<div class="p-6 border-b border-gray-100">
+			<div class="flex flex-wrap justify-between gap-4 items-center">
+				<h3 class="text-lg font-bold text-gray-800">Data Sekolah</h3>
+				<div class="flex flex-wrap justify-end gap-2 items-center">
+					<div class="w-full sm:w-auto">
+						<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" class="w-full sm:w-auto" />
 					</div>
-					<div v-if="needimportbutton" class="tooltip" data-tip="Import Excel">
-						<button class="inline-block p-3 text-gray-700 hover:bg-gray-50 focus:relative" title="Delete Product">
-							<HeroIcon name="upload-double" size="18" class="h-6 w-6" />
-						</button>
+					<!-- Container for button and total sekolah -->
+					<div class="inline-flex rounded-lg shadow-sm">
+						<div class="tooltip" data-tip="Download Excel">
+							<button class="inline-block border-e p-2.5 text-gray-500 hover:bg-gray-50 hover:text-blue-600 transition-colors rounded-l-lg border-gray-200" title="Edit Product" @click="exportSekolah">
+								<HeroIcon name="file-spreadsheet" size="18" class="h-5 w-5" />
+							</button>
+						</div>
+						<div v-if="needimportbutton" class="tooltip" data-tip="Import Excel">
+							<button class="inline-block p-2.5 text-gray-500 hover:bg-gray-50 hover:text-blue-600 transition-colors rounded-r-lg" title="Delete Product">
+								<HeroIcon name="upload-double" size="18" class="h-5 w-5" />
+							</button>
+						</div>
 					</div>
-				</span>
-				<span class="text-sm text-black"> Total Sekolah: {{ loadingSekolah ? "sedang dihitung" : dataSekolah?.total }} </span>
+					<span class="text-sm font-medium text-gray-500 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100"> Total: {{ loadingSekolah ? "..." : dataSekolah?.total }} </span>
+				</div>
 			</div>
 		</div>
 		<!-- Scrollable Table Area -->
 		<div class="flex-grow overflow-x-auto overflow-y-auto max-h-[calc(100vh-300px)] custom-scrollbar">
-			<table class="table table-pin-rows table-pin-cols">
+			<table class="table table-zebra table-pin-rows">
 				<thead>
 					<tr>
 						<th>Nama Sekolah</th>

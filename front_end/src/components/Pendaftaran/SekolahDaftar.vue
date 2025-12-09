@@ -68,7 +68,7 @@
 							<td class="py-5 px-4">
 								<div class="flex items-center space-x-3.5">
 									<div class="tooltip" data-tip="Lihat">
-										<a :href="pendaftar.id ?? ''" class="flex items-center hover:text-primary" v-if="pendaftar.id" target="_blank" rel="noopener noreferrer">
+										<a :href="`/pendaftaran/verifikasi/${pendaftar.id}`" class="flex items-center hover:text-primary" v-if="pendaftar.id" target="_blank" rel="noopener noreferrer">
 											<HeroIcon name="view-finder" size="18" class="h-5 w-5" />
 										</a>
 										<span v-else class="flex items-center cursor-not-allowed text-gray-400">

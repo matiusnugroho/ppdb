@@ -53,10 +53,14 @@ class School extends Model
         return $this->hasMany(Registration::class);
     }
 
-    public function activeRegistrations()
+    public function activeRegistrations($periodId = null)
     {
-        return $this->hasMany(Registration::class)->whereHas('registrationPeriod', function ($query) {
-            $query->where('is_open', true);
+        $query = $this->hasMany(Registration::class);
+        if ($periodId) {
+            return $query->where('registration_period_id', $periodId);
+        }
+        return $query->whereHas('registrationPeriod', function ($q) {
+            $q->where('is_open', true);
         });
     }
 
@@ -70,40 +74,47 @@ class School extends Model
         return $this->hasMany(Registration::class)->where('kelulusan', 'tidak lulus');
     }
 
-    public function activeLulusRegistrations()
+    public function activeLulusRegistrations($periodId = null)
     {
-        return $this->hasMany(Registration::class)
-            ->where('kelulusan', 'lulus')
-            ->whereHas('registrationPeriod', function ($query) {
-                $query->where('is_open', true);
-            });
+        $query = $this->hasMany(Registration::class)->where('kelulusan', 'lulus');
+        if ($periodId) {
+            return $query->where('registration_period_id', $periodId);
+        }
+        return $query->whereHas('registrationPeriod', function ($q) {
+            $q->where('is_open', true);
+        });
     }
 
-    public function activeTidakLulusRegistrations()
+    public function activeTidakLulusRegistrations($periodId = null)
     {
-        return $this->hasMany(Registration::class)
-            ->where('kelulusan', 'tidak lulus')
-            ->whereHas('registrationPeriod', function ($query) {
-                $query->where('is_open', true);
-            });
+        $query = $this->hasMany(Registration::class)->where('kelulusan', 'tidak lulus');
+        if ($periodId) {
+            return $query->where('registration_period_id', $periodId);
+        }
+        return $query->whereHas('registrationPeriod', function ($q) {
+            $q->where('is_open', true);
+        });
     }
 
-    public function activeStatusRegistrations($status)
+    public function activeStatusRegistrations($status, $periodId = null)
     {
-        return $this->hasMany(Registration::class)
-            ->where('status', $status)
-            ->whereHas('registrationPeriod', function ($query) {
-                $query->where('is_open', true);
-            });
+        $query = $this->hasMany(Registration::class)->where('status', $status);
+        if ($periodId) {
+            return $query->where('registration_period_id', $periodId);
+        }
+        return $query->whereHas('registrationPeriod', function ($q) {
+            $q->where('is_open', true);
+        });
     }
 
-    public function activeCountByJalur($jalur)
+    public function activeCountByJalur($jalur, $periodId = null)
     {
-        return $this->hasMany(Registration::class)
-            ->where('registration_path_id', $jalur)
-            ->whereHas('registrationPeriod', function ($query) {
-                $query->where('is_open', true);
-            })
-            ->count();
+        $query = $this->hasMany(Registration::class)->where('registration_path_id', $jalur);
+        if ($periodId) {
+            return $query->where('registration_period_id', $periodId)->count();
+        }
+        return $query->whereHas('registrationPeriod', function ($q) {
+            $q->where('is_open', true);
+        })->count();
     }
 }

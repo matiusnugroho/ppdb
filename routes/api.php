@@ -41,6 +41,7 @@ Route::group(['prefix' => 'siswa', 'middleware' => 'auth:sanctum'], function () 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
     //Registration
     Route::post('/pendaftaran/buka-pendaftaran', [PendaftaranController::class, 'bukaPendaftaran']);
+    Route::post('/pendaftaran/tutup-pendaftaran', [PendaftaranController::class, 'tutupPendaftaran']);
     Route::resource('/sekolah', SchoolController::class)->only(['create', 'update', 'destroy']);
     Route::post('/akun/update', [AdminController::class, 'updateAkun']);
     //Setup Persyaratan
@@ -79,5 +80,6 @@ Route::post('/sekolah/import', [SchoolController::class, 'import']);
 Route::get('/sekolah/kecamatan/{kecamatanId}', [SchoolController::class, 'getByKecamatan']);
 Route::get('/sekolah/kecamatan/{kecamatanId}/{jenjang}', [SchoolController::class, 'getByKecamatan']);
 Route::get('/registration/get-opened', [PendaftaranController::class, 'getOpenPeriods']);
+Route::get('/registration/get-all', [PendaftaranController::class, 'getAllPeriods']);
 Route::get('/registration/cek-pendaftaran-hari-ini', [PendaftaranController::class, 'isTodayOpened']);
 Route::resource('/document-type', DocumentTypeController::class);
