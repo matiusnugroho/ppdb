@@ -227,8 +227,7 @@ class SchoolController extends Controller
         }
 
         //dd($schools);
-        return Excel::download(new SchoolExport($schools), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
-
+        return Excel::download(new SchoolExport($schools), 'datasekolah-' . Carbon::now()->format('Y-m-d_His') . '.xlsx');
     }
 
     public function excelWithData(Request $request)
@@ -299,7 +298,7 @@ class SchoolController extends Controller
         }
 
         //dd($schools);
-        return Excel::download(new SchoolWithDataExport($schools, $registrationPaths), 'datasekolah-'.Carbon::now()->format('Y-m-d_His').'.xlsx');
+        return Excel::download(new SchoolWithDataExport($schools, $registrationPaths), 'datasekolah-' . Carbon::now()->format('Y-m-d_His') . '.xlsx');
     }
 
     public function tes()

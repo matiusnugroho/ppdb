@@ -67,6 +67,7 @@ export interface School {
 	npsn: string
 	alamat: string
 	no_telp: string
+	email: string
 	nama_kepsek: string
 	daya_tampung?: number
 	kecamatan_id?: string

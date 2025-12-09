@@ -11,10 +11,9 @@
                                         aria-label="Beranda PPDB"
                                 >
                                         <img :src="logoppdb" class="w-10" alt="Logo PPDB" />
-                                        <span class="hidden sm:inline">
-                                                <span class="text-blue-600">PPDB</span>
-                                                <span class="text-gray-800"> Pro</span>
-                                        </span>
+					<span class="hidden sm:inline">
+						<span class="text-blue-600">PPDB</span>
+					</span>
                                 </RouterLink>
 
                                 <div class="hidden items-center space-x-6 md:flex">

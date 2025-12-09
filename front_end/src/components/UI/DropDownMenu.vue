@@ -17,23 +17,25 @@
                         </svg>
                 </button>
 
-                <div
-                        class="dropdown-menu absolute left-0 mt-2 w-56 origin-top rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5 transition duration-150 ease-out"
-                        :class="isOpen ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-95 opacity-0 pointer-events-none'"
-                >
-                        <ul class="space-y-1 text-sm text-gray-700">
-                                <li v-for="(item, index) in items" :key="index">
-                                        <RouterLink
-                                                :to="item.url"
-                                                class="block px-4 py-2 transition duration-150 hover:bg-blue-50 hover:text-blue-600"
-                                                @click="selectItem"
-                                        >
-                                                {{ item.label }}
-                                        </RouterLink>
-                                </li>
-                        </ul>
-                </div>
-        </li>
+				<div
+					class="dropdown-menu absolute left-0 pt-2 w-56 origin-top transition duration-150 ease-out z-50"
+					:class="isOpen ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-95 opacity-0 pointer-events-none'"
+				>
+					<div class="rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5">
+						<ul class="space-y-1 text-sm text-gray-700">
+							<li v-for="(item, index) in items" :key="index">
+								<RouterLink
+									:to="item.url"
+									class="block px-4 py-2 transition duration-150 hover:bg-blue-50 hover:text-blue-600"
+									@click="selectItem"
+								>
+									{{ item.label }}
+								</RouterLink>
+							</li>
+						</ul>
+					</div>
+				</div>
+		</li>
 </template>
 
 <script setup lang="ts">
