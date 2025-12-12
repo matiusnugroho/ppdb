@@ -92,7 +92,7 @@
                              <h4 class="font-semibold text-gray-900 dark:text-white text-base">{{ item.path_requirement?.document_type?.label }}</h4>
                              <p v-if="item.status === 'ditolak'" class="text-sm text-red-500 mt-1 flex items-center gap-1">
                                 <HeroIcon name="exclamation-circle" class="w-4 h-4" />
-                                {{ item.alasan }}
+                                {{ item.alasan_reject }}
                              </p>
                         </div>
 

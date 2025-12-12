@@ -10,7 +10,12 @@ use Storage;
 class Document extends Model
 {
     protected $fillable = [
-        'id', 'registration_id', 'path_requirement_id', 'path', 'status',
+        'id',
+        'registration_id',
+        'path_requirement_id',
+        'path',
+        'status',
+        'alasan_reject',
     ];
 
     public $incrementing = false;

@@ -4,6 +4,7 @@
     "scripts": {
         "serve": "php artisan serve",
         "vue": "cross-env-shell \"cd front_end && npm run dev -- --open\"",
+        "build": "cross-env-shell \"cd front_end && npm run build\"",
         "dev": "concurrently --names \"LARAVEL,FRONTEND\" -c \"blue.bold,green.bold\" \"npm run serve\" \"npm run vue\""
     },
     "devDependencies": {

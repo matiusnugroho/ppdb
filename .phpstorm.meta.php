@@ -924,7 +924,7 @@ namespace PHPSTORM_META {
             'app.aliases.View' => 'string',
             'app.aliases.Vite' => 'string',
             'app.admin_email' => 'string',
-            'app.route_protection_token' => 'NULL',
+            'app.route_protection_token' => 'string',
             'auth.defaults.guard' => 'string',
             'auth.defaults.passwords' => 'string',
             'auth.guards.web.driver' => 'string',
@@ -1435,7 +1435,7 @@ namespace PHPSTORM_META {
             'app.aliases.View' => 'string',
             'app.aliases.Vite' => 'string',
             'app.admin_email' => 'string',
-            'app.route_protection_token' => 'NULL',
+            'app.route_protection_token' => 'string',
             'auth.defaults.guard' => 'string',
             'auth.defaults.passwords' => 'string',
             'auth.guards.web.driver' => 'string',
@@ -1946,7 +1946,7 @@ namespace PHPSTORM_META {
             'app.aliases.View' => 'string',
             'app.aliases.Vite' => 'string',
             'app.admin_email' => 'string',
-            'app.route_protection_token' => 'NULL',
+            'app.route_protection_token' => 'string',
             'auth.defaults.guard' => 'string',
             'auth.defaults.passwords' => 'string',
             'auth.guards.web.driver' => 'string',
@@ -2503,10 +2503,10 @@ namespace PHPSTORM_META {
 'signed','throttle','verified',);
         registerArgumentsSet('routes', 
 'sanctum.csrf-cookie','setting.index','setting.create','setting.store',
-'setting.show','setting.edit','setting.update','setting.destroy','sekolah.create','sekolah.update','sekolah.destroy','persyaratan.create','persyaratan.update','persyaratan.destroy',
-'siswa.index','siswa.create','siswa.store','siswa.show','siswa.edit',
-'siswa.update','siswa.destroy','document-type.index','document-type.create','document-type.store',
-'document-type.show','document-type.edit','document-type.update','document-type.destroy',);
+'setting.show','setting.edit','setting.update','setting.destroy','sekolah.create','sekolah.update','sekolah.destroy','persyaratan.create','persyaratan.update','persyaratan.destroy','siswa.index','siswa.create','siswa.store',
+'siswa.show','siswa.edit','siswa.update','siswa.destroy',
+'document-type.index','document-type.create','document-type.store','document-type.show','document-type.edit',
+'document-type.update','document-type.destroy',);
         registerArgumentsSet('views', 
 'welcome','laravel-exceptions-renderer::components.badge','laravel-exceptions-renderer::components.empty-state','laravel-exceptions-renderer::components.file-with-line','laravel-exceptions-renderer::components.formatted-source',
 'laravel-exceptions-renderer::components.frame','laravel-exceptions-renderer::components.frame-code','laravel-exceptions-renderer::components.header','laravel-exceptions-renderer::components.http-method','laravel-exceptions-renderer::components.icons.alert',
@@ -2592,7 +2592,7 @@ namespace PHPSTORM_META {
 'REDIS_HOST','REDIS_PASSWORD','REDIS_PORT','MAIL_MAILER','MAIL_HOST',
 'MAIL_PORT','MAIL_USERNAME','MAIL_PASSWORD','MAIL_ENCRYPTION','MAIL_FROM_ADDRESS',
 'MAIL_FROM_NAME','AWS_ACCESS_KEY_ID','AWS_SECRET_ACCESS_KEY','AWS_DEFAULT_REGION','AWS_BUCKET',
-'AWS_USE_PATH_STYLE_ENDPOINT','VITE_APP_NAME',);
+'AWS_USE_PATH_STYLE_ENDPOINT','VITE_APP_NAME','ROUTE_PROTECTION_TOKEN',);
         
                 expectedArguments(\Illuminate\Support\Facades\Gate::has(), 0, argumentsSet('auth'));
     expectedArguments(\Illuminate\Support\Facades\Gate::allows(), 0, argumentsSet('auth'));

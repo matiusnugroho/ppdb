@@ -178,6 +178,25 @@ class PendaftaranController extends Controller
             ], 403);
         }
 
+        // Ensure the document belongs to the authenticated student
+        $registration = $document->registration;
+        if (! $registration || $registration->student_id !== $request->user()->student->id) {
+            return response()->json([
+                'message' => 'Anda mengunggah ke pendaftaran yang bukan milik Anda.',
+            ], 403);
+        }
+
+        // Load requirement and document type
+        $document->loadMissing('pathRequirement.documentType');
+        $requirement = $document->pathRequirement;
+        $documentType = $requirement?->documentType;
+
+        if (! $documentType) {
+            return response()->json([
+                'message' => 'Jenis dokumen tidak ditemukan untuk revisi.',
+            ], 400);
+        }
+
         // Validate the uploaded file
         $data = $request->validated();
 
@@ -190,11 +209,10 @@ class PendaftaranController extends Controller
 
             // Store the new document
             $document_file = $request->file('file');
-            $label = $document->documentType->label;
+            $label = $documentType->label;
             $documentType = str_replace(['/', '\\'], '_', Str::snake($label));
             $extension = $document_file->getClientOriginalExtension();
             $filename = "{$documentType}.{$extension}";
-            $registration = $document->registration;
 
             $path = $document_file->storeAs('uploads/registration/dokumen/' . $registration->id . '/', $filename, 'public');
             $data['path'] = $path;
@@ -423,10 +441,10 @@ class PendaftaranController extends Controller
             ], 403);
         }
         $validated = $request->validate([
-            'alasan' => 'required|string|max:255',
+            'alasan_reject' => 'required|string|max:255',
         ]);
         $document->status = 'ditolak';
-        $document->alasan = $validated['alasan'];
+        $document->alasan_reject = $validated['alasan_reject'];
         $document->save();
 
         return response()->json([

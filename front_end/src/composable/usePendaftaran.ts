@@ -125,11 +125,11 @@ export function usePendaftaran() {
 		}
 	}
 
-	const rejectDokumen = async (id: string, alasan: string) => {
+	const rejectDokumen = async (id: string, alasan_reject: string) => {
 		loadingVerifikasi.value = true
 		const url = replacePlaceholder(ENDPOINTS.REJECT_DOKUMEN, { id_dokumen: id })
 		try {
-			const response = await requestor.post(url, { alasan })
+			const response = await requestor.post(url, { alasan_reject })
 			return response.data
 		} catch (err) {
 			if (axios.isAxiosError(err) && err.response) {

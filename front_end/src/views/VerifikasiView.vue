@@ -9,15 +9,32 @@ import NoDataComponent from "@/components/UI/NoDataComponent.vue"
 
 const pageTitle = ref("Verifikasi")
 const { dataPendaftar, loadingVerifikasi, totalPendaftar, getVerifiedByMe, luluskan } = usePendaftaran()
+const processingId = ref<string | null>(null)
 const verifikasi = (id: string) => {
 	console.log(`Verifikasi ID : ${id}`)
 }
-function handleKelulusanChange(event: Event, id: string) {
+async function handleKelulusanChange(event: Event, id: string) {
 	const target = event.target as HTMLInputElement
 	const isChecked = target.checked
-	const kelulusan = isChecked ? "lulus" : "tidak lulus"
-	let data = getDataById(dataPendaftar.value!, id)
-	luluskan(data?.id!, kelulusan)
+	const kelulusan = isChecked ? "lulus" : "tidak_lulus"
+	const data = getDataById(dataPendaftar.value!, id)
+
+	if (!data) return
+
+	processingId.value = id
+	const response = await luluskan(data.id!, kelulusan)
+
+	if (response?.success) {
+		// update local state so toggle doesn't flicker
+		dataPendaftar.value = dataPendaftar.value?.map((item) =>
+			item.id === id ? { ...item, kelulusan } : item,
+		) as any
+	} else {
+		// revert UI toggle on failure
+		target.checked = data.kelulusan === "lulus"
+	}
+
+	processingId.value = null
 }
 onMounted(() => {
 	getVerifiedByMe()
@@ -108,6 +125,8 @@ onMounted(() => {
 											type="checkbox"
 											class="toggle toggle-success"
 											:checked="pendaftar?.kelulusan === 'lulus'"
+											:disabled="processingId === pendaftar.id || loadingVerifikasi"
+											:class="['toggle-success', (processingId === pendaftar.id || loadingVerifikasi) ? 'cursor-wait' : '']"
 											@change="(event) => handleKelulusanChange(event, pendaftar.id)" />
 									</td>
 									<td class="py-5 px-4">

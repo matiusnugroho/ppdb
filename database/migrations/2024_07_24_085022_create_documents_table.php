@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('path_requirement_id');
             $table->string('path')->nullable(); // Path to the uploaded document
             $table->string('status')->default('pending'); // Status of the document
+            $table->text('alasan_reject')->nullable(); // Reason for rejection, if any
             $table->timestamps();
 
             $table->foreign('registration_id')->references('id')->on('registrations')->onDelete('cascade');
