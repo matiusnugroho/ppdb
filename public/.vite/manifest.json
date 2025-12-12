@@ -1,75 +1,62 @@
 {
-  "_AlertSuccess.CMq-Mk5U.js": {
-    "file": "js/AlertSuccess.CMq-Mk5U.js",
+  "_AlertSuccess.C86K8Hj_.js": {
+    "file": "js/AlertSuccess.C86K8Hj_.js",
     "name": "AlertSuccess",
     "imports": [
       "index.html"
     ]
   },
-  "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.CtDurLeh.js": {
-    "file": "js/ConfirmationComponent.vue_vue_type_script_setup_true_lang.CtDurLeh.js",
+  "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.xd_3SXss.js": {
+    "file": "js/ConfirmationComponent.vue_vue_type_script_setup_true_lang.xd_3SXss.js",
     "name": "ConfirmationComponent.vue_vue_type_script_setup_true_lang",
     "imports": [
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "index.html"
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
+      "index.html",
+      "_index.BKKhzOnb.js"
     ]
   },
-  "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js": {
-    "file": "js/DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
+  "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js": {
+    "file": "js/DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
     "name": "DefaultLayout.vue_vue_type_script_setup_true_lang",
     "imports": [
       "index.html",
-      "_authComposable.BLO_S9Ph.js",
-      "_logo-ppdb.BW9ypDwz.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
+      "_authComposable.yGIH7xn1.js",
+      "_logo-ppdb.BW9ypDwz.js"
     ],
     "assets": [
       "images/nopp.Dgi2UKeR.png"
     ]
   },
-  "_FilterSelect.!~{00r}~.js": {
+  "_FilterSelect.!~{013}~.js": {
     "file": "css/FilterSelect.D2krY3BH.css",
-    "src": "_FilterSelect.!~{00r}~.js"
+    "src": "_FilterSelect.!~{013}~.js"
   },
-  "_FilterSelect.Dw9BrmwH.js": {
-    "file": "js/FilterSelect.Dw9BrmwH.js",
+  "_FilterSelect.rASVtTtr.js": {
+    "file": "js/FilterSelect.rASVtTtr.js",
     "name": "FilterSelect",
     "imports": [
       "index.html",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js"
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js"
     ],
     "css": [
       "css/FilterSelect.D2krY3BH.css"
     ]
   },
-  "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js": {
-    "file": "js/HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-    "name": "HeroIcon.vue_vue_type_script_setup_true_lang",
+  "_LoadingInfoComponent.vue_vue_type_script_setup_true_lang.Dm_Hc9tG.js": {
+    "file": "js/LoadingInfoComponent.vue_vue_type_script_setup_true_lang.Dm_Hc9tG.js",
+    "name": "LoadingInfoComponent.vue_vue_type_script_setup_true_lang",
     "imports": [
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
       "index.html"
-    ],
-    "dynamicImports": [
-      "src/assets/icons/add-photo.svg?raw",
-      "src/assets/icons/calendar-search.svg?raw",
-      "src/assets/icons/calendar.svg?raw",
-      "src/assets/icons/caret-down.svg?raw",
-      "src/assets/icons/circle-check.svg?raw",
-      "src/assets/icons/circle-exclamation.svg?raw",
-      "src/assets/icons/close.svg?raw",
-      "src/assets/icons/document-check.svg?raw",
-      "src/assets/icons/document.svg?raw",
-      "src/assets/icons/file-spreadsheet.svg?raw",
-      "src/assets/icons/home.svg?raw",
-      "src/assets/icons/lock-closed.svg?raw",
-      "src/assets/icons/lock-open.svg?raw",
-      "src/assets/icons/toga.svg?raw",
-      "src/assets/icons/triangle-exclamation.svg?raw",
-      "src/assets/icons/upload-double.svg?raw",
-      "src/assets/icons/upload.svg?raw",
-      "src/assets/icons/user-circle.svg?raw",
-      "src/assets/icons/view-finder.svg?raw"
+    ]
+  },
+  "_ModalComponent.vue_vue_type_script_setup_true_lang.CEu9--Vs.js": {
+    "file": "js/ModalComponent.vue_vue_type_script_setup_true_lang.CEu9--Vs.js",
+    "name": "ModalComponent.vue_vue_type_script_setup_true_lang",
+    "imports": [
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
+      "_index.BKKhzOnb.js",
+      "index.html"
     ]
   },
   "_NoDataComponent.vue_vue_type_script_setup_true_lang.D90P74yI.js": {
@@ -79,16 +66,15 @@
       "index.html"
     ]
   },
-  "_PasswordInput.vue_vue_type_script_setup_true_lang.C-Kxzi1D.js": {
-    "file": "js/PasswordInput.vue_vue_type_script_setup_true_lang.C-Kxzi1D.js",
+  "_PasswordInput.vue_vue_type_script_setup_true_lang.iECPxdrN.js": {
+    "file": "js/PasswordInput.vue_vue_type_script_setup_true_lang.iECPxdrN.js",
     "name": "PasswordInput.vue_vue_type_script_setup_true_lang",
     "imports": [
-      "index.html",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
+      "index.html"
     ]
   },
-  "_PlainLayout.CRtQrQeW.js": {
-    "file": "js/PlainLayout.CRtQrQeW.js",
+  "_PlainLayout.ContBw-A.js": {
+    "file": "js/PlainLayout.ContBw-A.js",
     "name": "PlainLayout",
     "imports": [
       "_logo-ppdb.BW9ypDwz.js",
@@ -103,26 +89,25 @@
       "index.html"
     ]
   },
-  "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js": {
-    "file": "js/SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
+  "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js": {
+    "file": "js/SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
     "name": "SpinnerLoading.vue_vue_type_script_setup_true_lang",
     "imports": [
       "index.html"
     ]
   },
-  "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.CUaNQcgh.js": {
-    "file": "js/TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.CUaNQcgh.js",
+  "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.BQKuodCb.js": {
+    "file": "js/TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.BQKuodCb.js",
     "name": "TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang",
     "imports": [
       "index.html",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.D90P74yI.js",
-      "_usePendaftaran.DxUph3Oz.js",
-      "_useSekolah.DyuInbfI.js",
-      "_buatOption.C1cTljZF.js",
-      "_useKecamatan.BQ6pQIN-.js",
+      "_usePendaftaran.DPLkWG1A.js",
+      "_useSekolah.9TkrZsd9.js",
+      "_buatOption.z1xkZk61.js",
+      "_useKecamatan.CAPM-1Cn.js",
       "_jenjang.DlmV0PPG.js",
-      "_FilterSelect.Dw9BrmwH.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
+      "_FilterSelect.rASVtTtr.js"
     ]
   },
   "_TextAreaGroup.xaDRFsBp.js": {
@@ -132,45 +117,44 @@
       "index.html"
     ]
   },
-  "_authComposable.BLO_S9Ph.js": {
-    "file": "js/authComposable.BLO_S9Ph.js",
+  "_authComposable.yGIH7xn1.js": {
+    "file": "js/authComposable.yGIH7xn1.js",
     "name": "authComposable",
     "imports": [
       "index.html"
     ]
   },
-  "_buatOption.!~{00s}~.js": {
+  "_buatOption.!~{012}~.js": {
     "file": "css/buatOption.viUBjxTH.css",
-    "src": "_buatOption.!~{00s}~.js"
+    "src": "_buatOption.!~{012}~.js"
   },
-  "_buatOption.C1cTljZF.js": {
-    "file": "js/buatOption.C1cTljZF.js",
+  "_buatOption.z1xkZk61.js": {
+    "file": "js/buatOption.z1xkZk61.js",
     "name": "buatOption",
     "imports": [
       "index.html",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js"
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js"
     ],
     "css": [
       "css/buatOption.viUBjxTH.css"
     ]
   },
-  "_component.CVeuKawN.js": {
-    "file": "js/component.CVeuKawN.js",
+  "_component.BcoX8Qk-.js": {
+    "file": "js/component.BcoX8Qk-.js",
     "name": "component",
     "imports": [
       "index.html"
     ]
   },
-  "_fieldErrorHtml.BZiG7jP0.js": {
-    "file": "js/fieldErrorHtml.BZiG7jP0.js",
+  "_fieldErrorHtml.h8Trh8yO.js": {
+    "file": "js/fieldErrorHtml.h8Trh8yO.js",
     "name": "fieldErrorHtml",
     "imports": [
-      "_formValidationErrors.B-bqyHNm.js"
+      "_formValidationErrors.Dq3JdVk7.js"
     ]
   },
-  "_formValidationErrors.B-bqyHNm.js": {
-    "file": "js/formValidationErrors.B-bqyHNm.js",
+  "_formValidationErrors.Dq3JdVk7.js": {
+    "file": "js/formValidationErrors.Dq3JdVk7.js",
     "name": "formValidationErrors",
     "imports": [
       "index.html"
@@ -180,11 +164,18 @@
     "file": "js/getDataById.CToqdZWp.js",
     "name": "getDataById"
   },
-  "_hasError.Dyzba-hA.js": {
-    "file": "js/hasError.Dyzba-hA.js",
+  "_hasError.BWdvE64U.js": {
+    "file": "js/hasError.BWdvE64U.js",
     "name": "hasError",
     "imports": [
-      "_formValidationErrors.B-bqyHNm.js"
+      "_formValidationErrors.Dq3JdVk7.js"
+    ]
+  },
+  "_index.BKKhzOnb.js": {
+    "file": "js/index.BKKhzOnb.js",
+    "name": "index",
+    "imports": [
+      "index.html"
     ]
   },
   "_jenjang.DlmV0PPG.js": {
@@ -205,58 +196,43 @@
       "images/logo-ppdb.B--1CCtw.png"
     ]
   },
-  "_toast.!~{00m}~.js": {
-    "file": "css/toast.BgkEe7eN.css",
-    "src": "_toast.!~{00m}~.js"
-  },
-  "_toast.CXLfbrJ3.js": {
-    "file": "js/toast.CXLfbrJ3.js",
-    "name": "toast",
-    "imports": [
-      "index.html",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
-    ],
-    "css": [
-      "css/toast.BgkEe7eN.css"
-    ]
-  },
-  "_useAkun.DVe2Yg2E.js": {
-    "file": "js/useAkun.DVe2Yg2E.js",
+  "_useAkun.JoZZsxsW.js": {
+    "file": "js/useAkun.JoZZsxsW.js",
     "name": "useAkun",
     "imports": [
       "index.html"
     ]
   },
-  "_useCekPendaftaran.6g5UYZPP.js": {
-    "file": "js/useCekPendaftaran.6g5UYZPP.js",
+  "_useCekPendaftaran.Dl2dVMe0.js": {
+    "file": "js/useCekPendaftaran.Dl2dVMe0.js",
     "name": "useCekPendaftaran",
     "imports": [
       "index.html"
     ]
   },
-  "_useKecamatan.BQ6pQIN-.js": {
-    "file": "js/useKecamatan.BQ6pQIN-.js",
+  "_useKecamatan.CAPM-1Cn.js": {
+    "file": "js/useKecamatan.CAPM-1Cn.js",
     "name": "useKecamatan",
     "imports": [
       "index.html"
     ]
   },
-  "_usePendaftaran.DxUph3Oz.js": {
-    "file": "js/usePendaftaran.DxUph3Oz.js",
+  "_usePendaftaran.DPLkWG1A.js": {
+    "file": "js/usePendaftaran.DPLkWG1A.js",
     "name": "usePendaftaran",
     "imports": [
       "index.html"
     ]
   },
-  "_useSekolah.DyuInbfI.js": {
-    "file": "js/useSekolah.DyuInbfI.js",
+  "_useSekolah.9TkrZsd9.js": {
+    "file": "js/useSekolah.9TkrZsd9.js",
     "name": "useSekolah",
     "imports": [
       "index.html"
     ]
   },
-  "_useSetting.Cg-PO_FU.js": {
-    "file": "js/useSetting.Cg-PO_FU.js",
+  "_useSetting.X6b3pKRe.js": {
+    "file": "js/useSetting.X6b3pKRe.js",
     "name": "useSetting",
     "imports": [
       "index.html"
@@ -266,13 +242,11 @@
     "file": "js/useSmoothScrollToTop.BbHTvxvR.js",
     "name": "useSmoothScrollToTop"
   },
-  "_useStatistik.Z0QuBMz_.js": {
-    "file": "js/useStatistik.Z0QuBMz_.js",
+  "_useStatistik.C8Vs9sjk.js": {
+    "file": "js/useStatistik.C8Vs9sjk.js",
     "name": "useStatistik",
     "imports": [
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "index.html",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js"
+      "index.html"
     ]
   },
   "index.html": {
@@ -298,7 +272,48 @@
       "src/views/DataPendaftaranView.vue",
       "src/views/PendaftaranView.vue",
       "src/views/Authentication/SchoolSignupView.vue",
-      "src/views/Errors/Error404View.vue"
+      "src/views/Errors/Error404View.vue",
+      "src/assets/icons/academic-cap.svg?raw",
+      "src/assets/icons/add-photo.svg?raw",
+      "src/assets/icons/arrow-trending-up.svg?raw",
+      "src/assets/icons/arrow-up-tray.svg?raw",
+      "src/assets/icons/building-office-2.svg?raw",
+      "src/assets/icons/calendar-search.svg?raw",
+      "src/assets/icons/calendar.svg?raw",
+      "src/assets/icons/caret-down.svg?raw",
+      "src/assets/icons/check-circle.svg?raw",
+      "src/assets/icons/check.svg?raw",
+      "src/assets/icons/chevron-left.svg?raw",
+      "src/assets/icons/chevron-right.svg?raw",
+      "src/assets/icons/circle-check.svg?raw",
+      "src/assets/icons/circle-exclamation.svg?raw",
+      "src/assets/icons/clock.svg?raw",
+      "src/assets/icons/close.svg?raw",
+      "src/assets/icons/cloud-arrow-up.svg?raw",
+      "src/assets/icons/document-check.svg?raw",
+      "src/assets/icons/document-duplicate.svg?raw",
+      "src/assets/icons/document-text.svg?raw",
+      "src/assets/icons/document.svg?raw",
+      "src/assets/icons/envelope.svg?raw",
+      "src/assets/icons/exclamation-circle.svg?raw",
+      "src/assets/icons/eye.svg?raw",
+      "src/assets/icons/file-spreadsheet.svg?raw",
+      "src/assets/icons/heart.svg?raw",
+      "src/assets/icons/home.svg?raw",
+      "src/assets/icons/lock-closed.svg?raw",
+      "src/assets/icons/lock-open.svg?raw",
+      "src/assets/icons/map-pin.svg?raw",
+      "src/assets/icons/phone.svg?raw",
+      "src/assets/icons/star.svg?raw",
+      "src/assets/icons/toga.svg?raw",
+      "src/assets/icons/triangle-exclamation.svg?raw",
+      "src/assets/icons/upload-double.svg?raw",
+      "src/assets/icons/upload.svg?raw",
+      "src/assets/icons/user-circle.svg?raw",
+      "src/assets/icons/user-group.svg?raw",
+      "src/assets/icons/view-finder.svg?raw",
+      "src/assets/icons/x-circle.svg?raw",
+      "src/assets/icons/x-mark.svg?raw"
     ],
     "css": [
       "index.css"
@@ -457,10 +472,34 @@
     "file": "assets/Satoshi-Regular.CPM9dct4.woff2",
     "src": "src/assets/fonts/Satoshi-Regular.woff2"
   },
+  "src/assets/icons/academic-cap.svg?raw": {
+    "file": "js/academic-cap.B9DvFS-3.js",
+    "name": "academic-cap",
+    "src": "src/assets/icons/academic-cap.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/add-photo.svg?raw": {
     "file": "js/add-photo.BHMebqX8.js",
     "name": "add-photo",
     "src": "src/assets/icons/add-photo.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/arrow-trending-up.svg?raw": {
+    "file": "js/arrow-trending-up.CdWjT2Bg.js",
+    "name": "arrow-trending-up",
+    "src": "src/assets/icons/arrow-trending-up.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/arrow-up-tray.svg?raw": {
+    "file": "js/arrow-up-tray.8BpSDoNE.js",
+    "name": "arrow-up-tray",
+    "src": "src/assets/icons/arrow-up-tray.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/building-office-2.svg?raw": {
+    "file": "js/building-office-2.Bed6DrhO.js",
+    "name": "building-office-2",
+    "src": "src/assets/icons/building-office-2.svg?raw",
     "isDynamicEntry": true
   },
   "src/assets/icons/calendar-search.svg?raw": {
@@ -481,6 +520,30 @@
     "src": "src/assets/icons/caret-down.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/check-circle.svg?raw": {
+    "file": "js/check-circle.fB6Bnaoc.js",
+    "name": "check-circle",
+    "src": "src/assets/icons/check-circle.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/check.svg?raw": {
+    "file": "js/check.B6z9th0e.js",
+    "name": "check",
+    "src": "src/assets/icons/check.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/chevron-left.svg?raw": {
+    "file": "js/chevron-left.BXnRR1gd.js",
+    "name": "chevron-left",
+    "src": "src/assets/icons/chevron-left.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/chevron-right.svg?raw": {
+    "file": "js/chevron-right.bJ0cVlPd.js",
+    "name": "chevron-right",
+    "src": "src/assets/icons/chevron-right.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/circle-check.svg?raw": {
     "file": "js/circle-check.CCt208Jw.js",
     "name": "circle-check",
@@ -493,10 +556,22 @@
     "src": "src/assets/icons/circle-exclamation.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/clock.svg?raw": {
+    "file": "js/clock.Bw1TIxqU.js",
+    "name": "clock",
+    "src": "src/assets/icons/clock.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/close.svg?raw": {
     "file": "js/close.fqhX-qVA.js",
     "name": "close",
     "src": "src/assets/icons/close.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/cloud-arrow-up.svg?raw": {
+    "file": "js/cloud-arrow-up.Br1m0t0y.js",
+    "name": "cloud-arrow-up",
+    "src": "src/assets/icons/cloud-arrow-up.svg?raw",
     "isDynamicEntry": true
   },
   "src/assets/icons/document-check.svg?raw": {
@@ -505,16 +580,52 @@
     "src": "src/assets/icons/document-check.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/document-duplicate.svg?raw": {
+    "file": "js/document-duplicate.B0csZ2f5.js",
+    "name": "document-duplicate",
+    "src": "src/assets/icons/document-duplicate.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/document-text.svg?raw": {
+    "file": "js/document-text.Bs3RP-3n.js",
+    "name": "document-text",
+    "src": "src/assets/icons/document-text.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/document.svg?raw": {
     "file": "js/document.BVukAFAu.js",
     "name": "document",
     "src": "src/assets/icons/document.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/envelope.svg?raw": {
+    "file": "js/envelope.D3c_QTHM.js",
+    "name": "envelope",
+    "src": "src/assets/icons/envelope.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/exclamation-circle.svg?raw": {
+    "file": "js/exclamation-circle.D8I09bk8.js",
+    "name": "exclamation-circle",
+    "src": "src/assets/icons/exclamation-circle.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/eye.svg?raw": {
+    "file": "js/eye.DnHkoBrv.js",
+    "name": "eye",
+    "src": "src/assets/icons/eye.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/file-spreadsheet.svg?raw": {
     "file": "js/file-spreadsheet.BtGOGNra.js",
     "name": "file-spreadsheet",
     "src": "src/assets/icons/file-spreadsheet.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/heart.svg?raw": {
+    "file": "js/heart.BA80dqId.js",
+    "name": "heart",
+    "src": "src/assets/icons/heart.svg?raw",
     "isDynamicEntry": true
   },
   "src/assets/icons/home.svg?raw": {
@@ -533,6 +644,24 @@
     "file": "js/lock-open.JZ1_qHaY.js",
     "name": "lock-open",
     "src": "src/assets/icons/lock-open.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/map-pin.svg?raw": {
+    "file": "js/map-pin.CRhQDUQt.js",
+    "name": "map-pin",
+    "src": "src/assets/icons/map-pin.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/phone.svg?raw": {
+    "file": "js/phone.C7sEb0Dk.js",
+    "name": "phone",
+    "src": "src/assets/icons/phone.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/star.svg?raw": {
+    "file": "js/star.j5uvC3Z4.js",
+    "name": "star",
+    "src": "src/assets/icons/star.svg?raw",
     "isDynamicEntry": true
   },
   "src/assets/icons/toga.svg?raw": {
@@ -565,10 +694,28 @@
     "src": "src/assets/icons/user-circle.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/user-group.svg?raw": {
+    "file": "js/user-group.CClG3GXG.js",
+    "name": "user-group",
+    "src": "src/assets/icons/user-group.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/view-finder.svg?raw": {
     "file": "js/view-finder.wMLhEkXr.js",
     "name": "view-finder",
     "src": "src/assets/icons/view-finder.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/x-circle.svg?raw": {
+    "file": "js/x-circle.CqVubBuQ.js",
+    "name": "x-circle",
+    "src": "src/assets/icons/x-circle.svg?raw",
+    "isDynamicEntry": true
+  },
+  "src/assets/icons/x-mark.svg?raw": {
+    "file": "js/x-mark.C60sF3un.js",
+    "name": "x-mark",
+    "src": "src/assets/icons/x-mark.svg?raw",
     "isDynamicEntry": true
   },
   "src/assets/images/favicon.ico": {
@@ -588,7 +735,7 @@
     "src": "src/assets/images/nopp.png"
   },
   "src/layouts/HomeLayout.vue": {
-    "file": "js/HomeLayout.PXqt51lp.js",
+    "file": "js/HomeLayout.Dl7Wex78.js",
     "name": "HomeLayout",
     "src": "src/layouts/HomeLayout.vue",
     "isDynamicEntry": true,
@@ -598,196 +745,188 @@
       "index.html"
     ],
     "css": [
-      "css/HomeLayout.Dfyh5Vsr.css"
+      "css/HomeLayout.n2aNbn9Y.css"
     ]
   },
   "src/views/Admin/AkunView.vue": {
-    "file": "js/AkunView.BI8PTZpv.js",
+    "file": "js/AkunView.C9QLCW__.js",
     "name": "AkunView",
     "src": "src/views/Admin/AkunView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
-      "_PasswordInput.vue_vue_type_script_setup_true_lang.C-Kxzi1D.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
-      "_useAkun.DVe2Yg2E.js",
-      "_useSetting.Cg-PO_FU.js",
-      "_fieldErrorHtml.BZiG7jP0.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
+      "_PasswordInput.vue_vue_type_script_setup_true_lang.iECPxdrN.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
+      "_useAkun.JoZZsxsW.js",
+      "_useSetting.X6b3pKRe.js",
+      "_fieldErrorHtml.h8Trh8yO.js",
       "index.html",
-      "_formValidationErrors.B-bqyHNm.js",
-      "_toast.CXLfbrJ3.js",
-      "_authComposable.BLO_S9Ph.js",
-      "_logo-ppdb.BW9ypDwz.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
+      "_formValidationErrors.Dq3JdVk7.js",
+      "_authComposable.yGIH7xn1.js",
+      "_logo-ppdb.BW9ypDwz.js"
     ]
   },
   "src/views/Admin/DataSekolahView.vue": {
-    "file": "js/DataSekolahView.C84k2mZ5.js",
+    "file": "js/DataSekolahView.7PixD6F4.js",
     "name": "DataSekolahView",
     "src": "src/views/Admin/DataSekolahView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
-      "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.CUaNQcgh.js",
-      "_useSekolah.DyuInbfI.js",
-      "_useKecamatan.BQ6pQIN-.js",
-      "_buatOption.C1cTljZF.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
+      "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.BQKuodCb.js",
+      "_useSekolah.9TkrZsd9.js",
+      "_useKecamatan.CAPM-1Cn.js",
+      "_buatOption.z1xkZk61.js",
       "_jenjang.DlmV0PPG.js",
       "index.html",
-      "_authComposable.BLO_S9Ph.js",
+      "_authComposable.yGIH7xn1.js",
       "_logo-ppdb.BW9ypDwz.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.D90P74yI.js",
-      "_usePendaftaran.DxUph3Oz.js",
-      "_FilterSelect.Dw9BrmwH.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js"
+      "_usePendaftaran.DPLkWG1A.js",
+      "_FilterSelect.rASVtTtr.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js"
     ]
   },
   "src/views/Admin/PersyaratanView.vue": {
-    "file": "js/PersyaratanView.D5xzEi1n.js",
+    "file": "js/PersyaratanView.Dk4xALaF.js",
     "name": "PersyaratanView",
     "src": "src/views/Admin/PersyaratanView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
       "index.html",
-      "_authComposable.BLO_S9Ph.js",
-      "_logo-ppdb.BW9ypDwz.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
+      "_authComposable.yGIH7xn1.js",
+      "_logo-ppdb.BW9ypDwz.js"
     ]
   },
   "src/views/Authentication/SchoolSignupView.vue": {
-    "file": "js/SchoolSignupView.dRfopwtM.js",
+    "file": "js/SchoolSignupView.SonpUhtK.js",
     "name": "SchoolSignupView",
     "src": "src/views/Authentication/SchoolSignupView.vue",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_PlainLayout.CRtQrQeW.js",
-      "_formValidationErrors.B-bqyHNm.js",
-      "_PasswordInput.vue_vue_type_script_setup_true_lang.C-Kxzi1D.js",
-      "_toast.CXLfbrJ3.js",
-      "_useKecamatan.BQ6pQIN-.js",
-      "_fieldErrorHtml.BZiG7jP0.js",
-      "_hasError.Dyzba-hA.js",
-      "_buatOption.C1cTljZF.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
+      "_PlainLayout.ContBw-A.js",
+      "_formValidationErrors.Dq3JdVk7.js",
+      "_PasswordInput.vue_vue_type_script_setup_true_lang.iECPxdrN.js",
+      "_useKecamatan.CAPM-1Cn.js",
+      "_fieldErrorHtml.h8Trh8yO.js",
+      "_hasError.BWdvE64U.js",
+      "_buatOption.z1xkZk61.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
       "_TextAreaGroup.xaDRFsBp.js",
       "_logo-ppdb.BW9ypDwz.js",
-      "_login-ilustrasi.CSbcqYU5.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
+      "_login-ilustrasi.CSbcqYU5.js"
     ]
   },
   "src/views/Authentication/SigninView.vue": {
-    "file": "js/SigninView.B8UtqM0J.js",
+    "file": "js/SigninView.CX7t5I6e.js",
     "name": "SigninView",
     "src": "src/views/Authentication/SigninView.vue",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_PlainLayout.CRtQrQeW.js",
-      "_PasswordInput.vue_vue_type_script_setup_true_lang.C-Kxzi1D.js",
-      "_AlertSuccess.CMq-Mk5U.js",
-      "_authComposable.BLO_S9Ph.js",
-      "_toast.CXLfbrJ3.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
+      "_PlainLayout.ContBw-A.js",
+      "_PasswordInput.vue_vue_type_script_setup_true_lang.iECPxdrN.js",
+      "_AlertSuccess.C86K8Hj_.js",
+      "_authComposable.yGIH7xn1.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
       "_logo-ppdb.BW9ypDwz.js",
-      "_login-ilustrasi.CSbcqYU5.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
+      "_login-ilustrasi.CSbcqYU5.js"
+    ],
+    "css": [
+      "css/SigninView.DPbF1jzy.css"
     ]
   },
   "src/views/Authentication/SignupView.vue": {
-    "file": "js/SignupView.DS0RVyFd.js",
+    "file": "js/SignupView.BOYc0R5a.js",
     "name": "SignupView",
     "src": "src/views/Authentication/SignupView.vue",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_PlainLayout.CRtQrQeW.js",
-      "_formValidationErrors.B-bqyHNm.js",
-      "_component.CVeuKawN.js",
-      "_PasswordInput.vue_vue_type_script_setup_true_lang.C-Kxzi1D.js",
-      "_toast.CXLfbrJ3.js",
-      "_hasError.Dyzba-hA.js",
-      "_fieldErrorHtml.BZiG7jP0.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
+      "_PlainLayout.ContBw-A.js",
+      "_formValidationErrors.Dq3JdVk7.js",
+      "_component.BcoX8Qk-.js",
+      "_PasswordInput.vue_vue_type_script_setup_true_lang.iECPxdrN.js",
+      "_hasError.BWdvE64U.js",
+      "_fieldErrorHtml.h8Trh8yO.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
       "_jenjang.DlmV0PPG.js",
       "_SelectGroup.vue_vue_type_script_setup_true_lang.CJHeiv7S.js",
-      "_useKecamatan.BQ6pQIN-.js",
-      "_buatOption.C1cTljZF.js",
+      "_useKecamatan.CAPM-1Cn.js",
+      "_buatOption.z1xkZk61.js",
       "_TextAreaGroup.xaDRFsBp.js",
       "_logo-ppdb.BW9ypDwz.js",
-      "_login-ilustrasi.CSbcqYU5.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js"
+      "_login-ilustrasi.CSbcqYU5.js"
     ]
   },
   "src/views/BiodataView.vue": {
-    "file": "js/BiodataView.QTeN6nYd.js",
+    "file": "js/BiodataView.B5Lf5QYa.js",
     "name": "BiodataView",
     "src": "src/views/BiodataView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
       "index.html",
-      "_toast.CXLfbrJ3.js",
-      "_formValidationErrors.B-bqyHNm.js",
-      "_component.CVeuKawN.js",
+      "_formValidationErrors.Dq3JdVk7.js",
+      "_component.BcoX8Qk-.js",
       "_useSmoothScrollToTop.BbHTvxvR.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "_fieldErrorHtml.BZiG7jP0.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
-      "_hasError.Dyzba-hA.js",
-      "_PasswordInput.vue_vue_type_script_setup_true_lang.C-Kxzi1D.js",
+      "_fieldErrorHtml.h8Trh8yO.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
+      "_hasError.BWdvE64U.js",
+      "_PasswordInput.vue_vue_type_script_setup_true_lang.iECPxdrN.js",
       "_SelectGroup.vue_vue_type_script_setup_true_lang.CJHeiv7S.js",
-      "_useAkun.DVe2Yg2E.js",
-      "_authComposable.BLO_S9Ph.js",
+      "_useAkun.JoZZsxsW.js",
+      "_authComposable.yGIH7xn1.js",
       "_logo-ppdb.BW9ypDwz.js"
     ]
   },
   "src/views/Dashboard/DashboardView.vue": {
-    "file": "js/DashboardView.D6yiLUud.js",
+    "file": "js/DashboardView.BndUaNJp.js",
     "name": "DashboardView",
     "src": "src/views/Dashboard/DashboardView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_useStatistik.Z0QuBMz_.js",
-      "_toast.CXLfbrJ3.js",
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
-      "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.CUaNQcgh.js",
       "index.html",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "_useCekPendaftaran.6g5UYZPP.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
-      "_authComposable.BLO_S9Ph.js",
+      "_useStatistik.C8Vs9sjk.js",
+      "_LoadingInfoComponent.vue_vue_type_script_setup_true_lang.Dm_Hc9tG.js",
+      "_usePendaftaran.DPLkWG1A.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
+      "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.BQKuodCb.js",
+      "_ModalComponent.vue_vue_type_script_setup_true_lang.CEu9--Vs.js",
+      "_useCekPendaftaran.Dl2dVMe0.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
+      "_authComposable.yGIH7xn1.js",
       "_logo-ppdb.BW9ypDwz.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.D90P74yI.js",
-      "_usePendaftaran.DxUph3Oz.js",
-      "_useSekolah.DyuInbfI.js",
-      "_buatOption.C1cTljZF.js",
-      "_useKecamatan.BQ6pQIN-.js",
+      "_useSekolah.9TkrZsd9.js",
+      "_buatOption.z1xkZk61.js",
+      "_useKecamatan.CAPM-1Cn.js",
       "_jenjang.DlmV0PPG.js",
-      "_FilterSelect.Dw9BrmwH.js"
+      "_FilterSelect.rASVtTtr.js",
+      "_index.BKKhzOnb.js"
     ]
   },
   "src/views/DataPendaftaranView.vue": {
-    "file": "js/DataPendaftaranView.BJzJVzKL.js",
+    "file": "js/DataPendaftaranView.Rwk0aIxP.js",
     "name": "DataPendaftaranView",
     "src": "src/views/DataPendaftaranView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
       "index.html",
-      "_usePendaftaran.DxUph3Oz.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.CtDurLeh.js",
+      "_usePendaftaran.DPLkWG1A.js",
+      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.xd_3SXss.js",
       "_getDataById.CToqdZWp.js",
-      "_toast.CXLfbrJ3.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js",
+      "_ModalComponent.vue_vue_type_script_setup_true_lang.CEu9--Vs.js",
       "_TextAreaGroup.xaDRFsBp.js",
-      "_hasError.Dyzba-hA.js",
-      "_authComposable.BLO_S9Ph.js",
+      "_hasError.BWdvE64U.js",
+      "_authComposable.yGIH7xn1.js",
       "_logo-ppdb.BW9ypDwz.js",
-      "_formValidationErrors.B-bqyHNm.js"
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
+      "_index.BKKhzOnb.js",
+      "_formValidationErrors.Dq3JdVk7.js"
     ]
   },
   "src/views/Errors/Error404View.vue": {
@@ -801,20 +940,20 @@
     ]
   },
   "src/views/HomeView.vue": {
-    "file": "js/HomeView.CM_9T5OF.js",
+    "file": "js/HomeView.DCRX17fm.js",
     "name": "HomeView",
     "src": "src/views/HomeView.vue",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_useSetting.Cg-PO_FU.js"
+      "_useSetting.X6b3pKRe.js"
     ],
     "css": [
-      "css/HomeView.CkyZ-tdg.css"
+      "css/HomeView.BLNgzyml.css"
     ]
   },
   "src/views/Pages/PersyaratanPages.vue": {
-    "file": "js/PersyaratanPages.Bf420C1N.js",
+    "file": "js/PersyaratanPages.BE8wC0VL.js",
     "name": "PersyaratanPages",
     "src": "src/views/Pages/PersyaratanPages.vue",
     "isDynamicEntry": true,
@@ -823,73 +962,73 @@
     ]
   },
   "src/views/Pages/SekolahPages.vue": {
-    "file": "js/SekolahPages.BPSW0x45.js",
+    "file": "js/SekolahPages.D25HM2ii.js",
     "name": "SekolahPages",
     "src": "src/views/Pages/SekolahPages.vue",
     "isDynamicEntry": true,
     "imports": [
+      "_useSekolah.9TkrZsd9.js",
+      "_buatOption.z1xkZk61.js",
+      "_FilterSelect.rASVtTtr.js",
+      "_useKecamatan.CAPM-1Cn.js",
       "index.html",
-      "_useSekolah.DyuInbfI.js",
+      "_LoadingInfoComponent.vue_vue_type_script_setup_true_lang.Dm_Hc9tG.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.D90P74yI.js",
-      "_FilterSelect.Dw9BrmwH.js",
-      "_buatOption.C1cTljZF.js",
-      "_useKecamatan.BQ6pQIN-.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js"
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js"
     ]
   },
   "src/views/Pages/StatistikPages.vue": {
-    "file": "js/StatistikPages.BYQzgp-e.js",
+    "file": "js/StatistikPages.Vr9p4Bcn.js",
     "name": "StatistikPages",
     "src": "src/views/Pages/StatistikPages.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_useStatistik.Z0QuBMz_.js",
-      "_toast.CXLfbrJ3.js",
       "index.html",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js"
+      "_useStatistik.C8Vs9sjk.js",
+      "_LoadingInfoComponent.vue_vue_type_script_setup_true_lang.Dm_Hc9tG.js",
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js"
+    ],
+    "css": [
+      "css/StatistikPages.Bi1MGflO.css"
     ]
   },
   "src/views/PendaftaranView.vue": {
-    "file": "js/PendaftaranView.B-NwUrGu.js",
+    "file": "js/PendaftaranView.CKX04mWU.js",
     "name": "PendaftaranView",
     "src": "src/views/PendaftaranView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
-      "_formValidationErrors.B-bqyHNm.js",
-      "_useCekPendaftaran.6g5UYZPP.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
+      "_formValidationErrors.Dq3JdVk7.js",
+      "_useCekPendaftaran.Dl2dVMe0.js",
       "index.html",
-      "_useSekolah.DyuInbfI.js",
-      "_buatOption.C1cTljZF.js",
+      "_useSekolah.9TkrZsd9.js",
+      "_buatOption.z1xkZk61.js",
       "_SelectGroup.vue_vue_type_script_setup_true_lang.CJHeiv7S.js",
-      "_AlertSuccess.CMq-Mk5U.js",
-      "_fieldErrorHtml.BZiG7jP0.js",
-      "_usePendaftaran.DxUph3Oz.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
-      "_toast.CXLfbrJ3.js",
-      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.CtDurLeh.js",
+      "_AlertSuccess.C86K8Hj_.js",
+      "_fieldErrorHtml.h8Trh8yO.js",
+      "_usePendaftaran.DPLkWG1A.js",
+      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.xd_3SXss.js",
       "_getDataById.CToqdZWp.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.D90P74yI.js",
-      "_authComposable.BLO_S9Ph.js",
+      "_authComposable.yGIH7xn1.js",
       "_logo-ppdb.BW9ypDwz.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.BVheG361.js"
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CuUXFzUo.js",
+      "_index.BKKhzOnb.js"
     ]
   },
   "src/views/VerifikasiView.vue": {
-    "file": "js/VerifikasiView.DOtWdM7O.js",
+    "file": "js/VerifikasiView.Ct-BHCw5.js",
     "name": "VerifikasiView",
     "src": "src/views/VerifikasiView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.BCUzpmlE.js",
-      "_usePendaftaran.DxUph3Oz.js",
-      "_HeroIcon.vue_vue_type_script_setup_true_lang.u6-A0rnq.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.cMcAqBbG.js",
+      "_usePendaftaran.DPLkWG1A.js",
+      "index.html",
       "_getDataById.CToqdZWp.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.D90P74yI.js",
-      "index.html",
-      "_authComposable.BLO_S9Ph.js",
+      "_authComposable.yGIH7xn1.js",
       "_logo-ppdb.BW9ypDwz.js"
     ]
   }
