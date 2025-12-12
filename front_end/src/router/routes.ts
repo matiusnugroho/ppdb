@@ -103,6 +103,16 @@ export default [
 		},
 	},
 	{
+		path: "/sekolah/me",
+		name: "profil_sekolah",
+		component: () => import("@/views/Sekolah/ProfileSekolahView.vue"),
+		meta: {
+			title: "Data Sekolah",
+			label: "Data Sekolah",
+			requiresAuth: true,
+		},
+	},
+	{
 		path: "/login",
 		name: "login",
 		component: () => import("@/views/Authentication/SigninView.vue"),

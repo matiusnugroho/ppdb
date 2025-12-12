@@ -105,7 +105,7 @@ onMounted(async () => {
 							<!-- Student Photo -->
 							<div class="mb-4 md:mb-0 md:mr-6">
 								<!-- Added margin-bottom for small devices -->
-								<img class="w-32 h-32 rounded-md object-cover" :src="dataDetailVerifikasi?.student.foto_url || nopp" alt="Student Photo" />
+								<img class="w-32 h-32 rounded-md object-cover" :src="dataDetailVerifikasi?.student.thumbnail_url || nopp" alt="Student Photo" />
 							</div>
 							<!-- Registration and Student Info -->
 							<div class="flex-1">

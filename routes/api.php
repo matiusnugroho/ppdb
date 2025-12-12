@@ -50,6 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () 
     Route::get('/persyaratan-jalur', [PersyaratanController::class, 'index']);
 });
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/sekolah/me', [SchoolController::class, 'me']);
+    Route::patch('/sekolah/me', [SchoolController::class, 'updateMyProfile']);
     route::post('/pendaftaran/daftar', [PendaftaranController::class, 'daftar']);
     route::post('/pendaftaran/verifikasi/', [PendaftaranController::class, 'verifikasi']);
     Route::get('/pendaftaran/verified_by_me', [PendaftaranController::class, 'getPendaftarVerifiedByMe']);

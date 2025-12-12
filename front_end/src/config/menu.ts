@@ -41,7 +41,7 @@ export const menuGroups = [
 			{
 				icon: "user-circle",
 				label: "Data Sekolah",
-				route: "/sekolah",
+				route: "/sekolah/me",
 				role: ["sekolah", "verifikator_sekolah"],
 			},
 			{

@@ -5,15 +5,18 @@ namespace App\Http\Controllers\API;
 use App\Exports\SchoolExport;
 use App\Exports\SchoolWithDataExport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateMySchoolRequest;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Imports\SchoolsImport;
 use App\Models\RegistrationPath;
 use App\Models\School;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Access\AuthorizationException;
 use Hash;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\Response;
 
 class SchoolController extends Controller
 {
@@ -332,5 +335,58 @@ class SchoolController extends Controller
                 'message' => $e->getMessage(),
             ]);
         }
+    }
+
+    public function me(Request $request)
+    {
+        $school = $request->user()?->school;
+
+        if (! $school) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data sekolah tidak ditemukan untuk pengguna ini',
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        $school->load('kecamatan');
+
+        return response()->json([
+            'success' => true,
+            'data' => $school,
+        ]);
+    }
+
+    public function updateMyProfile(UpdateMySchoolRequest $request)
+    {
+        $user = $request->user();
+        $school = $user?->school;
+
+        if (! $school) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data sekolah tidak ditemukan untuk pengguna ini',
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        $validated = $request->validated();
+
+        // Update user email if provided
+        if (isset($validated['email'])) {
+            $user->email = $validated['email'];
+            $user->save();
+        }
+
+        $school->fill($validated);
+        $school->save();
+
+        $school->refresh()->load('kecamatan');
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'user' => $user->fresh(),
+                'school' => $school,
+            ],
+        ]);
     }
 }
