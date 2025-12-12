@@ -28399,8 +28399,12 @@ namespace  {
     class Image extends \Intervention\Image\Laravel\Facades\Image {}
     class Excel extends \Maatwebsite\Excel\Facades\Excel {}
 }
-
-
+/**
+ * Auth helper untuk Laravel IDE / Intelephense
+ *
+ * @method static \App\Models\User|null user()
+ */
+class Auth {}
 
 
 
