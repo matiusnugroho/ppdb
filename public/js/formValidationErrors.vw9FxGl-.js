@@ -1,0 +1,1 @@
+import{a7 as a,h as s}from"../index.js";const d=a("formValidationErrors",()=>{const r=s({});return{errors:r,addError:(o,e)=>{r.value[o]||(r.value[o]=[]),r.value[o].push(e)},removeError:o=>{delete r.value[o]},clearErrors:()=>{r.value={}}}},{persist:!0});export{d as u};

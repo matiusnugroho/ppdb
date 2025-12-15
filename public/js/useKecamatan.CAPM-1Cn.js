@@ -1,1 +1,0 @@
-import{f as e,M as c,L as r}from"../index.js";function u(){const t=e([]),n=e(null),a=e(!1);return{kecamatanList:t,error:n,loadingKecamatan:a,fetchKecamatan:async()=>{a.value=!0;try{const s=await c.get(r.GET_KECAMATAN);t.value=s.data}catch{n.value="Failed to load kecamatan list"}finally{a.value=!1}}}}export{u};
