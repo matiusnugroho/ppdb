@@ -9,6 +9,7 @@ export const usePaginationStore = defineStore(
 		const page = ref<number>(1)
 		const jenjang = ref<string | null>(null)
 		const kecamatan_id = ref<string | null>(null)
+		const search = ref<string>("")
 
 		const resetTodefault = () => {
 			per_page.value = 20
@@ -16,6 +17,7 @@ export const usePaginationStore = defineStore(
 			page.value = 1
 			jenjang.value = null
 			kecamatan_id.value = null
+			search.value = ""
 		}
 
 		return {
@@ -23,6 +25,7 @@ export const usePaginationStore = defineStore(
 			page,
 			jenjang,
 			kecamatan_id,
+			search,
 			currentPage,
 			resetTodefault,
 		}

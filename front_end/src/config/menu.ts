@@ -10,8 +10,14 @@ export const menuGroups = [
 			},
 			{
 				icon: "toga",
-				label: "Sekolah",
+				label: "Data Pendaftaran",
 				route: "/dashboard/sekolah",
+				role: "super_admin",
+			},
+			{
+				icon: "home",
+				label: "Data Sekolah",
+				route: "/dashboard/master-sekolah",
 				role: "super_admin",
 			},
 			{

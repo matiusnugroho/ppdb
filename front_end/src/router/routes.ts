@@ -77,8 +77,8 @@ export default [
 		name: "sekolahDashboard",
 		component: () => import("@/views/Admin/DataSekolahView.vue"),
 		meta: {
-			title: "Data Sekolah Kuantan Singingi",
-			label: "Sekolah",
+			title: "Data Pendaftaran",
+			label: "Data Pendaftaran",
 			requiresAuth: true,
 		},
 	},
@@ -187,6 +187,26 @@ export default [
 		component: () => import("@/views/Errors/Error404View.vue"),
 		meta: {
 			title: "404 Not Found",
+		},
+	},
+	{
+		path: "/dashboard/master-sekolah",
+		name: "masterSekolah",
+		component: () => import("@/views/Admin/MasterSekolahView.vue"),
+		meta: {
+			title: "Master Data Sekolah",
+			label: "Data Sekolah",
+			requiresAuth: true,
+		},
+	},
+	{
+		path: "/dashboard/sekolah/:id",
+		name: "sekolahDetail",
+		component: () => import("@/views/Admin/SekolahDetailView.vue"),
+		meta: {
+			title: "Detail Sekolah",
+			label: "Detail Sekolah",
+			requiresAuth: true,
 		},
 	},
 ]

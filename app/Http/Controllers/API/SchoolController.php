@@ -31,10 +31,11 @@ class SchoolController extends Controller
             'per_page' => 'nullable|string',
             'jenjang' => 'nullable|string',
             'kecamatan_id' => 'nullable|string',
+            'search' => 'nullable|string',
         ]);
 
         // Create the query builder
-        $query = School::with('kecamatan');
+        $query = School::with(['kecamatan', 'user']);
 
         // Apply filters if they are provided
         if (! empty($validated['jenjang'])) {
@@ -43,6 +44,19 @@ class SchoolController extends Controller
 
         if (! empty($validated['kecamatan_id'])) {
             $query->where('kecamatan_id', $validated['kecamatan_id']);
+        }
+
+        if (! empty($validated['search'])) {
+            $search = $validated['search'];
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_sekolah', 'like', "%{$search}%")
+                    ->orWhere('npsn', 'like', "%{$search}%")
+                    ->orWhere('nss', 'like', "%{$search}%")
+                    ->orWhereHas('user', function ($q) use ($search) {
+                        $q->where('username', 'like', "%{$search}%")
+                            ->orWhere('email', 'like', "%{$search}%");
+                    });
+            });
         }
         $registrationPaths = RegistrationPath::all();
 
@@ -148,9 +162,17 @@ class SchoolController extends Controller
     /**
      * Display the specified resource.
      */
+    /**
+     * Display the specified resource.
+     */
     public function show(School $school)
     {
-        //
+        $school->load(['kecamatan', 'user']);
+
+        return response()->json([
+            'success' => true,
+            'data' => $school,
+        ]);
     }
 
     /**
@@ -166,7 +188,52 @@ class SchoolController extends Controller
      */
     public function update(Request $request, School $school)
     {
-        //
+        $validated = $request->validate([
+            'nama_sekolah' => 'required|string',
+            'nss' => 'nullable|string',
+            'npsn' => 'nullable|string',
+            'jenjang' => 'required|string',
+            'alamat' => 'required|string',
+            'no_telp' => 'nullable|string',
+            'email' => 'required|email',
+            'nama_kepsek' => 'required|string',
+            'kecamatan_id' => 'required|exists:kecamatans,id',
+            'daya_tampung' => 'nullable|integer',
+            'username' => 'nullable|string|unique:users,username,' . $school->user_id,
+            'password' => 'nullable|string|min:6',
+        ]);
+
+        $school->update([
+            'nama_sekolah' => $validated['nama_sekolah'],
+            'nss' => $validated['nss'],
+            'npsn' => $validated['npsn'],
+            'jenjang' => $validated['jenjang'],
+            'alamat' => $validated['alamat'],
+            'no_telp' => $validated['no_telp'],
+            'email' => $validated['email'],
+            'nama_kepsek' => $validated['nama_kepsek'],
+            'kecamatan_id' => $validated['kecamatan_id'],
+            'daya_tampung' => $validated['daya_tampung'],
+        ]);
+
+        $user = $school->user;
+        if ($user) {
+            $user->email = $validated['email'];
+            if (!empty($validated['username'])) {
+                $user->username = $validated['username'];
+            }
+            if (!empty($validated['password'])) {
+                $user->password = Hash::make($validated['password']);
+            }
+            $user->save();
+        }
+
+        $school->load(['kecamatan', 'user']);
+
+        return response()->json([
+            'success' => true,
+            'data' => $school,
+        ]);
     }
 
     /**

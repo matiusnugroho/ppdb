@@ -2,7 +2,7 @@
 	<div class="flex flex-col h-full rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
 		<div class="p-6 border-b border-gray-100">
 			<div class="flex flex-wrap justify-between gap-4 items-center">
-				<h3 class="text-lg font-bold text-gray-800">Data Sekolah</h3>
+				<h3 class="text-lg font-bold text-gray-800">{{ title }}</h3>
 				<div class="flex flex-wrap justify-end gap-2 items-center">
 					<div class="w-full sm:w-auto">
 						<SearchableSelect v-model="per_page" name="per_page" :options="perPageOption" class="w-full sm:w-auto" />
@@ -215,7 +215,11 @@ defineProps({
 	needimportbutton: {
 		type: Boolean,
 		default: false,
-	}
+	},
+	title: {
+		type: String,
+		default: "Data Sekolah",
+	},
 })
 const { fetchJalurPendaftaran, dataJalurPendaftaran } = usePendaftaran()
 

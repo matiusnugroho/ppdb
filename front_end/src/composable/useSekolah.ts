@@ -11,19 +11,11 @@ export function useSekolah() {
 	const loadingSekolah = ref<boolean>(false)
 	const paginationStore = usePaginationStore()
 
-	const fetchAllSekolah = async (per_page: number = 20, page: number = 1, jenjang: string = "", kecamatan_id: string = "") => {
-		const queryParameters = []
-
-		if (page !== null) queryParameters.push(`page=${page}`)
-
-		if (per_page !== null) queryParameters.push(`per_page=${per_page}`)
-
-		if (jenjang !== null) queryParameters.push(`jenjang=${jenjang}`)
-
-		if (kecamatan_id !== null) queryParameters.push(`kecamatan_id=${kecamatan_id}`)
-
-		// Join the parameters with '&' and create the final URL
-		const url = `${ENDPOINTS.GET_SEKOLAH_ALL}${queryParameters.length ? "?" + queryParameters.join("&") : ""}`
+	const fetchAllSekolah = async (per_page: number = 20, page: number = 1, jenjang: string = "", kecamatan_id: string = "", search: string = "") => {
+		let url = `${ENDPOINTS.GET_SEKOLAH_ALL}?per_page=${per_page}&page=${page}`
+		if (jenjang && jenjang != "null") url += `&jenjang=${jenjang}`
+		if (kecamatan_id && kecamatan_id != "null") url += `&kecamatan_id=${kecamatan_id}`
+		if (search) url += `&search=${search}`
 
 		paginationStore.per_page = per_page
 		paginationStore.page = page
@@ -52,6 +44,33 @@ export function useSekolah() {
 			loadingSekolah.value = false
 		}
 	}
+	const fetchSekolahById = async (id: string) => {
+		const url = replacePlaceholder(ENDPOINTS.GET_SEKOLAH_BY_ID, { id })
+		loadingSekolah.value = true
+		try {
+			const response = await requestor.get(url)
+			return response.data.data
+		} catch (err) {
+			error.value = "Failed to load sekolah data"
+			return null
+		} finally {
+			loadingSekolah.value = false
+		}
+	}
+
+	const updateSekolah = async (id: string, data: any) => {
+		const url = replacePlaceholder(ENDPOINTS.UPDATE_SEKOLAH, { id })
+		loadingSekolah.value = true
+		try {
+			const response = await requestor.put(url, data)
+			return response.data.success
+		} catch (err) {
+			error.value = "Failed to update sekolah"
+			return false
+		} finally {
+			loadingSekolah.value = false
+		}
+	}
 
 	return {
 		dataSekolah,
@@ -60,5 +79,7 @@ export function useSekolah() {
 		sekolahList,
 		fetchAllSekolah,
 		fetchSekolah,
+		fetchSekolahById,
+		updateSekolah,
 	}
 }

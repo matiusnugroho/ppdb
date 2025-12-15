@@ -18,6 +18,8 @@ const ENDPOINTS: endpoints = {
 	GET_KECAMATAN: `${BASE_URL_API}/kecamatan/`,
 	GET_SEKOLAH_ALL: `${BASE_URL_API}/sekolah`,
 	GET_SEKOLAH: `${BASE_URL_API}/sekolah/kecamatan/{kecamatan_id}/{jenjang}`,
+	GET_SEKOLAH_BY_ID: `${BASE_URL_API}/sekolah/{id}`,
+	UPDATE_SEKOLAH: `${BASE_URL_API}/sekolah/{id}`,
 	CSRF: `${BASE_URL_API}/sanctum/csrf-cookie`,
 	DAFTAR_KE_SEKOLAH: `${BASE_URL_API}/pendaftaran/daftar`,
 	BUKA_PENDAFTARAN: `${BASE_URL_API}/admin/pendaftaran/buka-pendaftaran`,

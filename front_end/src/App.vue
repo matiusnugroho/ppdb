@@ -3,7 +3,8 @@ import { RouterView, useRoute } from "vue-router"
 import { useSidebarStore } from "@/stores/sidebar"
 import { onMounted, watch } from "vue"
 import { useLoadingStore } from "@/stores/loadingStore"
-import WebLoadingComponent from "@/components/UI/WebLoadingComponent.vue"
+import LoadingPPDB from "@/components/UI/LoadingPPDB.vue"
+
 const sidebarStore = useSidebarStore()
 const route = useRoute()
 const loadingStore = useLoadingStore()
@@ -27,7 +28,7 @@ watch(
 
 <template>
 	<router-view v-slot="{ Component }">
-		<WebLoadingComponent v-if="loadingStore.loading" />
+		<LoadingPPDB v-if="loadingStore.loading" />
 		<component v-else :is="Component" />
 	</router-view>
 </template>

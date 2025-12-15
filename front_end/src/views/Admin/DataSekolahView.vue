@@ -1,12 +1,13 @@
 <template>
 	<DefaultLayout>
-		<BreadcrumbDefault pageTitle="Data Sekolah" />
+		<BreadcrumbDefault pageTitle="Data Pendaftaran" />
 		<TabelSekolahWithDataComponent
 			:kecamatan-options="kecamatanOption"
 			:jenjang-options="jenjangOption"
 			:data="loadingSekolah ? loadingDataSekolah : dataSekolah!"
 			:loading="loadingSekolah"
-			:needimportbutton="true"
+			:needimportbutton="false"
+			title="Data Pendaftaran"
 			@filter="handleFilter"
 			@prev-page="goToPrevPage"
 			@next-page="goToNextPage"

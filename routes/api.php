@@ -66,6 +66,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     route::post('/pendaftaran/luluskan/{registration}', [PendaftaranController::class, 'luluskan']);
     Route::get('/statistik/sekolah', [StatistikController::class, 'sekolah']);
     Route::get('/statistik/admin', [StatistikController::class, 'admin']);
+    Route::get('/sekolah/{school}', [SchoolController::class, 'show']);
+    Route::put('/sekolah/{school}', [SchoolController::class, 'update']);
 });
 Route::resource('/siswa', StudentController::class);
 Route::get('/jalur', [JalurController::class, 'index']);
