@@ -3,10 +3,9 @@
                 <div class="mx-auto max-w-screen-xl px-6 py-10">
                         <div class="text-center">
                                 <RouterLink to="/" class="inline-flex items-center justify-center text-2xl font-bold">
-                                        <img :src="logoppdb" class="mr-3 h-10 w-10" alt="Logo PPDB" />
+                                        <img :src="logoppdb" class="mr-3 h-10 w-auto" alt="Logo PPDB" />
                                         <span>
                                                 <span class="text-blue-400">PPDB</span>
-                                                <span class="text-white"> Pro</span>
                                         </span>
                                 </RouterLink>
                                 <p class="mt-4 text-sm text-gray-400">
