@@ -1,0 +1,1 @@
+function l(){return{smoothScrollToTop:(t,r)=>{try{const o=document.querySelector(t);if(o){const c={top:0,behavior:"smooth",...r};o.scrollTo(c),window.scrollTo({top:0,behavior:"smooth"})}}catch{}}}}export{l as u};

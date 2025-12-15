@@ -1,0 +1,1 @@
+import{f as e,M as s,L as o}from"../index.js";function u(){const r=e(null),n=e(null),t=e(!1);return{registrationData:r,error:n,loadingRegistration:t,fetchRegistration:async()=>{t.value=!0;try{const a=await s.get(o.CEK_PENDAFTARAN);return r.value=a.data.registration,a.data}catch{n.value="Failed to load Registration list"}finally{t.value=!1}}}}export{u};
