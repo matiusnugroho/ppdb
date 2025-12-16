@@ -3,6 +3,7 @@ import requestor from "@/services/requestor"
 import { ENDPOINTS, replacePlaceholder } from "@/config/endpoint"
 import type { DataSekolah } from "@/types"
 import { usePaginationStore } from "@/stores/paginationStore"
+import { useFormValidationErrorsStore } from "@/stores/formValidationErrors"
 
 export function useSekolah() {
 	const dataSekolah = ref<DataSekolah | null>(null)
@@ -72,6 +73,25 @@ export function useSekolah() {
 		}
 	}
 
+	const createSekolah = async (data: any) => {
+		const url = ENDPOINTS.REGISTER_SEKOLAH
+		const formValidationErrors = useFormValidationErrorsStore()
+		loadingSekolah.value = true
+		error.value = null
+		try {
+			const response = await requestor.post(url, data)
+			return { success: true, data: response.data }
+		} catch (err: any) {
+			error.value = err.response?.data?.message || "Failed to create sekolah"
+			if (err.response?.data?.errors) {
+				formValidationErrors.errors = err.response.data.errors
+			}
+			return { success: false, error: error.value }
+		} finally {
+			loadingSekolah.value = false
+		}
+	}
+
 	return {
 		dataSekolah,
 		error,
@@ -81,5 +101,6 @@ export function useSekolah() {
 		fetchSekolah,
 		fetchSekolahById,
 		updateSekolah,
+		createSekolah,
 	}
 }
