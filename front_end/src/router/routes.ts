@@ -171,16 +171,16 @@ export default [
 			requiresAuth: true,
 		},
 	},
-	{
-		path: "/sekolah/daftar",
-		name: "daftar_sekolah",
-		component: () => import("@/views/Authentication/SchoolSignupView.vue"),
-		meta: {
-			title: "Daftar",
-			label: "Daftar",
-			requiresAuth: false,
-		},
-	},
+	// {
+	// 	path: "/sekolah/daftar",
+	// 	name: "daftar_sekolah",
+	// 	component: () => import("@/views/Authentication/SchoolSignupView.vue"),
+	// 	meta: {
+	// 		title: "Daftar",
+	// 		label: "Daftar",
+	// 		requiresAuth: false,
+	// 	},
+	// },
 	{
 		path: "/:pathMatch(.*)*",
 		name: "NotFound",

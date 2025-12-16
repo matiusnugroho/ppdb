@@ -92,6 +92,20 @@ export function useSekolah() {
 		}
 	}
 
+	const deleteSekolah = async (id: string) => {
+		const url = replacePlaceholder(ENDPOINTS.UPDATE_SEKOLAH, { id }) // Usually DELETE endpoint is same ID pattern
+		loadingSekolah.value = true
+		try {
+			const response = await requestor.delete(url)
+			return { success: true, data: response.data }
+		} catch (err: any) {
+			error.value = err.response?.data?.message || "Failed to delete sekolah"
+			return { success: false, error: error.value }
+		} finally {
+			loadingSekolah.value = false
+		}
+	}
+
 	return {
 		dataSekolah,
 		error,
@@ -102,5 +116,6 @@ export function useSekolah() {
 		fetchSekolahById,
 		updateSekolah,
 		createSekolah,
+		deleteSekolah,
 	}
 }

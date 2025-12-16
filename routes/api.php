@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/statistik/admin', [StatistikController::class, 'admin']);
     Route::get('/sekolah/{school}', [SchoolController::class, 'show']);
     Route::put('/sekolah/{school}', [SchoolController::class, 'update']);
+    Route::delete('/sekolah/{school}', [SchoolController::class, 'destroy']);
 });
 Route::resource('/siswa', StudentController::class);
 Route::get('/jalur', [JalurController::class, 'index']);
@@ -75,7 +76,7 @@ Route::get('/jalur/{registrationPath}/persyaratan', [JalurController::class, 'pe
 Route::get('/jalur/persyaratan', [JalurController::class, 'denganPersyaratan']);
 Route::get('/statistik/', [StatistikController::class, 'admin']);
 Route::post('/siswa/register', [StudentController::class, 'store']);
-Route::post('/sekolah/register', [SchoolController::class, 'store']);
+//Route::post('/sekolah/register', [SchoolController::class, 'store']);
 Route::get('/sekolah/excel', [SchoolController::class, 'excel']);
 Route::get('/sekolah/excel-with-data', [SchoolController::class, 'excelWithData']);
 Route::get('/kecamatan/', [KecamatanController::class, 'index']);

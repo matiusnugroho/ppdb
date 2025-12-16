@@ -6,17 +6,17 @@
       "index.html"
     ]
   },
-  "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.BkkGE_n-.js": {
-    "file": "js/ConfirmationComponent.vue_vue_type_script_setup_true_lang.BkkGE_n-.js",
+  "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.1UnRMvLo.js": {
+    "file": "js/ConfirmationComponent.vue_vue_type_script_setup_true_lang.1UnRMvLo.js",
     "name": "ConfirmationComponent.vue_vue_type_script_setup_true_lang",
     "imports": [
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
       "index.html",
-      "_index.BB3keK1r.js"
+      "_index.XA6sYOCG.js"
     ]
   },
-  "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js": {
-    "file": "js/DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+  "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js": {
+    "file": "js/DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
     "name": "DefaultLayout.vue_vue_type_script_setup_true_lang",
     "imports": [
       "index.html",
@@ -31,8 +31,8 @@
     "file": "css/FilterSelect.D2krY3BH.css",
     "src": "_FilterSelect.!~{016}~.js"
   },
-  "_FilterSelect.DRPwYj1o.js": {
-    "file": "js/FilterSelect.DRPwYj1o.js",
+  "_FilterSelect.DskikzV_.js": {
+    "file": "js/FilterSelect.DskikzV_.js",
     "name": "FilterSelect",
     "imports": [
       "index.html",
@@ -57,12 +57,12 @@
       "index.html"
     ]
   },
-  "_ModalComponent.vue_vue_type_script_setup_true_lang.UEeJILJd.js": {
-    "file": "js/ModalComponent.vue_vue_type_script_setup_true_lang.UEeJILJd.js",
+  "_ModalComponent.vue_vue_type_script_setup_true_lang.BTUiagaR.js": {
+    "file": "js/ModalComponent.vue_vue_type_script_setup_true_lang.BTUiagaR.js",
     "name": "ModalComponent.vue_vue_type_script_setup_true_lang",
     "imports": [
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
-      "_index.BB3keK1r.js",
+      "_index.XA6sYOCG.js",
       "index.html"
     ]
   },
@@ -103,18 +103,18 @@
       "index.html"
     ]
   },
-  "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.vhWBsddh.js": {
-    "file": "js/TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.vhWBsddh.js",
+  "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.BclmA3u4.js": {
+    "file": "js/TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.BclmA3u4.js",
     "name": "TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang",
     "imports": [
       "index.html",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.0N8bNYdP.js",
       "_usePendaftaran.DplSNUYV.js",
-      "_useSekolah.DNM2-tfN.js",
-      "_buatOption.Bie55yYu.js",
+      "_useSekolah.QCvUQrm2.js",
+      "_buatOption.C8iYn14X.js",
       "_useKecamatan.BULQhWxi.js",
       "_jenjang.DlmV0PPG.js",
-      "_FilterSelect.DRPwYj1o.js"
+      "_FilterSelect.DskikzV_.js"
     ]
   },
   "_TextAreaGroup.zZQPhliB.js": {
@@ -135,8 +135,8 @@
     "file": "css/buatOption.viUBjxTH.css",
     "src": "_buatOption.!~{015}~.js"
   },
-  "_buatOption.Bie55yYu.js": {
-    "file": "js/buatOption.Bie55yYu.js",
+  "_buatOption.C8iYn14X.js": {
+    "file": "js/buatOption.C8iYn14X.js",
     "name": "buatOption",
     "imports": [
       "index.html",
@@ -178,8 +178,8 @@
       "_formValidationErrors.YeWR-HPr.js"
     ]
   },
-  "_index.BB3keK1r.js": {
-    "file": "js/index.BB3keK1r.js",
+  "_index.XA6sYOCG.js": {
+    "file": "js/index.XA6sYOCG.js",
     "name": "index",
     "imports": [
       "index.html"
@@ -231,8 +231,8 @@
       "index.html"
     ]
   },
-  "_useSekolah.DNM2-tfN.js": {
-    "file": "js/useSekolah.DNM2-tfN.js",
+  "_useSekolah.QCvUQrm2.js": {
+    "file": "js/useSekolah.QCvUQrm2.js",
     "name": "useSekolah",
     "imports": [
       "index.html",
@@ -280,7 +280,6 @@
       "src/views/VerifikasiView.vue",
       "src/views/DataPendaftaranView.vue",
       "src/views/PendaftaranView.vue",
-      "src/views/Authentication/SchoolSignupView.vue",
       "src/views/Errors/Error404View.vue",
       "src/views/Admin/MasterSekolahView.vue",
       "src/views/Admin/SekolahDetailView.vue",
@@ -317,6 +316,7 @@
       "src/assets/icons/phone.svg?raw",
       "src/assets/icons/star.svg?raw",
       "src/assets/icons/toga.svg?raw",
+      "src/assets/icons/trash.svg?raw",
       "src/assets/icons/triangle-exclamation.svg?raw",
       "src/assets/icons/upload-double.svg?raw",
       "src/assets/icons/upload.svg?raw",
@@ -681,6 +681,12 @@
     "src": "src/assets/icons/toga.svg?raw",
     "isDynamicEntry": true
   },
+  "src/assets/icons/trash.svg?raw": {
+    "file": "js/trash.d6qDrXNV.js",
+    "name": "trash",
+    "src": "src/assets/icons/trash.svg?raw",
+    "isDynamicEntry": true
+  },
   "src/assets/icons/triangle-exclamation.svg?raw": {
     "file": "js/triangle-exclamation.CUibRVxE.js",
     "name": "triangle-exclamation",
@@ -761,12 +767,12 @@
     ]
   },
   "src/views/Admin/AkunView.vue": {
-    "file": "js/AkunView.DxTR9yCL.js",
+    "file": "js/AkunView.CO85mu3H.js",
     "name": "AkunView",
     "src": "src/views/Admin/AkunView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "_InputGroup.CGOI8iZn.js",
       "_PasswordInput.vue_vue_type_script_setup_true_lang.DkrJuUef.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
@@ -780,41 +786,42 @@
     ]
   },
   "src/views/Admin/DataSekolahView.vue": {
-    "file": "js/DataSekolahView.DW4PniyK.js",
+    "file": "js/DataSekolahView.BG9I8MyD.js",
     "name": "DataSekolahView",
     "src": "src/views/Admin/DataSekolahView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
-      "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.vhWBsddh.js",
-      "_useSekolah.DNM2-tfN.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
+      "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.BclmA3u4.js",
+      "_useSekolah.QCvUQrm2.js",
       "_useKecamatan.BULQhWxi.js",
-      "_buatOption.Bie55yYu.js",
+      "_buatOption.C8iYn14X.js",
       "_jenjang.DlmV0PPG.js",
       "index.html",
       "_authComposable.sKl44bRY.js",
       "_logo-ppdb.BW9ypDwz.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.0N8bNYdP.js",
       "_usePendaftaran.DplSNUYV.js",
-      "_FilterSelect.DRPwYj1o.js",
+      "_FilterSelect.DskikzV_.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
       "_formValidationErrors.YeWR-HPr.js"
     ]
   },
   "src/views/Admin/MasterSekolahView.vue": {
-    "file": "js/MasterSekolahView.19SJ6qMh.js",
+    "file": "js/MasterSekolahView.DmD4SsnA.js",
     "name": "MasterSekolahView",
     "src": "src/views/Admin/MasterSekolahView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "index.html",
-      "_buatOption.Bie55yYu.js",
-      "_FilterSelect.DRPwYj1o.js",
+      "_buatOption.C8iYn14X.js",
+      "_FilterSelect.DskikzV_.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.0N8bNYdP.js",
       "_InputGroup.CGOI8iZn.js",
       "_useKecamatan.BULQhWxi.js",
-      "_useSekolah.DNM2-tfN.js",
+      "_ModalComponent.vue_vue_type_script_setup_true_lang.BTUiagaR.js",
+      "_useSekolah.QCvUQrm2.js",
       "_jenjang.DlmV0PPG.js",
       "_TextAreaGroup.zZQPhliB.js",
       "_formValidationErrors.YeWR-HPr.js",
@@ -822,60 +829,40 @@
       "_fieldErrorHtml.BloJiExM.js",
       "_authComposable.sKl44bRY.js",
       "_logo-ppdb.BW9ypDwz.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js"
+      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
+      "_index.XA6sYOCG.js"
     ]
   },
   "src/views/Admin/PersyaratanView.vue": {
-    "file": "js/PersyaratanView.Do9rATQw.js",
+    "file": "js/PersyaratanView.Hjc5rqzk.js",
     "name": "PersyaratanView",
     "src": "src/views/Admin/PersyaratanView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "index.html",
       "_authComposable.sKl44bRY.js",
       "_logo-ppdb.BW9ypDwz.js"
     ]
   },
   "src/views/Admin/SekolahDetailView.vue": {
-    "file": "js/SekolahDetailView.BC1LfIoG.js",
+    "file": "js/SekolahDetailView.CnSvIPoh.js",
     "name": "SekolahDetailView",
     "src": "src/views/Admin/SekolahDetailView.vue",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "_InputGroup.CGOI8iZn.js",
-      "_useSekolah.DNM2-tfN.js",
+      "_useSekolah.QCvUQrm2.js",
       "_useKecamatan.BULQhWxi.js",
       "_authComposable.sKl44bRY.js",
       "_logo-ppdb.BW9ypDwz.js",
       "_formValidationErrors.YeWR-HPr.js"
     ]
   },
-  "src/views/Authentication/SchoolSignupView.vue": {
-    "file": "js/SchoolSignupView.D6xVFfEH.js",
-    "name": "SchoolSignupView",
-    "src": "src/views/Authentication/SchoolSignupView.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_PlainLayout.DTxR3Fxk.js",
-      "_formValidationErrors.YeWR-HPr.js",
-      "_PasswordInput.vue_vue_type_script_setup_true_lang.DkrJuUef.js",
-      "_useKecamatan.BULQhWxi.js",
-      "_fieldErrorHtml.BloJiExM.js",
-      "_InputGroup.CGOI8iZn.js",
-      "_hasError.DGV2MSht.js",
-      "_buatOption.Bie55yYu.js",
-      "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
-      "_TextAreaGroup.zZQPhliB.js",
-      "_logo-ppdb.BW9ypDwz.js",
-      "_login-ilustrasi.CSbcqYU5.js"
-    ]
-  },
   "src/views/Authentication/SigninView.vue": {
-    "file": "js/SigninView.BYeuGJPl.js",
+    "file": "js/SigninView.DaeDiqu3.js",
     "name": "SigninView",
     "src": "src/views/Authentication/SigninView.vue",
     "isDynamicEntry": true,
@@ -891,11 +878,11 @@
       "_login-ilustrasi.CSbcqYU5.js"
     ],
     "css": [
-      "css/SigninView.DPbF1jzy.css"
+      "css/SigninView.DD4emvYx.css"
     ]
   },
   "src/views/Authentication/SignupView.vue": {
-    "file": "js/SignupView.DIm93Xnu.js",
+    "file": "js/SignupView.B-YskfLC.js",
     "name": "SignupView",
     "src": "src/views/Authentication/SignupView.vue",
     "isDynamicEntry": true,
@@ -912,19 +899,19 @@
       "_jenjang.DlmV0PPG.js",
       "_SelectGroup.vue_vue_type_script_setup_true_lang.DQawecAY.js",
       "_useKecamatan.BULQhWxi.js",
-      "_buatOption.Bie55yYu.js",
+      "_buatOption.C8iYn14X.js",
       "_TextAreaGroup.zZQPhliB.js",
       "_logo-ppdb.BW9ypDwz.js",
       "_login-ilustrasi.CSbcqYU5.js"
     ]
   },
   "src/views/BiodataView.vue": {
-    "file": "js/BiodataView.C1sIWFhd.js",
+    "file": "js/BiodataView.eyPsUJ9J.js",
     "name": "BiodataView",
     "src": "src/views/BiodataView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "index.html",
       "_formValidationErrors.YeWR-HPr.js",
       "_component.CfUizX1i.js",
@@ -941,7 +928,7 @@
     ]
   },
   "src/views/Dashboard/DashboardView.vue": {
-    "file": "js/DashboardView.B72q3-GH.js",
+    "file": "js/DashboardView.BGDKcYN7.js",
     "name": "DashboardView",
     "src": "src/views/Dashboard/DashboardView.vue",
     "isDynamicEntry": true,
@@ -950,41 +937,41 @@
       "_useStatistik.C9OvlNw-.js",
       "_LoadingInfoComponent.vue_vue_type_script_setup_true_lang.Dx7bmB2e.js",
       "_usePendaftaran.DplSNUYV.js",
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
-      "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.vhWBsddh.js",
-      "_ModalComponent.vue_vue_type_script_setup_true_lang.UEeJILJd.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
+      "_TabelSekolahWithDataComponent.vue_vue_type_script_setup_true_lang.BclmA3u4.js",
+      "_ModalComponent.vue_vue_type_script_setup_true_lang.BTUiagaR.js",
       "_useCekPendaftaran.D3hBySMT.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
       "_authComposable.sKl44bRY.js",
       "_logo-ppdb.BW9ypDwz.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.0N8bNYdP.js",
-      "_useSekolah.DNM2-tfN.js",
+      "_useSekolah.QCvUQrm2.js",
       "_formValidationErrors.YeWR-HPr.js",
-      "_buatOption.Bie55yYu.js",
+      "_buatOption.C8iYn14X.js",
       "_useKecamatan.BULQhWxi.js",
       "_jenjang.DlmV0PPG.js",
-      "_FilterSelect.DRPwYj1o.js",
-      "_index.BB3keK1r.js"
+      "_FilterSelect.DskikzV_.js",
+      "_index.XA6sYOCG.js"
     ]
   },
   "src/views/DataPendaftaranView.vue": {
-    "file": "js/DataPendaftaranView.BanWchv-.js",
+    "file": "js/DataPendaftaranView.DDd3fMzk.js",
     "name": "DataPendaftaranView",
     "src": "src/views/DataPendaftaranView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "index.html",
       "_usePendaftaran.DplSNUYV.js",
-      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.BkkGE_n-.js",
+      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.1UnRMvLo.js",
       "_getDataById.CToqdZWp.js",
-      "_ModalComponent.vue_vue_type_script_setup_true_lang.UEeJILJd.js",
+      "_ModalComponent.vue_vue_type_script_setup_true_lang.BTUiagaR.js",
       "_TextAreaGroup.zZQPhliB.js",
       "_hasError.DGV2MSht.js",
       "_authComposable.sKl44bRY.js",
       "_logo-ppdb.BW9ypDwz.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
-      "_index.BB3keK1r.js",
+      "_index.XA6sYOCG.js",
       "_formValidationErrors.YeWR-HPr.js"
     ]
   },
@@ -1021,14 +1008,14 @@
     ]
   },
   "src/views/Pages/SekolahPages.vue": {
-    "file": "js/SekolahPages.t0N-0ZJA.js",
+    "file": "js/SekolahPages.DNbGUMg8.js",
     "name": "SekolahPages",
     "src": "src/views/Pages/SekolahPages.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_useSekolah.DNM2-tfN.js",
-      "_buatOption.Bie55yYu.js",
-      "_FilterSelect.DRPwYj1o.js",
+      "_useSekolah.QCvUQrm2.js",
+      "_buatOption.C8iYn14X.js",
+      "_FilterSelect.DskikzV_.js",
       "_useKecamatan.BULQhWxi.js",
       "index.html",
       "_LoadingInfoComponent.vue_vue_type_script_setup_true_lang.Dx7bmB2e.js",
@@ -1053,38 +1040,38 @@
     ]
   },
   "src/views/PendaftaranView.vue": {
-    "file": "js/PendaftaranView.8RWJBVBd.js",
+    "file": "js/PendaftaranView.GemYnGr8.js",
     "name": "PendaftaranView",
     "src": "src/views/PendaftaranView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "_formValidationErrors.YeWR-HPr.js",
       "_useCekPendaftaran.D3hBySMT.js",
       "index.html",
-      "_useSekolah.DNM2-tfN.js",
-      "_buatOption.Bie55yYu.js",
+      "_useSekolah.QCvUQrm2.js",
+      "_buatOption.C8iYn14X.js",
       "_SelectGroup.vue_vue_type_script_setup_true_lang.DQawecAY.js",
       "_AlertSuccess.DVwU4fFw.js",
       "_fieldErrorHtml.BloJiExM.js",
       "_usePendaftaran.DplSNUYV.js",
-      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.BkkGE_n-.js",
+      "_ConfirmationComponent.vue_vue_type_script_setup_true_lang.1UnRMvLo.js",
       "_getDataById.CToqdZWp.js",
       "_NoDataComponent.vue_vue_type_script_setup_true_lang.0N8bNYdP.js",
       "_authComposable.sKl44bRY.js",
       "_logo-ppdb.BW9ypDwz.js",
       "_SpinnerLoading.vue_vue_type_script_setup_true_lang.CQvHfLuO.js",
-      "_index.BB3keK1r.js"
+      "_index.XA6sYOCG.js"
     ]
   },
   "src/views/Sekolah/ProfileSekolahView.vue": {
-    "file": "js/ProfileSekolahView.DQg0XWG4.js",
+    "file": "js/ProfileSekolahView.C-LQhVFh.js",
     "name": "ProfileSekolahView",
     "src": "src/views/Sekolah/ProfileSekolahView.vue",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "_useKecamatan.BULQhWxi.js",
       "_formValidationErrors.YeWR-HPr.js",
       "_fieldErrorHtml.BloJiExM.js",
@@ -1094,12 +1081,12 @@
     ]
   },
   "src/views/VerifikasiView.vue": {
-    "file": "js/VerifikasiView.Dhyghpjc.js",
+    "file": "js/VerifikasiView.SXuzW5Oe.js",
     "name": "VerifikasiView",
     "src": "src/views/VerifikasiView.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DefaultLayout.vue_vue_type_script_setup_true_lang.6-Gez_Sj.js",
+      "_DefaultLayout.vue_vue_type_script_setup_true_lang.CVk9NgW6.js",
       "_usePendaftaran.DplSNUYV.js",
       "index.html",
       "_getDataById.CToqdZWp.js",

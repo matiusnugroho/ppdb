@@ -106,7 +106,7 @@ onMounted(async () => {
 				<div class="mt-6 text-center">
 					<p class="font-medium">
 						Belum Mempunyai Akun?
-						<router-link to="/daftar" class="text-primary">Daftar</router-link> atau <router-link to="sekolah/daftar" class="text-primary">daftarkan sekolah anda</router-link>
+						<router-link to="/daftar" class="text-primary">Daftar</router-link>
 					</p>
 				</div>
 			</form>

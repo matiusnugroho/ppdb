@@ -241,7 +241,32 @@ class SchoolController extends Controller
      */
     public function destroy(School $school)
     {
-        //
+        if (!auth()->user()->hasRole('super_admin')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Anda tidak memiliki hak akses untuk menghapus sekolah',
+            ], 403);
+        }
+
+        try {
+            // Delete associated user if exists
+            if ($school->user) {
+                $school->user->delete();
+            }
+
+            // Delete the school
+            $school->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Sekolah berhasil dihapus',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menghapus sekolah: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function getByKecamatan($kecamatanId, $jenjang = null)
@@ -352,7 +377,7 @@ class SchoolController extends Controller
             // Paginate the results
             $paginatedSchools = $query->paginate($perPage);
             $schools = $paginatedSchools->getCollection();
-            $schools->getCollection()->transform(function ($school) {
+            $schools->transform(function ($school) {
                 $pathCounts = [];
 
                 // Assuming 'registrations' has been loaded via 'jalur'

@@ -91,6 +91,9 @@
                                         <HeroIcon name="document-text" class="w-5 h-5" />
                                     </a>
                                 </router-link>
+                                <button @click="handleDelete(sekolah)" class="btn btn-sm btn-square btn-ghost text-red-600 hover:bg-red-50" title="Hapus Data">
+                                    <HeroIcon name="trash" class="w-5 h-5" />
+                                </button>
                             </div>
                         </td>
 					</tr>
@@ -137,6 +140,16 @@
             @close="closeModal"
             @submit="handleModalSubmit"
         />
+
+        <ModalComponent
+            ref="deleteModal"
+            :title="'Hapus Sekolah'"
+            :message="deleteMessage"
+            :confirm-label="'Hapus'"
+            :cancel-label="'Batal'"
+            :confirm-handler="processDelete"
+            :loading="loadingAction"
+        >Apakah anda yakin ingin menghapus sekolah ini?</ModalComponent>
 	</div>
 </template>
 
@@ -147,6 +160,7 @@ import FilterSelect from "@/components/Forms/FilterSelect.vue"
 import HeroIcon from "@/components/Icon/HeroIcon.vue"
 import NoDataComponent from "@/components/UI/NoDataComponent.vue"
 import SekolahFormModal from "@/components/Dashboard/SekolahFormModal.vue"
+import ModalComponent from "@/components/UI/ModalComponent.vue"
 import { usePaginationStore } from "@/stores/paginationStore"
 import { useKecamatan } from "@/composable/useKecamatan"
 // import logger from "@/utils/logger" // Removed due to missing module
@@ -171,7 +185,7 @@ const emit = defineEmits(["filter", "page-change", "prev-page", "next-page", "re
 
 const paginationStore = usePaginationStore()
 const { kecamatanList } = useKecamatan()
-const { updateSekolah } = useSekolah()
+const { updateSekolah, deleteSekolah } = useSekolah()
 
 const kecamatan_id = ref("")
 const jenjang = ref("")
@@ -183,6 +197,11 @@ const modalOpen = ref(false)
 const modalMode = ref<'view' | 'edit'>('view')
 const selectedSekolah = ref<School | null>(null)
 const loadingAction = ref(false)
+
+// Delete Modal State
+const deleteModal = ref<InstanceType<typeof ModalComponent> | null>(null)
+const deleteMessage = ref("")
+const schoolToDelete = ref<School | null>(null)
 
 const kecamatanOption = computed<Option[]>(() => {
 	const options = buatOption(kecamatanList.value, "nama", "id")
@@ -248,5 +267,27 @@ const handleModalSubmit = async (formData: any) => {
     } else {
         showToast({ message: "Gagal memperbarui data sekolah", type: 'error' })
     }
+}
+
+const handleDelete = (sekolah: School) => {
+    schoolToDelete.value = sekolah
+    deleteMessage.value = `Apakah anda yakin ingin menghapus sekolah "${sekolah.nama_sekolah}"? Tindakan ini tidak dapat dibatalkan!`
+    deleteModal.value?.show()
+}
+
+const processDelete = async () => {
+    if (!schoolToDelete.value) return
+
+    loadingAction.value = true
+    const result = await deleteSekolah(schoolToDelete.value.id);
+    loadingAction.value = false
+    
+    if (result.success) {
+        showToast({ message: "Data sekolah berhasil dihapus" })
+        emit('refresh');
+    } else {
+        showToast({ message: `Gagal menghapus sekolah: ${result.error}`, type: 'error' })
+    }
+    schoolToDelete.value = null
 }
 </script>
