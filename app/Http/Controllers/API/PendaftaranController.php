@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Pendaftaran\StoreDaftarRequest;
 use App\Http\Requests\RevisiDokumenRequest;
 use App\Http\Requests\StoreRegistrationPeriodRequest;
@@ -91,48 +93,51 @@ class PendaftaranController extends Controller
         }
         $data = $request->validated();
 
-        $school = School::find($data['school_id']);
-        $dayaTampungSekolah = $school->daya_tampung;
-        $jalurPendaftaran = RegistrationPath::find($data['registration_path_id']);
-        $quota_percentage_of_jalur = $jalurPendaftaran->quota_percentage;
-        $quota = ceil($dayaTampungSekolah * $quota_percentage_of_jalur / 100);
+        return DB::transaction(function () use ($data, $request) {
+            $school = School::where('id', $data['school_id'])->lockForUpdate()->first();
+            $dayaTampungSekolah = $school->daya_tampung;
+            $jalurPendaftaran = RegistrationPath::find($data['registration_path_id']);
+            $quota_percentage_of_jalur = $jalurPendaftaran->quota_percentage;
+            $quota = ceil($dayaTampungSekolah * $quota_percentage_of_jalur / 100);
 
-        $currentRegistationOfJalur = $school->activeCountByJalur($data['registration_path_id']);
+            $currentRegistationOfJalur = $school->activeCountByJalur($data['registration_path_id']);
 
-        if ($currentRegistationOfJalur >= $quota) {
+            if ($currentRegistationOfJalur >= $quota) {
+                return response()->json([
+                    'message' => 'Daya Tampung Sekolah ' . $school->name . ' untuk jalur ' . $jalurPendaftaran->name . ' sudah mencapai batas quota. Silahkan pilih jalur atau sekolah lain',
+                ], 400);
+            }
+
+            $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
+            $data['registration_period_id'] = $registrationPeriod->id;
+            $data['registration_number'] = $this->generateRegistrationNumber($data['jenjang']);
+
+            $student = $request->user()->student;
+            $existingRegistration = Registration::where('student_id', $student->id)->first();
+
+            if ($existingRegistration) {
+                return response()->json([
+                    'message' => 'Anda tidak boleh mendaftar ke lebih satu sekolah.',
+                ], 400);
+            }
+            $student->registration()->create($data);
+            $jalur = RegistrationPath::find($data['registration_path_id']);
+            // Use Auth::user() for consistency with previous fixes
+            $requirements = $jalur->requirements()->where('jenjang', Auth::user()->student->jenjang)->get();
+            foreach ($requirements as $requirement) {
+                $student->registration->documents()->create([
+                    'path_requirement_id' => $requirement->id,
+                    'status' => 'belum upload',
+                ]);
+            }
+            $registration = $student->registration;
+            $registration->load('school', 'documents');
+
             return response()->json([
-                'message' => 'Daya Tampung Sekolah ' . $school->name . ' untuk jalur ' . $jalurPendaftaran->name . ' sudah mencapai batas quota. Silahkan pilih jalur atau sekolah lain',
-            ], 400);
-        }
-
-        $registrationPeriod = RegistrationPeriod::where('is_open', true)->first();
-        $data['registration_period_id'] = $registrationPeriod->id;
-        $data['registration_number'] = $this->generateRegistrationNumber($data['jenjang']);
-        //dd($data);
-        $student = $request->user()->student;
-        $existingRegistration = Registration::where('student_id', $student->id)->first();
-
-        if ($existingRegistration) {
-            return response()->json([
-                'message' => 'Anda tidak boleh mendaftar ke lebih satu sekolah.',
-            ], 400);
-        }
-        $student->registration()->create($data);
-        $jalur = RegistrationPath::find($data['registration_path_id']);
-        $requirements = $jalur->requirements()->where('jenjang', auth()->user()->student->jenjang)->get();
-        foreach ($requirements as $requirement) {
-            $student->registration->documents()->create([
-                'path_requirement_id' => $requirement->id,
-                'status' => 'belum upload',
+                'success' => true,
+                'data' => $student->registration,
             ]);
-        }
-        $registration = $student->registration;
-        $registration->load('school', 'documents');
-
-        return response()->json([
-            'success' => true,
-            'data' => $student->registration,
-        ]);
+        });
     }
 
     public function uploadDokumen(UploadDokumenRequest $request, Document $document)
